@@ -221,10 +221,10 @@ export default function PaymentTermsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -243,7 +243,7 @@ export default function PaymentTermsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -290,7 +290,7 @@ export default function PaymentTermsPage() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex flex-wrap gap-2">
           {filters.map(filter => (
             <button
@@ -311,12 +311,12 @@ export default function PaymentTermsPage() {
       </div>
 
       {/* Payment Terms Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredTerms.map((term) => (
           <div key={term.id} className={`bg-white rounded-xl shadow-sm border-2 ${term.isDefault ? 'border-blue-500' : 'border-gray-200'} hover:shadow-md transition-shadow`}>
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-bold text-lg text-gray-900">{term.name}</h3>
@@ -338,8 +338,8 @@ export default function PaymentTermsPage() {
               </div>
 
               {/* Key Terms */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className={`rounded-lg p-4 ${term.dueDays >= 0 ? 'bg-blue-50 border border-blue-200' : 'bg-green-50 border border-green-200'}`}>
+              <div className="grid grid-cols-2 gap-3 mb-2">
+                <div className={`rounded-lg p-3 ${term.dueDays >= 0 ? 'bg-blue-50 border border-blue-200' : 'bg-green-50 border border-green-200'}`}>
                   <div className="flex items-center gap-2 mb-2">
                     <Calendar className={`h-5 w-5 ${term.dueDays >= 0 ? 'text-blue-600' : 'text-green-600'}`} />
                     <p className={`text-xs font-medium ${term.dueDays >= 0 ? 'text-blue-700' : 'text-green-700'}`}>
@@ -352,7 +352,7 @@ export default function PaymentTermsPage() {
                 </div>
 
                 {term.discountPercent > 0 && (
-                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                  <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                     <div className="flex items-center gap-2 mb-2">
                       <Percent className="h-5 w-5 text-green-600" />
                       <p className="text-xs text-green-700 font-medium">Discount</p>
@@ -364,13 +364,13 @@ export default function PaymentTermsPage() {
               </div>
 
               {/* Description */}
-              <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mb-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <p className="text-sm text-gray-700">{term.description}</p>
               </div>
 
               {/* Credit Details */}
               {term.creditLimit && (
-                <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="grid grid-cols-2 gap-3 mb-2">
                   <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                     <p className="text-xs text-purple-700 mb-1">Credit Limit</p>
                     <p className="font-semibold text-purple-900">₹{(term.creditLimit / 100000).toFixed(1)}L</p>
@@ -385,7 +385,7 @@ export default function PaymentTermsPage() {
               )}
 
               {/* Applicable To */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs text-gray-600 mb-2 font-medium">Applicable To:</p>
                 <div className="flex flex-wrap gap-2">
                   {term.applicableTo.map((item, index) => (
@@ -397,7 +397,7 @@ export default function PaymentTermsPage() {
               </div>
 
               {/* Usage Stats */}
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-blue-700 font-medium">Usage Count</p>
                   <p className="font-semibold text-blue-900">{term.usageCount.toLocaleString('en-IN')} orders</p>
@@ -430,7 +430,7 @@ export default function PaymentTermsPage() {
 
       {filteredTerms.length === 0 && (
         <div className="text-center py-12">
-          <CreditCard className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <CreditCard className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No payment terms found matching your criteria</p>
         </div>
       )}

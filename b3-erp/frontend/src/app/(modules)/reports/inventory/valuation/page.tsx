@@ -18,7 +18,7 @@ export default function InventoryValuationReport() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Inventory Valuation</h1>
@@ -60,7 +60,7 @@ export default function InventoryValuationReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-blue-50 rounded-lg border border-dashed border-blue-200">
                             <div className="text-center">
-                                <PieChart className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                                <PieChart className="w-8 h-8 text-blue-500 mb-2" />
                                 <p className="text-blue-700 font-medium">View Valuation by Category</p>
                                 <p className="text-sm text-blue-600">Click to analyze asset distribution</p>
                             </div>
@@ -73,7 +73,7 @@ export default function InventoryValuationReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-green-50 rounded-lg border border-dashed border-green-200">
                             <div className="text-center">
-                                <TrendingUp className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                                <TrendingUp className="w-8 h-8 text-green-500 mb-2" />
                                 <p className="text-green-700 font-medium">View Movement History</p>
                                 <p className="text-sm text-green-600">Click to track value changes</p>
                             </div>

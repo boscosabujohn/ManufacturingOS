@@ -539,7 +539,7 @@ export default function ChangeManagement() {
       {/* No Results */}
       {filteredChanges.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
-          <Filter className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Filter className="h-12 w-12 text-gray-400 mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No Changes Found</h3>
           <p className="text-gray-600">Try adjusting your filters or search query</p>
         </div>

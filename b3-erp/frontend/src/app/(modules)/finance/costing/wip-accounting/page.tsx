@@ -169,8 +169,8 @@ export default function WIPAccountingPage() {
   const avgCompletion = wipItems.reduce((sum, item) => sum + item.completionPercentage, 0) / wipItems.length
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-blue-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-blue-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -184,7 +184,7 @@ export default function WIPAccountingPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -231,17 +231,17 @@ export default function WIPAccountingPage() {
         </div>
 
         {/* WIP Items List */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {wipItems.map((item) => (
             <div key={item.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               {/* Header */}
-              <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-6 text-white">
+              <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-3 text-white">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xl font-bold">{item.productName}</h3>
                     <p className="text-indigo-100 mt-1">{item.workOrderId}</p>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="text-right">
                       <p className="text-indigo-100 text-sm">Completion</p>
                       <p className="text-2xl font-bold">{item.completionPercentage}%</p>
@@ -262,7 +262,7 @@ export default function WIPAccountingPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 mt-4">
+                <div className="grid grid-cols-3 gap-2 mt-4">
                   <div>
                     <p className="text-indigo-200 text-sm">Ordered</p>
                     <p className="text-lg font-semibold">{item.quantityOrdered} units</p>
@@ -280,10 +280,10 @@ export default function WIPAccountingPage() {
 
               {/* Cost Details */}
               <div className="p-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                   {/* Cost Incurred */}
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                       <DollarSign className="h-5 w-5 text-blue-600" />
                       Cost Incurred
                     </h4>
@@ -300,7 +300,7 @@ export default function WIPAccountingPage() {
                         <span className="text-gray-700">Overhead Cost</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(item.costIncurred.overhead)}</span>
                       </div>
-                      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-white">
+                      <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-white">
                         <span className="font-semibold">Total Cost Incurred</span>
                         <span className="text-xl font-bold">{formatCurrency(item.costIncurred.total)}</span>
                       </div>
@@ -309,7 +309,7 @@ export default function WIPAccountingPage() {
 
                   {/* Estimated Total Cost */}
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                       <BarChart3 className="h-5 w-5 text-purple-600" />
                       Estimated Total Cost
                     </h4>
@@ -326,7 +326,7 @@ export default function WIPAccountingPage() {
                         <span className="text-gray-700">Overhead Cost</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(item.estimatedCost.overhead)}</span>
                       </div>
-                      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white">
+                      <div className="flex items-center justify-between p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white">
                         <span className="font-semibold">Estimated Total</span>
                         <span className="text-xl font-bold">{formatCurrency(item.estimatedCost.total)}</span>
                       </div>
@@ -336,20 +336,20 @@ export default function WIPAccountingPage() {
 
                 {/* Cost vs Estimate */}
                 <div className="mt-6 pt-6 border-t border-gray-200">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
                       <p className="text-sm text-gray-600 mb-1">Cost to Complete</p>
                       <p className="text-2xl font-bold text-gray-900">
                         {formatCurrency(item.estimatedCost.total - item.costIncurred.total)}
                       </p>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
                       <p className="text-sm text-gray-600 mb-1">Timeline</p>
                       <p className="text-lg font-semibold text-gray-900">
                         {item.startDate} to {item.targetDate}
                       </p>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
                       <p className="text-sm text-gray-600 mb-1">Cost per Unit (Incurred)</p>
                       <p className="text-2xl font-bold text-gray-900">
                         {formatCurrency(item.costIncurred.total / item.quantityOrdered)}
@@ -363,9 +363,9 @@ export default function WIPAccountingPage() {
         </div>
 
         {/* Summary */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">WIP Summary</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">WIP Summary</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-gray-600">Total WIP Value (Cost Incurred):</span>

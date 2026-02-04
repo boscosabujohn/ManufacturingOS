@@ -525,10 +525,10 @@ export default function SubmittedRFPPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -549,8 +549,8 @@ export default function SubmittedRFPPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Total RFPs</p>
@@ -563,7 +563,7 @@ export default function SubmittedRFPPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Open RFPs</p>
@@ -576,7 +576,7 @@ export default function SubmittedRFPPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-100 text-sm font-medium">Total Responses</p>
@@ -589,7 +589,7 @@ export default function SubmittedRFPPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-orange-100 text-sm font-medium">Response Rate</p>
@@ -604,8 +604,8 @@ export default function SubmittedRFPPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -657,15 +657,15 @@ export default function SubmittedRFPPage() {
         </div>
 
         {/* RFPs Grid */}
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 gap-3">
           {filteredRFPs.map((rfp) => {
             const responseRate = ((rfp.responsesReceived / rfp.vendorsInvited) * 100).toFixed(0);
             const isExpiringSoon = rfp.daysRemaining > 0 && rfp.daysRemaining <= 3;
             const isExpired = rfp.daysRemaining < 0;
 
             return (
-              <div key={rfp.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div className="space-y-4">
+              <div key={rfp.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+                <div className="space-y-2">
                   {/* Header */}
                   <div className="flex items-start justify-between">
                     <div>
@@ -684,7 +684,7 @@ export default function SubmittedRFPPage() {
                   </div>
 
                   {/* Stats Row */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                     <div className="bg-gray-50 rounded-lg p-3">
                       <p className="text-sm text-gray-600">Items</p>
                       <p className="text-xl font-semibold text-gray-900">{rfp.itemsCount}</p>
@@ -704,7 +704,7 @@ export default function SubmittedRFPPage() {
                   </div>
 
                   {/* Timeline */}
-                  <div className="flex items-center gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-sm">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-gray-400" />
                       <span className="text-gray-600">Issued: {new Date(rfp.issueDate).toLocaleDateString('en-IN')}</span>
@@ -726,7 +726,7 @@ export default function SubmittedRFPPage() {
 
                   {/* Price Range */}
                   {rfp.lowestQuote && rfp.highestQuote && (
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-sm font-medium text-green-900">Quote Range</p>
@@ -799,7 +799,7 @@ export default function SubmittedRFPPage() {
 
         {filteredRFPs.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <FileText className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No RFPs Found</h3>
             <p className="text-gray-600">No RFPs match your current filters.</p>
           </div>

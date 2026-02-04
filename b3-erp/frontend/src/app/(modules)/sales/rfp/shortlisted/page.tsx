@@ -453,10 +453,10 @@ export default function ShortlistedRFPPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -477,8 +477,8 @@ export default function ShortlistedRFPPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -505,10 +505,10 @@ export default function ShortlistedRFPPage() {
         </div>
 
         {/* RFPs List */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {filteredRFPs.map((rfp) => (
-            <div key={rfp.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="space-y-6">
+            <div key={rfp.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="space-y-3">
                 {/* RFP Header */}
                 <div className="flex items-start justify-between pb-4 border-b border-gray-200">
                   <div>
@@ -519,7 +519,7 @@ export default function ShortlistedRFPPage() {
                       </span>
                     </div>
                     <p className="text-lg text-gray-700 mb-2">{rfp.title}</p>
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         <span>Evaluated: {new Date(rfp.evaluationDate).toLocaleDateString('en-IN')}</span>
@@ -537,20 +537,20 @@ export default function ShortlistedRFPPage() {
                 </div>
 
                 {/* Vendors Comparison */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {rfp.vendors.map((vendor, index) => (
                     <div
                       key={vendor.id}
-                      className={`border-2 rounded-xl p-6 transition-all ${
+                      className={`border-2 rounded-xl p-3 transition-all ${
                         rfp.selectedVendorId === vendor.id
                           ? 'border-green-500 bg-green-50'
                           : 'border-gray-200 hover:border-emerald-300'
                       }`}
                     >
-                      <div className="space-y-4">
+                      <div className="space-y-2">
                         {/* Vendor Header */}
                         <div className="flex items-start justify-between">
-                          <div className="flex items-start gap-4">
+                          <div className="flex items-start gap-2">
                             <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl ${
                               vendor.rank === 1 ? 'bg-yellow-500' :
                               vendor.rank === 2 ? 'bg-gray-400' :
@@ -569,7 +569,7 @@ export default function ShortlistedRFPPage() {
                                 )}
                               </div>
                               <p className="text-sm text-gray-600">{vendor.contactPerson}</p>
-                              <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
+                              <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
                                 <div className="flex items-center gap-1">
                                   <Mail className="w-3 h-3" />
                                   <span>{vendor.email}</span>
@@ -591,13 +591,13 @@ export default function ShortlistedRFPPage() {
                         </div>
 
                         {/* Score and Price */}
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                          <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg p-4 text-white">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                          <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg p-3 text-white">
                             <p className="text-emerald-100 text-sm font-medium">Overall Score</p>
                             <p className="text-3xl font-bold mt-1">{vendor.scorePercent}%</p>
                             <p className="text-emerald-100 text-xs mt-1">{vendor.totalScore}/{vendor.maxTotalScore} points</p>
                           </div>
-                          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg p-4 text-white">
+                          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg p-3 text-white">
                             <p className="text-blue-100 text-sm font-medium">Quoted Amount</p>
                             <p className="text-2xl font-bold mt-1">₹{(vendor.quotedAmount / 100000).toFixed(2)}L</p>
                             <p className={`text-xs mt-1 flex items-center gap-1 ${vendor.variance < 0 ? 'text-green-200' : 'text-red-200'}`}>
@@ -605,12 +605,12 @@ export default function ShortlistedRFPPage() {
                               {vendor.variancePercent > 0 ? '+' : ''}{vendor.variancePercent}% vs estimate
                             </p>
                           </div>
-                          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg p-4 text-white">
+                          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg p-3 text-white">
                             <p className="text-purple-100 text-sm font-medium">Delivery Time</p>
                             <p className="text-3xl font-bold mt-1">{vendor.deliveryTime}</p>
                             <p className="text-purple-100 text-xs mt-1">days</p>
                           </div>
-                          <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-lg p-4 text-white">
+                          <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-lg p-3 text-white">
                             <p className="text-orange-100 text-sm font-medium">Overall Rating</p>
                             <div className="flex items-center gap-2 mt-1">
                               <span className="text-3xl font-bold">{vendor.pastPerformance.overallRating}</span>
@@ -620,7 +620,7 @@ export default function ShortlistedRFPPage() {
                         </div>
 
                         {/* Evaluation Scores */}
-                        <div className="bg-gray-50 rounded-lg p-4">
+                        <div className="bg-gray-50 rounded-lg p-3">
                           <h4 className="font-semibold text-gray-900 mb-3">Evaluation Breakdown</h4>
                           <div className="space-y-3">
                             {vendor.evaluationScores.map((score, idx) => (
@@ -641,8 +641,8 @@ export default function ShortlistedRFPPage() {
                         </div>
 
                         {/* Strengths and Weaknesses */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                             <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
                               <ThumbsUp className="w-4 h-4" />
                               Strengths
@@ -656,7 +656,7 @@ export default function ShortlistedRFPPage() {
                               ))}
                             </ul>
                           </div>
-                          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                             <h4 className="font-semibold text-red-900 mb-2 flex items-center gap-2">
                               <ThumbsDown className="w-4 h-4" />
                               Weaknesses
@@ -673,16 +673,16 @@ export default function ShortlistedRFPPage() {
                         </div>
 
                         {/* Additional Details */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                             <h4 className="font-semibold text-blue-900 mb-2">Payment Terms</h4>
                             <p className="text-sm text-blue-800">{vendor.paymentTerms}</p>
                           </div>
-                          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                             <h4 className="font-semibold text-purple-900 mb-2">Warranty</h4>
                             <p className="text-sm text-purple-800">{vendor.warranty}</p>
                           </div>
-                          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                             <h4 className="font-semibold text-orange-900 mb-2">Past Performance</h4>
                             <div className="space-y-1 text-sm text-orange-800">
                               <p>{vendor.pastPerformance.ordersCompleted} orders completed</p>
@@ -742,7 +742,7 @@ export default function ShortlistedRFPPage() {
 
         {filteredRFPs.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Award className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Award className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Shortlisted RFPs Found</h3>
             <p className="text-gray-600">No RFPs match your current filters.</p>
           </div>

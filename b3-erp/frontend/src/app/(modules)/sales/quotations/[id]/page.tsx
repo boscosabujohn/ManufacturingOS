@@ -36,9 +36,9 @@ export default function QuotationDetailPage() {
     };
 
     return (
-        <div className="w-full px-4 py-6">
+        <div className="w-full px-4 py-2">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -74,7 +74,7 @@ export default function QuotationDetailPage() {
             </div>
 
             {/* Quote Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Main Details */}
                 <div className="lg:col-span-2">
                     <Card>
@@ -83,7 +83,7 @@ export default function QuotationDetailPage() {
                         </CardHeader>
                         <CardContent>
                             {/* Customer Info */}
-                            <div className="mb-6 pb-6 border-b">
+                            <div className="mb-3 pb-6 border-b">
                                 <h3 className="font-semibold mb-2">Prepared For:</h3>
                                 <p className="font-medium">{quote.customer.name}</p>
                                 <p className="text-sm text-gray-600">Contact: {quote.customer.contact}</p>
@@ -91,7 +91,7 @@ export default function QuotationDetailPage() {
                             </div>
 
                             {/* Line Items */}
-                            <table className="w-full mb-6">
+                            <table className="w-full mb-3">
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Description</th>
@@ -134,13 +134,13 @@ export default function QuotationDetailPage() {
                 </div>
 
                 {/* Sidebar */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     <Card>
                         <CardHeader>
                             <CardTitle>Deal Info</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="space-y-4">
+                            <div className="space-y-2">
                                 <div>
                                     <p className="text-sm text-gray-600 mb-1">Probability</p>
                                     <div className="w-full bg-gray-200 rounded-full h-2.5 mb-1">

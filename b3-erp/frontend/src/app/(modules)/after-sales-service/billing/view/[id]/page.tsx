@@ -131,7 +131,7 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
   };
 
   return (
-    <div className="p-6 max-w-[1200px] mx-auto">
+    <div className="p-6 max-w-[1200px]">
       {/* Header */}
       <div className="mb-6">
         <button

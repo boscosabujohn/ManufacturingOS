@@ -80,7 +80,7 @@ export default function PeriodClosePage() {
     return (
         <div className="h-screen flex flex-col overflow-hidden bg-gray-50">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm z-10">
+            <div className="bg-white border-b border-gray-200 px-3 py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm z-10">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                         <Calendar className="w-6 h-6 text-blue-600" />
@@ -138,7 +138,7 @@ export default function PeriodClosePage() {
                     </nav>
 
                     <div className="p-4 mt-auto border-t border-gray-100">
-                        <div className="bg-blue-50 rounded-lg p-4">
+                        <div className="bg-blue-50 rounded-lg p-3">
                             <h4 className="text-sm font-semibold text-blue-900 mb-2">Overall Progress</h4>
                             <div className="w-full bg-blue-200 rounded-full h-2 mb-2">
                                 <div className="bg-blue-600 h-2 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
@@ -152,9 +152,9 @@ export default function PeriodClosePage() {
                 </div>
 
                 {/* Tab Content */}
-                <div className="flex-1 overflow-y-auto p-6">
+                <div className="flex-1 overflow-y-auto p-3">
                     {activeTab === 'checklist' && (
-                        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
+                        <div className="space-y-3 animate-in fade-in slide-in-from-right-4 duration-300">
                             <div className="flex items-center justify-between">
                                 <h2 className="text-lg font-bold text-gray-900">Closing Checklist</h2>
                                 <div className="flex gap-2">
@@ -171,8 +171,8 @@ export default function PeriodClosePage() {
 
                             <div className="space-y-3">
                                 {tasks.map((task) => (
-                                    <div key={task.id} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow group">
-                                        <div className="flex items-start sm:items-center justify-between gap-4">
+                                    <div key={task.id} className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow group">
+                                        <div className="flex items-start sm:items-center justify-between gap-2">
                                             <div className="flex items-start gap-3">
                                                 <div className="mt-0.5 sm:mt-0">{getStatusIcon(task.status)}</div>
                                                 <div>
@@ -201,43 +201,43 @@ export default function PeriodClosePage() {
                     )}
 
                     {activeTab === 'overview' && (
-                        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
+                        <div className="space-y-3 animate-in fade-in slide-in-from-right-4 duration-300">
                             <h2 className="text-lg font-bold text-gray-900">Period Financial Overview</h2>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                                     <p className="text-sm font-medium text-gray-500">Total Revenue</p>
                                     <p className="text-2xl font-bold text-gray-900 mt-2">$1,245,300</p>
                                     <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
                                         <ArrowRight className="w-3 h-3 rotate-[-45deg]" /> +12.5% vs Last Period
                                     </p>
                                 </div>
-                                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                                     <p className="text-sm font-medium text-gray-500">Total Expenses</p>
                                     <p className="text-2xl font-bold text-gray-900 mt-2">$845,120</p>
                                     <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
                                         <ArrowRight className="w-3 h-3 rotate-[-45deg]" /> +5.2% vs Last Period
                                     </p>
                                 </div>
-                                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                                     <p className="text-sm font-medium text-gray-500">Net Income</p>
                                     <p className="text-2xl font-bold text-blue-600 mt-2">$400,180</p>
                                     <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
                                         <ArrowRight className="w-3 h-3 rotate-[-45deg]" /> +22.1% vs Last Period
                                     </p>
                                 </div>
-                                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                                     <p className="text-sm font-medium text-gray-500">Open Variances</p>
                                     <p className="text-2xl font-bold text-orange-600 mt-2">14</p>
                                     <p className="text-xs text-gray-500 mt-1">Requires reconciliation</p>
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-64 flex items-center justify-center">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm h-64 flex items-center justify-center">
                                     <p className="text-gray-400">Revenue Trend Chart Placeholder</p>
                                 </div>
-                                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-64 flex items-center justify-center">
+                                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm h-64 flex items-center justify-center">
                                     <p className="text-gray-400">Expense Breakdown Chart Placeholder</p>
                                 </div>
                             </div>
@@ -245,7 +245,7 @@ export default function PeriodClosePage() {
                     )}
 
                     {activeTab === 'history' && (
-                        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
+                        <div className="space-y-3 animate-in fade-in slide-in-from-right-4 duration-300">
                             <div className="flex items-center justify-between">
                                 <h2 className="text-lg font-bold text-gray-900">Close History</h2>
                                 <button className="flex items-center gap-2 text-sm text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg">
@@ -257,27 +257,27 @@ export default function PeriodClosePage() {
                                 <table className="min-w-full divide-y divide-gray-200">
                                     <thead className="bg-gray-50">
                                         <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Closed By</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
-                                            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
+                                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Closed By</th>
+                                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
+                                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {history.map((record) => (
                                             <tr key={record.id} className="hover:bg-gray-50">
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{record.period}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record.closedBy}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record.closedDate}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{record.period}</td>
+                                                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{record.closedBy}</td>
+                                                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{record.closedDate}</td>
+                                                <td className="px-3 py-2 whitespace-nowrap">
                                                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         {record.status}
                                                     </span>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{record.notes || '-'}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{record.notes || '-'}</td>
+                                                <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                                                     <button className="text-blue-600 hover:text-blue-900">View Report</button>
                                                 </td>
                                             </tr>

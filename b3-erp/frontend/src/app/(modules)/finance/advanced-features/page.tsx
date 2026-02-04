@@ -230,7 +230,7 @@ export default function FinanceAdvancedFeaturesPage() {
     <div className="w-full h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <div className="h-full flex flex-col px-2 py-2">
         {/* Header */}
-        <div className="mb-4 flex-shrink-0">
+        <div className="mb-2 flex-shrink-0">
           <h1 className="text-2xl font-bold text-gray-900 mb-1">Finance Advanced Features</h1>
           <p className="text-sm text-gray-600">
             Enterprise-grade financial management tools for comprehensive accounting, compliance, and treasury operations
@@ -280,7 +280,7 @@ export default function FinanceAdvancedFeaturesPage() {
         </div>
 
         {/* Feature Content */}
-        <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4 flex-1 overflow-auto">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-3 flex-1 overflow-auto">
           {activeTab === 'general-ledger' && <GeneralLedgerAdvanced data={mockGeneralLedgerData} editable={true} />}
           {activeTab === 'consolidation' && <MultiEntityConsolidation data={mockConsolidationData} editable={true} />}
           {activeTab === 'audit-trail' && <AuditTrailAdvanced data={mockAuditData} />}
@@ -289,7 +289,7 @@ export default function FinanceAdvancedFeaturesPage() {
           {activeTab === 'cash-forecast' && <PredictiveCashForecasting data={mockForecastData} />}
           {activeTab === 'controls' && (
             <div className="text-center py-12">
-              <Lock className="w-16 h-16 text-red-600 mx-auto mb-4" />
+              <Lock className="w-16 h-16 text-red-600 mb-2" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Financial Controls Module</h3>
               <p className="text-gray-600">
                 Access the complete Financial Controls module at{' '}

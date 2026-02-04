@@ -199,7 +199,7 @@ export default function AddEmployeePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="w-full max-w-full mx-auto">
+      <div className="w-full">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button onClick={handleCancel} className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">

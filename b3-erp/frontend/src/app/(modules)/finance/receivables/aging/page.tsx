@@ -223,14 +223,14 @@ export default function ARAgingPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Accounts Receivable Aging Report</h1>
         <p className="text-gray-600">Track overdue customer invoices by aging buckets</p>
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600 mb-1">Total Outstanding</p>
@@ -242,7 +242,7 @@ export default function ARAgingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600 mb-1">Current (0-30)</p>
@@ -254,7 +254,7 @@ export default function ARAgingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600 mb-1">30-60 days</p>
@@ -266,7 +266,7 @@ export default function ARAgingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600 mb-1">60-90 days</p>
@@ -278,7 +278,7 @@ export default function ARAgingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600 mb-1">90+ days</p>
@@ -290,7 +290,7 @@ export default function ARAgingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600 mb-1">Overdue %</p>
@@ -304,8 +304,8 @@ export default function ARAgingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow mb-6 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow mb-3 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">Search Customer</label>
             <input
@@ -336,12 +336,12 @@ export default function ARAgingPage() {
       </div>
 
       {/* Customer AR Aging List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredData.map((record) => (
           <div key={record.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{record.customerName}</h3>
@@ -349,7 +349,7 @@ export default function ARAgingPage() {
                       {record.customerCode}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <Users className="h-4 w-4" />
                       {record.contactPerson}
@@ -390,44 +390,44 @@ export default function ARAgingPage() {
               </div>
 
               {/* AR Aging Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-2">
                 {/* Total Outstanding */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <h4 className="text-xs font-semibold text-blue-900 mb-2">Total Outstanding</h4>
                   <p className="text-xl font-bold text-blue-900">₹{(record.totalOutstanding / 100000).toFixed(2)}L</p>
                   <p className="text-xs text-blue-600 mt-1">{record.invoiceCount} invoices</p>
                 </div>
 
                 {/* Current */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <h4 className="text-xs font-semibold text-green-900 mb-2">Current (0-30)</h4>
                   <p className="text-xl font-bold text-green-900">₹{(record.current / 100000).toFixed(2)}L</p>
                   <p className="text-xs text-green-600 mt-1">{((record.current / record.totalOutstanding) * 100).toFixed(0)}%</p>
                 </div>
 
                 {/* 30-60 days */}
-                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
                   <h4 className="text-xs font-semibold text-yellow-900 mb-2">30-60 days</h4>
                   <p className="text-xl font-bold text-yellow-900">₹{(record.days30to60 / 100000).toFixed(2)}L</p>
                   <p className="text-xs text-yellow-600 mt-1">{((record.days30to60 / record.totalOutstanding) * 100).toFixed(0)}%</p>
                 </div>
 
                 {/* 60-90 days */}
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                   <h4 className="text-xs font-semibold text-orange-900 mb-2">60-90 days</h4>
                   <p className="text-xl font-bold text-orange-900">₹{(record.days60to90 / 100000).toFixed(2)}L</p>
                   <p className="text-xs text-orange-600 mt-1">{((record.days60to90 / record.totalOutstanding) * 100).toFixed(0)}%</p>
                 </div>
 
                 {/* 90-120 days */}
-                <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+                <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
                   <h4 className="text-xs font-semibold text-red-900 mb-2">90-120 days</h4>
                   <p className="text-xl font-bold text-red-900">₹{(record.days90to120 / 100000).toFixed(2)}L</p>
                   <p className="text-xs text-red-600 mt-1">{((record.days90to120 / record.totalOutstanding) * 100).toFixed(0)}%</p>
                 </div>
 
                 {/* Over 120 days */}
-                <div className="bg-gradient-to-br from-rose-50 to-rose-100 rounded-lg p-4 border border-rose-200">
+                <div className="bg-gradient-to-br from-rose-50 to-rose-100 rounded-lg p-3 border border-rose-200">
                   <h4 className="text-xs font-semibold text-rose-900 mb-2">Over 120 days</h4>
                   <p className="text-xl font-bold text-rose-900">₹{(record.over120 / 100000).toFixed(2)}L</p>
                   <p className="text-xs text-rose-600 mt-1">{((record.over120 / record.totalOutstanding) * 100).toFixed(0)}%</p>
@@ -435,7 +435,7 @@ export default function ARAgingPage() {
               </div>
 
               {/* Additional Info */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 pt-4 border-t border-gray-200">
                 <div>
                   <p className="text-xs text-gray-600">Oldest Invoice</p>
                   <p className="text-sm font-semibold text-gray-900">{record.oldestInvoice}</p>
@@ -464,12 +464,12 @@ export default function ARAgingPage() {
       </div>
 
       {/* Guidelines */}
-      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 border border-blue-200">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-3 border border-blue-200">
+        <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <FileText className="h-5 w-5 text-blue-600" />
           AR Aging Report Guidelines
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Aging Buckets</h3>
             <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">

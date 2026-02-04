@@ -313,15 +313,15 @@ export default function CPQSettingsNotificationsPage() {
               <tr className="border-b border-gray-200">
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Event</th>
                 <th className="text-center py-3 px-4 text-sm font-semibold text-gray-700">
-                  <Mail className="h-4 w-4 mx-auto" />
+                  <Mail className="h-4 w-4" />
                   <span className="text-xs">Email</span>
                 </th>
                 <th className="text-center py-3 px-4 text-sm font-semibold text-gray-700">
-                  <Bell className="h-4 w-4 mx-auto" />
+                  <Bell className="h-4 w-4" />
                   <span className="text-xs">In-App</span>
                 </th>
                 <th className="text-center py-3 px-4 text-sm font-semibold text-gray-700">
-                  <MessageSquare className="h-4 w-4 mx-auto" />
+                  <MessageSquare className="h-4 w-4" />
                   <span className="text-xs">SMS</span>
                 </th>
               </tr>

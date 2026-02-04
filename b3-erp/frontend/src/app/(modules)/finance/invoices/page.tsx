@@ -82,10 +82,10 @@ const statusLabels = {
 function InvoicesTableSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-gray-100 rounded-lg p-4 h-24">
+            <div key={i} className="bg-gray-100 rounded-lg p-3 h-24">
               <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
               <div className="h-6 bg-gray-200 rounded w-2/3"></div>
             </div>
@@ -98,7 +98,7 @@ function InvoicesTableSkeleton() {
         </div>
         <div className="divide-y divide-gray-200">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="p-4 flex items-center gap-4">
+            <div key={i} className="p-4 flex items-center gap-2">
               <div className="h-10 w-10 bg-gray-100 rounded-full"></div>
               <div className="flex-1 space-y-2">
                 <div className="h-4 bg-gray-100 rounded w-1/4"></div>
@@ -190,7 +190,7 @@ export default function InvoicesPage() {
   // Show loading skeleton
   if (loading && invoices.length === 0) {
     return (
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+      <div className="w-full h-full px-3 py-2 w-full max-w-full">
         <InvoicesTableSkeleton />
       </div>
     );
@@ -199,11 +199,11 @@ export default function InvoicesPage() {
   // Show error state
   if (error && invoices.length === 0) {
     return (
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+      <div className="w-full h-full px-3 py-2 w-full max-w-full">
         <div className="flex flex-col items-center justify-center h-64">
-          <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+          <AlertCircle className="w-12 h-12 text-red-500 mb-2" />
           <h2 className="text-lg font-semibold text-gray-900 mb-2">Failed to Load Invoices</h2>
-          <p className="text-gray-600 mb-4">{error}</p>
+          <p className="text-gray-600 mb-2">{error}</p>
           <button
             onClick={refreshInvoices}
             className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -217,11 +217,11 @@ export default function InvoicesPage() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+    <div className="w-full h-full px-3 py-2 w-full max-w-full">
       {/* Stats */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Invoices</p>
@@ -231,7 +231,7 @@ export default function InvoicesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Paid</p>
@@ -243,7 +243,7 @@ export default function InvoicesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -255,7 +255,7 @@ export default function InvoicesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-red-600">Overdue</p>
@@ -276,7 +276,7 @@ export default function InvoicesPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -312,14 +312,14 @@ export default function InvoicesPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Invoice</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dates</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Paid</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Balance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Invoice</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Dates</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Paid</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Balance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -329,7 +329,7 @@ export default function InvoicesPage() {
 
                 return (
                   <tr key={inv.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-start space-x-3">
                         <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0">
                           <FileText className="h-5 w-5 text-white" />
@@ -341,11 +341,11 @@ export default function InvoicesPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="font-medium text-gray-900">{inv.customerName}</div>
                       <div className="text-sm text-gray-500">{inv.customerId}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="space-y-1">
                         <div className="flex items-center text-xs text-gray-600">
                           <Calendar className="h-3 w-3 mr-1" />
@@ -357,18 +357,18 @@ export default function InvoicesPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="font-bold text-gray-900">${inv.totalAmount.toLocaleString()}</div>
                       <div className="text-xs text-gray-500">Base: ${inv.amount.toLocaleString()}</div>
                       <div className="text-xs text-gray-500">Tax: ${inv.taxAmount.toLocaleString()}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="font-semibold text-green-700">${inv.paidAmount.toLocaleString()}</div>
                       {inv.paymentMethod && (
                         <div className="text-xs text-gray-500">{inv.paymentMethod}</div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className={`font-bold ${balance > 0 ? 'text-orange-700' : 'text-green-700'}`}>
                         ${balance.toLocaleString()}
                       </div>
@@ -378,12 +378,12 @@ export default function InvoicesPage() {
                         </div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[inv.status]}`}>
                         {statusLabels[inv.status]}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-1">
                         <button
                           onClick={() => router.push(`/finance/invoices/view/${inv.id}`)}
@@ -420,7 +420,7 @@ export default function InvoicesPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredInvoices.length)} of{' '}
             {filteredInvoices.length} items

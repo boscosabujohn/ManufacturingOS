@@ -467,19 +467,19 @@ export default function SocialMediaIntegrationPage() {
 
                   <div className="grid grid-cols-4 gap-2 mb-2 text-xs">
                     <div className="text-center">
-                      <Heart className="w-4 h-4 text-red-500 mx-auto mb-1" />
+                      <Heart className="w-4 h-4 text-red-500 mb-1" />
                       <div className="font-semibold text-gray-900">{(account.stats.likes / 1000).toFixed(1)}K</div>
                     </div>
                     <div className="text-center">
-                      <Share2 className="w-4 h-4 text-blue-500 mx-auto mb-1" />
+                      <Share2 className="w-4 h-4 text-blue-500 mb-1" />
                       <div className="font-semibold text-gray-900">{(account.stats.shares / 1000).toFixed(1)}K</div>
                     </div>
                     <div className="text-center">
-                      <MessageCircle className="w-4 h-4 text-green-500 mx-auto mb-1" />
+                      <MessageCircle className="w-4 h-4 text-green-500 mb-1" />
                       <div className="font-semibold text-gray-900">{(account.stats.comments / 1000).toFixed(1)}K</div>
                     </div>
                     <div className="text-center">
-                      <Eye className="w-4 h-4 text-purple-500 mx-auto mb-1" />
+                      <Eye className="w-4 h-4 text-purple-500 mb-1" />
                       <div className="font-semibold text-gray-900">{(account.stats.reach / 1000).toFixed(0)}K</div>
                     </div>
                   </div>
@@ -610,27 +610,27 @@ export default function SocialMediaIntegrationPage() {
                   </div>
                   <div className="grid grid-cols-5 gap-3 bg-gray-50 rounded-lg p-3">
                     <div className="text-center">
-                      <Heart className="w-4 h-4 text-red-500 mx-auto mb-1" />
+                      <Heart className="w-4 h-4 text-red-500 mb-1" />
                       <div className="text-sm font-semibold text-gray-900">{post.likes}</div>
                       <div className="text-xs text-gray-600">Likes</div>
                     </div>
                     <div className="text-center">
-                      <Share2 className="w-4 h-4 text-blue-500 mx-auto mb-1" />
+                      <Share2 className="w-4 h-4 text-blue-500 mb-1" />
                       <div className="text-sm font-semibold text-gray-900">{post.shares}</div>
                       <div className="text-xs text-gray-600">Shares</div>
                     </div>
                     <div className="text-center">
-                      <MessageCircle className="w-4 h-4 text-green-500 mx-auto mb-1" />
+                      <MessageCircle className="w-4 h-4 text-green-500 mb-1" />
                       <div className="text-sm font-semibold text-gray-900">{post.comments}</div>
                       <div className="text-xs text-gray-600">Comments</div>
                     </div>
                     <div className="text-center">
-                      <Eye className="w-4 h-4 text-purple-500 mx-auto mb-1" />
+                      <Eye className="w-4 h-4 text-purple-500 mb-1" />
                       <div className="text-sm font-semibold text-gray-900">{(post.reach / 1000).toFixed(1)}K</div>
                       <div className="text-xs text-gray-600">Reach</div>
                     </div>
                     <div className="text-center">
-                      <TrendingUp className="w-4 h-4 text-orange-500 mx-auto mb-1" />
+                      <TrendingUp className="w-4 h-4 text-orange-500 mb-1" />
                       <div className="text-sm font-semibold text-gray-900">
                         {((post.likes + post.shares + post.comments) / post.reach * 100).toFixed(1)}%
                       </div>

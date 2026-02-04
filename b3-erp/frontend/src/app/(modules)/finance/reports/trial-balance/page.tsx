@@ -104,8 +104,8 @@ export default function TrialBalancePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 p-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -127,9 +127,9 @@ export default function TrialBalancePage() {
         {/* Balance Status Card */}
         <div className={`bg-gradient-to-br ${
           isBalanced ? 'from-green-500 to-green-600' : 'from-red-500 to-red-600'
-        } rounded-xl p-6 text-white shadow-lg`}>
+        } rounded-xl p-3 text-white shadow-lg`}>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               {isBalanced ? (
                 <CheckCircle className="w-12 h-12" />
               ) : (
@@ -154,8 +154,8 @@ export default function TrialBalancePage() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
               <BarChart3 className="w-5 h-5" />
@@ -165,7 +165,7 @@ export default function TrialBalancePage() {
             <div className="mt-2 text-xs text-blue-100">{filteredAccounts.filter(a => a.debit > 0).length} accounts</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingDown className="w-8 h-8 opacity-80" />
               <BarChart3 className="w-5 h-5" />
@@ -175,7 +175,7 @@ export default function TrialBalancePage() {
             <div className="mt-2 text-xs text-red-100">{filteredAccounts.filter(a => a.credit > 0).length} accounts</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <BarChart3 className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -187,7 +187,7 @@ export default function TrialBalancePage() {
 
           <div className={`bg-gradient-to-br ${
             isBalanced ? 'from-green-500 to-green-600' : 'from-orange-500 to-orange-600'
-          } rounded-xl p-6 text-white shadow-lg`}>
+          } rounded-xl p-3 text-white shadow-lg`}>
             <div className="flex items-center justify-between mb-2">
               {isBalanced ? <CheckCircle className="w-8 h-8 opacity-80" /> : <AlertCircle className="w-8 h-8 opacity-80" />}
               <Calendar className="w-5 h-5" />
@@ -203,8 +203,8 @@ export default function TrialBalancePage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-gray-400" />
               <select
@@ -267,37 +267,37 @@ export default function TrialBalancePage() {
             <table className="w-full">
               <thead className="bg-gray-900/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Account Code</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Account Name</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Type</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Opening Balance</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Debit</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Credit</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Closing Balance</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Account Code</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Account Name</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Type</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Opening Balance</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Debit</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Credit</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Closing Balance</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredAccounts.map((account, index) => (
                   <tr key={account.accountCode} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                    <td className="px-6 py-4 text-white font-mono text-sm">{account.accountCode}</td>
-                    <td className="px-6 py-4 text-white">{account.accountName}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-white font-mono text-sm">{account.accountCode}</td>
+                    <td className="px-3 py-2 text-white">{account.accountName}</td>
+                    <td className="px-3 py-2">
                       {getTypeBadge(account.accountType)}
                     </td>
-                    <td className="px-6 py-4 text-right text-gray-300 font-medium">
+                    <td className="px-3 py-2 text-right text-gray-300 font-medium">
                       {formatCurrency(account.openingBalance)}
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <span className={`font-medium ${account.debit > 0 ? 'text-blue-400' : 'text-gray-600'}`}>
                         {account.debit > 0 ? formatCurrency(account.debit) : '-'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <span className={`font-medium ${account.credit > 0 ? 'text-red-400' : 'text-gray-600'}`}>
                         {account.credit > 0 ? formatCurrency(account.credit) : '-'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right text-white font-medium">
+                    <td className="px-3 py-2 text-right text-white font-medium">
                       {formatCurrency(account.closingBalance)}
                     </td>
                   </tr>
@@ -305,16 +305,16 @@ export default function TrialBalancePage() {
 
                 {/* Total Row */}
                 <tr className="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 border-t-2 border-indigo-600">
-                  <td className="px-6 py-4 font-bold text-white text-lg" colSpan={4}>
+                  <td className="px-3 py-2 font-bold text-white text-lg" colSpan={4}>
                     Total
                   </td>
-                  <td className="px-6 py-4 text-right font-bold text-blue-400 text-lg">
+                  <td className="px-3 py-2 text-right font-bold text-blue-400 text-lg">
                     {formatCurrency(totalDebit)}
                   </td>
-                  <td className="px-6 py-4 text-right font-bold text-red-400 text-lg">
+                  <td className="px-3 py-2 text-right font-bold text-red-400 text-lg">
                     {formatCurrency(totalCredit)}
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     {isBalanced ? (
                       <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-bold">
                         <CheckCircle className="w-4 h-4" />
@@ -334,9 +334,9 @@ export default function TrialBalancePage() {
         </div>
 
         {/* Summary Information */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h3 className="text-xl font-bold text-white mb-4">Trial Balance Summary</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <h3 className="text-xl font-bold text-white mb-2">Trial Balance Summary</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-gray-400">Period:</span>

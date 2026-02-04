@@ -385,7 +385,7 @@ export default function AssemblyPage() {
 
         {filteredAssemblies.length === 0 && (
           <div className="text-center py-12">
-            <PackagePlus className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <PackagePlus className="w-12 h-12 text-gray-400 mb-4" />
             <p className="text-gray-500">No assembly orders found matching your filters</p>
           </div>
         )}

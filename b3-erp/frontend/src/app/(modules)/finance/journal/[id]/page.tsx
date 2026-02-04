@@ -31,9 +31,9 @@ export default function JournalEntryDetailPage() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -65,7 +65,7 @@ export default function JournalEntryDetailPage() {
             </div>
 
             {/* Journal Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Main Entry Details */}
                 <div className="lg:col-span-2">
                     <Card>
@@ -73,13 +73,13 @@ export default function JournalEntryDetailPage() {
                             <CardTitle>Entry Details</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="mb-6">
+                            <div className="mb-3">
                                 <h3 className="text-sm font-medium text-gray-500 mb-1">Description</h3>
                                 <p className="text-lg">{journal.description}</p>
                             </div>
 
                             {/* Lines Table */}
-                            <table className="w-full mb-6 border rounded-lg overflow-hidden">
+                            <table className="w-full mb-3 border rounded-lg overflow-hidden">
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Account</th>
@@ -113,12 +113,12 @@ export default function JournalEntryDetailPage() {
                 </div>
 
                 {/* Sidebar */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     <Card>
                         <CardHeader>
                             <CardTitle>Entry Info</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4 text-sm">
+                        <CardContent className="space-y-2 text-sm">
                             <div className="flex justify-between border-b pb-2">
                                 <span className="text-gray-600">Type:</span>
                                 <span className="font-medium">{journal.type}</span>

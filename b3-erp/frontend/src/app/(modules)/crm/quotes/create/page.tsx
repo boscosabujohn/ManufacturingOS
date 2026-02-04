@@ -129,7 +129,7 @@ export default function CreateQuotePage() {
   validUntil.setDate(validUntil.getDate() + validityDays);
 
   return (
-    <div className="w-full h-full px-3 py-2  mx-auto">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         <div className="flex gap-3 mb-3 justify-end">
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -348,7 +348,7 @@ export default function CreateQuotePage() {
                 </div>
               ) : (
                 <div className="text-center py-8 text-gray-500 mb-2">
-                  <Package className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+                  <Package className="w-12 h-12 mb-2 text-gray-400" />
                   <p>No items added yet</p>
                 </div>
               )}

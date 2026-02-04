@@ -655,7 +655,7 @@ export default function AddRequisitionPage() {
               </div>
             ) : (
               <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <Package className="h-12 w-12 text-gray-400 mb-4" />
                 <p className="text-gray-600 mb-2">No items added yet</p>
                 <p className="text-sm text-gray-500 mb-4">Add items to your requisition to proceed</p>
                 <button
@@ -1150,7 +1150,7 @@ export default function AddRequisitionPage() {
                 Supporting Documents
               </h4>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
-                <Upload className="h-10 w-10 text-gray-400 mx-auto mb-3" />
+                <Upload className="h-10 w-10 text-gray-400 mb-3" />
                 <p className="text-sm text-gray-600 mb-2">Drag and drop files here, or click to browse</p>
                 <p className="text-xs text-gray-500 mb-3">Supported formats: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG (Max 10MB)</p>
                 <button

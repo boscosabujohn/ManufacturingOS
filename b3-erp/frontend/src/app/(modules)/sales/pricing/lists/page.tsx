@@ -280,8 +280,8 @@ export default function PriceListsPage() {
   const avgPrice = priceList.reduce((sum, p) => sum + p.currentPrice, 0) / priceList.length;
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
         <div className="flex items-center gap-3 ml-auto justify-end">
           <button className="px-4 py-2 text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg transition-colors">
@@ -294,8 +294,8 @@ export default function PriceListsPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-indigo-100 text-sm font-medium">Total Products</p>
@@ -308,7 +308,7 @@ export default function PriceListsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Average Price</p>
@@ -321,7 +321,7 @@ export default function PriceListsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Price Increases</p>
@@ -334,7 +334,7 @@ export default function PriceListsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-red-100 text-sm font-medium">Price Decreases</p>
@@ -349,8 +349,8 @@ export default function PriceListsPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -380,41 +380,41 @@ export default function PriceListsPage() {
             <table className="w-full">
               <thead className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">Product Code</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">Product Name</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">Category</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold">Base Price</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold">Current Price</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold">Change</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold">MOQ</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold">Stock</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold">Actions</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold">Product Code</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold">Product Name</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold">Category</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold">Base Price</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold">Current Price</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold">Change</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold">MOQ</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold">Stock</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {filteredProducts.map((product, index) => (
                   <tr key={product.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-mono text-sm font-medium text-gray-900">{product.productCode}</span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <p className="font-medium text-gray-900">{product.productName}</p>
                         <p className="text-xs text-gray-500">Unit: {product.unit}</p>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="px-2 py-1 bg-indigo-100 text-indigo-700 rounded text-xs font-medium">
                         {product.category}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <span className="text-gray-600">₹{product.basePrice.toLocaleString('en-IN')}</span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <span className="font-semibold text-gray-900">₹{product.currentPrice.toLocaleString('en-IN')}</span>
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       {product.priceChange !== 0 ? (
                         <div className="flex items-center justify-center gap-1">
                           {product.priceChange > 0 ? (
@@ -437,15 +437,15 @@ export default function PriceListsPage() {
                         <span className="text-gray-400 text-sm">—</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <span className="text-gray-700">{product.moq}</span>
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <span className={`font-medium ${product.stock < 100 ? 'text-red-600' : 'text-gray-700'}`}>
                         {product.stock}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center justify-center gap-2">
                         <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors text-sm">
                           <Eye className="w-4 h-4 text-gray-600" />
@@ -466,7 +466,7 @@ export default function PriceListsPage() {
 
         {filteredProducts.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Package className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Products Found</h3>
             <p className="text-gray-600">No products match your search criteria.</p>
           </div>

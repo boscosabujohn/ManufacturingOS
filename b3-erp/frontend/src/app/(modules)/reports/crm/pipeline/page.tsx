@@ -146,7 +146,7 @@ export default function PipelineAnalysisReport() {
                                 onClick={() => router.push('/reports/crm/pipeline/stage')}
                             >
                                 <div className="text-center group-hover:scale-110 transition-transform">
-                                    <Layers className="w-16 h-16 text-blue-500 mx-auto mb-4" />
+                                    <Layers className="w-16 h-16 text-blue-500 mb-4" />
                                     <p className="text-blue-900 font-bold">Funnel Visualization</p>
                                     <p className="text-xs text-blue-600 mt-1">Detailed conversion metrics by stage</p>
                                 </div>
@@ -187,7 +187,7 @@ export default function PipelineAnalysisReport() {
                                 onClick={() => router.push('/reports/crm/pipeline/owner')}
                             >
                                 <div className="text-center group-hover:scale-110 transition-transform">
-                                    <User className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                                    <User className="w-16 h-16 text-green-500 mb-4" />
                                     <p className="text-green-900 font-bold">Team Performance</p>
                                     <p className="text-xs text-green-600 mt-1">Inventory of deals per representative</p>
                                 </div>

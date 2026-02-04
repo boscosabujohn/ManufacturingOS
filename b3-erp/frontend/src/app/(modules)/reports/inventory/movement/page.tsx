@@ -18,7 +18,7 @@ export default function StockMovementReport() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Stock Movement</h1>
@@ -60,7 +60,7 @@ export default function StockMovementReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-blue-50 rounded-lg border border-dashed border-blue-200">
                             <div className="text-center">
-                                <History className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                                <History className="w-8 h-8 text-blue-500 mb-2" />
                                 <p className="text-blue-700 font-medium">View Movement History</p>
                                 <p className="text-sm text-blue-600">Click to see full log</p>
                             </div>
@@ -73,7 +73,7 @@ export default function StockMovementReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-purple-50 rounded-lg border border-dashed border-purple-200">
                             <div className="text-center">
-                                <ArrowRightLeft className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                                <ArrowRightLeft className="w-8 h-8 text-purple-500 mb-2" />
                                 <p className="text-purple-700 font-medium">Analyze Transfers</p>
                                 <p className="text-sm text-purple-600">Click to view inter-warehouse moves</p>
                             </div>

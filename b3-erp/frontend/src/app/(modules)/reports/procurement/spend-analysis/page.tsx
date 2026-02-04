@@ -18,7 +18,7 @@ export default function SpendAnalysisReport() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Spend Analysis</h1>
@@ -58,7 +58,7 @@ export default function SpendAnalysisReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-blue-50 rounded-lg border border-dashed border-blue-200">
                             <div className="text-center">
-                                <PieChart className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                                <PieChart className="w-8 h-8 text-blue-500 mb-2" />
                                 <p className="text-blue-700 font-medium">View Spend by Category</p>
                                 <p className="text-sm text-blue-600">Click to analyze distribution</p>
                             </div>
@@ -71,7 +71,7 @@ export default function SpendAnalysisReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                             <div className="text-center">
-                                <DollarSign className="w-8 h-8 text-gray-500 mx-auto mb-2" />
+                                <DollarSign className="w-8 h-8 text-gray-500 mb-2" />
                                 <p className="text-gray-700 font-medium">View All Transactions</p>
                                 <p className="text-sm text-gray-600">Click to see PO list</p>
                             </div>

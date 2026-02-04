@@ -180,10 +180,10 @@ export default function OverdueInvoicesPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-pink-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -202,8 +202,8 @@ export default function OverdueInvoicesPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-red-100 text-sm font-medium">Total Overdue</p>
@@ -216,7 +216,7 @@ export default function OverdueInvoicesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-orange-100 text-sm font-medium">Critical ({'>'}30 days)</p>
@@ -229,7 +229,7 @@ export default function OverdueInvoicesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm font-medium">Avg Overdue Days</p>
@@ -244,7 +244,7 @@ export default function OverdueInvoicesPage() {
         </div>
 
         {/* Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -258,14 +258,14 @@ export default function OverdueInvoicesPage() {
         </div>
 
         {/* Invoices Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredInvoices.map((invoice) => {
             const isCritical = invoice.daysOverdue > 30;
             const isSevere = invoice.daysOverdue > 15;
 
             return (
-              <div key={invoice.id} className={`bg-white rounded-xl shadow-sm border-2 p-6 hover:shadow-md transition-shadow ${isCritical ? 'border-red-500' : isSevere ? 'border-orange-400' : 'border-yellow-400'}`}>
-                <div className="space-y-4">
+              <div key={invoice.id} className={`bg-white rounded-xl shadow-sm border-2 p-3 hover:shadow-md transition-shadow ${isCritical ? 'border-red-500' : isSevere ? 'border-orange-400' : 'border-yellow-400'}`}>
+                <div className="space-y-2">
                   {/* Header */}
                   <div className="flex items-start justify-between">
                     <div>
@@ -278,14 +278,14 @@ export default function OverdueInvoicesPage() {
                   </div>
 
                   {/* Overdue Banner */}
-                  <div className={`${getOverdueColor(invoice.daysOverdue)} rounded-lg p-4 text-white`}>
+                  <div className={`${getOverdueColor(invoice.daysOverdue)} rounded-lg p-3 text-white`}>
                     <p className="text-white text-sm font-medium">OVERDUE</p>
                     <p className="text-3xl font-bold mt-1">{invoice.daysOverdue} days</p>
                     <p className="text-white text-xs mt-1">Past due date</p>
                   </div>
 
                   {/* Amount */}
-                  <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="bg-gray-50 rounded-lg p-3">
                     <p className="text-gray-600 text-sm">Outstanding Amount</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">₹{invoice.amount.toLocaleString('en-IN')}</p>
                     <p className="text-gray-600 text-xs mt-1">{invoice.itemsCount} items</p>
@@ -304,7 +304,7 @@ export default function OverdueInvoicesPage() {
                   </div>
 
                   {/* Dates */}
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <p className="text-gray-600">Due Date</p>
                       <p className="font-medium text-red-600">{new Date(invoice.dueDate).toLocaleDateString('en-IN')}</p>
@@ -359,7 +359,7 @@ export default function OverdueInvoicesPage() {
 
         {filteredInvoices.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <AlertCircle className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Overdue Invoices</h3>
             <p className="text-gray-600">No invoices match your search.</p>
           </div>

@@ -434,7 +434,7 @@ const GRNEditPage = () => {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
-          <Loader className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <Loader className="w-12 h-12 text-blue-600 animate-spin mb-4" />
           <p className="text-gray-600">Loading GRN data...</p>
         </div>
       </div>

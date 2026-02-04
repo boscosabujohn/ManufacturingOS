@@ -337,9 +337,9 @@ export default function VendorBillsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full h-full px-3 py-2">
           {/* Header */}
-          <div className="flex justify-between items-start mb-6">
+          <div className="flex justify-between items-start mb-3">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <FileText className="h-6 w-6 text-green-600" />
@@ -376,8 +376,8 @@ export default function VendorBillsPage() {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-gray-600">Total Bills</p>
                 <FileText className="h-5 w-5 text-gray-600" />
@@ -386,7 +386,7 @@ export default function VendorBillsPage() {
               <p className="text-xs text-gray-500 mt-1">All vendor bills</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-yellow-700">Pending Approval</p>
                 <Clock className="h-5 w-5 text-yellow-600" />
@@ -395,7 +395,7 @@ export default function VendorBillsPage() {
               <p className="text-xs text-yellow-600 mt-1">Awaiting review</p>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-blue-700">Approved</p>
                 <CheckCircle className="h-5 w-5 text-blue-600" />
@@ -404,7 +404,7 @@ export default function VendorBillsPage() {
               <p className="text-xs text-blue-600 mt-1">Ready for payment</p>
             </div>
 
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-red-700">Overdue</p>
                 <AlertCircle className="h-5 w-5 text-red-600" />
@@ -415,8 +415,8 @@ export default function VendorBillsPage() {
           </div>
 
           {/* Amount Summary */}
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-3 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Total Bill Amount</p>
                 <p className="text-2xl font-bold text-gray-900">₹{(billStats.totalAmount / 1000000).toFixed(2)}M</p>
@@ -434,8 +434,8 @@ export default function VendorBillsPage() {
 
           {/* Filters */}
           {showFilters && (
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 mb-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-3 mb-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
@@ -484,7 +484,7 @@ export default function VendorBillsPage() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left">
+                    <th className="px-3 py-2 text-left">
                       <input
                         type="checkbox"
                         checked={selectedBills.length === filteredBills.length && filteredBills.length > 0}
@@ -492,22 +492,22 @@ export default function VendorBillsPage() {
                         className="rounded border-gray-300 text-green-600 focus:ring-green-500"
                       />
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Bill Details
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Vendor
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Dates
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Amount
                     </th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -516,7 +516,7 @@ export default function VendorBillsPage() {
                   {filteredBills.map((bill) => (
                     <React.Fragment key={bill.billId}>
                       <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <input
                             type="checkbox"
                             checked={selectedBills.includes(bill.billId)}
@@ -524,7 +524,7 @@ export default function VendorBillsPage() {
                             className="rounded border-gray-300 text-green-600 focus:ring-green-500"
                           />
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => setExpandedBill(expandedBill === bill.billId ? null : bill.billId)}
@@ -543,15 +543,15 @@ export default function VendorBillsPage() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="text-sm font-medium text-gray-900">{bill.vendorName}</div>
                           <div className="text-xs text-gray-500">{bill.vendorId}</div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="text-sm text-gray-900">Bill: {bill.billDate}</div>
                           <div className="text-xs text-gray-500">Due: {bill.dueDate}</div>
                         </td>
-                        <td className="px-6 py-4 text-right">
+                        <td className="px-3 py-2 text-right">
                           <div className="text-sm font-semibold text-gray-900">
                             {bill.currency}{(bill.totalAmount / 1000).toFixed(0)}K
                           </div>
@@ -561,12 +561,12 @@ export default function VendorBillsPage() {
                             </div>
                           )}
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(bill.status)}`}>
                             {getStatusLabel(bill.status)}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           <div className="flex items-center justify-center gap-2">
                             <button
                               onClick={() => router.push(`/finance/payables/view/${bill.billId}`)}
@@ -592,8 +592,8 @@ export default function VendorBillsPage() {
                       </tr>
                       {expandedBill === bill.billId && (
                         <tr className="bg-gray-50">
-                          <td colSpan={7} className="px-6 py-4">
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                          <td colSpan={7} className="px-3 py-2">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 text-sm">
                               <div>
                                 <p className="text-gray-500 mb-1">Description</p>
                                 <p className="font-medium text-gray-900">{bill.description}</p>

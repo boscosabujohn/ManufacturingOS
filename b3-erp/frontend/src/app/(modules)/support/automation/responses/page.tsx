@@ -569,7 +569,7 @@ Senior Support Team`,
 
       {filteredTemplates.length === 0 && (
         <div className="text-center py-12 bg-gray-50 rounded-lg">
-          <Mail className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Mail className="h-12 w-12 text-gray-400 mb-4" />
           <p className="text-gray-600">No templates found matching your criteria</p>
         </div>
       )}

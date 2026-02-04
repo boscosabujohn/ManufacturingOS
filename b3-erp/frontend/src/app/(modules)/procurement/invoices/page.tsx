@@ -120,7 +120,7 @@ export default function InvoiceManagement() {
 
   const ThreeWayMatchingModal = () => (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-lg shadow-lg  w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="p-6 border-b sticky top-0 bg-white z-10">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Three-Way Matching - {selectedInvoice?.id}</h2>
@@ -255,9 +255,9 @@ export default function InvoiceManagement() {
                         </td>
                         <td className="text-center py-3 px-4">
                           {isMatched ? (
-                            <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                            <CheckCircle className="h-5 w-5 text-green-600" />
                           ) : (
-                            <AlertTriangle className="h-5 w-5 text-amber-600 mx-auto" />
+                            <AlertTriangle className="h-5 w-5 text-amber-600" />
                           )}
                         </td>
                       </tr>

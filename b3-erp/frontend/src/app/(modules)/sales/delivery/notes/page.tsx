@@ -242,10 +242,10 @@ export default function DeliveryNotesPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-blue-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-blue-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -264,8 +264,8 @@ export default function DeliveryNotesPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-cyan-100 text-sm font-medium">Total Delivery Notes</p>
@@ -278,7 +278,7 @@ export default function DeliveryNotesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm font-medium">In Transit</p>
@@ -291,7 +291,7 @@ export default function DeliveryNotesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Delivered</p>
@@ -306,8 +306,8 @@ export default function DeliveryNotesPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -333,10 +333,10 @@ export default function DeliveryNotesPage() {
         </div>
 
         {/* Delivery Notes Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredNotes.map((note) => (
-            <div key={note.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-              <div className="space-y-4">
+            <div key={note.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+              <div className="space-y-2">
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div>
@@ -363,7 +363,7 @@ export default function DeliveryNotesPage() {
                 </div>
 
                 {/* Dates */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Issue Date</p>
                     <p className="font-medium text-gray-900">{new Date(note.issueDate).toLocaleDateString('en-IN')}</p>
@@ -386,7 +386,7 @@ export default function DeliveryNotesPage() {
                 </div>
 
                 {/* Carrier & Driver */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 space-y-2">
                   <div className="flex items-center gap-2">
                     <Truck className="w-5 h-5 text-blue-600" />
                     <span className="font-medium text-blue-900">{note.carrier}</span>
@@ -433,7 +433,7 @@ export default function DeliveryNotesPage() {
 
         {filteredNotes.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <FileText className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Delivery Notes</h3>
             <p className="text-gray-600">No delivery notes match your search.</p>
           </div>

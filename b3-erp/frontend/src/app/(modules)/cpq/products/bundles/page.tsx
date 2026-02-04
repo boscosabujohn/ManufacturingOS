@@ -341,7 +341,7 @@ export default function CPQProductsBundlesPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredBundles.length === 0 ? (
           <div className="col-span-full text-center py-12">
-            <Package2 className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <Package2 className="h-16 w-16 text-gray-400 mb-4" />
             <p className="text-gray-600 text-lg">No bundles found</p>
             <p className="text-gray-500 text-sm mt-2">
               {searchQuery || appliedFilters

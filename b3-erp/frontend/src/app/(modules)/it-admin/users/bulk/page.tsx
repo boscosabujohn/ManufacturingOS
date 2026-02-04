@@ -122,7 +122,7 @@ export default function BulkUsersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <button
@@ -159,7 +159,7 @@ export default function BulkUsersPage() {
           <div className="space-y-6">
             {/* Upload Box */}
             <div className="bg-white rounded-lg border-2 border-dashed border-slate-300 p-8 text-center">
-              <Upload className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+              <Upload className="w-12 h-12 text-slate-400 mb-4" />
               <h3 className="text-xl font-semibold text-slate-900 mb-2">Upload CSV File</h3>
               <p className="text-slate-600 mb-4">Drag and drop your file here or click to browse</p>
               

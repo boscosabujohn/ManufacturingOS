@@ -53,8 +53,8 @@ export default function FinancialConsolidationPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-purple-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-purple-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Financial Consolidation</h1>
@@ -72,7 +72,7 @@ export default function FinancialConsolidationPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           {[
             { label: 'Consolidated Revenue', value: consolidated.revenue, icon: DollarSign, color: 'blue' },
             { label: 'Consolidated Assets', value: consolidated.assets, icon: Building2, color: 'green' },
@@ -99,32 +99,32 @@ export default function FinancialConsolidationPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Entity</th>
-                  <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Revenue</th>
-                  <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Expenses</th>
-                  <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Net Income</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Entity</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Revenue</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Expenses</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Net Income</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {entities.map((entity, idx) => (
                   <tr key={idx} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">{entity.name}</td>
-                    <td className="px-6 py-4 text-right font-medium text-gray-900">{formatCurrency(entity.revenue)}</td>
-                    <td className="px-6 py-4 text-right font-medium text-orange-600">{formatCurrency(entity.expenses)}</td>
-                    <td className="px-6 py-4 text-right font-medium text-green-600">{formatCurrency(entity.netIncome)}</td>
+                    <td className="px-3 py-2 font-medium text-gray-900">{entity.name}</td>
+                    <td className="px-3 py-2 text-right font-medium text-gray-900">{formatCurrency(entity.revenue)}</td>
+                    <td className="px-3 py-2 text-right font-medium text-orange-600">{formatCurrency(entity.expenses)}</td>
+                    <td className="px-3 py-2 text-right font-medium text-green-600">{formatCurrency(entity.netIncome)}</td>
                   </tr>
                 ))}
                 <tr className="bg-yellow-50 font-semibold">
-                  <td className="px-6 py-4">Eliminations</td>
-                  <td className="px-6 py-4 text-right text-red-600">({formatCurrency(eliminations.revenue)})</td>
-                  <td className="px-6 py-4 text-right text-green-600">({formatCurrency(eliminations.expenses)})</td>
-                  <td className="px-6 py-4 text-right text-red-600">({formatCurrency(eliminations.revenue - eliminations.expenses)})</td>
+                  <td className="px-3 py-2">Eliminations</td>
+                  <td className="px-3 py-2 text-right text-red-600">({formatCurrency(eliminations.revenue)})</td>
+                  <td className="px-3 py-2 text-right text-green-600">({formatCurrency(eliminations.expenses)})</td>
+                  <td className="px-3 py-2 text-right text-red-600">({formatCurrency(eliminations.revenue - eliminations.expenses)})</td>
                 </tr>
                 <tr className="bg-violet-100 font-bold border-t-2 border-violet-300">
-                  <td className="px-6 py-4 text-violet-900">Consolidated Total</td>
-                  <td className="px-6 py-4 text-right text-violet-900">{formatCurrency(consolidated.revenue)}</td>
-                  <td className="px-6 py-4 text-right text-violet-900">{formatCurrency(consolidated.expenses)}</td>
-                  <td className="px-6 py-4 text-right text-violet-900">{formatCurrency(consolidated.netIncome)}</td>
+                  <td className="px-3 py-2 text-violet-900">Consolidated Total</td>
+                  <td className="px-3 py-2 text-right text-violet-900">{formatCurrency(consolidated.revenue)}</td>
+                  <td className="px-3 py-2 text-right text-violet-900">{formatCurrency(consolidated.expenses)}</td>
+                  <td className="px-3 py-2 text-right text-violet-900">{formatCurrency(consolidated.netIncome)}</td>
                 </tr>
               </tbody>
             </table>
@@ -139,32 +139,32 @@ export default function FinancialConsolidationPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Entity</th>
-                  <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Assets</th>
-                  <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Liabilities</th>
-                  <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Equity</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Entity</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Assets</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Liabilities</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Equity</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {entities.map((entity, idx) => (
                   <tr key={idx} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">{entity.name}</td>
-                    <td className="px-6 py-4 text-right font-medium text-blue-600">{formatCurrency(entity.assets)}</td>
-                    <td className="px-6 py-4 text-right font-medium text-orange-600">{formatCurrency(entity.liabilities)}</td>
-                    <td className="px-6 py-4 text-right font-medium text-green-600">{formatCurrency(entity.equity)}</td>
+                    <td className="px-3 py-2 font-medium text-gray-900">{entity.name}</td>
+                    <td className="px-3 py-2 text-right font-medium text-blue-600">{formatCurrency(entity.assets)}</td>
+                    <td className="px-3 py-2 text-right font-medium text-orange-600">{formatCurrency(entity.liabilities)}</td>
+                    <td className="px-3 py-2 text-right font-medium text-green-600">{formatCurrency(entity.equity)}</td>
                   </tr>
                 ))}
                 <tr className="bg-yellow-50 font-semibold">
-                  <td className="px-6 py-4">Eliminations</td>
-                  <td className="px-6 py-4 text-right text-red-600">({formatCurrency(eliminations.assets)})</td>
-                  <td className="px-6 py-4 text-right text-green-600">({formatCurrency(eliminations.liabilities)})</td>
-                  <td className="px-6 py-4 text-right">-</td>
+                  <td className="px-3 py-2">Eliminations</td>
+                  <td className="px-3 py-2 text-right text-red-600">({formatCurrency(eliminations.assets)})</td>
+                  <td className="px-3 py-2 text-right text-green-600">({formatCurrency(eliminations.liabilities)})</td>
+                  <td className="px-3 py-2 text-right">-</td>
                 </tr>
                 <tr className="bg-violet-100 font-bold border-t-2 border-violet-300">
-                  <td className="px-6 py-4 text-violet-900">Consolidated Total</td>
-                  <td className="px-6 py-4 text-right text-violet-900">{formatCurrency(consolidated.assets)}</td>
-                  <td className="px-6 py-4 text-right text-violet-900">{formatCurrency(consolidated.liabilities)}</td>
-                  <td className="px-6 py-4 text-right text-violet-900">{formatCurrency(consolidated.equity)}</td>
+                  <td className="px-3 py-2 text-violet-900">Consolidated Total</td>
+                  <td className="px-3 py-2 text-right text-violet-900">{formatCurrency(consolidated.assets)}</td>
+                  <td className="px-3 py-2 text-right text-violet-900">{formatCurrency(consolidated.liabilities)}</td>
+                  <td className="px-3 py-2 text-right text-violet-900">{formatCurrency(consolidated.equity)}</td>
                 </tr>
               </tbody>
             </table>

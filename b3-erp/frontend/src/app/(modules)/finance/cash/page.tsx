@@ -190,8 +190,8 @@ export default function CashManagementDashboard() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
-          <div className="w-full space-y-6">
+        <div className="w-full p-3">
+          <div className="w-full space-y-3">
             {/* Header Action */}
             <div className="flex items-center justify-end">
               <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-md">
@@ -201,8 +201,8 @@ export default function CashManagementDashboard() {
             </div>
 
             {/* Quick Access Menu */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Access</h3>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Access</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
                 <Link
                   href="/finance/cash/bank-accounts"
@@ -277,7 +277,7 @@ export default function CashManagementDashboard() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-5 border border-emerald-200 shadow-sm">
                 <div className="flex items-center justify-between">
                   <div>
@@ -324,9 +324,9 @@ export default function CashManagementDashboard() {
             </div>
 
             {/* Today's Activity */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <ArrowDownCircle className="h-5 w-5 text-green-600" />
                   Today's Receipts
                 </h3>
@@ -346,8 +346,8 @@ export default function CashManagementDashboard() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <ArrowUpCircle className="h-5 w-5 text-red-600" />
                   Today's Payments
                 </h3>
@@ -369,7 +369,7 @@ export default function CashManagementDashboard() {
             </div>
 
             {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Recent Transactions */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
@@ -382,7 +382,7 @@ export default function CashManagementDashboard() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {recentTransactions.map((txn) => (
                       <div key={txn.id} className="flex items-start justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors">
                         <div className="flex items-start gap-3">
@@ -427,7 +427,7 @@ export default function CashManagementDashboard() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {cashForecast.map((forecast, index) => (
                       <div key={index} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                         <div className="flex items-center justify-between mb-3">
@@ -462,7 +462,7 @@ export default function CashManagementDashboard() {
             </div>
 
             {/* Financial Health Indicators */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-sm font-medium text-gray-600">Projected Balance (7 days)</h3>

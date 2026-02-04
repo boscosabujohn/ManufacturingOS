@@ -20,7 +20,7 @@ export default function QuotationAnalysisReport() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Quotation Analysis</h1>
@@ -61,7 +61,7 @@ export default function QuotationAnalysisReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-green-50 rounded-lg border border-dashed border-green-200">
                             <div className="text-center">
-                                <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                                <CheckCircle className="w-8 h-8 text-green-500 mb-2" />
                                 <p className="text-green-700 font-medium">32 Accepted Quotes</p>
                                 <p className="text-sm text-green-600">Click to view details</p>
                             </div>
@@ -74,7 +74,7 @@ export default function QuotationAnalysisReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-red-50 rounded-lg border border-dashed border-red-200">
                             <div className="text-center">
-                                <XCircle className="w-8 h-8 text-red-500 mx-auto mb-2" />
+                                <XCircle className="w-8 h-8 text-red-500 mb-2" />
                                 <p className="text-red-700 font-medium">15 Lost Quotes</p>
                                 <p className="text-sm text-red-600">Click to analyze reasons</p>
                             </div>

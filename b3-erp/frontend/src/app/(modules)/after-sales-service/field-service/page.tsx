@@ -1115,7 +1115,7 @@ export default function FieldServicePage() {
       {/* Job Details Modal */}
       {selectedJob && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setSelectedJob(null)}>
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className={`sticky top-0 bg-gradient-to-r ${selectedJob.status === 'completed' ? 'from-green-600 to-emerald-600' :
                 selectedJob.status === 'in_progress' ? 'from-purple-600 to-pink-600' :
                   selectedJob.status === 'dispatched' ? 'from-cyan-600 to-blue-600' :
@@ -1585,7 +1585,7 @@ export default function FieldServicePage() {
       {/* Analytics Modal - Keep existing implementation */}
       {showAnalyticsModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+          <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">
@@ -1644,7 +1644,7 @@ export default function FieldServicePage() {
                     const Icon = item.icon;
                     return (
                       <div key={item.label} className="bg-gray-50 rounded-lg p-4 text-center">
-                        <Icon className={`h-8 w-8 text-${item.color}-600 mx-auto mb-2`} />
+                        <Icon className={`h-8 w-8 text-${item.color}-600 mb-2`} />
                         <div className={`text-3xl font-bold text-${item.color}-600 mb-1`}>{item.count}</div>
                         <div className="text-sm text-gray-600">{item.label}</div>
                         <div className="w-full bg-gray-200 rounded-full h-2 mt-3">

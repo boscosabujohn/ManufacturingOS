@@ -1518,7 +1518,7 @@ const ProductionPlanningPage = () => {
 
                     {capacityData.filter((c) => c.utilization > 100).length === 0 && (
                       <div className="bg-green-50 p-4 rounded-lg border border-green-200 text-center">
-                        <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                        <CheckCircle className="h-8 w-8 text-green-600 mb-2" />
                         <p className="text-sm font-medium text-green-900">
                           No Bottlenecks Detected
                         </p>

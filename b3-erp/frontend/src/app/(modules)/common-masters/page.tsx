@@ -166,7 +166,7 @@ export default function CommonMastersPage() {
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div className="px-4 sm:px-6 lg:px-8 py-6">
-          <div className="max-w-7xl mx-auto space-y-6">
+          <div className="w-full space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
               <div>
@@ -291,21 +291,21 @@ export default function CommonMastersPage() {
               <h2 className="text-2xl font-bold mb-6 text-gray-900">Master Data Management Features</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
                     <Database className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-bold text-lg mb-2 text-gray-900">Centralized Data</h3>
                   <p className="text-sm text-gray-600">All master data in one unified system for consistent information across modules</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
                     <Users className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-bold text-lg mb-2 text-gray-900">Role-Based Access</h3>
                   <p className="text-sm text-gray-600">Controlled access to master data with role-based permissions and audit trails</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
                     <Factory className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-bold text-lg mb-2 text-gray-900">Integration Ready</h3>

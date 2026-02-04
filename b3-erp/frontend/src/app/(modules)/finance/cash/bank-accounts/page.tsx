@@ -231,19 +231,19 @@ export default function BankAccountsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
-          <div className="w-full space-y-6">
+        <div className="w-full p-3">
+          <div className="w-full space-y-3">
             {/* Action Bar */}
             <div className="flex items-center justify-end">
-              <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-lg">
+              <button className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-lg">
                 <Plus className="w-5 h-5" />
                 Add Bank Account
               </button>
             </div>
 
             {/* Statistics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <Building2 className="w-8 h-8 opacity-80" />
                   <TrendingUp className="w-5 h-5" />
@@ -253,7 +253,7 @@ export default function BankAccountsPage() {
                 <div className="mt-2 text-xs text-blue-100">{bankAccounts.length} accounts</div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <CreditCard className="w-8 h-8 opacity-80" />
                   <TrendingUp className="w-5 h-5" />
@@ -263,7 +263,7 @@ export default function BankAccountsPage() {
                 <div className="mt-2 text-xs text-green-100">Including overdraft limits</div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <CheckCircle className="w-8 h-8 opacity-80" />
                   <TrendingUp className="w-5 h-5" />
@@ -275,7 +275,7 @@ export default function BankAccountsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <AlertCircle className="w-8 h-8 opacity-80" />
                   <RefreshCw className="w-5 h-5" />
@@ -287,8 +287,8 @@ export default function BankAccountsPage() {
             </div>
 
             {/* Filters */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="flex flex-wrap items-center gap-4">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+              <div className="flex flex-wrap items-center gap-2">
                 <div className="flex-1 min-w-[300px]">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -345,14 +345,14 @@ export default function BankAccountsPage() {
                 <table className="w-full">
                   <thead className="bg-gray-900/50">
                     <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Bank Details</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Account Info</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Type</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Current Balance</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Available Balance</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Reconciliation</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Bank Details</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Account Info</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Type</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Current Balance</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Available Balance</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Reconciliation</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -362,7 +362,7 @@ export default function BankAccountsPage() {
 
                       return (
                         <tr key={account.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div className="flex items-start gap-3">
                               <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
                                 <Building2 className="w-5 h-5 text-blue-400" />
@@ -381,7 +381,7 @@ export default function BankAccountsPage() {
                               </div>
                             </div>
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div className="text-white font-mono text-sm">{account.accountNumber}</div>
                             <div className="text-xs text-gray-400 mt-1">
                               Currency: {account.currency}
@@ -390,15 +390,15 @@ export default function BankAccountsPage() {
                               <div className="text-xs text-gray-500 mt-1">SWIFT: {account.swiftCode}</div>
                             )}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             {getAccountTypeBadge(account.accountType)}
                           </td>
-                          <td className="px-6 py-4 text-right">
+                          <td className="px-3 py-2 text-right">
                             <div className="font-medium text-white">
                               {formatCurrency(account.currentBalance, account.currency)}
                             </div>
                           </td>
-                          <td className="px-6 py-4 text-right">
+                          <td className="px-3 py-2 text-right">
                             <div className="font-medium text-green-400">
                               {formatCurrency(account.availableBalance, account.currency)}
                             </div>
@@ -408,10 +408,10 @@ export default function BankAccountsPage() {
                               </div>
                             )}
                           </td>
-                          <td className="px-6 py-4 text-center">
+                          <td className="px-3 py-2 text-center">
                             {getStatusBadge(account.status)}
                           </td>
-                          <td className="px-6 py-4 text-center">
+                          <td className="px-3 py-2 text-center">
                             {account.lastReconciled ? (
                               <div>
                                 <div className={`text-sm ${reconStatus === 'overdue' ? 'text-red-400' :
@@ -428,7 +428,7 @@ export default function BankAccountsPage() {
                               <span className="text-red-400 text-sm">Never</span>
                             )}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div className="flex items-center justify-center gap-2">
                               <button
                                 className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
@@ -465,7 +465,7 @@ export default function BankAccountsPage() {
 
               {filteredAccounts.length === 0 && (
                 <div className="text-center py-12">
-                  <Building2 className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                  <Building2 className="w-16 h-16 text-gray-600 mb-2" />
                   <p className="text-gray-400 text-lg">No bank accounts found</p>
                   <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filters</p>
                 </div>
@@ -474,7 +474,7 @@ export default function BankAccountsPage() {
 
             {/* Pagination */}
             {filteredAccounts.length > 0 && (
-              <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
+              <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
                 <div className="text-gray-400 text-sm">
                   Showing {filteredAccounts.length} of {bankAccounts.length} accounts
                 </div>

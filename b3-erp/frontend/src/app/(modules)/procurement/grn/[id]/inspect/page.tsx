@@ -713,7 +713,7 @@ export default function GRNInspectionPage() {
         </h3>
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
           <div className="text-center">
-            <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Upload className="h-12 w-12 text-gray-400 mb-4" />
             <p className="text-gray-600 mb-2">Drop files here or click to upload</p>
             <p className="text-sm text-gray-500 mb-4">
               Quality certificates, test reports, photos (Max 10MB)

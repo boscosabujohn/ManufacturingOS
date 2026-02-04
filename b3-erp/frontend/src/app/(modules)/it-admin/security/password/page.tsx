@@ -331,7 +331,7 @@ const PasswordPolicyPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 max-w-[1600px]">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -868,7 +868,7 @@ const PasswordPolicyPage = () => {
         {/* Password Tester Tab */}
         {activeTab === 'test' && (
           <div className="p-6">
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-2xl">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                 <div className="flex items-start gap-3">
                   <Info className="w-5 h-5 text-blue-600 mt-0.5" />

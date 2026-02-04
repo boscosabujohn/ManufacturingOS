@@ -34,8 +34,8 @@ export default function AuditTrailPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-slate-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-slate-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Audit Trail</h1>
@@ -47,8 +47,8 @@ export default function AuditTrailPage() {
           </button>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -77,32 +77,32 @@ export default function AuditTrailPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b-2 border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Timestamp</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">User</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Action</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Module</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Record</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Changes</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Timestamp</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">User</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Action</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Module</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Record</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Changes</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {logs.map((log) => (
                 <tr key={log.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm text-gray-900">{log.timestamp}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{log.timestamp}</td>
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <User className="h-4 w-4 text-gray-400" />
                       <span className="text-sm text-gray-900">{log.user}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getActionColor(log.action)}`}>
                       {log.action}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{log.module}</td>
-                  <td className="px-6 py-4 text-sm font-mono text-gray-900">{log.record}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{log.module}</td>
+                  <td className="px-3 py-2 text-sm font-mono text-gray-900">{log.record}</td>
+                  <td className="px-3 py-2">
                     <div className="text-xs">
                       {log.oldValue !== '-' && (
                         <div className="text-red-600">Old: {log.oldValue}</div>

@@ -97,7 +97,7 @@ export default function ReviewCyclesPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-6">
-            <div className="max-w-7xl mx-auto space-y-6">
+            <div className="w-full space-y-6">
 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -207,7 +207,7 @@ export default function ReviewCyclesPage() {
 
                 {filteredCycles.length === 0 && (
                     <div className="text-center py-12">
-                        <Target className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                        <Target className="w-16 h-16 text-gray-600 mb-4" />
                         <p className="text-gray-400 text-lg">No review cycles found</p>
                     </div>
                 )}

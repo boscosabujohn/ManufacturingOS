@@ -539,10 +539,10 @@ export default function TechnicianTrackingPage() {
             <div className="relative h-[600px] bg-gradient-to-br from-blue-50 to-emerald-50 flex items-center justify-center">
               {/* Placeholder for actual map integration */}
               <div className="text-center">
-                <MapPin className="h-16 w-16 text-emerald-600 mx-auto mb-4" />
+                <MapPin className="h-16 w-16 text-emerald-600 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Interactive Map View</h3>
                 <p className="text-gray-600 mb-4">Integrate with Google Maps, Mapbox, or OpenStreetMap</p>
-                <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
+                <div className="grid grid-cols-3 gap-4 max-w-md">
                   {mockTechnicians.slice(0, 6).map((tech) => (
                     <button
                       key={tech.id}
@@ -818,7 +818,7 @@ export default function TechnicianTrackingPage() {
       {/* Analytics Modal */}
       {showAnalyticsModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+          <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">

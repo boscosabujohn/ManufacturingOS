@@ -26,14 +26,14 @@ export default function ApprovalWorkflowsPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Approval Workflows</h1>
           <p className="text-gray-600 mt-1">Multi-level approval configuration and management</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {workflows.map((workflow) => (
             <div key={workflow.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
               <div className="flex items-start justify-between mb-3">
@@ -56,10 +56,10 @@ export default function ApprovalWorkflowsPage() {
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Pending Approvals</h2>
           </div>
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             {pendingItems.map((item) => (
               <div key={item.id} className="border-2 border-gray-200 rounded-xl p-5">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div>
                     <h3 className="font-semibold text-gray-900">{item.type} - {item.id}</h3>
                     <p className="text-sm text-gray-600">Submitted by: {item.submittedBy}</p>
@@ -70,7 +70,7 @@ export default function ApprovalWorkflowsPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-2 mb-2">
                   <Clock className="h-4 w-4 text-gray-400" />
                   <span className="text-sm text-gray-600">Awaiting approval from: <span className="font-semibold">{item.approver}</span></span>
                 </div>

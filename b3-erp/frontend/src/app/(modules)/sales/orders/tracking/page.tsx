@@ -490,10 +490,10 @@ export default function OrderTrackingPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-blue-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-blue-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -512,7 +512,7 @@ export default function OrderTrackingPage() {
         </div>
 
         {/* Search Bar */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -526,9 +526,9 @@ export default function OrderTrackingPage() {
         </div>
 
         {/* Orders List */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Left Side - Order Cards */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredOrders.map((order) => (
               <div
                 key={order.id}
@@ -601,7 +601,7 @@ export default function OrderTrackingPage() {
 
             {filteredOrders.length === 0 && (
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-                <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <Package className="w-16 h-16 text-gray-400 mb-2" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">No Orders Found</h3>
                 <p className="text-gray-600">Try searching with a different term.</p>
               </div>
@@ -611,8 +611,8 @@ export default function OrderTrackingPage() {
           {/* Right Side - Detailed Tracking */}
           <div className="lg:sticky lg:top-6 lg:self-start">
             {selectedOrder ? (
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <div className="space-y-6">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <div className="space-y-3">
                   {/* Order Header */}
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900">{selectedOrder.orderNumber}</h2>
@@ -620,7 +620,7 @@ export default function OrderTrackingPage() {
                   </div>
 
                   {/* Customer Details */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                  <div className="bg-gray-50 rounded-lg p-3 space-y-2">
                     <div className="flex items-center gap-2 text-gray-700">
                       <User className="w-4 h-4 text-gray-400" />
                       <span className="font-medium">{selectedOrder.customerName}</span>
@@ -647,7 +647,7 @@ export default function OrderTrackingPage() {
                   </div>
 
                   {/* Order Info */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm text-gray-600">Order Date</p>
                       <p className="font-medium text-gray-900">{new Date(selectedOrder.orderDate).toLocaleDateString('en-IN')}</p>
@@ -668,10 +668,10 @@ export default function OrderTrackingPage() {
 
                   {/* Tracking Timeline */}
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Tracking Timeline</h3>
-                    <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Tracking Timeline</h3>
+                    <div className="space-y-2">
                       {selectedOrder.trackingEvents.map((event, index) => (
-                        <div key={index} className="flex gap-4">
+                        <div key={index} className="flex gap-2">
                           {/* Timeline Line */}
                           <div className="flex flex-col items-center">
                             <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
@@ -712,7 +712,7 @@ export default function OrderTrackingPage() {
 
                   {/* Carrier Info */}
                   {selectedOrder.carrier && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                       <div className="flex items-center gap-2 mb-2">
                         <Truck className="w-5 h-5 text-blue-600" />
                         <span className="font-medium text-blue-900">Carrier Information</span>
@@ -739,7 +739,7 @@ export default function OrderTrackingPage() {
               </div>
             ) : (
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-                <Navigation className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <Navigation className="w-16 h-16 text-gray-400 mb-2" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Select an Order</h3>
                 <p className="text-gray-600">Click on an order from the list to view detailed tracking information.</p>
               </div>

@@ -395,11 +395,11 @@ export default function CPQIntegrationCRMPage() {
                     </td>
                     <td className="py-3 px-4 text-center">
                       {mapping.direction === 'bidirectional' ? (
-                        <ArrowLeftRight className="h-4 w-4 text-blue-600 mx-auto" />
+                        <ArrowLeftRight className="h-4 w-4 text-blue-600" />
                       ) : mapping.direction === 'pull' ? (
-                        <ArrowRight className="h-4 w-4 text-green-600 mx-auto" />
+                        <ArrowRight className="h-4 w-4 text-green-600" />
                       ) : (
-                        <ArrowRight className="h-4 w-4 text-orange-600 mx-auto" />
+                        <ArrowRight className="h-4 w-4 text-orange-600" />
                       )}
                     </td>
                     <td className="py-3 px-4">
@@ -412,9 +412,9 @@ export default function CPQIntegrationCRMPage() {
                     </td>
                     <td className="py-3 px-4 text-center">
                       {mapping.mapped ? (
-                        <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                        <CheckCircle className="h-5 w-5 text-green-600" />
                       ) : (
-                        <XCircle className="h-5 w-5 text-gray-300 mx-auto" />
+                        <XCircle className="h-5 w-5 text-gray-300" />
                       )}
                     </td>
                   </tr>

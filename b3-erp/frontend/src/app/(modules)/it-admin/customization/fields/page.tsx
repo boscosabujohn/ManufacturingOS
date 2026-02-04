@@ -505,7 +505,7 @@ export default function CustomFieldsPage() {
 
           {filteredFields.length === 0 && (
             <div className="text-center py-12">
-              <CheckSquare className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+              <CheckSquare className="w-12 h-12 text-gray-300 mb-3" />
               <p className="text-gray-600 font-medium">No custom fields found</p>
               <p className="text-sm text-gray-500">Add a new field to get started</p>
             </div>

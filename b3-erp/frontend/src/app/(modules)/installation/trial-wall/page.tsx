@@ -55,7 +55,7 @@ export default function TrialWallPage() {
     };
 
     return (
-        <div className="container mx-auto py-6 space-y-8">
+        <div className="w-full py-6 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -128,7 +128,7 @@ export default function TrialWallPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="border-2 border-dashed rounded-lg p-8 text-center space-y-2">
-                            <Camera className="h-8 w-8 text-muted-foreground mx-auto" />
+                            <Camera className="h-8 w-8 text-muted-foreground" />
                             <p className="text-sm text-muted-foreground">Upload photos of trial assembly</p>
                             <Button variant="outline" size="sm">
                                 Capture / Upload

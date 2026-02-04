@@ -38,9 +38,9 @@ export default function SalesOrderDetailPage() {
     };
 
     return (
-        <div className="w-full px-4 py-6">
+        <div className="w-full px-4 py-2">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -76,7 +76,7 @@ export default function SalesOrderDetailPage() {
             </div>
 
             {/* Order Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Main Order Details */}
                 <div className="lg:col-span-2">
                     <Card>
@@ -85,7 +85,7 @@ export default function SalesOrderDetailPage() {
                         </CardHeader>
                         <CardContent>
                             {/* Customer Info */}
-                            <div className="mb-6 pb-6 border-b">
+                            <div className="mb-3 pb-6 border-b">
                                 <h3 className="font-semibold mb-2">Customer Information:</h3>
                                 <p className="font-medium">{order.customer.name}</p>
                                 <p className="text-sm text-gray-600">{order.customer.address}</p>
@@ -93,7 +93,7 @@ export default function SalesOrderDetailPage() {
                             </div>
 
                             {/* Line Items */}
-                            <table className="w-full mb-6">
+                            <table className="w-full mb-3">
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Description</th>
@@ -136,14 +136,14 @@ export default function SalesOrderDetailPage() {
                 </div>
 
                 {/* Sidebar */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     {/* Status Cards */}
                     <Card>
                         <CardHeader>
                             <CardTitle>Fulfillment Status</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="flex items-center gap-2 mb-4">
+                            <div className="flex items-center gap-2 mb-2">
                                 <Truck className="h-5 w-5 text-orange-600" />
                                 <span className="font-semibold text-orange-600">{order.deliveryStatus}</span>
                             </div>
@@ -158,7 +158,7 @@ export default function SalesOrderDetailPage() {
                             <CardTitle>Payment Status</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="flex items-center gap-2 mb-4">
+                            <div className="flex items-center gap-2 mb-2">
                                 <CheckCircle className="h-5 w-5 text-yellow-600" />
                                 <span className="font-semibold text-yellow-600">{order.paymentStatus}</span>
                             </div>

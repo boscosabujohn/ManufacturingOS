@@ -525,7 +525,7 @@ export default function TechniciansAnalyticsPage() {
 
       {filteredTechnicians.length === 0 && (
         <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-          <Users className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+          <Users className="h-12 w-12 text-gray-300 mb-4" />
           <p className="text-gray-600 font-medium">No technicians found</p>
           <p className="text-gray-500 text-sm">Try adjusting your filters</p>
         </div>
@@ -534,7 +534,7 @@ export default function TechniciansAnalyticsPage() {
       {/* Technician Details Modal */}
       {showDetailsModal && selectedTechnician && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 flex items-center justify-between">
               <div className="flex items-center gap-4">

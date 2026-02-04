@@ -138,8 +138,8 @@ export default function MultiYearPlanningPage() {
   const avgGrowthRate = yearlyBudgets.filter(y => y.growthRate > 0).reduce((sum, y) => sum + y.growthRate, 0) / yearlyBudgets.filter(y => y.growthRate > 0).length
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -159,7 +159,7 @@ export default function MultiYearPlanningPage() {
         </div>
 
         {/* Summary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -215,38 +215,38 @@ export default function MultiYearPlanningPage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b-2 border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Year</th>
-                    <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Revenue</th>
-                    <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Operating Expenses</th>
-                    <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Capex</th>
-                    <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Net Income</th>
-                    <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Growth %</th>
-                    <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Status</th>
-                    <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Actions</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Year</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Revenue</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Operating Expenses</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Capex</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Net Income</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Growth %</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {yearlyBudgets.map((budget) => (
                     <tr key={budget.year} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <Calendar className="h-5 w-5 text-gray-400" />
                           <span className="font-semibold text-gray-900">FY {budget.year}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right font-medium text-gray-900">
+                      <td className="px-3 py-2 text-right font-medium text-gray-900">
                         {formatCurrency(budget.revenue)}
                       </td>
-                      <td className="px-6 py-4 text-right font-medium text-orange-600">
+                      <td className="px-3 py-2 text-right font-medium text-orange-600">
                         {formatCurrency(budget.operatingExpenses)}
                       </td>
-                      <td className="px-6 py-4 text-right font-medium text-purple-600">
+                      <td className="px-3 py-2 text-right font-medium text-purple-600">
                         {formatCurrency(budget.capitalExpenditure)}
                       </td>
-                      <td className="px-6 py-4 text-right font-medium text-green-600">
+                      <td className="px-3 py-2 text-right font-medium text-green-600">
                         {formatCurrency(budget.netIncome)}
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
                           budget.growthRate > 0 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
                         }`}>
@@ -254,13 +254,13 @@ export default function MultiYearPlanningPage() {
                           {budget.growthRate > 0 ? `+${budget.growthRate}%` : 'Base'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(budget.status)}`}>
                           {budget.status === 'active' && <CheckCircle className="h-3 w-3" />}
                           {budget.status.toUpperCase()}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         <div className="flex items-center justify-center gap-2">
                           <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                             <Edit className="h-4 w-4 text-gray-600" />
@@ -290,14 +290,14 @@ export default function MultiYearPlanningPage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b-2 border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Department</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Department</th>
                     {yearlyBudgets.map(y => (
-                      <th key={y.year} className="px-6 py-3 text-right text-sm font-semibold text-gray-700">
+                      <th key={y.year} className="px-3 py-2 text-right text-sm font-semibold text-gray-700">
                         {y.year}
                       </th>
                     ))}
-                    <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Total</th>
-                    <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">CAGR</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Total</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">CAGR</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -310,16 +310,16 @@ export default function MultiYearPlanningPage() {
 
                     return (
                       <tr key={dept.name} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 font-medium text-gray-900">{dept.name}</td>
+                        <td className="px-3 py-2 font-medium text-gray-900">{dept.name}</td>
                         {yearlyBudgets.map(y => (
-                          <td key={y.year} className="px-6 py-4 text-right font-medium text-gray-700">
+                          <td key={y.year} className="px-3 py-2 text-right font-medium text-gray-700">
                             {formatCurrency(dept.budgets[y.year])}
                           </td>
                         ))}
-                        <td className="px-6 py-4 text-right font-bold text-gray-900">
+                        <td className="px-3 py-2 text-right font-bold text-gray-900">
                           {formatCurrency(total)}
                         </td>
-                        <td className="px-6 py-4 text-right">
+                        <td className="px-3 py-2 text-right">
                           <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
                             <TrendingUp className="h-3 w-3" />
                             {cagr}%
@@ -335,9 +335,9 @@ export default function MultiYearPlanningPage() {
         </div>
 
         {/* Key Assumptions */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Planning Assumptions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Key Planning Assumptions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div className="p-4 bg-blue-50 rounded-lg">
               <div className="flex items-center gap-2 mb-3">
                 <TrendingUp className="h-5 w-5 text-blue-600" />

@@ -471,7 +471,7 @@ export default function CreateChange() {
                   Attachments
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 cursor-pointer">
-                  <Upload className="h-8 w-8 mx-auto text-gray-400 mb-2" />
+                  <Upload className="h-8 w-8 text-gray-400 mb-2" />
                   <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
                   <p className="text-xs text-gray-500 mt-1">Implementation plans, diagrams, or documentation</p>
                 </div>

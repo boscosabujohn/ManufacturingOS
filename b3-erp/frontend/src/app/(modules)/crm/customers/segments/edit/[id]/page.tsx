@@ -331,7 +331,7 @@ export default function EditSegmentPage() {
 
               {formData.criteria.length === 0 && (
                 <div className="text-center py-8 text-gray-500">
-                  <AlertCircle className="h-12 w-12 mx-auto mb-3 text-gray-400" />
+                  <AlertCircle className="h-12 w-12 mb-3 text-gray-400" />
                   <p className="text-sm">No criteria defined yet</p>
                   <p className="text-xs mt-1">Click "Add Rule" to start building your segment</p>
                 </div>

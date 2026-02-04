@@ -266,7 +266,7 @@ export default function ProcurementGRNPage() {
     return (
       <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-green-600 mx-auto" />
+          <Loader2 className="h-12 w-12 animate-spin text-green-600" />
           <p className="mt-4 text-gray-600">Loading goods receipts...</p>
         </div>
       </div>

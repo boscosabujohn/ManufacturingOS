@@ -459,7 +459,7 @@ export default function FAQs() {
 
       {filteredFAQs.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <HelpCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <HelpCircle className="h-12 w-12 text-gray-400 mb-4" />
           <p className="text-gray-600">No FAQs found matching your search.</p>
         </div>
       )}

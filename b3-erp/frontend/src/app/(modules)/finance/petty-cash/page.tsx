@@ -84,9 +84,9 @@ export default function PettyCashPage() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Petty Cash</h1>
                     <p className="text-gray-600">Track and manage petty cash expenses</p>
@@ -104,7 +104,7 @@ export default function PettyCashPage() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium text-gray-600">Current Balance</CardTitle>
@@ -156,8 +156,8 @@ export default function PettyCashPage() {
             ) : transactions.length === 0 ? (
                 <Card>
                     <CardContent className="text-center py-12">
-                        <DollarSign className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                        <p className="text-gray-500 mb-4">No petty cash transactions found</p>
+                        <DollarSign className="mx-auto h-12 w-12 text-gray-400 mb-2" />
+                        <p className="text-gray-500 mb-2">No petty cash transactions found</p>
                         <Button onClick={() => setShowForm(true)}>
                             <Plus className="mr-2 h-4 w-4" />
                             Record Your First Transaction
@@ -231,8 +231,8 @@ export default function PettyCashPage() {
                             <CardTitle>Record Petty Cash Transaction</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="space-y-4">
-                                <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <div className="grid grid-cols-2 gap-2">
                                     <div>
                                         <Label>Amount</Label>
                                         <Input type="number" placeholder="0.00" />

@@ -488,7 +488,7 @@ export default function AddPricingPage() {
                     : 'border-gray-300 bg-white hover:border-blue-300'
                 }`}
               >
-                <Plus className="h-6 w-6 mx-auto mb-2 text-blue-600" />
+                <Plus className="h-6 w-6 mb-2 text-blue-600" />
                 <p className="text-sm font-semibold text-gray-900">Add Manually</p>
                 <p className="text-xs text-gray-600 mt-1">Create items one by one</p>
               </button>
@@ -502,7 +502,7 @@ export default function AddPricingPage() {
                     : 'border-gray-300 bg-white hover:border-green-300'
                 }`}
               >
-                <Link className="h-6 w-6 mx-auto mb-2 text-green-600" />
+                <Link className="h-6 w-6 mb-2 text-green-600" />
                 <p className="text-sm font-semibold text-gray-900">Import from Existing</p>
                 <p className="text-xs text-gray-600 mt-1">Copy from another price list</p>
               </button>
@@ -516,7 +516,7 @@ export default function AddPricingPage() {
                     : 'border-gray-300 bg-white hover:border-purple-300'
                 }`}
               >
-                <Grid className="h-6 w-6 mx-auto mb-2 text-purple-600" />
+                <Grid className="h-6 w-6 mb-2 text-purple-600" />
                 <p className="text-sm font-semibold text-gray-900">Link to Catalog</p>
                 <p className="text-xs text-gray-600 mt-1">Select from product catalog</p>
               </button>
@@ -672,13 +672,13 @@ export default function AddPricingPage() {
             </div>
           ) : (
             <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-              <Package className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <Package className="h-16 w-16 text-gray-400 mb-4" />
               <p className="text-gray-600 font-medium mb-2">No price items added yet</p>
               <p className="text-sm text-gray-500 mb-4">Start by adding items manually or import from existing sources</p>
               <button
                 type="button"
                 onClick={handleAddItem}
-                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mx-auto"
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <Plus className="h-4 w-4" />
                 <span>Add First Item</span>

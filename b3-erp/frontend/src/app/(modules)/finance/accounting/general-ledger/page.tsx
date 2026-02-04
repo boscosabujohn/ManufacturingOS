@@ -272,8 +272,8 @@ export default function GeneralLedgerPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-          <div className="space-y-6">
+        <div className="w-full px-3 py-2">
+          <div className="space-y-3">
             {/* Action Bar */}
             <div className="flex items-center justify-end">
               <div className="flex gap-3">
@@ -289,7 +289,7 @@ export default function GeneralLedgerPage() {
             </div>
 
             {/* Account Selection */}
-            <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
+            <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl p-3 text-white shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
@@ -310,8 +310,8 @@ export default function GeneralLedgerPage() {
             </div>
 
             {/* Statistics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <TrendingUp className="w-8 h-8 opacity-80" />
                   <BookOpen className="w-5 h-5" />
@@ -321,7 +321,7 @@ export default function GeneralLedgerPage() {
                 <div className="mt-2 text-xs text-blue-100">As on {new Date(startDate).toLocaleDateString()}</div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <TrendingUp className="w-8 h-8 opacity-80" />
                   <TrendingUp className="w-5 h-5" />
@@ -331,7 +331,7 @@ export default function GeneralLedgerPage() {
                 <div className="mt-2 text-xs text-green-100">{ledgerData.entries.filter(e => e.debit > 0).length} transactions</div>
               </div>
 
-              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <TrendingDown className="w-8 h-8 opacity-80" />
                   <TrendingDown className="w-5 h-5" />
@@ -341,7 +341,7 @@ export default function GeneralLedgerPage() {
                 <div className="mt-2 text-xs text-red-100">{ledgerData.entries.filter(e => e.credit > 0).length} transactions</div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <TrendingUp className="w-8 h-8 opacity-80" />
                   {netMovement >= 0 ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
@@ -351,7 +351,7 @@ export default function GeneralLedgerPage() {
                 <div className="mt-2 text-xs text-purple-100">{netMovement >= 0 ? 'Increase' : 'Decrease'}</div>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <BookOpen className="w-8 h-8 opacity-80" />
                   <TrendingUp className="w-5 h-5" />
@@ -363,8 +363,8 @@ export default function GeneralLedgerPage() {
             </div>
 
             {/* Filters */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-2">Account</label>
                   <select
@@ -431,7 +431,7 @@ export default function GeneralLedgerPage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 mt-4">
+              <div className="flex items-center gap-2 mt-4">
                 <label className="flex items-center gap-2 text-gray-300 cursor-pointer">
                   <input
                     type="checkbox"
@@ -453,42 +453,42 @@ export default function GeneralLedgerPage() {
                 <table className="w-full">
                   <thead className="bg-gray-900/50">
                     <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Voucher</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Description</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Debit</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Credit</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Balance</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Voucher</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Description</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Debit</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Credit</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Balance</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {/* Opening Balance Row */}
                     <tr className="bg-blue-900/20 border-b-2 border-blue-600">
-                      <td className="px-6 py-3 text-blue-400 font-medium">{new Date(startDate).toLocaleDateString()}</td>
-                      <td className="px-6 py-3 text-blue-400 font-medium" colSpan={2}>Opening Balance</td>
-                      <td className="px-6 py-3 text-right text-gray-400">-</td>
-                      <td className="px-6 py-3 text-right text-gray-400">-</td>
-                      <td className="px-6 py-3 text-right text-blue-400 font-bold">{formatCurrency(ledgerData.openingBalance)}</td>
-                      <td className="px-6 py-3"></td>
-                      <td className="px-6 py-3"></td>
+                      <td className="px-3 py-2 text-blue-400 font-medium">{new Date(startDate).toLocaleDateString()}</td>
+                      <td className="px-3 py-2 text-blue-400 font-medium" colSpan={2}>Opening Balance</td>
+                      <td className="px-3 py-2 text-right text-gray-400">-</td>
+                      <td className="px-3 py-2 text-right text-gray-400">-</td>
+                      <td className="px-3 py-2 text-right text-blue-400 font-bold">{formatCurrency(ledgerData.openingBalance)}</td>
+                      <td className="px-3 py-2"></td>
+                      <td className="px-3 py-2"></td>
                     </tr>
 
                     {/* Transaction Rows */}
                     {filteredEntries.map((entry, index) => (
                       <React.Fragment key={entry.id}>
                         <tr className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                          <td className="px-6 py-4 text-white text-sm">
+                          <td className="px-3 py-2 text-white text-sm">
                             {new Date(entry.date).toLocaleDateString()}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div>
                               <div className="text-white font-mono text-sm">{entry.voucherNumber}</div>
                               <div className="mt-1">{getVoucherTypeBadge(entry.voucherType)}</div>
                             </div>
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div className="text-white text-sm">{entry.description}</div>
                             {(entry.costCenter || entry.department || entry.project) && (
                               <div className="flex items-center gap-2 mt-1">
@@ -504,20 +504,20 @@ export default function GeneralLedgerPage() {
                               </div>
                             )}
                           </td>
-                          <td className="px-6 py-4 text-right">
+                          <td className="px-3 py-2 text-right">
                             <span className={`font-medium ${entry.debit > 0 ? 'text-green-400' : 'text-gray-600'}`}>
                               {entry.debit > 0 ? formatCurrency(entry.debit) : '-'}
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-right">
+                          <td className="px-3 py-2 text-right">
                             <span className={`font-medium ${entry.credit > 0 ? 'text-red-400' : 'text-gray-600'}`}>
                               {entry.credit > 0 ? formatCurrency(entry.credit) : '-'}
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-right text-white font-medium">
+                          <td className="px-3 py-2 text-right text-white font-medium">
                             {formatCurrency(entry.balance)}
                           </td>
-                          <td className="px-6 py-4 text-center">
+                          <td className="px-3 py-2 text-center">
                             {entry.reconciled ? (
                               <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
                                 Reconciled
@@ -528,7 +528,7 @@ export default function GeneralLedgerPage() {
                               </span>
                             )}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div className="flex items-center justify-center gap-2">
                               <button
                                 onClick={() => setExpandedEntry(expandedEntry === entry.id ? null : entry.id)}
@@ -549,8 +549,8 @@ export default function GeneralLedgerPage() {
                         </tr>
                         {expandedEntry === entry.id && (
                           <tr className="bg-gray-900/50 border-b border-gray-700">
-                            <td colSpan={8} className="px-6 py-4">
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <td colSpan={8} className="px-3 py-2">
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
                                 <div>
                                   <span className="text-gray-400">Voucher Number:</span>
                                   <span className="text-white ml-2 font-mono">{entry.voucherNumber}</span>
@@ -590,13 +590,13 @@ export default function GeneralLedgerPage() {
 
                     {/* Closing Balance Row */}
                     <tr className="bg-orange-900/20 border-t-2 border-orange-600">
-                      <td className="px-6 py-4 text-orange-400 font-medium">{new Date(endDate).toLocaleDateString()}</td>
-                      <td className="px-6 py-4 text-orange-400 font-medium" colSpan={2}>Closing Balance</td>
-                      <td className="px-6 py-4 text-right text-green-400 font-bold">{formatCurrency(totalDebit)}</td>
-                      <td className="px-6 py-4 text-right text-red-400 font-bold">{formatCurrency(totalCredit)}</td>
-                      <td className="px-6 py-4 text-right text-orange-400 font-bold text-lg">{formatCurrency(ledgerData.closingBalance)}</td>
-                      <td className="px-6 py-4"></td>
-                      <td className="px-6 py-4"></td>
+                      <td className="px-3 py-2 text-orange-400 font-medium">{new Date(endDate).toLocaleDateString()}</td>
+                      <td className="px-3 py-2 text-orange-400 font-medium" colSpan={2}>Closing Balance</td>
+                      <td className="px-3 py-2 text-right text-green-400 font-bold">{formatCurrency(totalDebit)}</td>
+                      <td className="px-3 py-2 text-right text-red-400 font-bold">{formatCurrency(totalCredit)}</td>
+                      <td className="px-3 py-2 text-right text-orange-400 font-bold text-lg">{formatCurrency(ledgerData.closingBalance)}</td>
+                      <td className="px-3 py-2"></td>
+                      <td className="px-3 py-2"></td>
                     </tr>
                   </tbody>
                 </table>
@@ -604,9 +604,9 @@ export default function GeneralLedgerPage() {
             </div>
 
             {/* Summary */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <h3 className="text-xl font-bold text-white mb-4">Ledger Summary</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+              <h3 className="text-xl font-bold text-white mb-2">Ledger Summary</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-gray-400">Total Entries:</span>

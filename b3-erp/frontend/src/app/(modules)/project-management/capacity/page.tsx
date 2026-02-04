@@ -239,7 +239,7 @@ export default function ResourceCapacityPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
           <p className="text-gray-600">Loading resources...</p>
         </div>
       </div>
@@ -577,7 +577,7 @@ export default function ResourceCapacityPage() {
         <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <Calendar className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+              <Calendar className="h-16 w-16 text-gray-300 mb-4" />
               <p className="text-gray-500 font-medium">Calendar View</p>
               <p className="text-sm text-gray-400 mt-2">Timeline allocation view coming soon</p>
             </div>

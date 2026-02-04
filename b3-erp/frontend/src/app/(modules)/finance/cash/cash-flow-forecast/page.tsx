@@ -235,8 +235,8 @@ export default function CashFlowForecastPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-cyan-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
-          <div className="w-full space-y-6">
+        <div className="w-full p-3">
+          <div className="w-full space-y-3">
             {/* Header */}
             <div className="flex items-center justify-between">
               <div>
@@ -256,7 +256,7 @@ export default function CashFlowForecastPage() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
                 <div className="flex items-center justify-between">
                   <div>
@@ -303,8 +303,8 @@ export default function CashFlowForecastPage() {
             </div>
 
             {/* Scenario Selection */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold text-gray-900">Forecast Scenarios</h3>
                 <div className="flex items-center gap-2">
                   <Filter className="h-5 w-5 text-gray-400" />
@@ -322,7 +322,7 @@ export default function CashFlowForecastPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {scenarios.map((scenario) => (
                   <div
                     key={scenario.type}
@@ -369,11 +369,11 @@ export default function CashFlowForecastPage() {
                 </div>
               </div>
 
-              <div className="p-6 space-y-6">
+              <div className="p-6 space-y-3">
                 {forecast.map((period, index) => (
-                  <div key={index} className="border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                  <div key={index} className="border-2 border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow">
                     {/* Period Header */}
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
                         <Calendar className="h-6 w-6 text-blue-600" />
                         <div>
@@ -392,9 +392,9 @@ export default function CashFlowForecastPage() {
                     </div>
 
                     {/* Cash Flow Details */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                       {/* Receipts */}
-                      <div className="bg-green-50 rounded-lg p-4">
+                      <div className="bg-green-50 rounded-lg p-3">
                         <h4 className="text-sm font-semibold text-green-800 mb-3 flex items-center gap-2">
                           <ArrowDownCircle className="h-5 w-5" />
                           Expected Receipts
@@ -420,7 +420,7 @@ export default function CashFlowForecastPage() {
                       </div>
 
                       {/* Payments */}
-                      <div className="bg-red-50 rounded-lg p-4">
+                      <div className="bg-red-50 rounded-lg p-3">
                         <h4 className="text-sm font-semibold text-red-800 mb-3 flex items-center gap-2">
                           <ArrowUpCircle className="h-5 w-5" />
                           Expected Payments
@@ -451,7 +451,7 @@ export default function CashFlowForecastPage() {
                     </div>
 
                     {/* Net Cash Flow & Closing */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       <div className={`p-4 rounded-lg ${period.netCashFlow >= 0 ? 'bg-blue-50' : 'bg-orange-50'}`}>
                         <p className="text-sm text-gray-600 mb-1">Net Cash Flow</p>
                         <p className={`text-2xl font-bold ${period.netCashFlow >= 0 ? 'text-blue-600' : 'text-orange-600'}`}>

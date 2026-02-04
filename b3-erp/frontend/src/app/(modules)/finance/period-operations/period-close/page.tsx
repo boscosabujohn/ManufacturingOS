@@ -38,19 +38,19 @@ export default function PeriodClosePage() {
   const progress = (completedTasks / tasks.length) * 100
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Period-End Closing</h1>
           <p className="text-gray-600 mt-1">Month-end close checklist and procedures</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">October 2025 Close Progress</h2>
             <span className="text-2xl font-bold text-blue-600">{progress.toFixed(0)}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-4 mb-6">
+          <div className="w-full bg-gray-200 rounded-full h-4 mb-3">
             <div className="bg-blue-600 h-4 rounded-full transition-all" style={{ width: `${progress}%` }} />
           </div>
 
@@ -80,7 +80,7 @@ export default function PeriodClosePage() {
             ))}
           </div>
 
-          <button className="mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold">
+          <button className="mt-6 w-full flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold">
             <Lock className="h-5 w-5" />
             Close Period
           </button>

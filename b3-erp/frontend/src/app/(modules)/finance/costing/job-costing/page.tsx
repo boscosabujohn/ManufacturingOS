@@ -216,8 +216,8 @@ export default function JobCostingPage() {
   const totalBilling = jobs.reduce((sum, j) => sum + j.billingAmount, 0)
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -231,7 +231,7 @@ export default function JobCostingPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -278,8 +278,8 @@ export default function JobCostingPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -311,13 +311,13 @@ export default function JobCostingPage() {
         </div>
 
         {/* Job List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredJobs.map((job) => (
             <div key={job.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="p-6">
                 {/* Job Header */}
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-start gap-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start gap-2">
                     <div className="p-3 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-lg">
                       <Briefcase className="h-6 w-6 text-white" />
                     </div>
@@ -344,7 +344,7 @@ export default function JobCostingPage() {
                 </div>
 
                 {/* Progress Bar */}
-                <div className="mb-6">
+                <div className="mb-3">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="font-medium text-gray-700">Job Completion</span>
                     <span className="font-semibold text-gray-900">{job.completionPercentage}%</span>
@@ -358,7 +358,7 @@ export default function JobCostingPage() {
                 </div>
 
                 {/* Cost Breakdown */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
                   {/* Estimated */}
                   <div>
                     <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
@@ -447,7 +447,7 @@ export default function JobCostingPage() {
                 </div>
 
                 {/* Billing Info */}
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 mb-6">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 mb-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-green-700 mb-1">Total Billing Amount</p>

@@ -214,7 +214,7 @@ export default function CreateWorkflowTemplatePage() {
 
                 {/* Right Side: Builder View */}
                 <div className="flex-1 bg-gray-100 overflow-y-auto p-12">
-                    <div className="max-w-2xl mx-auto space-y-8">
+                    <div className="max-w-2xl space-y-8">
                         {/* Start Node */}
                         <div className="flex flex-col items-center">
                             <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center shadow-lg ring-4 ring-white">

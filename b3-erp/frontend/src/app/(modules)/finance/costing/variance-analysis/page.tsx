@@ -176,8 +176,8 @@ export default function VarianceAnalysisPage() {
   const totalVariancePercent = ((totalVariance / totalStandard) * 100)
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -197,7 +197,7 @@ export default function VarianceAnalysisPage() {
         </div>
 
         {/* Summary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -258,12 +258,12 @@ export default function VarianceAnalysisPage() {
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Product-wise Variance Analysis</h2>
           </div>
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {variances.map((variance) => (
-              <div key={variance.id} className="border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <div key={variance.id} className="border-2 border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow">
                 {/* Product Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
                     <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">
                       <Package className="h-6 w-6 text-white" />
                     </div>
@@ -283,27 +283,27 @@ export default function VarianceAnalysisPage() {
                   <table className="w-full">
                     <thead className="bg-gray-50 border-b-2 border-gray-200">
                       <tr>
-                        <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Cost Component</th>
-                        <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Standard (Per Unit)</th>
-                        <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Actual (Per Unit)</th>
-                        <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Variance</th>
-                        <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Variance %</th>
-                        <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Status</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Cost Component</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Standard (Per Unit)</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Actual (Per Unit)</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Variance</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Variance %</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
                       {/* Material Variance */}
                       <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4 font-medium text-gray-900">Material Cost</td>
-                        <td className="px-6 py-4 text-right text-gray-700">{formatCurrency(variance.standardCost.material)}</td>
-                        <td className="px-6 py-4 text-right text-gray-700">{formatCurrency(variance.actualCost.material)}</td>
-                        <td className={`px-6 py-4 text-right font-semibold ${getVarianceColor(variance.variance.material)}`}>
+                        <td className="px-3 py-2 font-medium text-gray-900">Material Cost</td>
+                        <td className="px-3 py-2 text-right text-gray-700">{formatCurrency(variance.standardCost.material)}</td>
+                        <td className="px-3 py-2 text-right text-gray-700">{formatCurrency(variance.actualCost.material)}</td>
+                        <td className={`px-3 py-2 text-right font-semibold ${getVarianceColor(variance.variance.material)}`}>
                           {variance.variance.material > 0 ? '+' : ''}{formatCurrency(variance.variance.material)}
                         </td>
-                        <td className={`px-6 py-4 text-right font-semibold ${getVarianceColor(variance.variance.material)}`}>
+                        <td className={`px-3 py-2 text-right font-semibold ${getVarianceColor(variance.variance.material)}`}>
                           {variance.variancePercent.material > 0 ? '+' : ''}{variance.variancePercent.material.toFixed(1)}%
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${getVarianceBgColor(variance.variance.material)}`}>
                             {getVarianceIcon(variance.variance.material)}
                             {variance.variance.material > 0 ? 'Unfavorable' : variance.variance.material < 0 ? 'Favorable' : 'On Track'}
@@ -313,16 +313,16 @@ export default function VarianceAnalysisPage() {
 
                       {/* Labor Variance */}
                       <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4 font-medium text-gray-900">Labor Cost</td>
-                        <td className="px-6 py-4 text-right text-gray-700">{formatCurrency(variance.standardCost.labor)}</td>
-                        <td className="px-6 py-4 text-right text-gray-700">{formatCurrency(variance.actualCost.labor)}</td>
-                        <td className={`px-6 py-4 text-right font-semibold ${getVarianceColor(variance.variance.labor)}`}>
+                        <td className="px-3 py-2 font-medium text-gray-900">Labor Cost</td>
+                        <td className="px-3 py-2 text-right text-gray-700">{formatCurrency(variance.standardCost.labor)}</td>
+                        <td className="px-3 py-2 text-right text-gray-700">{formatCurrency(variance.actualCost.labor)}</td>
+                        <td className={`px-3 py-2 text-right font-semibold ${getVarianceColor(variance.variance.labor)}`}>
                           {variance.variance.labor > 0 ? '+' : ''}{formatCurrency(variance.variance.labor)}
                         </td>
-                        <td className={`px-6 py-4 text-right font-semibold ${getVarianceColor(variance.variance.labor)}`}>
+                        <td className={`px-3 py-2 text-right font-semibold ${getVarianceColor(variance.variance.labor)}`}>
                           {variance.variancePercent.labor > 0 ? '+' : ''}{variance.variancePercent.labor.toFixed(1)}%
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${getVarianceBgColor(variance.variance.labor)}`}>
                             {getVarianceIcon(variance.variance.labor)}
                             {variance.variance.labor > 0 ? 'Unfavorable' : variance.variance.labor < 0 ? 'Favorable' : 'On Track'}
@@ -332,16 +332,16 @@ export default function VarianceAnalysisPage() {
 
                       {/* Overhead Variance */}
                       <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4 font-medium text-gray-900">Overhead Cost</td>
-                        <td className="px-6 py-4 text-right text-gray-700">{formatCurrency(variance.standardCost.overhead)}</td>
-                        <td className="px-6 py-4 text-right text-gray-700">{formatCurrency(variance.actualCost.overhead)}</td>
-                        <td className={`px-6 py-4 text-right font-semibold ${getVarianceColor(variance.variance.overhead)}`}>
+                        <td className="px-3 py-2 font-medium text-gray-900">Overhead Cost</td>
+                        <td className="px-3 py-2 text-right text-gray-700">{formatCurrency(variance.standardCost.overhead)}</td>
+                        <td className="px-3 py-2 text-right text-gray-700">{formatCurrency(variance.actualCost.overhead)}</td>
+                        <td className={`px-3 py-2 text-right font-semibold ${getVarianceColor(variance.variance.overhead)}`}>
                           {variance.variance.overhead > 0 ? '+' : ''}{formatCurrency(variance.variance.overhead)}
                         </td>
-                        <td className={`px-6 py-4 text-right font-semibold ${getVarianceColor(variance.variance.overhead)}`}>
+                        <td className={`px-3 py-2 text-right font-semibold ${getVarianceColor(variance.variance.overhead)}`}>
                           {variance.variancePercent.overhead > 0 ? '+' : ''}{variance.variancePercent.overhead.toFixed(1)}%
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${getVarianceBgColor(variance.variance.overhead)}`}>
                             {getVarianceIcon(variance.variance.overhead)}
                             {variance.variance.overhead > 0 ? 'Unfavorable' : variance.variance.overhead < 0 ? 'Favorable' : 'On Track'}
@@ -351,16 +351,16 @@ export default function VarianceAnalysisPage() {
 
                       {/* Total Variance */}
                       <tr className="bg-gray-100 font-semibold border-t-2 border-gray-300">
-                        <td className="px-6 py-4 text-gray-900">Total Cost</td>
-                        <td className="px-6 py-4 text-right text-gray-900">{formatCurrency(variance.standardCost.total)}</td>
-                        <td className="px-6 py-4 text-right text-gray-900">{formatCurrency(variance.actualCost.total)}</td>
-                        <td className={`px-6 py-4 text-right text-lg ${getVarianceColor(variance.variance.total)}`}>
+                        <td className="px-3 py-2 text-gray-900">Total Cost</td>
+                        <td className="px-3 py-2 text-right text-gray-900">{formatCurrency(variance.standardCost.total)}</td>
+                        <td className="px-3 py-2 text-right text-gray-900">{formatCurrency(variance.actualCost.total)}</td>
+                        <td className={`px-3 py-2 text-right text-lg ${getVarianceColor(variance.variance.total)}`}>
                           {variance.variance.total > 0 ? '+' : ''}{formatCurrency(variance.variance.total)}
                         </td>
-                        <td className={`px-6 py-4 text-right text-lg ${getVarianceColor(variance.variance.total)}`}>
+                        <td className={`px-3 py-2 text-right text-lg ${getVarianceColor(variance.variance.total)}`}>
                           {variance.variancePercent.total > 0 ? '+' : ''}{variance.variancePercent.total.toFixed(1)}%
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           <span className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-semibold border ${getVarianceBgColor(variance.variance.total)}`}>
                             {getVarianceIcon(variance.variance.total)}
                             {variance.variance.total > 0 ? 'Unfavorable' : variance.variance.total < 0 ? 'Favorable' : 'On Track'}

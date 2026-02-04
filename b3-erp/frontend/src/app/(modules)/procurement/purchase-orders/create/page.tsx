@@ -753,7 +753,7 @@ export default function CreatePurchaseOrderPage() {
           ) : (
             <div className="bg-white rounded-lg border border-gray-200 p-12">
               <div className="text-center">
-                <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <Package className="h-12 w-12 text-gray-400 mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No items added</h3>
                 <p className="text-gray-500 mb-4">Add items to this purchase order</p>
                 <button
@@ -1005,7 +1005,7 @@ export default function CreatePurchaseOrderPage() {
 
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
             <div className="text-center">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Upload className="h-12 w-12 text-gray-400 mb-4" />
               <p className="text-gray-600 mb-2">Drop files here or click to upload</p>
               <p className="text-sm text-gray-500 mb-4">
                 Supported formats: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG (Max 10MB)

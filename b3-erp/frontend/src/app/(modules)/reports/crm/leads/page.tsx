@@ -150,7 +150,7 @@ export default function LeadAnalysisReport() {
                                 onClick={() => router.push('/reports/crm/leads/source')}
                             >
                                 <div className="text-center group-hover:scale-110 transition-transform">
-                                    <PieChart className="w-12 h-12 text-blue-500 mx-auto mb-3" />
+                                    <PieChart className="w-12 h-12 text-blue-500 mb-3" />
                                     <p className="text-blue-900 font-bold">Source Analysis Pending</p>
                                     <p className="text-xs text-blue-600 mt-1">Click to view multi-channel attribution</p>
                                 </div>
@@ -191,7 +191,7 @@ export default function LeadAnalysisReport() {
                         <CardContent className="p-6">
                             <div className="h-64 bg-gradient-to-br from-purple-50 to-white rounded-xl border border-purple-100 flex items-center justify-center">
                                 <div className="text-center">
-                                    <Users className="w-12 h-12 text-purple-500 mx-auto mb-3" />
+                                    <Users className="w-12 h-12 text-purple-500 mb-3" />
                                     <p className="text-purple-900 font-bold">Pipeline Health</p>
                                     <p className="text-xs text-purple-600 mt-1">Status distribution heatmap</p>
                                 </div>

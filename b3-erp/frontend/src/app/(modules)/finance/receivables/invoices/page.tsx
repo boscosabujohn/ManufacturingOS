@@ -285,8 +285,8 @@ export default function InvoicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-6">
-      <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-3">
+      <div className="space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -300,7 +300,7 @@ export default function InvoicesPage() {
                 setIsCreateModalOpen(true);
                 console.log('Modal state set to true');
               }}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg"
+              className="flex items-center gap-2 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg"
             >
               <Plus className="w-5 h-5" />
               Create Invoice
@@ -313,8 +313,8 @@ export default function InvoicesPage() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <FileText className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -324,7 +324,7 @@ export default function InvoicesPage() {
             <div className="mt-2 text-xs text-blue-100">This period</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -334,7 +334,7 @@ export default function InvoicesPage() {
             <div className="mt-2 text-xs text-green-100">Invoiced amount</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <AlertTriangle className="w-8 h-8 opacity-80" />
               <Clock className="w-5 h-5" />
@@ -346,7 +346,7 @@ export default function InvoicesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <XCircle className="w-8 h-8 opacity-80" />
               <AlertTriangle className="w-5 h-5" />
@@ -358,8 +358,8 @@ export default function InvoicesPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -412,15 +412,15 @@ export default function InvoicesPage() {
             <table className="w-full">
               <thead className="bg-gray-900/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Invoice #</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Customer</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Due Date</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Amount</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Paid</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Balance</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Invoice #</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Customer</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Due Date</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Amount</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Paid</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Balance</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -430,20 +430,20 @@ export default function InvoicesPage() {
 
                   return (
                     <tr key={invoice.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="font-medium text-white font-mono">{invoice.invoiceNumber}</div>
                         <div className="text-xs text-gray-400 mt-1">
                           {invoice.items.length} item{invoice.items.length > 1 ? 's' : ''}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-white">{invoice.customerName}</div>
                         <div className="text-xs text-gray-400 font-mono mt-1">{invoice.customerCode}</div>
                       </td>
-                      <td className="px-6 py-4 text-white text-sm">
+                      <td className="px-3 py-2 text-white text-sm">
                         {new Date(invoice.invoiceDate).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className={`text-sm ${isDueColor}`}>
                           {new Date(invoice.dueDate).toLocaleDateString()}
                         </div>
@@ -453,21 +453,21 @@ export default function InvoicesPage() {
                            `${daysUntilDue} days left`}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right text-white font-medium">
+                      <td className="px-3 py-2 text-right text-white font-medium">
                         {formatCurrency(invoice.totalAmount)}
                       </td>
-                      <td className="px-6 py-4 text-right text-green-400 font-medium">
+                      <td className="px-3 py-2 text-right text-green-400 font-medium">
                         {formatCurrency(invoice.paidAmount)}
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <span className={`font-medium ${invoice.balanceAmount > 0 ? 'text-orange-400' : 'text-gray-600'}`}>
                           {formatCurrency(invoice.balanceAmount)}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         {getStatusBadge(invoice.status)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => {
@@ -527,7 +527,7 @@ export default function InvoicesPage() {
 
           {filteredInvoices.length === 0 && (
             <div className="text-center py-12">
-              <FileText className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+              <FileText className="w-16 h-16 text-gray-600 mb-2" />
               <p className="text-gray-400 text-lg">No invoices found</p>
               <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filters</p>
             </div>
@@ -536,7 +536,7 @@ export default function InvoicesPage() {
 
         {/* Pagination */}
         {filteredInvoices.length > 0 && (
-          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
+          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
             <div className="text-gray-400 text-sm">
               Showing {filteredInvoices.length} of {invoices.length} invoices
             </div>

@@ -13,7 +13,7 @@ export default function ShardingPage() {
 
     return (
         <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full max-w-full mx-auto space-y-6">
+            <div className="w-full space-y-6">
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Database Sharding</h1>

@@ -82,9 +82,9 @@ export default function BankReconciliationPage() {
     const unreconciled = transactions.length - reconciled;
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <Link href="/accounts">
                         <Button variant="ghost" size="sm" className="mb-2">
@@ -108,12 +108,12 @@ export default function BankReconciliationPage() {
             </div>
 
             {/* Account Selection */}
-            <Card className="mb-6">
+            <Card className="mb-3">
                 <CardHeader>
                     <CardTitle>Select Bank Account</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                         {accounts.map((account) => (
                             <Card
                                 key={account.id}
@@ -136,7 +136,7 @@ export default function BankReconciliationPage() {
 
             {/* Summary Stats */}
             {selectedAccount && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium text-gray-600">Reconciled</CardTitle>
@@ -183,7 +183,7 @@ export default function BankReconciliationPage() {
                             <div className="text-center py-8">Loading transactions...</div>
                         ) : transactions.length === 0 ? (
                             <div className="text-center py-8 text-gray-500">
-                                <CheckCircle2 className="mx-auto h-12 w-12 text-green-500 mb-4" />
+                                <CheckCircle2 className="mx-auto h-12 w-12 text-green-500 mb-2" />
                                 <p>All transactions are reconciled!</p>
                             </div>
                         ) : (

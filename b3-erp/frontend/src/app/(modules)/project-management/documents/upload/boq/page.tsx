@@ -200,7 +200,7 @@ export default function UploadBOQPage() {
                   <FileSpreadsheet className="w-8 h-8 text-gray-400" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900">No File Selected</h3>
-                <p className="text-sm text-gray-500 max-w-xs mx-auto">
+                <p className="text-sm text-gray-500 max-w-xs">
                   Upload an Excel file to see a preview of the BOQ items here.
                   PDF and Word documents cannot be previewed.
                 </p>

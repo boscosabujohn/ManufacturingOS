@@ -203,8 +203,8 @@ export default function AssetsManagementPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
-          <div className="w-full space-y-6">
+        <div className="w-full p-3">
+          <div className="w-full space-y-3">
             {/* Header */}
             <div className="flex items-center justify-between">
               <div>
@@ -227,7 +227,7 @@ export default function AssetsManagementPage() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
                 <div className="flex items-center justify-between">
                   <div>
@@ -274,12 +274,12 @@ export default function AssetsManagementPage() {
             </div>
 
             {/* Quick Access Navigation */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Access</h3>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Access</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 <Link
                   href="/finance/assets/fixed-assets"
-                  className="group flex items-center gap-3 p-4 rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
                 >
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
                     <Package className="h-6 w-6 text-blue-600" />
@@ -293,7 +293,7 @@ export default function AssetsManagementPage() {
 
                 <Link
                   href="/finance/assets/depreciation"
-                  className="group flex items-center gap-3 p-4 rounded-lg border border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all duration-200"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all duration-200"
                 >
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
                     <TrendingDown className="h-6 w-6 text-orange-600" />
@@ -307,7 +307,7 @@ export default function AssetsManagementPage() {
 
                 <Link
                   href="/finance/assets/asset-disposal"
-                  className="group flex items-center gap-3 p-4 rounded-lg border border-gray-200 hover:border-red-500 hover:bg-red-50 transition-all duration-200"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-red-500 hover:bg-red-50 transition-all duration-200"
                 >
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
                     <XCircle className="h-6 w-6 text-red-600" />
@@ -327,7 +327,7 @@ export default function AssetsManagementPage() {
                 <h2 className="text-lg font-semibold text-gray-900">Assets by Category</h2>
               </div>
               <div className="p-6">
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {assetsByCategory.map((category) => {
                     const Icon = category.icon
                     return (
@@ -348,7 +348,7 @@ export default function AssetsManagementPage() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div className="grid grid-cols-3 gap-2 text-sm">
                           <div>
                             <p className="text-gray-600 text-xs">Original Cost</p>
                             <p className="font-medium text-gray-900">{formatCurrency(category.cost)}</p>
@@ -430,7 +430,7 @@ export default function AssetsManagementPage() {
             </div>
 
             {/* Additional Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-sm font-medium text-gray-600">Assets Under Maintenance</h3>

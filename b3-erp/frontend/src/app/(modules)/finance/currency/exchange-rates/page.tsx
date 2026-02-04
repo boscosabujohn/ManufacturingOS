@@ -396,8 +396,8 @@ export default function ExchangeRatesPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -425,7 +425,7 @@ export default function ExchangeRatesPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -492,10 +492,10 @@ export default function ExchangeRatesPage() {
           </div>
 
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {exchangeRates.map((rate) => (
                 <div key={rate.id} className="border-2 border-gray-200 rounded-xl p-5 hover:shadow-lg transition-all">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-2">
                     <div>
                       <p className="text-xs text-gray-600">Exchange Rate</p>
                       <p className="text-2xl font-bold text-gray-900">{rate.fromCurrency}/{rate.toCurrency}</p>
@@ -559,8 +559,8 @@ export default function ExchangeRatesPage() {
                 const changePercent = ((change / prevRate) * 100)
 
                 return (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <div className="flex items-center gap-4">
+                  <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div className="flex items-center gap-2">
                       <div className="text-center min-w-[80px]">
                         <p className="text-xs text-gray-600">
                           {new Date(history.date).toLocaleDateString('en-IN', { weekday: 'short' })}
@@ -576,7 +576,7 @@ export default function ExchangeRatesPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
                       <div className="text-right">
                         <p className="text-xs text-gray-600">Change</p>
                         <p className={`font-semibold ${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -601,12 +601,12 @@ export default function ExchangeRatesPage() {
         </div>
 
         {/* Rate Update Alerts */}
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl shadow-sm border border-yellow-200 p-6">
-          <div className="flex items-start gap-4">
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl shadow-sm border border-yellow-200 p-3">
+          <div className="flex items-start gap-2">
             <AlertCircle className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-1" />
             <div>
               <h3 className="font-semibold text-yellow-900 mb-2">Exchange Rate Update Settings</h3>
-              <p className="text-sm text-yellow-800 mb-4">
+              <p className="text-sm text-yellow-800 mb-2">
                 Rates are automatically updated daily from RBI at 12:00 PM IST. Manual updates can be triggered anytime.
               </p>
               <div className="flex items-center gap-3">

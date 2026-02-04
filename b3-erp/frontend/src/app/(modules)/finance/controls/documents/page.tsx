@@ -12,8 +12,8 @@ export default function DocumentManagementPage() {
   ])
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-amber-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-amber-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Document Management</h1>
@@ -25,9 +25,9 @@ export default function DocumentManagementPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           {['Financial Statements', 'Tax Documents', 'Audit', 'Legal'].map((cat, idx) => (
-            <div key={idx} className="bg-white rounded-lg p-4 border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
+            <div key={idx} className="bg-white rounded-lg p-3 border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
               <Folder className="h-8 w-8 text-orange-600 mb-2" />
               <h3 className="font-semibold text-gray-900">{cat}</h3>
               <p className="text-sm text-gray-600 mt-1">{documents.filter(d => d.category === cat).length} files</p>
@@ -50,28 +50,28 @@ export default function DocumentManagementPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b-2 border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Document Name</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Category</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Uploaded By</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Upload Date</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Size</th>
-                <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Actions</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Document Name</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Category</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Uploaded By</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Upload Date</th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Size</th>
+                <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {documents.map((doc) => (
                 <tr key={doc.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <FileText className="h-5 w-5 text-orange-600" />
                       <span className="font-medium text-gray-900">{doc.name}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{doc.category}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{doc.uploadedBy}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{new Date(doc.uploadDate).toLocaleDateString('en-IN')}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{doc.size}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{doc.category}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{doc.uploadedBy}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{new Date(doc.uploadDate).toLocaleDateString('en-IN')}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{doc.size}</td>
+                  <td className="px-3 py-2">
                     <div className="flex items-center justify-center gap-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="h-4 w-4 text-gray-600" />

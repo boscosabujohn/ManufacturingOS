@@ -106,7 +106,7 @@ export default function CreatePricingRulePage() {
 
   return (
     <div className="w-full h-full px-3 py-2 ">
-      <div className=" mx-auto">
+      <div className="">
         {/* Header */}
         <div className="mb-8">
           <button

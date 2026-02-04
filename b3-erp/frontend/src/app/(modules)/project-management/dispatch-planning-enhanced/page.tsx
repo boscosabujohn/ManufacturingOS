@@ -611,7 +611,7 @@ export default function DispatchPlanningEnhancedPage() {
 
        {formData.items.length === 0 ? (
         <div className="text-center py-8 text-gray-500 border-2 border-dashed rounded-lg">
-         <Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+         <Package className="h-12 w-12 mb-4 text-gray-300" />
          <p>No items added yet</p>
          <Button onClick={addItem} variant="link" className="mt-2">
           Click to add items

@@ -452,9 +452,9 @@ export default function CPQIntegrationERPPage() {
                     </td>
                     <td className="py-3 px-4 text-center">
                       {item.status === 'synced' ? (
-                        <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                        <CheckCircle className="h-5 w-5 text-green-600" />
                       ) : (
-                        <AlertCircle className="h-5 w-5 text-yellow-600 mx-auto" />
+                        <AlertCircle className="h-5 w-5 text-yellow-600" />
                       )}
                     </td>
                     <td className="py-3 px-4">

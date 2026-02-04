@@ -482,7 +482,7 @@ export default function IntegrationsPage() {
 
           {filteredIntegrations.length === 0 && (
             <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-              <Package className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+              <Package className="w-12 h-12 text-gray-300 mb-3" />
               <p className="text-gray-600 font-medium">No integrations found</p>
               <p className="text-sm text-gray-500">Try selecting a different category</p>
             </div>

@@ -162,7 +162,7 @@ export default function CreateContractPage() {
 
   return (
     <div className="w-full h-full px-3 py-2 ">
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-3">
           <button

@@ -335,7 +335,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -981,7 +981,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                     onChange={handleFileUpload}
                     className="hidden"
                   />
-                  <FileText className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                  <FileText className="w-12 h-12 text-gray-400 mb-3" />
                   <div className="font-semibold text-gray-900 mb-1">Upload New Document</div>
                   <div className="text-sm text-gray-600">Drag and drop files here or click to browse</div>
                   <div className="text-xs text-gray-500 mt-2">Supports PDF, JPG, PNG, DOC, DOCX</div>

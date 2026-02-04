@@ -512,7 +512,7 @@ export default function ShopfloorTerminalPage() {
         <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mb-4">
               <Factory className="w-12 h-12 text-white" />
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Shopfloor Terminal</h1>
@@ -598,7 +598,7 @@ export default function ShopfloorTerminalPage() {
 
           {/* Help */}
           <div className="mt-8 text-center">
-            <button className="flex items-center space-x-2 mx-auto text-blue-600 hover:text-blue-700">
+            <button className="flex items-center space-x-2 text-blue-600 hover:text-blue-700">
               <HelpCircle className="w-6 h-6" />
               <span className="text-lg">Need Help?</span>
             </button>
@@ -1090,7 +1090,7 @@ export default function ShopfloorTerminalPage() {
         <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full">
           {/* Header */}
           <div className="text-center mb-8">
-            <Clock className="w-24 h-24 text-orange-600 mx-auto mb-4" />
+            <Clock className="w-24 h-24 text-orange-600 mb-4" />
             <h1 className="text-4xl font-bold text-gray-900 mb-2">End of Shift Summary</h1>
             <p className="text-gray-600 text-xl">{selectedShift}</p>
           </div>

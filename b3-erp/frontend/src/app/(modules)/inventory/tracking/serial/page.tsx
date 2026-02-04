@@ -328,7 +328,7 @@ export default function SerialTrackingPage() {
           {/* No Results */}
           {filteredProducts.length === 0 && (
             <div className="p-8 text-center text-slate-600">
-              <QrCode className="w-12 h-12 mx-auto mb-3 text-slate-400" />
+              <QrCode className="w-12 h-12 mb-3 text-slate-400" />
               <p className="font-medium">No products found</p>
               <p className="text-sm">Try adjusting your search or filters</p>
             </div>

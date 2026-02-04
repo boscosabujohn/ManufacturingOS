@@ -535,10 +535,10 @@ export default function WonRFPPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-yellow-50 to-amber-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-yellow-50 to-amber-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -559,8 +559,8 @@ export default function WonRFPPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-yellow-500 to-amber-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-yellow-500 to-amber-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm font-medium">Won RFPs</p>
@@ -573,7 +573,7 @@ export default function WonRFPPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Total Contract Value</p>
@@ -586,7 +586,7 @@ export default function WonRFPPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Total Savings</p>
@@ -599,7 +599,7 @@ export default function WonRFPPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-100 text-sm font-medium">Completed</p>
@@ -614,8 +614,8 @@ export default function WonRFPPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -656,13 +656,13 @@ export default function WonRFPPage() {
         </div>
 
         {/* Won RFPs List */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {filteredRFPs.map((rfp) => (
-            <div key={rfp.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-              <div className="space-y-6">
+            <div key={rfp.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+              <div className="space-y-3">
                 {/* Header */}
                 <div className="flex items-start justify-between pb-4 border-b border-gray-200">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2">
                     <div className="bg-gradient-to-br from-yellow-500 to-amber-600 p-3 rounded-lg">
                       <Trophy className="w-8 h-8 text-white" />
                     </div>
@@ -674,7 +674,7 @@ export default function WonRFPPage() {
                         </span>
                       </div>
                       <p className="text-lg text-gray-700 mb-2">{rfp.title}</p>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
                           <span>Awarded: {new Date(rfp.awardDate).toLocaleDateString('en-IN')}</span>
@@ -695,13 +695,13 @@ export default function WonRFPPage() {
                 </div>
 
                 {/* Contract Value & Savings */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg p-4 text-white">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg p-3 text-white">
                     <p className="text-green-100 text-sm font-medium">Contract Value</p>
                     <p className="text-3xl font-bold mt-1">₹{(rfp.contractValue / 100000).toFixed(2)}L</p>
                     <p className="text-green-100 text-xs mt-1">{rfp.itemsCount} items</p>
                   </div>
-                  <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg p-4 text-white">
+                  <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg p-3 text-white">
                     <p className="text-blue-100 text-sm font-medium">Cost Savings</p>
                     <p className="text-3xl font-bold mt-1 flex items-center gap-2">
                       <TrendingDown className="w-6 h-6" />
@@ -709,7 +709,7 @@ export default function WonRFPPage() {
                     </p>
                     <p className="text-blue-100 text-xs mt-1">{rfp.savingsPercent}% below estimate</p>
                   </div>
-                  <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg p-4 text-white">
+                  <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg p-3 text-white">
                     <p className="text-purple-100 text-sm font-medium">Delivery Timeline</p>
                     <p className="text-3xl font-bold mt-1">{rfp.deliveryTimeline}</p>
                     <p className="text-purple-100 text-xs mt-1">days</p>
@@ -717,12 +717,12 @@ export default function WonRFPPage() {
                 </div>
 
                 {/* Selected Vendor */}
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                  <div className="flex items-start gap-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                  <div className="flex items-start gap-2">
                     <Award className="w-6 h-6 text-yellow-600 flex-shrink-0 mt-1" />
                     <div className="flex-1">
                       <h4 className="font-semibold text-yellow-900 mb-2">Selected Vendor</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <div>
                           <p className="font-semibold text-gray-900">{rfp.selectedVendor.name}</p>
                           <p className="text-sm text-gray-600 mt-1">{rfp.selectedVendor.contactPerson}</p>
@@ -762,7 +762,7 @@ export default function WonRFPPage() {
                   </h4>
                   <div className="space-y-3">
                     {rfp.milestones.map((milestone, idx) => (
-                      <div key={idx} className="flex items-center gap-4">
+                      <div key={idx} className="flex items-center gap-2">
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
@@ -787,8 +787,8 @@ export default function WonRFPPage() {
                 </div>
 
                 {/* Competitive Advantage */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                     <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
                       <CheckCircle className="w-4 h-4" />
                       Competitive Advantage
@@ -802,7 +802,7 @@ export default function WonRFPPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                       <Package className="w-4 h-4" />
                       Key Deliverables
@@ -848,7 +848,7 @@ export default function WonRFPPage() {
 
         {filteredRFPs.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Trophy className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Trophy className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Won RFPs Found</h3>
             <p className="text-gray-600">No RFPs match your current filters.</p>
           </div>

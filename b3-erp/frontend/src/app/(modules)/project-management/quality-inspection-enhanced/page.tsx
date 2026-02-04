@@ -407,7 +407,7 @@ export default function QualityInspectionEnhancedPage() {
                           className={`flex-1 py-1.5 rounded text-sm font-medium ${item.status === 'pass' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600 hover:bg-green-100'
                             }`}
                         >
-                          <CheckCircle className="w-4 h-4 mx-auto" />
+                          <CheckCircle className="w-4 h-4" />
                         </button>
                         <button
                           type="button"
@@ -415,7 +415,7 @@ export default function QualityInspectionEnhancedPage() {
                           className={`flex-1 py-1.5 rounded text-sm font-medium ${item.status === 'fail' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-600 hover:bg-red-100'
                             }`}
                         >
-                          <XCircle className="w-4 h-4 mx-auto" />
+                          <XCircle className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
@@ -462,9 +462,9 @@ export default function QualityInspectionEnhancedPage() {
                         : 'border-gray-200 hover:border-gray-300'
                       }`}
                   >
-                    {result === 'Approved' && <CheckCircle className="w-8 h-8 mx-auto mb-2 text-green-600" />}
-                    {result === 'Conditional' && <AlertTriangle className="w-8 h-8 mx-auto mb-2 text-yellow-600" />}
-                    {result === 'Rejected' && <XCircle className="w-8 h-8 mx-auto mb-2 text-red-600" />}
+                    {result === 'Approved' && <CheckCircle className="w-8 h-8 mb-2 text-green-600" />}
+                    {result === 'Conditional' && <AlertTriangle className="w-8 h-8 mb-2 text-yellow-600" />}
+                    {result === 'Rejected' && <XCircle className="w-8 h-8 mb-2 text-red-600" />}
                     <p className="font-medium">{result}</p>
                   </button>
                 ))}
@@ -487,7 +487,7 @@ export default function QualityInspectionEnhancedPage() {
                 <Camera className="w-4 h-4" /> Photo Documentation
               </label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <Camera className="w-12 h-12 mx-auto text-gray-400 mb-2" />
+                <Camera className="w-12 h-12 text-gray-400 mb-2" />
                 <p className="text-sm text-gray-500">Drag photos here or click to upload</p>
                 <p className="text-xs text-gray-400 mt-1">PNG, JPG up to 10MB each</p>
               </div>

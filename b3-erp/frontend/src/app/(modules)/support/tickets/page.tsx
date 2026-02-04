@@ -392,7 +392,7 @@ export default function TicketsPage() {
   const isAllSelected = paginatedTickets.length > 0 && paginatedTickets.every(t => selectedTickets.includes(t.id));
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       {/* Page Header with Toolbar */}
       <PageToolbar
 

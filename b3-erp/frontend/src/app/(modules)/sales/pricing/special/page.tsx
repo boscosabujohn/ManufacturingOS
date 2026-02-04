@@ -320,9 +320,9 @@ export default function SpecialPricingPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-end mb-6">
+      <div className="flex items-center justify-end mb-3">
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
           <Plus className="h-5 w-5" />
           Create Special Price
@@ -330,7 +330,7 @@ export default function SpecialPricingPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -377,8 +377,8 @@ export default function SpecialPricingPage() {
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -407,12 +407,12 @@ export default function SpecialPricingPage() {
       </div>
 
       {/* Special Prices Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredPrices.map((price) => (
           <div key={price.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <div className={`p-2 rounded-lg border ${getCustomerTypeColor(price.customerType)}`}>
@@ -430,14 +430,14 @@ export default function SpecialPricingPage() {
               </div>
 
               {/* Customer Type Badge */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium border ${getCustomerTypeColor(price.customerType)}`}>
                   {price.customerType.toUpperCase()}
                 </span>
               </div>
 
               {/* Product Info */}
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3 mb-2">
                 <div className="flex items-center gap-2 mb-2">
                   <Package className="h-4 w-4 text-gray-600" />
                   <p className="font-semibold text-gray-900">{price.productName}</p>
@@ -449,7 +449,7 @@ export default function SpecialPricingPage() {
               </div>
 
               {/* Pricing Details */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div className="bg-red-50 rounded-lg p-3">
                   <p className="text-xs text-red-600 mb-1">Standard Price</p>
                   <p className="font-semibold text-red-900">₹{price.standardPrice.toLocaleString('en-IN')}</p>
@@ -461,13 +461,13 @@ export default function SpecialPricingPage() {
               </div>
 
               {/* Discount Badge */}
-              <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg p-3 mb-4 text-center">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg p-3 mb-2 text-center">
                 <p className="text-2xl font-bold">{price.discountPercent}% OFF</p>
                 <p className="text-xs mt-1">Savings: ₹{(price.standardPrice - price.specialPrice).toLocaleString('en-IN')} per unit</p>
               </div>
 
               {/* Order Details */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-600 mb-1">Min Order Qty</p>
                   <p className="font-semibold text-gray-900">{price.minOrderQty} units</p>
@@ -480,14 +480,14 @@ export default function SpecialPricingPage() {
 
               {/* Revenue */}
               {price.totalRevenue > 0 && (
-                <div className="bg-blue-50 rounded-lg p-3 mb-4">
+                <div className="bg-blue-50 rounded-lg p-3 mb-2">
                   <p className="text-xs text-blue-600 mb-1">Total Revenue Generated</p>
                   <p className="font-semibold text-blue-900">₹{(price.totalRevenue / 100000).toFixed(2)}L</p>
                 </div>
               )}
 
               {/* Validity */}
-              <div className="mb-4 p-3 bg-indigo-50 rounded-lg">
+              <div className="mb-2 p-3 bg-indigo-50 rounded-lg">
                 <div className="flex items-center gap-2 text-sm">
                   <Calendar className="h-4 w-4 text-indigo-600" />
                   <span className="text-gray-700">
@@ -498,7 +498,7 @@ export default function SpecialPricingPage() {
 
               {/* Approved By */}
               {price.approvedBy && (
-                <div className="mb-4 text-sm">
+                <div className="mb-2 text-sm">
                   <p className="text-gray-600">Approved by: <span className="font-medium text-gray-900">{price.approvedBy}</span></p>
                 </div>
               )}
@@ -519,7 +519,7 @@ export default function SpecialPricingPage() {
 
       {filteredPrices.length === 0 && (
         <div className="text-center py-12">
-          <Award className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Award className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No special pricing found matching your criteria</p>
         </div>
       )}

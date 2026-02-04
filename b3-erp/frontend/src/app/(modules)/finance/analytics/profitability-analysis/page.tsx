@@ -33,8 +33,8 @@ export default function ProfitabilityAnalysisPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Profitability Analysis</h1>
           <p className="text-gray-600 mt-1">Analyze profitability by product, customer, and segment</p>
@@ -45,10 +45,10 @@ export default function ProfitabilityAnalysisPage() {
             <h2 className="text-lg font-semibold text-gray-900">Product Profitability</h2>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {products.map((product, idx) => (
                 <div key={idx} className="border-2 border-gray-200 rounded-xl p-5">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-purple-100 rounded-lg">
                         <Package className="h-5 w-5 text-purple-600" />
@@ -63,7 +63,7 @@ export default function ProfitabilityAnalysisPage() {
                       <p className="text-xs text-gray-600">Profit Margin</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="grid grid-cols-3 gap-2 mb-2">
                     <div className="bg-blue-50 rounded-lg p-3">
                       <p className="text-xs text-blue-600 mb-1">Revenue</p>
                       <p className="text-lg font-semibold text-blue-900">{formatCurrency(product.revenue)}</p>
@@ -91,10 +91,10 @@ export default function ProfitabilityAnalysisPage() {
             <h2 className="text-lg font-semibold text-gray-900">Customer Profitability</h2>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {customers.map((customer, idx) => (
                 <div key={idx} className="border-2 border-gray-200 rounded-xl p-5">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-blue-100 rounded-lg">
                         <Users className="h-5 w-5 text-blue-600" />
@@ -106,7 +106,7 @@ export default function ProfitabilityAnalysisPage() {
                       <p className="text-xs text-gray-600">Margin</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="grid grid-cols-3 gap-2 mb-2">
                     <div className="bg-blue-50 rounded-lg p-3">
                       <p className="text-xs text-blue-600 mb-1">Revenue</p>
                       <p className="text-lg font-semibold text-blue-900">{formatCurrency(customer.revenue)}</p>

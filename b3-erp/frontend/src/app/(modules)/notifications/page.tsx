@@ -212,7 +212,7 @@ export default function NotificationHistoryPage() {
   };
 
   return (
-    <div className="container mx-auto py-6 space-y-6">
+    <div className="w-full py-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -395,7 +395,7 @@ export default function NotificationHistoryPage() {
         <CardContent className="p-0">
           {filteredNotifications.length === 0 ? (
             <div className="py-16 text-center">
-              <Bell className="w-16 h-16 mx-auto text-gray-200 mb-4" />
+              <Bell className="w-16 h-16 text-gray-200 mb-4" />
               <p className="text-gray-500 font-medium">No notifications found</p>
               <p className="text-sm text-gray-400 mt-1">
                 {searchTerm || categoryFilter !== 'all' || statusFilter !== 'all' || dateFilter !== 'all'

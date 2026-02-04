@@ -394,7 +394,7 @@ export default function CPQProductsRulesPage() {
               {filteredRules.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="px-4 py-12 text-center">
-                    <GitBranch className="h-12 w-12 mx-auto text-gray-400 mb-3" />
+                    <GitBranch className="h-12 w-12 text-gray-400 mb-3" />
                     <p className="text-gray-600 text-lg">No rules found</p>
                     <p className="text-gray-500 text-sm mt-2">
                       {searchQuery || appliedFilters ? 'Try adjusting your search or filters' : 'Create your first configuration rule to get started'}

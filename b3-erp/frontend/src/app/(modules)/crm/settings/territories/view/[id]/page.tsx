@@ -160,7 +160,7 @@ export default function ViewTerritoryPage() {
 
   return (
     <div className="w-full h-full px-3 py-2 ">
-      <div className=" mx-auto space-y-3">
+      <div className=" space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>

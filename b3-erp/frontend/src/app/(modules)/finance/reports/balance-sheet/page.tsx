@@ -151,21 +151,21 @@ export default function BalanceSheetPage() {
 
     return (
       <tr key={label} className={`${bgClass} hover:bg-gray-50 transition-colors`}>
-        <td className="px-6 py-3" style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
+        <td className="px-3 py-2" style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
           <span className={textClass}>{label}</span>
         </td>
-        <td className={`px-6 py-3 text-right ${textClass}`}>
+        <td className={`px-3 py-2 text-right ${textClass}`}>
           {formatCurrency(current)}
         </td>
         {showComparison && (
           <>
-            <td className={`px-6 py-3 text-right ${textClass}`}>
+            <td className={`px-3 py-2 text-right ${textClass}`}>
               {formatCurrency(previous)}
             </td>
-            <td className={`px-6 py-3 text-right ${textClass}`}>
+            <td className={`px-3 py-2 text-right ${textClass}`}>
               {formatCurrency(current - previous)}
             </td>
-            <td className="px-6 py-3 text-right">
+            <td className="px-3 py-2 text-right">
               <span
                 className={`font-semibold ${
                   change > 0 ? 'text-green-600' : change < 0 ? 'text-red-600' : 'text-gray-600'
@@ -193,7 +193,7 @@ export default function BalanceSheetPage() {
     return (
       <>
         <tr className="bg-gray-100 border-t-2 border-gray-300">
-          <td className="px-6 py-3" style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
+          <td className="px-3 py-2" style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
             <button
               onClick={() => toggleSection(sectionKey)}
               className="flex items-center gap-2 font-bold text-gray-900 hover:text-blue-600 transition-colors"
@@ -206,18 +206,18 @@ export default function BalanceSheetPage() {
               {title}
             </button>
           </td>
-          <td className="px-6 py-3 text-right font-bold text-gray-900">
+          <td className="px-3 py-2 text-right font-bold text-gray-900">
             {formatCurrency(total.current)}
           </td>
           {showComparison && (
             <>
-              <td className="px-6 py-3 text-right font-bold text-gray-900">
+              <td className="px-3 py-2 text-right font-bold text-gray-900">
                 {formatCurrency(total.previous)}
               </td>
-              <td className="px-6 py-3 text-right font-bold text-gray-900">
+              <td className="px-3 py-2 text-right font-bold text-gray-900">
                 {formatCurrency(total.current - total.previous)}
               </td>
-              <td className="px-6 py-3 text-right">
+              <td className="px-3 py-2 text-right">
                 <span
                   className={`font-bold ${
                     calculateChange(total.current, total.previous) > 0
@@ -265,10 +265,10 @@ export default function BalanceSheetPage() {
   const workingCapital = totalCurrentAssets.current - totalCurrentLiabilities.current;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-3">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <BarChart3 className="w-8 h-8 text-blue-600" />
@@ -293,8 +293,8 @@ export default function BalanceSheetPage() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-blue-100 text-sm mb-1">Total Assets</p>
             <p className="text-3xl font-bold">{formatCurrency(totalAssets.current)}</p>
             <p className="text-sm text-blue-100 mt-2">
@@ -303,7 +303,7 @@ export default function BalanceSheetPage() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-red-100 text-sm mb-1">Total Liabilities</p>
             <p className="text-3xl font-bold">{formatCurrency(totalLiabilities.current)}</p>
             <p className="text-sm text-red-100 mt-2">
@@ -311,7 +311,7 @@ export default function BalanceSheetPage() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-purple-100 text-sm mb-1">Total Equity</p>
             <p className="text-3xl font-bold">{formatCurrency(totalEquity.current)}</p>
             <p className="text-sm text-purple-100 mt-2">
@@ -319,7 +319,7 @@ export default function BalanceSheetPage() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-green-100 text-sm mb-1">Working Capital</p>
             <p className="text-3xl font-bold">{formatCurrency(workingCapital)}</p>
             <p className="text-sm text-green-100 mt-2">
@@ -330,12 +330,12 @@ export default function BalanceSheetPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="bg-white rounded-xl shadow-lg p-3 mb-3">
+        <div className="flex items-center gap-2 mb-2">
           <Filter className="w-5 h-5 text-gray-600" />
           <h2 className="text-lg font-semibold text-gray-900">Report Options</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">As of Date</label>
             <input
@@ -347,7 +347,7 @@ export default function BalanceSheetPage() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Comparison</label>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -364,7 +364,7 @@ export default function BalanceSheetPage() {
 
       {/* Balance Sheet Table */}
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold">Balance Sheet</h2>
@@ -378,21 +378,21 @@ export default function BalanceSheetPage() {
           <table className="w-full">
             <thead className="bg-gray-100 border-b-2 border-gray-300">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase">
+                <th className="px-3 py-2 text-left text-sm font-bold text-gray-700 uppercase">
                   Account
                 </th>
-                <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                   Current
                 </th>
                 {showComparison && (
                   <>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                    <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                       Previous
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                    <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                       Change
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                    <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                       %
                     </th>
                   </>
@@ -402,7 +402,7 @@ export default function BalanceSheetPage() {
             <tbody className="divide-y divide-gray-200">
               {/* ASSETS */}
               <tr className="bg-blue-600 text-white">
-                <td colSpan={showComparison ? 5 : 2} className="px-6 py-3 font-bold text-lg">
+                <td colSpan={showComparison ? 5 : 2} className="px-3 py-2 font-bold text-lg">
                   ASSETS
                 </td>
               </tr>
@@ -424,7 +424,7 @@ export default function BalanceSheetPage() {
 
               {/* LIABILITIES */}
               <tr className="bg-red-600 text-white">
-                <td colSpan={showComparison ? 5 : 2} className="px-6 py-3 font-bold text-lg">
+                <td colSpan={showComparison ? 5 : 2} className="px-3 py-2 font-bold text-lg">
                   LIABILITIES
                 </td>
               </tr>
@@ -457,7 +457,7 @@ export default function BalanceSheetPage() {
 
               {/* EQUITY */}
               <tr className="bg-purple-600 text-white">
-                <td colSpan={showComparison ? 5 : 2} className="px-6 py-3 font-bold text-lg">
+                <td colSpan={showComparison ? 5 : 2} className="px-3 py-2 font-bold text-lg">
                   SHAREHOLDERS' EQUITY
                 </td>
               </tr>
@@ -484,25 +484,25 @@ export default function BalanceSheetPage() {
         </div>
 
         {/* Financial Ratios */}
-        <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 border-t-2 border-gray-300">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Financial Ratios & Analysis</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-3 border-t-2 border-gray-300">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Financial Ratios & Analysis</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">Current Ratio</p>
               <p className="text-2xl font-bold text-green-600">{currentRatio.toFixed(2)}</p>
               <p className="text-xs text-gray-500 mt-1">Current Assets / Current Liabilities</p>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-gray-200">
+            <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">Quick Ratio</p>
               <p className="text-2xl font-bold text-blue-600">{quickRatio.toFixed(2)}</p>
               <p className="text-xs text-gray-500 mt-1">(Current Assets - Inventory) / Current Liabilities</p>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-gray-200">
+            <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">Debt to Equity</p>
               <p className="text-2xl font-bold text-orange-600">{debtToEquityRatio.toFixed(2)}</p>
               <p className="text-xs text-gray-500 mt-1">Total Liabilities / Total Equity</p>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-gray-200">
+            <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">Equity Ratio</p>
               <p className="text-2xl font-bold text-purple-600">
                 {((totalEquity.current / totalAssets.current) * 100).toFixed(1)}%

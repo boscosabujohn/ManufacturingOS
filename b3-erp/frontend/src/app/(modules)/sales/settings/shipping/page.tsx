@@ -251,10 +251,10 @@ export default function ShippingSettingsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -273,7 +273,7 @@ export default function ShippingSettingsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -320,7 +320,7 @@ export default function ShippingSettingsPage() {
       </div>
 
       {/* Zone Filter */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex flex-wrap gap-2">
           {zones.map(zone => (
             <button
@@ -339,12 +339,12 @@ export default function ShippingSettingsPage() {
       </div>
 
       {/* Shipping Methods Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredMethods.map((method) => (
           <div key={method.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <Truck className="h-5 w-5 text-blue-600" />
@@ -365,7 +365,7 @@ export default function ShippingSettingsPage() {
               </div>
 
               {/* Delivery Time & Rates */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center gap-2 mb-1">
                     <Clock className="h-4 w-4 text-green-600" />
@@ -384,7 +384,7 @@ export default function ShippingSettingsPage() {
               </div>
 
               {/* Weight & Per Kg Rate */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <p className="text-xs text-purple-700 mb-1">Weight Range</p>
                   <p className="font-semibold text-purple-900">{method.minWeight}-{method.maxWeight} kg</p>
@@ -398,7 +398,7 @@ export default function ShippingSettingsPage() {
 
               {/* Free Shipping Threshold */}
               {method.freeShippingThreshold && (
-                <div className="mb-4 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
+                <div className="mb-2 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs text-green-700 mb-1 font-medium">Free Shipping Above</p>
@@ -410,7 +410,7 @@ export default function ShippingSettingsPage() {
               )}
 
               {/* Zones */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs text-gray-600 mb-2 font-medium">Delivery Zones:</p>
                 <div className="flex flex-wrap gap-2">
                   {method.zones.map((zone, index) => (
@@ -423,7 +423,7 @@ export default function ShippingSettingsPage() {
               </div>
 
               {/* Applicable Products */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs text-gray-600 mb-2 font-medium">Applicable Products:</p>
                 <div className="flex flex-wrap gap-2">
                   {method.applicableProducts.map((product, index) => (
@@ -436,7 +436,7 @@ export default function ShippingSettingsPage() {
               </div>
 
               {/* Features */}
-              <div className="mb-4 grid grid-cols-2 gap-2">
+              <div className="mb-2 grid grid-cols-2 gap-2">
                 <div className={`p-2 rounded text-xs text-center ${method.insuranceIncluded ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
                   {method.insuranceIncluded ? '✓ Insurance Included' : '✗ No Insurance'}
                 </div>
@@ -446,7 +446,7 @@ export default function ShippingSettingsPage() {
               </div>
 
               {/* Usage Stats */}
-              <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mb-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-gray-600 font-medium">Total Shipments</p>
                   <p className="font-semibold text-gray-900">{method.usageCount.toLocaleString('en-IN')}</p>
@@ -474,7 +474,7 @@ export default function ShippingSettingsPage() {
 
       {filteredMethods.length === 0 && (
         <div className="text-center py-12">
-          <Truck className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Truck className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No shipping methods found for selected zone</p>
         </div>
       )}

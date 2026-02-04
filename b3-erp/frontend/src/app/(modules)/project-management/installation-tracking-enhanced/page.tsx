@@ -659,7 +659,7 @@ export default function InstallationTrackingEnhancedPage() {
 
         {formData.teamMembers.length === 0 ? (
          <div className="text-center py-8 text-gray-500 border-2 border-dashed rounded-lg">
-          <Users className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+          <Users className="h-12 w-12 mb-4 text-gray-300" />
           <p>No team members added yet</p>
           <Button onClick={addTeamMember} variant="link" className="mt-2">
            Click to add team members

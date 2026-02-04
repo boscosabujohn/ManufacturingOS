@@ -256,10 +256,10 @@ export default function TaxSettingsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -278,7 +278,7 @@ export default function TaxSettingsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -325,7 +325,7 @@ export default function TaxSettingsPage() {
       </div>
 
       {/* Tax Type Filter */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex flex-wrap gap-2">
           {taxTypes.map(type => (
             <button
@@ -344,12 +344,12 @@ export default function TaxSettingsPage() {
       </div>
 
       {/* Tax Rates Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredRates.map((taxRate) => (
           <div key={taxRate.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <Percent className="h-5 w-5 text-blue-600" />
@@ -373,7 +373,7 @@ export default function TaxSettingsPage() {
 
               {/* HSN/SAC Code */}
               {(taxRate.hsnCode || taxRate.sacCode) && (
-                <div className="mb-4 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
+                <div className="mb-2 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs text-indigo-700 mb-1">{taxRate.hsnCode ? 'HSN Code' : 'SAC Code'}</p>
@@ -386,7 +386,7 @@ export default function TaxSettingsPage() {
 
               {/* Tax Breakdown (for CGST+SGST) */}
               {taxRate.taxType === 'CGST+SGST' && taxRate.cgstRate && taxRate.sgstRate && (
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid grid-cols-3 gap-2 mb-2">
                   <div className="bg-green-50 rounded-lg p-2 border border-green-200 text-center">
                     <p className="text-xs text-green-700">CGST</p>
                     <p className="font-semibold text-green-900">{taxRate.cgstRate}%</p>
@@ -403,7 +403,7 @@ export default function TaxSettingsPage() {
               )}
 
               {/* Category */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs text-gray-600 mb-2 font-medium">Product Category:</p>
                 <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
                   <Package className="h-3 w-3" />
@@ -412,12 +412,12 @@ export default function TaxSettingsPage() {
               </div>
 
               {/* Description */}
-              <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mb-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <p className="text-sm text-gray-700">{taxRate.description}</p>
               </div>
 
               {/* Applicable Products */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs text-gray-600 mb-2 font-medium">Applicable To:</p>
                 <div className="flex flex-wrap gap-2">
                   {taxRate.applicableProducts.map((product, index) => (
@@ -429,7 +429,7 @@ export default function TaxSettingsPage() {
               </div>
 
               {/* Effective Date & Usage */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <p className="text-xs text-blue-700 mb-1">Effective Date</p>
                   <p className="font-semibold text-blue-900">{new Date(taxRate.effectiveDate).toLocaleDateString('en-IN')}</p>
@@ -461,7 +461,7 @@ export default function TaxSettingsPage() {
 
       {filteredRates.length === 0 && (
         <div className="text-center py-12">
-          <Percent className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Percent className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No tax rates found matching your criteria</p>
         </div>
       )}

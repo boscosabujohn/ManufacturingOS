@@ -359,12 +359,12 @@ export default function CreateDraftPage() {
               </div>
             ) : (
               <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                <Calculator className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <Calculator className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600 font-medium mb-2">No items added yet</p>
                 <p className="text-sm text-gray-500 mb-4">Start by adding items to your estimate</p>
                 <button
                   onClick={handleAddItem}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2 mx-auto"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
                 >
                   <Plus className="w-4 h-4" />
                   Add First Item

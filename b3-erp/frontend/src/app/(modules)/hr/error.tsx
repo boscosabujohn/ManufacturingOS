@@ -126,7 +126,7 @@ export default function Error({
           <div className="border-t border-gray-200 pt-6">
             <button
               onClick={() => setShowErrorDetails(!showErrorDetails)}
-              className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors mx-auto"
+              className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
               <AlertCircle className="w-4 h-4 mr-2" />
               {showErrorDetails ? 'Hide' : 'Show'} Technical Details

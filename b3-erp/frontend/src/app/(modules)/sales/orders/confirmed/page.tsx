@@ -280,14 +280,14 @@ export default function ConfirmedOrdersPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 py-6">
-      <div className="space-y-6">
+    <div className="w-full h-full px-4 py-2">
+      <div className="space-y-3">
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-6 text-white`}>
+              <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-3 text-white`}>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-white/80 text-sm">{stat.label}</p>
@@ -302,8 +302,8 @@ export default function ConfirmedOrdersPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <Search className="w-4 h-4 inline mr-1" />
@@ -353,7 +353,7 @@ export default function ConfirmedOrdersPage() {
         </div>
 
         {/* Orders Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredOrders.map((order) => {
             const daysUntilDelivery = getDaysUntilDelivery(order.expectedDelivery);
             const isUrgentDelivery = daysUntilDelivery <= 5;
@@ -369,7 +369,7 @@ export default function ConfirmedOrdersPage() {
               >
                 <div className="p-6">
                   {/* Header */}
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <CheckCircle className="w-5 h-5 text-green-600" />
@@ -397,7 +397,7 @@ export default function ConfirmedOrdersPage() {
                   </div>
 
                   {/* Contact Details */}
-                  <div className="grid grid-cols-2 gap-3 mb-4 pb-4 border-b border-gray-200">
+                  <div className="grid grid-cols-2 gap-3 mb-2 pb-4 border-b border-gray-200">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Mail className="w-4 h-4" />
                       <span className="truncate">{order.customerEmail}</span>
@@ -409,7 +409,7 @@ export default function ConfirmedOrdersPage() {
                   </div>
 
                   {/* Confirmed Info */}
-                  <div className="bg-green-50 rounded-lg p-3 mb-4 border border-green-200">
+                  <div className="bg-green-50 rounded-lg p-3 mb-2 border border-green-200">
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <p className="text-xs text-green-700 mb-1">Confirmed On</p>
@@ -437,7 +437,7 @@ export default function ConfirmedOrdersPage() {
                   </div>
 
                   {/* Details Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-2 gap-2 mb-2">
                     <div>
                       <p className="text-xs text-gray-500">Order Date</p>
                       <div className="flex items-center gap-1 mt-1">
@@ -480,7 +480,7 @@ export default function ConfirmedOrdersPage() {
                   </div>
 
                   {/* Shipping & Payment Details */}
-                  <div className="grid grid-cols-2 gap-3 mb-4 pb-4 border-b border-gray-200">
+                  <div className="grid grid-cols-2 gap-3 mb-2 pb-4 border-b border-gray-200">
                     <div>
                       <p className="text-xs text-gray-500">Payment Terms</p>
                       <p className="text-sm font-medium text-gray-900 mt-1">{order.paymentTerms}</p>
@@ -499,7 +499,7 @@ export default function ConfirmedOrdersPage() {
                   </div>
 
                   {/* Team Info */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <div className="flex items-center gap-2 text-sm">
                       <User className="w-4 h-4 text-gray-400" />
                       <span className="text-gray-600">Assigned to:</span>
@@ -509,7 +509,7 @@ export default function ConfirmedOrdersPage() {
 
                   {/* Notes */}
                   {order.notes && (
-                    <div className="bg-blue-50 rounded-lg p-3 mb-4">
+                    <div className="bg-blue-50 rounded-lg p-3 mb-2">
                       <p className="text-xs font-medium text-blue-900 mb-1">Notes</p>
                       <p className="text-sm text-blue-800">{order.notes}</p>
                     </div>
@@ -540,7 +540,7 @@ export default function ConfirmedOrdersPage() {
         {/* Empty State */}
         {filteredOrders.length === 0 && (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-            <CheckCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <CheckCircle className="w-16 h-16 text-gray-300 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Confirmed Orders</h3>
             <p className="text-gray-600">No orders match your current filters.</p>
           </div>

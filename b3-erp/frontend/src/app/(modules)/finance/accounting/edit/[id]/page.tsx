@@ -245,10 +245,10 @@ export default function GLEntryEditPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div className="flex items-start space-x-4">
             <button
               onClick={() => router.back()}
@@ -290,7 +290,7 @@ export default function GLEntryEditPage() {
 
         {/* Balance Status */}
         {isBalanced ? (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-start space-x-3">
             <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-green-900">Entry Balanced</h3>
@@ -300,7 +300,7 @@ export default function GLEntryEditPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start space-x-3">
             <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-red-900">Entry Not Balanced</h3>
@@ -313,12 +313,12 @@ export default function GLEntryEditPage() {
       </div>
 
       {/* Entry Details Form */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
           <FileText className="h-5 w-5 mr-2 text-blue-600" />
           Entry Details
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Entry Number
@@ -419,7 +419,7 @@ export default function GLEntryEditPage() {
       </div>
 
       {/* Journal Lines */}
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-6">
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-3">
         <div className="p-4 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center">
             <BookOpen className="h-5 w-5 mr-2 text-blue-600" />
@@ -610,7 +610,7 @@ export default function GLEntryEditPage() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start space-x-3">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start space-x-3">
         <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
         <div className="text-sm text-blue-800">
           <p className="font-semibold mb-1">Important Notes:</p>

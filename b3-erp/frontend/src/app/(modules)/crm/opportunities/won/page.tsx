@@ -531,7 +531,7 @@ export default function WonOpportunitiesPage() {
 
       {filteredOpportunities.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <Trophy className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <Trophy className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No won opportunities found matching your criteria</p>
         </div>
       )}

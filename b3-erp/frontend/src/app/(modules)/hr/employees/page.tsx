@@ -180,7 +180,7 @@ export default function EmployeesPage() {
   // Show loading state
   if (loading) {
     return (
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
+      <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           <p className="text-gray-600">Loading employees...</p>
@@ -192,7 +192,7 @@ export default function EmployeesPage() {
   // Show error state
   if (error) {
     return (
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
+      <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
         <div className="flex flex-col items-center gap-4 text-center">
           <div className="text-red-500 text-lg font-medium">{error}</div>
           <button
@@ -207,7 +207,7 @@ export default function EmployeesPage() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       {/* Stats */}
       <div className="mb-6 flex items-start gap-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">

@@ -71,7 +71,7 @@ export default function HelpPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
@@ -83,7 +83,7 @@ export default function HelpPage() {
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-2xl">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -103,7 +103,7 @@ export default function HelpPage() {
             href="/documentation"
             className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all text-center"
           >
-            <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-3" />
+            <BookOpen className="w-12 h-12 text-blue-600 mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Documentation</h3>
             <p className="text-sm text-gray-600">Complete system documentation and user guides</p>
           </Link>
@@ -112,7 +112,7 @@ export default function HelpPage() {
             href="/help/videos"
             className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all text-center"
           >
-            <Video className="w-12 h-12 text-red-600 mx-auto mb-3" />
+            <Video className="w-12 h-12 text-red-600 mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Video Tutorials</h3>
             <p className="text-sm text-gray-600">Step-by-step video guides and walkthroughs</p>
           </Link>
@@ -121,7 +121,7 @@ export default function HelpPage() {
             href="/support/incidents"
             className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all text-center"
           >
-            <MessageCircle className="w-12 h-12 text-green-600 mx-auto mb-3" />
+            <MessageCircle className="w-12 h-12 text-green-600 mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Contact Support</h3>
             <p className="text-sm text-gray-600">Get help from our support team</p>
           </Link>

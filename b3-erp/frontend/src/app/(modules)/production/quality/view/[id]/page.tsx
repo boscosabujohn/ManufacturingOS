@@ -739,7 +739,7 @@ export default function QualityControlViewPage() {
             {activeTab === 'capa' && (
               <div className="bg-white rounded-lg border p-6">
                 <div className="text-center py-12">
-                  <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
+                  <CheckCircle2 className="h-16 w-16 text-green-600 mb-4" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">No CAPA Required</h3>
                   <p className="text-gray-600">Inspection passed all quality checks.</p>
                 </div>

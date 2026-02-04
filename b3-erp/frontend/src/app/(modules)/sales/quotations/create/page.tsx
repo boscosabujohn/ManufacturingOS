@@ -214,10 +214,10 @@ export default function CreateQuotationPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 py-6">
-      <div className="space-y-6">
+    <div className="w-full h-full px-4 py-2">
+      <div className="space-y-3">
         {/* Inline Header with Actions */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -246,16 +246,16 @@ export default function CreateQuotationPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
           {/* Main Form - Left Side */}
-          <div className="xl:col-span-2 space-y-4">
+          <div className="xl:col-span-2 space-y-2">
             {/* Quotation Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Quotation Details
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Quotation Number
@@ -294,8 +294,8 @@ export default function CreateQuotationPage() {
             </div>
 
             {/* Customer Selection */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <User className="w-5 h-5 text-blue-600" />
                 Customer Information
               </h2>
@@ -356,7 +356,7 @@ export default function CreateQuotationPage() {
                   )}
                 </div>
               ) : (
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
@@ -385,8 +385,8 @@ export default function CreateQuotationPage() {
             </div>
 
             {/* Line Items */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                   <Package className="w-5 h-5 text-blue-600" />
                   Line Items
@@ -506,9 +506,9 @@ export default function CreateQuotationPage() {
             </div>
 
             {/* Terms */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Payment Terms</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Payment Terms</h2>
                 <select
                   value={paymentTerms}
                   onChange={(e) => setPaymentTerms(e.target.value)}
@@ -524,8 +524,8 @@ export default function CreateQuotationPage() {
                 </select>
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Delivery Terms</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Delivery Terms</h2>
                 <input
                   type="text"
                   placeholder="Enter delivery terms..."
@@ -537,9 +537,9 @@ export default function CreateQuotationPage() {
             </div>
 
             {/* Notes & Terms */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Notes</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Notes</h2>
                 <textarea
                   placeholder="Add any additional notes for the customer..."
                   value={notes}
@@ -549,8 +549,8 @@ export default function CreateQuotationPage() {
                 />
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Terms & Conditions</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Terms & Conditions</h2>
                 <textarea
                   placeholder="Enter terms and conditions..."
                   value={termsAndConditions}
@@ -563,9 +563,9 @@ export default function CreateQuotationPage() {
           </div>
 
           {/* Summary - Right Side */}
-          <div className="space-y-4">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-4">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="space-y-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-4">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Calculator className="w-5 h-5 text-blue-600" />
                 Summary
               </h2>
@@ -613,7 +613,7 @@ export default function CreateQuotationPage() {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Quick Actions</h3>
               <div className="space-y-2">
                 <button className="w-full flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">

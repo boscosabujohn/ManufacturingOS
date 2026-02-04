@@ -394,7 +394,7 @@ export default function CPQQuotesTemplatesPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredTemplates.length === 0 ? (
           <div className="col-span-full text-center py-12">
-            <FileText className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+            <FileText className="h-16 w-16 text-gray-300 mb-4" />
             <p className="text-lg font-medium text-gray-500 mb-2">No templates found</p>
             <p className="text-sm text-gray-400 mb-4">
               {searchQuery || selectedCategoryFilter || appliedFilters

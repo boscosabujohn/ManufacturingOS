@@ -217,10 +217,10 @@ export default function AnticipatedReceiptsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
+        <div className="w-full p-3">
           {/* Header */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                   <ArrowUpCircle className="w-8 h-8 text-green-600" />
@@ -230,7 +230,7 @@ export default function AnticipatedReceiptsPage() {
               </div>
               <Link
                 href="/finance/cash/anticipated-receipts/create"
-                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl"
+                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg shadow-lg transition-all hover:shadow-xl"
               >
                 <Plus className="w-5 h-5" />
                 <span className="font-semibold">Add New Receipt</span>
@@ -238,8 +238,8 @@ export default function AnticipatedReceiptsPage() {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-blue-100 text-sm">Total Expected</p>
                   <DollarSign className="w-8 h-8 text-blue-200" />
@@ -248,7 +248,7 @@ export default function AnticipatedReceiptsPage() {
                 <p className="text-sm text-blue-100 mt-2">{receipts.length} receipts</p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-green-100 text-sm">Amount Received</p>
                   <CheckCircle className="w-8 h-8 text-green-200" />
@@ -259,7 +259,7 @@ export default function AnticipatedReceiptsPage() {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-orange-100 text-sm">Pending Amount</p>
                   <Clock className="w-8 h-8 text-orange-200" />
@@ -268,7 +268,7 @@ export default function AnticipatedReceiptsPage() {
                 <p className="text-sm text-orange-100 mt-2">{stats.thisWeek} due this week</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-red-100 text-sm">Overdue Receipts</p>
                   <AlertCircle className="w-8 h-8 text-red-200" />
@@ -280,12 +280,12 @@ export default function AnticipatedReceiptsPage() {
           </div>
 
           {/* Filters */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white rounded-xl shadow-lg p-3 mb-3">
+            <div className="flex items-center gap-2 mb-2">
               <Filter className="w-5 h-5 text-gray-600" />
               <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div className="md:col-span-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -311,7 +311,7 @@ export default function AnticipatedReceiptsPage() {
               </select>
             </div>
 
-            <div className="flex items-center gap-4 mt-4">
+            <div className="flex items-center gap-2 mt-4">
               <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
                 <Download className="w-4 h-4" />
                 <span>Export to Excel</span>
@@ -329,25 +329,25 @@ export default function AnticipatedReceiptsPage() {
               <table className="w-full">
                 <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Receipt Details
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Customer
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Expected Date
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Amount
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Confidence
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -355,7 +355,7 @@ export default function AnticipatedReceiptsPage() {
                 <tbody className="divide-y divide-gray-200">
                   {paginatedReceipts.map((receipt) => (
                     <tr key={receipt.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-start gap-3">
                           <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <ArrowUpCircle className="w-5 h-5 text-green-600" />
@@ -369,7 +369,7 @@ export default function AnticipatedReceiptsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <p className="font-medium text-gray-900">{receipt.customerName}</p>
                           <p className="text-sm text-gray-500">{receipt.customerId}</p>
@@ -379,7 +379,7 @@ export default function AnticipatedReceiptsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <Calendar className="w-4 h-4 text-gray-400" />
                           <div>
@@ -399,7 +399,7 @@ export default function AnticipatedReceiptsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <p className="font-bold text-gray-900">{formatCurrency(receipt.expectedAmount)}</p>
                           {receipt.receivedAmount > 0 && (
@@ -413,7 +413,7 @@ export default function AnticipatedReceiptsPage() {
                           <p className="text-xs text-gray-500 mt-1">{receipt.paymentMethod}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <span
                             className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(
@@ -425,7 +425,7 @@ export default function AnticipatedReceiptsPage() {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <div className="w-16 bg-gray-200 rounded-full h-2">
                             <div
@@ -443,7 +443,7 @@ export default function AnticipatedReceiptsPage() {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <button
                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
@@ -472,7 +472,7 @@ export default function AnticipatedReceiptsPage() {
             </div>
 
             {/* Pagination */}
-            <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+            <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
               <div className="text-sm text-gray-700">
                 Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredReceipts.length)} of{' '}
                 {filteredReceipts.length} receipts

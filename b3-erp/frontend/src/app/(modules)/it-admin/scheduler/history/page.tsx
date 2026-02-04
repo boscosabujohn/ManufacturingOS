@@ -308,7 +308,7 @@ const SchedulerHistoryPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 max-w-[1600px]">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
@@ -563,7 +563,7 @@ const SchedulerHistoryPage = () => {
 
         {filteredHistory.length === 0 && (
           <div className="text-center py-12">
-            <History className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+            <History className="w-12 h-12 text-gray-400 mb-3" />
             <p className="text-gray-600">No execution history found</p>
           </div>
         )}
@@ -572,7 +572,7 @@ const SchedulerHistoryPage = () => {
       {/* Analytics Modal */}
       {showAnalyticsModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-6xl w-full max-h-[90vh] overflow-auto">
+          <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
             <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 sticky top-0 z-10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -747,7 +747,7 @@ const SchedulerHistoryPage = () => {
       {/* Details Modal */}
       {selectedExecution && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-4xl w-full max-h-[90vh] overflow-auto">
+          <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
             <div className={`p-6 sticky top-0 z-10 bg-gradient-to-r ${
               selectedExecution.status === 'Success' ? 'from-green-600 to-emerald-600' :
               selectedExecution.status === 'Failed' ? 'from-red-600 to-rose-600' :

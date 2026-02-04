@@ -616,7 +616,7 @@ export default function ShopFloorTrackingPage() {
 
             {station.status === 'idle' && (
               <div className="text-center py-6">
-                <Clock className="w-12 h-12 text-yellow-400 mx-auto mb-2" />
+                <Clock className="w-12 h-12 text-yellow-400 mb-2" />
                 <p className="text-gray-600">Station is idle</p>
                 <p className="text-sm text-gray-500">Operator: {station.operator}</p>
                 <p className="text-sm text-gray-500">Utilization: {station.utilizationPercent}%</p>
@@ -625,7 +625,7 @@ export default function ShopFloorTrackingPage() {
 
             {station.status === 'maintenance' && (
               <div className="text-center py-6">
-                <AlertTriangle className="w-12 h-12 text-orange-400 mx-auto mb-2" />
+                <AlertTriangle className="w-12 h-12 text-orange-400 mb-2" />
                 <p className="text-gray-600">Under maintenance</p>
                 <p className="text-sm text-gray-500">Awaiting service</p>
               </div>

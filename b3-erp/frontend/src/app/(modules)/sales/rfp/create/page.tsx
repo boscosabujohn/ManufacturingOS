@@ -150,10 +150,10 @@ export default function CreateRFPPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -175,17 +175,17 @@ export default function CreateRFPPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Main Form - Left Column */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Basic Information */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-purple-600" />
                 RFP Basic Information
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     RFP Title <span className="text-red-500">*</span>
@@ -212,7 +212,7 @@ export default function CreateRFPPage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Category
@@ -274,8 +274,8 @@ export default function CreateRFPPage() {
             </div>
 
             {/* Items/Requirements */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
                   <FileText className="w-5 h-5 text-purple-600" />
                   Items & Requirements
@@ -289,9 +289,9 @@ export default function CreateRFPPage() {
                 </button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {items.map((item, index) => (
-                  <div key={item.id} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                  <div key={item.id} className="border border-gray-200 rounded-lg p-3 space-y-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-gray-700">Item #{index + 1}</span>
                       {items.length > 1 && (
@@ -394,13 +394,13 @@ export default function CreateRFPPage() {
             </div>
 
             {/* Terms & Conditions */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-purple-600" />
                 Terms & Conditions
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Payment Terms
@@ -443,14 +443,14 @@ export default function CreateRFPPage() {
             </div>
 
             {/* Attachments */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Paperclip className="w-5 h-5 text-purple-600" />
                 Attachments
               </h2>
 
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-purple-400 transition-colors cursor-pointer">
-                <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <Upload className="w-12 h-12 text-gray-400 mb-3" />
                 <p className="text-gray-600 mb-1">Click to upload or drag and drop</p>
                 <p className="text-sm text-gray-500">PDF, DOC, XLS, images (max 10MB each)</p>
               </div>
@@ -474,10 +474,10 @@ export default function CreateRFPPage() {
           </div>
 
           {/* Vendor Selection - Right Column */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Summary Card */}
-            <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl shadow-lg p-6 text-white">
-              <h3 className="text-lg font-semibold mb-4">RFP Summary</h3>
+            <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl shadow-lg p-3 text-white">
+              <h3 className="text-lg font-semibold mb-2">RFP Summary</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-purple-100">Total Items</span>
@@ -497,8 +497,8 @@ export default function CreateRFPPage() {
             </div>
 
             {/* Vendor Selection */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Users className="w-5 h-5 text-purple-600" />
                 Select Vendors
               </h2>
@@ -508,7 +508,7 @@ export default function CreateRFPPage() {
                   <div
                     key={vendor.id}
                     onClick={() => toggleVendor(vendor.id)}
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                    className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
                       selectedVendors.includes(vendor.id)
                         ? 'border-purple-500 bg-purple-50'
                         : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'

@@ -566,7 +566,7 @@ export default function ProjectReportsPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-2 mx-auto">
+    <div className="px-4 sm:px-6 lg:px-8 py-2">
      {/* Header Section */}
      <div className="mb-3">
       <div className="flex items-center justify-between mb-4">

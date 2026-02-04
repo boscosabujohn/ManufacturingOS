@@ -190,8 +190,8 @@ export default function BankReconciliationPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
-          <div className="w-full space-y-6">
+        <div className="w-full p-3">
+          <div className="w-full space-y-3">
             {/* Header */}
             <div className="flex items-center justify-between">
               <div>
@@ -215,8 +215,8 @@ export default function BankReconciliationPage() {
             </div>
 
             {/* Statistics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <Building2 className="w-8 h-8 opacity-80" />
                   <TrendingUp className="w-5 h-5" />
@@ -226,7 +226,7 @@ export default function BankReconciliationPage() {
                 <div className="mt-2 text-xs text-blue-100">As per bank records</div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <CheckCircle className="w-8 h-8 opacity-80" />
                   <TrendingUp className="w-5 h-5" />
@@ -237,7 +237,7 @@ export default function BankReconciliationPage() {
               </div>
 
               <div className={`bg-gradient-to-br ${Math.abs(difference) < 1000 ? 'from-green-500 to-green-600' : 'from-orange-500 to-orange-600'
-                } rounded-xl p-6 text-white shadow-lg`}>
+                } rounded-xl p-3 text-white shadow-lg`}>
                 <div className="flex items-center justify-between mb-2">
                   <AlertTriangle className="w-8 h-8 opacity-80" />
                   <TrendingDown className="w-5 h-5" />
@@ -253,7 +253,7 @@ export default function BankReconciliationPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <RefreshCw className="w-8 h-8 opacity-80" />
                   <CheckCircle className="w-5 h-5" />
@@ -269,8 +269,8 @@ export default function BankReconciliationPage() {
             </div>
 
             {/* Account & Period Selection */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="flex flex-wrap items-center gap-4">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+              <div className="flex flex-wrap items-center gap-2">
                 <div className="flex items-center gap-2">
                   <Building2 className="w-5 h-5 text-gray-400" />
                   <select
@@ -327,7 +327,7 @@ export default function BankReconciliationPage() {
               <div className="flex border-b border-gray-700">
                 <button
                   onClick={() => setActiveTab('bank')}
-                  className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'bank'
+                  className={`flex-1 px-3 py-2 font-medium transition-colors ${activeTab === 'bank'
                       ? 'bg-purple-600 text-white'
                       : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
                     }`}
@@ -339,7 +339,7 @@ export default function BankReconciliationPage() {
                 </button>
                 <button
                   onClick={() => setActiveTab('erp')}
-                  className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'erp'
+                  className={`flex-1 px-3 py-2 font-medium transition-colors ${activeTab === 'erp'
                       ? 'bg-purple-600 text-white'
                       : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
                     }`}
@@ -351,7 +351,7 @@ export default function BankReconciliationPage() {
                 </button>
                 <button
                   onClick={() => setActiveTab('matched')}
-                  className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'matched'
+                  className={`flex-1 px-3 py-2 font-medium transition-colors ${activeTab === 'matched'
                       ? 'bg-purple-600 text-white'
                       : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
                     }`}
@@ -369,40 +369,40 @@ export default function BankReconciliationPage() {
                   <table className="w-full">
                     <thead className="bg-gray-900/50">
                       <tr>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">
                           <input type="checkbox" className="w-4 h-4 text-purple-600 bg-gray-700 border-gray-600 rounded" />
                         </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Description</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Reference</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Debit</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Credit</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Balance</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Description</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Reference</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Debit</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Credit</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Balance</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredBankTransactions.map((txn) => (
                         <tr key={txn.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <input type="checkbox" className="w-4 h-4 text-purple-600 bg-gray-700 border-gray-600 rounded" />
                           </td>
-                          <td className="px-6 py-4 text-white text-sm">
+                          <td className="px-3 py-2 text-white text-sm">
                             {new Date(txn.date).toLocaleDateString()}
                           </td>
-                          <td className="px-6 py-4 text-gray-300 text-sm">{txn.description}</td>
-                          <td className="px-6 py-4 text-gray-400 text-sm font-mono">{txn.reference}</td>
-                          <td className="px-6 py-4 text-right text-red-400 font-medium">
+                          <td className="px-3 py-2 text-gray-300 text-sm">{txn.description}</td>
+                          <td className="px-3 py-2 text-gray-400 text-sm font-mono">{txn.reference}</td>
+                          <td className="px-3 py-2 text-right text-red-400 font-medium">
                             {txn.debit > 0 ? formatCurrency(txn.debit) : '-'}
                           </td>
-                          <td className="px-6 py-4 text-right text-green-400 font-medium">
+                          <td className="px-3 py-2 text-right text-green-400 font-medium">
                             {txn.credit > 0 ? formatCurrency(txn.credit) : '-'}
                           </td>
-                          <td className="px-6 py-4 text-right text-white font-medium">
+                          <td className="px-3 py-2 text-right text-white font-medium">
                             {formatCurrency(txn.balance)}
                           </td>
-                          <td className="px-6 py-4 text-center">
+                          <td className="px-3 py-2 text-center">
                             {txn.matched ? (
                               <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
                                 <CheckCircle className="w-3 h-3" />
@@ -415,7 +415,7 @@ export default function BankReconciliationPage() {
                               </span>
                             )}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div className="flex items-center justify-center gap-2">
                               {!txn.matched && (
                                 <>
@@ -447,36 +447,36 @@ export default function BankReconciliationPage() {
                   <table className="w-full">
                     <thead className="bg-gray-900/50">
                       <tr>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">
                           <input type="checkbox" className="w-4 h-4 text-purple-600 bg-gray-700 border-gray-600 rounded" />
                         </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Description</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Reference</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Debit</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Credit</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Description</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Reference</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Debit</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Credit</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredERPTransactions.map((txn) => (
                         <tr key={txn.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <input type="checkbox" className="w-4 h-4 text-purple-600 bg-gray-700 border-gray-600 rounded" />
                           </td>
-                          <td className="px-6 py-4 text-white text-sm">
+                          <td className="px-3 py-2 text-white text-sm">
                             {new Date(txn.date).toLocaleDateString()}
                           </td>
-                          <td className="px-6 py-4 text-gray-300 text-sm">{txn.description}</td>
-                          <td className="px-6 py-4 text-gray-400 text-sm font-mono">{txn.reference}</td>
-                          <td className="px-6 py-4 text-right text-red-400 font-medium">
+                          <td className="px-3 py-2 text-gray-300 text-sm">{txn.description}</td>
+                          <td className="px-3 py-2 text-gray-400 text-sm font-mono">{txn.reference}</td>
+                          <td className="px-3 py-2 text-right text-red-400 font-medium">
                             {txn.debit > 0 ? formatCurrency(txn.debit) : '-'}
                           </td>
-                          <td className="px-6 py-4 text-right text-green-400 font-medium">
+                          <td className="px-3 py-2 text-right text-green-400 font-medium">
                             {txn.credit > 0 ? formatCurrency(txn.credit) : '-'}
                           </td>
-                          <td className="px-6 py-4 text-center">
+                          <td className="px-3 py-2 text-center">
                             {txn.matched ? (
                               <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
                                 <CheckCircle className="w-3 h-3" />
@@ -489,7 +489,7 @@ export default function BankReconciliationPage() {
                               </span>
                             )}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-3 py-2">
                             <div className="flex items-center justify-center gap-2">
                               {!txn.matched && (
                                 <button className="p-2 hover:bg-green-600/20 rounded-lg transition-colors">
@@ -516,13 +516,13 @@ export default function BankReconciliationPage() {
                   <table className="w-full">
                     <thead className="bg-gray-900/50">
                       <tr>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Bank Reference</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">ERP Reference</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Description</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Amount</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Type</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Bank Reference</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">ERP Reference</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Description</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Amount</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Type</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -530,17 +530,17 @@ export default function BankReconciliationPage() {
                         const erpTxn = erpTransactions.find(e => e.id === txn.erpTransactionId);
                         return (
                           <tr key={txn.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                            <td className="px-6 py-4 text-white text-sm">
+                            <td className="px-3 py-2 text-white text-sm">
                               {new Date(txn.date).toLocaleDateString()}
                             </td>
-                            <td className="px-6 py-4 text-gray-400 text-sm font-mono">{txn.reference}</td>
-                            <td className="px-6 py-4 text-gray-400 text-sm font-mono">{erpTxn?.reference}</td>
-                            <td className="px-6 py-4 text-gray-300 text-sm">{txn.description}</td>
-                            <td className={`px-6 py-4 text-right font-medium ${txn.debit > 0 ? 'text-red-400' : 'text-green-400'
+                            <td className="px-3 py-2 text-gray-400 text-sm font-mono">{txn.reference}</td>
+                            <td className="px-3 py-2 text-gray-400 text-sm font-mono">{erpTxn?.reference}</td>
+                            <td className="px-3 py-2 text-gray-300 text-sm">{txn.description}</td>
+                            <td className={`px-3 py-2 text-right font-medium ${txn.debit > 0 ? 'text-red-400' : 'text-green-400'
                               }`}>
                               {formatCurrency(txn.debit > 0 ? txn.debit : txn.credit)}
                             </td>
-                            <td className="px-6 py-4 text-center">
+                            <td className="px-3 py-2 text-center">
                               <span className={`px-2 py-1 rounded-full text-xs ${txn.debit > 0
                                   ? 'bg-red-500/20 text-red-400'
                                   : 'bg-green-500/20 text-green-400'
@@ -548,7 +548,7 @@ export default function BankReconciliationPage() {
                                 {txn.debit > 0 ? 'Payment' : 'Receipt'}
                               </span>
                             </td>
-                            <td className="px-6 py-4">
+                            <td className="px-3 py-2">
                               <div className="flex items-center justify-center gap-2">
                                 <button className="p-2 hover:bg-red-600/20 rounded-lg transition-colors">
                                   <X className="w-4 h-4 text-red-400" />
@@ -565,9 +565,9 @@ export default function BankReconciliationPage() {
             </div>
 
             {/* Reconciliation Summary */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <h3 className="text-xl font-bold text-white mb-4">Reconciliation Summary</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+              <h3 className="text-xl font-bold text-white mb-2">Reconciliation Summary</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">Bank Statement Balance:</span>

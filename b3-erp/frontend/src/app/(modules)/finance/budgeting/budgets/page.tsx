@@ -551,8 +551,8 @@ export default function BudgetsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-6">
-      <div className="w-full space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -562,7 +562,7 @@ export default function BudgetsPage() {
           <button
             onClick={handleCreateBudget}
             disabled={isCreating}
-            className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Plus className="w-5 h-5" />
             {isCreating ? 'Creating...' : 'Create Budget'}
@@ -570,8 +570,8 @@ export default function BudgetsPage() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Target className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -583,7 +583,7 @@ export default function BudgetsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingDown className="w-8 h-8 opacity-80" />
               <AlertCircle className="w-5 h-5" />
@@ -595,7 +595,7 @@ export default function BudgetsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -605,7 +605,7 @@ export default function BudgetsPage() {
             <div className="mt-2 text-xs text-green-100">Available for allocation</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <AlertCircle className="w-8 h-8 opacity-80" />
               <XCircle className="w-5 h-5" />
@@ -617,8 +617,8 @@ export default function BudgetsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -700,15 +700,15 @@ export default function BudgetsPage() {
             <table className="w-full">
               <thead className="bg-gray-900/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Budget Details</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Department</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Total Budget</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Spent</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Remaining</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Utilization</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Budget Details</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Type</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Department</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Total Budget</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Spent</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Remaining</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Utilization</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -718,7 +718,7 @@ export default function BudgetsPage() {
 
                   return (
                     <tr key={budget.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className="font-medium text-white">{budget.budgetName}</div>
                           <div className="text-sm text-gray-400 font-mono">{budget.budgetCode}</div>
@@ -727,22 +727,22 @@ export default function BudgetsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         {getBudgetTypeBadge(budget.budgetType)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-white text-sm">{budget.department}</div>
                         <div className="text-xs text-gray-400">{budget.costCenter}</div>
                       </td>
-                      <td className="px-6 py-4 text-right text-white font-medium">
+                      <td className="px-3 py-2 text-right text-white font-medium">
                         {formatCurrency(budget.totalBudget)}
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <div className={`font-medium ${isOverBudget ? 'text-red-400' : 'text-orange-400'}`}>
                           {formatCurrency(budget.spent)}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <div className={`font-medium ${isOverBudget ? 'text-red-400' : 'text-green-400'}`}>
                           {isOverBudget && '('}{formatCurrency(budget.remaining)}{isOverBudget && ')'}
                         </div>
@@ -752,7 +752,7 @@ export default function BudgetsPage() {
                           </div>
                         )}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-col items-center">
                           <span className={`text-sm font-medium mb-1 ${utilizationPercent > 100 ? 'text-red-400' :
                               utilizationPercent > 90 ? 'text-orange-400' :
@@ -769,13 +769,13 @@ export default function BudgetsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         {getStatusBadge(budget.status)}
                         {budget.revisions > 0 && (
                           <div className="text-xs text-gray-400 mt-1">Rev {budget.revisions}</div>
                         )}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => handleViewBudget(budget)}
@@ -826,7 +826,7 @@ export default function BudgetsPage() {
 
           {filteredBudgets.length === 0 && (
             <div className="text-center py-12">
-              <Target className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+              <Target className="w-16 h-16 text-gray-600 mb-2" />
               <p className="text-gray-400 text-lg">No budgets found</p>
               <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filters</p>
             </div>
@@ -835,7 +835,7 @@ export default function BudgetsPage() {
 
         {/* Pagination */}
         {filteredBudgets.length > 0 && (
-          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
+          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
             <div className="text-gray-400 text-sm">
               Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filteredBudgets.length)} - {Math.min(currentPage * itemsPerPage, filteredBudgets.length)} of {filteredBudgets.length} budgets
             </div>

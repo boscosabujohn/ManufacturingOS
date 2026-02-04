@@ -183,12 +183,12 @@ export default function EditReceivablePage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push(`/finance/receivables/view/${receivableId}`)}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Receivable Details</span>
@@ -202,15 +202,15 @@ export default function EditReceivablePage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Customer & Invoice Details */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <Building2 className="h-5 w-5 mr-2 text-blue-600" />
             Customer & Invoice Information
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {/* Customer Selection */}
             <div className="lg:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -310,13 +310,13 @@ export default function EditReceivablePage() {
         </div>
 
         {/* Collection Details */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <Target className="h-5 w-5 mr-2 text-blue-600" />
             Collection Details
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {/* Collection Agent */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -357,13 +357,13 @@ export default function EditReceivablePage() {
         </div>
 
         {/* Promise to Pay */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <DollarSign className="h-5 w-5 mr-2 text-blue-600" />
             Promise to Pay
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {/* Promise Amount */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -410,8 +410,8 @@ export default function EditReceivablePage() {
         </div>
 
         {/* Follow-up Schedule */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
               <Calendar className="h-5 w-5 mr-2 text-blue-600" />
               Follow-up Schedule
@@ -425,16 +425,16 @@ export default function EditReceivablePage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {formData.followUpSchedule.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
-                <Calendar className="h-12 w-12 mx-auto mb-3 text-gray-400" />
+                <Calendar className="h-12 w-12 mb-3 text-gray-400" />
                 <p>No follow-ups scheduled. Click "Add Follow-up" to create one.</p>
               </div>
             ) : (
               formData.followUpSchedule.map((followUp, index) => (
-                <div key={followUp.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={followUp.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold text-gray-900">Follow-up {index + 1}</h3>
                     <button
                       type="button"
@@ -445,7 +445,7 @@ export default function EditReceivablePage() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                     {/* Date */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -514,13 +514,13 @@ export default function EditReceivablePage() {
         </div>
 
         {/* Additional Notes */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <FileText className="h-5 w-5 mr-2 text-blue-600" />
             Additional Notes
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {/* General Notes */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -556,7 +556,7 @@ export default function EditReceivablePage() {
           <button
             type="button"
             onClick={() => router.push(`/finance/receivables/view/${receivableId}`)}
-            className="flex items-center space-x-2 px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+            className="flex items-center space-x-2 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
           >
             <X className="h-5 w-5" />
             <span>Cancel</span>
@@ -564,7 +564,7 @@ export default function EditReceivablePage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Save className="h-5 w-5" />
             <span>{isSubmitting ? 'Updating...' : 'Update Receivable'}</span>

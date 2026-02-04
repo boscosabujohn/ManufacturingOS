@@ -34,7 +34,7 @@ export default function GatePassManagerPage() {
     };
 
     return (
-        <div className="container mx-auto py-6 space-y-6">
+        <div className="w-full py-6 space-y-6">
             <h1 className="text-3xl font-bold">Gate Pass Management</h1>
 
             <Card>

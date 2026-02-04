@@ -413,20 +413,20 @@ export default function ViewPayablePage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/finance/payables')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Payables</span>
         </button>
 
         {/* Payable Header Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-start justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
                 <Building2 className="h-8 w-8 text-white" />
@@ -484,8 +484,8 @@ export default function ViewPayablePage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
               <div className="flex items-center space-x-2 mb-2">
                 <AlertCircle className="h-5 w-5 text-red-600" />
                 <p className="text-xs font-medium text-red-600 uppercase">Total Outstanding</p>
@@ -494,7 +494,7 @@ export default function ViewPayablePage() {
               <p className="text-xs text-red-600 mt-1">{formatCurrency(payable.totalOutstanding)}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center space-x-2 mb-2">
                 <XCircle className="h-5 w-5 text-orange-600" />
                 <p className="text-xs font-medium text-orange-600 uppercase">Overdue Amount</p>
@@ -503,7 +503,7 @@ export default function ViewPayablePage() {
               <p className="text-xs text-orange-600 mt-1">{((payable.overdueAmount / payable.totalOutstanding) * 100).toFixed(1)}% of total</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Clock className="h-5 w-5 text-yellow-600" />
                 <p className="text-xs font-medium text-yellow-600 uppercase">Due This Week</p>
@@ -512,7 +512,7 @@ export default function ViewPayablePage() {
               <p className="text-xs text-yellow-600 mt-1">Requires attention</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center space-x-2 mb-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 <p className="text-xs font-medium text-green-600 uppercase">Last Payment</p>
@@ -523,8 +523,8 @@ export default function ViewPayablePage() {
           </div>
 
           {/* Aging Progress Tracker */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h3 className="text-sm font-bold text-gray-900 mb-4">Aging Analysis</h3>
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-bold text-gray-900 mb-2">Aging Analysis</h3>
             <div className="space-y-3">
               {/* Progress Bar */}
               <div className="flex h-8 rounded-lg overflow-hidden border-2 border-gray-300">
@@ -558,7 +558,7 @@ export default function ViewPayablePage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -582,16 +582,16 @@ export default function ViewPayablePage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Vendor Overview</h2>
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Vendor Overview</h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Vendor Details */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-orange-600" />
                   Vendor Details
                 </h3>
@@ -624,8 +624,8 @@ export default function ViewPayablePage() {
               </div>
 
               {/* Credit Terms */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <CreditCard className="h-5 w-5 mr-2 text-orange-600" />
                   Credit Terms
                 </h3>
@@ -677,8 +677,8 @@ export default function ViewPayablePage() {
               </div>
 
               {/* Contact Information */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <User className="h-5 w-5 mr-2 text-orange-600" />
                   Contact Information
                 </h3>
@@ -718,8 +718,8 @@ export default function ViewPayablePage() {
               </div>
 
               {/* Payment History Summary */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <History className="h-5 w-5 mr-2 text-orange-600" />
                   Recent Payment History
                 </h3>
@@ -746,7 +746,7 @@ export default function ViewPayablePage() {
         {/* Bills & Invoices Tab */}
         {activeTab === 'bills' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Bills & Invoices</h3>
               <div className="flex items-center space-x-3">
                 <span className="text-sm text-gray-600">{payable.bills.length} bills</span>
@@ -814,14 +814,14 @@ export default function ViewPayablePage() {
         {/* Payment Schedule Tab */}
         {activeTab === 'payment_schedule' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Payment Schedule</h3>
               <span className="text-sm text-gray-600">{payable.paymentSchedule.length} upcoming payments</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {payable.paymentSchedule.map((payment) => (
-                <div key={payment.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div key={payment.id} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center space-x-3">
                       <div className="h-12 w-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">

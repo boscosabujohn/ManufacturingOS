@@ -173,11 +173,11 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
     };
 
     if (loading && isEditMode) {
-        return <div className="container mx-auto p-6">Loading template...</div>;
+        return <div className="w-full p-6">Loading template...</div>;
     }
 
     return (
-        <div className="container mx-auto p-6 max-w-4xl">
+        <div className="w-full p-6 ">
             {/* Header */}
             <div className="mb-6">
                 <Link href="/workflow/templates">

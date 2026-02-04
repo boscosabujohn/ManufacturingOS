@@ -33,7 +33,7 @@ export default function ShippingPerformanceReport() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Shipping Performance Report</h1>

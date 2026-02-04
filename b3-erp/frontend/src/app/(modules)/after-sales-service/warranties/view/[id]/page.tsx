@@ -505,7 +505,7 @@ export default function ViewWarrantyPage({ params }: { params: { id: string } })
 
             {claims.length === 0 && (
               <div className="text-center py-12">
-                <FileText className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+                <FileText className="w-12 h-12 text-gray-300 mb-3" />
                 <p className="text-gray-500">No claims filed yet</p>
                 <button
                   onClick={() => router.push(`/after-sales-service/warranties/${warranty.id}/claims/new`)}

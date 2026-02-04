@@ -286,9 +286,9 @@ export default function VendorManagementPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full h-full px-3 py-2">
           {/* Header */}
-          <div className="flex justify-between items-start mb-6">
+          <div className="flex justify-between items-start mb-3">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <Users className="h-6 w-6 text-purple-600" />
@@ -318,8 +318,8 @@ export default function VendorManagementPage() {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-gray-600">Total Vendors</p>
                 <Building className="h-5 w-5 text-purple-600" />
@@ -328,7 +328,7 @@ export default function VendorManagementPage() {
               <p className="text-xs text-green-600 mt-1">{vendorStats.activeVendors} active</p>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-blue-700">Credit Limit</p>
                 <CreditCard className="h-5 w-5 text-blue-600" />
@@ -337,7 +337,7 @@ export default function VendorManagementPage() {
               <p className="text-xs text-blue-600 mt-1">Total approved</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-yellow-700">Outstanding</p>
                 <DollarSign className="h-5 w-5 text-yellow-600" />
@@ -346,7 +346,7 @@ export default function VendorManagementPage() {
               <p className="text-xs text-yellow-600 mt-1">{((vendorStats.totalOutstanding / vendorStats.totalCreditLimit) * 100).toFixed(1)}% utilized</p>
             </div>
 
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-red-700">High Risk</p>
                 <AlertCircle className="h-5 w-5 text-red-600" />
@@ -358,8 +358,8 @@ export default function VendorManagementPage() {
 
           {/* Filters */}
           {showFilters && (
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 mb-6">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-3 mb-3">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
@@ -409,12 +409,12 @@ export default function VendorManagementPage() {
           )}
 
           {/* Vendor Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             {filteredVendors.map((vendor) => (
               <div key={vendor.vendorId} className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="p-4">
                   {/* Vendor Header */}
-                  <div className="flex justify-between items-start mb-4">
+                  <div className="flex justify-between items-start mb-2">
                     <div className="flex items-start gap-3">
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                         <Building className="h-6 w-6 text-purple-600" />
@@ -435,7 +435,7 @@ export default function VendorManagementPage() {
                   </div>
 
                   {/* Credit Information */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm text-gray-600">Credit Utilization</span>
                       <span className="text-sm font-medium text-gray-900">
@@ -464,7 +464,7 @@ export default function VendorManagementPage() {
                   </div>
 
                   {/* Vendor Details Grid */}
-                  <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+                  <div className="grid grid-cols-2 gap-3 mb-2 text-sm">
                     <div>
                       <p className="text-gray-500 mb-1 flex items-center gap-1">
                         <Clock className="h-3 w-3" />
@@ -534,10 +534,10 @@ export default function VendorManagementPage() {
 
           {/* Vendor Details Modal */}
           {selectedVendor && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
               <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
                 <div className="p-6">
-                  <div className="flex justify-between items-start mb-6">
+                  <div className="flex justify-between items-start mb-3">
                     <div>
                       <h2 className="text-2xl font-bold text-gray-900">{selectedVendor.vendorName}</h2>
                       <p className="text-sm text-gray-500">{selectedVendor.vendorId}</p>
@@ -550,7 +550,7 @@ export default function VendorManagementPage() {
                     </button>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-3">
                     {/* Status & Risk */}
                     <div className="flex gap-2">
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedVendor.status)}`}>
@@ -567,7 +567,7 @@ export default function VendorManagementPage() {
                     {/* Contact Information */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Contact Information</h3>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
                         <div>
                           <p className="text-gray-500 mb-1">Contact Person</p>
                           <p className="font-medium text-gray-900">{selectedVendor.contactPerson}</p>
@@ -596,7 +596,7 @@ export default function VendorManagementPage() {
                     {/* Financial Information */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Financial Information</h3>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
                         <div>
                           <p className="text-gray-500 mb-1">Credit Limit</p>
                           <p className="font-medium text-gray-900">₹{(selectedVendor.creditLimit / 1000).toFixed(0)}K</p>
@@ -627,7 +627,7 @@ export default function VendorManagementPage() {
                     {/* Bank & Tax Information */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Bank & Tax Information</h3>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
                         <div>
                           <p className="text-gray-500 mb-1">GST Number</p>
                           <p className="font-medium text-gray-900">{selectedVendor.gstNumber}</p>
@@ -650,7 +650,7 @@ export default function VendorManagementPage() {
                     {/* Performance Metrics */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Performance Metrics</h3>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-2 gap-2 text-sm">
                         <div>
                           <p className="text-gray-500 mb-1">Average Payment Days</p>
                           <p className="font-medium text-gray-900">{selectedVendor.averagePaymentDays} days</p>

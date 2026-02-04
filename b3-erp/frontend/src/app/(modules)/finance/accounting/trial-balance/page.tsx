@@ -175,7 +175,7 @@ export default function TrialBalancePage() {
     return (
       <div key={account.accountCode}>
         <tr className={`hover:bg-gray-50 ${account.level === 0 ? 'bg-gray-50 font-semibold' : ''}`}>
-          <td className="px-6 py-3" style={{ paddingLeft: `${indentLevel + 1.5}rem` }}>
+          <td className="px-3 py-2" style={{ paddingLeft: `${indentLevel + 1.5}rem` }}>
             <div className="flex items-center space-x-2">
               {account.hasChildren ? (
                 <button
@@ -197,14 +197,14 @@ export default function TrialBalancePage() {
               </div>
             </div>
           </td>
-          <td className="px-6 py-3 text-right">
+          <td className="px-3 py-2 text-right">
             {account.openingBalanceType === 'Dr' ? (
               <span className="font-semibold text-orange-700">₹{account.openingBalance.toLocaleString()}</span>
             ) : (
               <span className="text-gray-400">-</span>
             )}
           </td>
-          <td className="px-6 py-3 text-right">
+          <td className="px-3 py-2 text-right">
             {account.openingBalanceType === 'Cr' ? (
               <span className="font-semibold text-green-700">₹{account.openingBalance.toLocaleString()}</span>
             ) : (
@@ -213,14 +213,14 @@ export default function TrialBalancePage() {
           </td>
           {showMovements && (
             <>
-              <td className="px-6 py-3 text-right">
+              <td className="px-3 py-2 text-right">
                 {account.debitMovement > 0 ? (
                   <span className="font-semibold text-orange-600">₹{account.debitMovement.toLocaleString()}</span>
                 ) : (
                   <span className="text-gray-400">-</span>
                 )}
               </td>
-              <td className="px-6 py-3 text-right">
+              <td className="px-3 py-2 text-right">
                 {account.creditMovement > 0 ? (
                   <span className="font-semibold text-green-600">₹{account.creditMovement.toLocaleString()}</span>
                 ) : (
@@ -229,21 +229,21 @@ export default function TrialBalancePage() {
               </td>
             </>
           )}
-          <td className="px-6 py-3 text-right">
+          <td className="px-3 py-2 text-right">
             {account.closingBalanceType === 'Dr' ? (
               <span className="font-bold text-orange-700">₹{account.closingBalance.toLocaleString()}</span>
             ) : (
               <span className="text-gray-400">-</span>
             )}
           </td>
-          <td className="px-6 py-3 text-right">
+          <td className="px-3 py-2 text-right">
             {account.closingBalanceType === 'Cr' ? (
               <span className="font-bold text-green-700">₹{account.closingBalance.toLocaleString()}</span>
             ) : (
               <span className="text-gray-400">-</span>
             )}
           </td>
-          <td className="px-6 py-3 text-center">
+          <td className="px-3 py-2 text-center">
             <button
               onClick={() => router.push(`/finance/accounting/ledger-report?account=${account.accountCode}`)}
               className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
@@ -262,10 +262,10 @@ export default function TrialBalancePage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full px-3 py-2">
           {/* Action Bar */}
-          <div className="mb-6">
-            <div className="flex items-center justify-end mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-end mb-2">
               <div className="flex items-center space-x-2">
                 <button
                   onClick={handlePrint}
@@ -299,7 +299,7 @@ export default function TrialBalancePage() {
 
             {/* Balance Status */}
             {isBalanced ? (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-start space-x-3">
                 <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <h3 className="text-sm font-semibold text-green-900">Trial Balance is Balanced</h3>
@@ -309,7 +309,7 @@ export default function TrialBalancePage() {
                 </div>
               </div>
             ) : (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start space-x-3">
                 <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <h3 className="text-sm font-semibold text-red-900">Trial Balance Not Balanced</h3>
@@ -322,8 +322,8 @@ export default function TrialBalancePage() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-orange-600">Total Debits</p>
@@ -333,7 +333,7 @@ export default function TrialBalancePage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-green-600">Total Credits</p>
@@ -343,7 +343,7 @@ export default function TrialBalancePage() {
               </div>
             </div>
 
-            <div className={`bg-gradient-to-br rounded-lg p-4 border ${isBalanced
+            <div className={`bg-gradient-to-br rounded-lg p-3 border ${isBalanced
                 ? 'from-blue-50 to-blue-100 border-blue-200'
                 : 'from-red-50 to-red-100 border-red-200'
               }`}>
@@ -362,7 +362,7 @@ export default function TrialBalancePage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-purple-600">Accounts Count</p>
@@ -374,12 +374,12 @@ export default function TrialBalancePage() {
           </div>
 
           {/* Filters */}
-          <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Filter className="h-5 w-5 text-gray-600" />
               <h2 className="text-lg font-semibold text-gray-900">Filters & Options</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
                 <div className="relative">
@@ -448,27 +448,27 @@ export default function TrialBalancePage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b-2 border-gray-300">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase">Account</th>
-                    <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Opening Balance</th>
+                    <th className="px-3 py-2 text-left text-xs font-bold text-gray-700 uppercase">Account</th>
+                    <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Opening Balance</th>
                     {showMovements && (
-                      <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Movements</th>
+                      <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Movements</th>
                     )}
-                    <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Closing Balance</th>
-                    <th className="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase">Actions</th>
+                    <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Closing Balance</th>
+                    <th className="px-3 py-2 text-center text-xs font-bold text-gray-700 uppercase">Actions</th>
                   </tr>
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"></th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase"></th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
                     {showMovements && (
                       <>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
+                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
+                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
                       </>
                     )}
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
-                    <th className="px-6 py-3"></th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
+                    <th className="px-3 py-2"></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -480,7 +480,7 @@ export default function TrialBalancePage() {
                       return (
                         <React.Fragment key={type}>
                           <tr className="bg-gray-100 hover:bg-gray-150 cursor-pointer" onClick={() => toggleGroup(type)}>
-                            <td className="px-6 py-4 font-bold text-gray-900" colSpan={showMovements ? 8 : 6}>
+                            <td className="px-3 py-2 font-bold text-gray-900" colSpan={showMovements ? 8 : 6}>
                               <div className="flex items-center space-x-2">
                                 {isExpanded ? (
                                   <ChevronDown className="h-5 w-5 text-gray-600" />
@@ -505,22 +505,22 @@ export default function TrialBalancePage() {
                 </tbody>
                 <tfoot className="bg-gray-50 border-t-2 border-gray-300">
                   <tr className="font-bold">
-                    <td className="px-6 py-4 text-gray-900">TOTAL</td>
-                    <td className="px-6 py-4 text-right text-orange-700">₹{totals.totalOpeningDebit.toLocaleString()}</td>
-                    <td className="px-6 py-4 text-right text-green-700">₹{totals.totalOpeningCredit.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-gray-900">TOTAL</td>
+                    <td className="px-3 py-2 text-right text-orange-700">₹{totals.totalOpeningDebit.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-right text-green-700">₹{totals.totalOpeningCredit.toLocaleString()}</td>
                     {showMovements && (
                       <>
-                        <td className="px-6 py-4 text-right text-orange-600">₹{totals.totalDebitMovement.toLocaleString()}</td>
-                        <td className="px-6 py-4 text-right text-green-600">₹{totals.totalCreditMovement.toLocaleString()}</td>
+                        <td className="px-3 py-2 text-right text-orange-600">₹{totals.totalDebitMovement.toLocaleString()}</td>
+                        <td className="px-3 py-2 text-right text-green-600">₹{totals.totalCreditMovement.toLocaleString()}</td>
                       </>
                     )}
-                    <td className="px-6 py-4 text-right text-orange-700 text-lg">₹{totals.totalClosingDebit.toLocaleString()}</td>
-                    <td className="px-6 py-4 text-right text-green-700 text-lg">₹{totals.totalClosingCredit.toLocaleString()}</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-right text-orange-700 text-lg">₹{totals.totalClosingDebit.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-right text-green-700 text-lg">₹{totals.totalClosingCredit.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-center">
                       {isBalanced ? (
-                        <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                        <CheckCircle className="h-5 w-5 text-green-600" />
                       ) : (
-                        <AlertCircle className="h-5 w-5 text-red-600 mx-auto" />
+                        <AlertCircle className="h-5 w-5 text-red-600" />
                       )}
                     </td>
                   </tr>

@@ -777,7 +777,7 @@ export default function EditOpportunityPage() {
                       id="file-upload"
                     />
                     <label htmlFor="file-upload" className="cursor-pointer">
-                      <Paperclip className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                      <Paperclip className="h-12 w-12 text-gray-400 mb-3" />
                       <p className="text-sm text-gray-600">
                         Click to upload or drag and drop files
                       </p>

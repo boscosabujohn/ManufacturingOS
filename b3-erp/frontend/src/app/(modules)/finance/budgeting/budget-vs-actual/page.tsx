@@ -275,16 +275,16 @@ export default function BudgetVsActualPage() {
           className="bg-blue-900/20 border-b-2 border-blue-600 cursor-pointer hover:bg-blue-900/30 transition-colors"
           onClick={() => toggleCategory(categoryKey)}
         >
-          <td className="px-6 py-3 font-bold text-blue-400 flex items-center gap-2">
+          <td className="px-3 py-2 font-bold text-blue-400 flex items-center gap-2">
             {isExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
             {categoryName}
           </td>
-          <td className="px-6 py-3 text-right font-bold text-white">{formatCurrency(budgetValue)}</td>
-          <td className="px-6 py-3 text-right font-bold text-white">{formatCurrency(actualValue)}</td>
-          <td className={`px-6 py-3 text-right font-bold ${varianceValue >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+          <td className="px-3 py-2 text-right font-bold text-white">{formatCurrency(budgetValue)}</td>
+          <td className="px-3 py-2 text-right font-bold text-white">{formatCurrency(actualValue)}</td>
+          <td className={`px-3 py-2 text-right font-bold ${varianceValue >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {formatVariance(varianceValue, variancePercent)}
           </td>
-          <td className="px-6 py-3 text-center">
+          <td className="px-3 py-2 text-center">
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div
                 className={`h-2 rounded-full ${Math.abs(variancePercent) > 10 ? 'bg-red-500' : Math.abs(variancePercent) > 5 ? 'bg-orange-500' : 'bg-green-500'}`}
@@ -302,13 +302,13 @@ export default function BudgetVsActualPage() {
 
             return (
               <tr key={index} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                <td className="px-6 py-3 pl-12 text-gray-300">{item.subcategory}</td>
-                <td className="px-6 py-3 text-right text-white">{formatCurrency(itemBudget)}</td>
-                <td className="px-6 py-3 text-right text-white">{formatCurrency(itemActual)}</td>
-                <td className={`px-6 py-3 text-right ${itemVariance >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                <td className="px-3 py-2 pl-12 text-gray-300">{item.subcategory}</td>
+                <td className="px-3 py-2 text-right text-white">{formatCurrency(itemBudget)}</td>
+                <td className="px-3 py-2 text-right text-white">{formatCurrency(itemActual)}</td>
+                <td className={`px-3 py-2 text-right ${itemVariance >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                   {formatVariance(itemVariance, itemVariancePercent)}
                 </td>
-                <td className="px-6 py-3 text-center">
+                <td className="px-3 py-2 text-center">
                   <span className={`text-sm ${Math.abs(itemVariancePercent) > 10 ? 'text-red-400' : Math.abs(itemVariancePercent) > 5 ? 'text-orange-400' : 'text-green-400'}`}>
                     {Math.abs(itemVariancePercent).toFixed(1)}%
                   </span>
@@ -328,17 +328,17 @@ export default function BudgetVsActualPage() {
 
     return (
       <tr className={`border-b-2 border-gray-600 ${isFinal ? 'bg-gradient-to-r from-purple-900/30 to-blue-900/30' : 'bg-gray-900/50'}`}>
-        <td className={`px-6 py-4 font-bold ${isFinal ? 'text-purple-400 text-lg' : 'text-white'}`}>{label}</td>
-        <td className={`px-6 py-4 text-right font-bold ${isFinal ? 'text-white text-lg' : 'text-white'}`}>
+        <td className={`px-3 py-2 font-bold ${isFinal ? 'text-purple-400 text-lg' : 'text-white'}`}>{label}</td>
+        <td className={`px-3 py-2 text-right font-bold ${isFinal ? 'text-white text-lg' : 'text-white'}`}>
           {formatCurrency(budgetValue)}
         </td>
-        <td className={`px-6 py-4 text-right font-bold ${isFinal ? 'text-white text-lg' : 'text-white'}`}>
+        <td className={`px-3 py-2 text-right font-bold ${isFinal ? 'text-white text-lg' : 'text-white'}`}>
           {formatCurrency(actualValue)}
         </td>
-        <td className={`px-6 py-4 text-right font-bold text-lg ${varianceValue >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+        <td className={`px-3 py-2 text-right font-bold text-lg ${varianceValue >= 0 ? 'text-green-400' : 'text-red-400'}`}>
           {formatVariance(varianceValue, variancePercent)}
         </td>
-        <td className="px-6 py-4 text-center">
+        <td className="px-3 py-2 text-center">
           <span className={`text-sm font-bold ${Math.abs(variancePercent) > 10 ? 'text-red-400' : Math.abs(variancePercent) > 5 ? 'text-orange-400' : 'text-green-400'}`}>
             {Math.abs(variancePercent).toFixed(1)}%
           </span>
@@ -348,8 +348,8 @@ export default function BudgetVsActualPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 p-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -369,8 +369,8 @@ export default function BudgetVsActualPage() {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Target className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -382,7 +382,7 @@ export default function BudgetVsActualPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
               <BarChart3 className="w-5 h-5" />
@@ -394,7 +394,7 @@ export default function BudgetVsActualPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
               <Target className="w-5 h-5" />
@@ -406,7 +406,7 @@ export default function BudgetVsActualPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <BarChart3 className="w-8 h-8 opacity-80" />
               {netProfit.variance >= 0 ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
@@ -420,8 +420,8 @@ export default function BudgetVsActualPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center gap-2">
               <Filter className="w-5 h-5 text-gray-400" />
               <select
@@ -479,15 +479,15 @@ export default function BudgetVsActualPage() {
             <table className="w-full">
               <thead className="bg-gray-900/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Category</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Category</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">
                     Budgeted {viewMode === 'ytd' && '(YTD)'}
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">
                     Actual {viewMode === 'ytd' && '(YTD)'}
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Variance</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Impact</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Variance</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Impact</th>
                 </tr>
               </thead>
               <tbody>
@@ -504,9 +504,9 @@ export default function BudgetVsActualPage() {
         </div>
 
         {/* Variance Analysis */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h3 className="text-xl font-bold text-white mb-4">Variance Analysis Summary</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <h3 className="text-xl font-bold text-white mb-2">Variance Analysis Summary</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-gray-400">Favorable Variances:</span>

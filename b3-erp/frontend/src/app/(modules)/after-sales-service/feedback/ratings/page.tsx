@@ -431,7 +431,7 @@ export default function RatingsPage() {
 
         {filteredRatings.length === 0 && (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-            <Star className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+            <Star className="h-12 w-12 text-gray-300 mb-4" />
             <p className="text-gray-600 font-medium">No ratings found</p>
             <p className="text-gray-500 text-sm">Try adjusting your filters</p>
           </div>

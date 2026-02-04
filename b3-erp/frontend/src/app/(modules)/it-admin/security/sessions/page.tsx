@@ -306,7 +306,7 @@ const SessionManagementPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 max-w-[1600px]">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
@@ -573,7 +573,7 @@ const SessionManagementPage = () => {
 
             {filteredSessions.length === 0 && (
               <div className="text-center py-12">
-                <Users className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <Users className="w-12 h-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No active sessions found matching your criteria</p>
               </div>
             )}
@@ -583,7 +583,7 @@ const SessionManagementPage = () => {
         {/* Settings Tab */}
         {activeTab === 'settings' && (
           <div className="p-6">
-            <div className="max-w-3xl mx-auto space-y-6">
+            <div className="w-full space-y-6">
               {/* Session Limits */}
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-4">

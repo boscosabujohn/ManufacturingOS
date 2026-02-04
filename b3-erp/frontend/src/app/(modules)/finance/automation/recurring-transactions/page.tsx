@@ -166,8 +166,8 @@ export default function RecurringTransactionsPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Recurring Transactions</h1>
@@ -179,7 +179,7 @@ export default function RecurringTransactionsPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
             <div className="flex items-center gap-3 mb-2">
               <RefreshCw className="h-6 w-6 text-emerald-600" />
@@ -229,10 +229,10 @@ export default function RecurringTransactionsPage() {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {transactions.map((txn) => (
-            <div key={txn.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={txn.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{txn.templateName}</h3>
@@ -261,7 +261,7 @@ export default function RecurringTransactionsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
                 <div className="bg-emerald-50 rounded-lg p-3">
                   <p className="text-xs text-gray-600 mb-1">Amount</p>
                   <p className="text-lg font-bold text-emerald-700">{formatCurrency(txn.amount)}</p>
@@ -312,10 +312,10 @@ export default function RecurringTransactionsPage() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl shadow-sm p-6 text-white">
-          <h3 className="text-lg font-semibold mb-4">Recurring Transaction Features</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl shadow-sm p-3 text-white">
+          <h3 className="text-lg font-semibold mb-2">Recurring Transaction Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Flexible Scheduling</h4>
               <ul className="space-y-1 text-sm">
                 <li>• Daily, weekly, monthly, quarterly, yearly</li>
@@ -324,7 +324,7 @@ export default function RecurringTransactionsPage() {
                 <li>• Multi-year planning support</li>
               </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Automation Options</h4>
               <ul className="space-y-1 text-sm">
                 <li>• Auto-post or require manual approval</li>
@@ -333,7 +333,7 @@ export default function RecurringTransactionsPage() {
                 <li>• Batch processing capabilities</li>
               </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Control & Audit</h4>
               <ul className="space-y-1 text-sm">
                 <li>• Complete posting history log</li>

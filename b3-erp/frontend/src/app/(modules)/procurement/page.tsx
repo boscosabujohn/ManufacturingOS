@@ -391,7 +391,7 @@ export default function ProcurementDashboard() {
     return (
       <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-green-600 mx-auto" />
+          <Loader2 className="h-12 w-12 animate-spin text-green-600" />
           <p className="mt-4 text-gray-600">Loading procurement data...</p>
         </div>
       </div>

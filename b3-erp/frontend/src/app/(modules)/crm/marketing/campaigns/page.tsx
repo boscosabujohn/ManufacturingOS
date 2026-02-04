@@ -843,7 +843,7 @@ export default function MarketingCampaignsPage() {
       {/* Campaign Detail Modal Placeholder */}
       {selectedCampaign && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
-          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden">
+          <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-hidden">
             <div className="p-6 border-b border-gray-200 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">{selectedCampaign.name}</h2>
@@ -859,7 +859,7 @@ export default function MarketingCampaignsPage() {
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
               <div className="space-y-3">
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                  <GitBranch className="w-16 h-16 text-gray-400 mx-auto mb-2" />
+                  <GitBranch className="w-16 h-16 text-gray-400 mb-2" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Visual Campaign Flow Builder</h3>
                   <p className="text-gray-600 mb-2">Drag-and-drop interface for building campaign workflows</p>
                   <p className="text-sm text-gray-500">This would include: trigger nodes, action nodes, condition branches, delay timers, and analytics widgets</p>

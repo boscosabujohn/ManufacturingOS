@@ -207,9 +207,9 @@ export default function PayablesAgingPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full h-full px-3 py-2">
           {/* Header with Action Buttons */}
-          <div className="flex justify-between items-start mb-6">
+          <div className="flex justify-between items-start mb-3">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <Calendar className="h-6 w-6 text-blue-600" />
@@ -235,8 +235,8 @@ export default function PayablesAgingPage() {
           </div>
 
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-gray-600">Total Outstanding</p>
                 <DollarSign className="h-5 w-5 text-blue-600" />
@@ -245,7 +245,7 @@ export default function PayablesAgingPage() {
               <p className="text-xs text-gray-500 mt-1">{agingSummary.vendorCount} vendors</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-green-700">Current (0-30)</p>
                 <ArrowDownRight className="h-5 w-5 text-green-600" />
@@ -254,7 +254,7 @@ export default function PayablesAgingPage() {
               <p className="text-xs text-green-600 mt-1">{calculatePercentage(agingSummary.current, agingSummary.totalOutstanding)}% of total</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-yellow-700">31-90 Days</p>
                 <Clock className="h-5 w-5 text-yellow-600" />
@@ -263,7 +263,7 @@ export default function PayablesAgingPage() {
               <p className="text-xs text-yellow-600 mt-1">{calculatePercentage(agingSummary.days31to60 + agingSummary.days61to90, agingSummary.totalOutstanding)}% of total</p>
             </div>
 
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-red-700">90+ Days</p>
                 <AlertCircle className="h-5 w-5 text-red-600" />
@@ -274,8 +274,8 @@ export default function PayablesAgingPage() {
           </div>
 
           {/* Aging Distribution Chart */}
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Aging Distribution</h3>
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-3 mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Aging Distribution</h3>
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between text-sm mb-1">
@@ -333,8 +333,8 @@ export default function PayablesAgingPage() {
 
           {/* Filters */}
           {showFilters && (
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4 mb-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-3 mb-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
@@ -378,28 +378,28 @@ export default function PayablesAgingPage() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Vendor
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Total Outstanding
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Current
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       31-60 Days
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       61-90 Days
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       90+ Days
                     </th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Risk
                     </th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -408,7 +408,7 @@ export default function PayablesAgingPage() {
                   {filteredVendors.map((vendor) => (
                     <React.Fragment key={vendor.vendorId}>
                       <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 py-2 whitespace-nowrap">
                           <div className="flex items-center">
                             <button
                               onClick={() => setExpandedVendor(expandedVendor === vendor.vendorId ? null : vendor.vendorId)}
@@ -426,37 +426,37 @@ export default function PayablesAgingPage() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <td className="px-3 py-2 whitespace-nowrap text-right">
                           <div className="text-sm font-semibold text-gray-900">
                             {vendor.currency}{(vendor.totalOutstanding / 1000).toFixed(0)}K
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <td className="px-3 py-2 whitespace-nowrap text-right">
                           <div className="text-sm text-green-600 font-medium">
                             {vendor.current > 0 ? `${vendor.currency}${(vendor.current / 1000).toFixed(0)}K` : '-'}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <td className="px-3 py-2 whitespace-nowrap text-right">
                           <div className="text-sm text-blue-600 font-medium">
                             {vendor.days31to60 > 0 ? `${vendor.currency}${(vendor.days31to60 / 1000).toFixed(0)}K` : '-'}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <td className="px-3 py-2 whitespace-nowrap text-right">
                           <div className="text-sm text-yellow-600 font-medium">
                             {vendor.days61to90 > 0 ? `${vendor.currency}${(vendor.days61to90 / 1000).toFixed(0)}K` : '-'}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <td className="px-3 py-2 whitespace-nowrap text-right">
                           <div className="text-sm text-red-600 font-medium">
                             {vendor.over90days > 0 ? `${vendor.currency}${(vendor.over90days / 1000).toFixed(0)}K` : '-'}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-center">
+                        <td className="px-3 py-2 whitespace-nowrap text-center">
                           <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRiskColor(vendor.riskRating)}`}>
                             {vendor.riskRating.toUpperCase()}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-center">
+                        <td className="px-3 py-2 whitespace-nowrap text-center">
                           <button className="text-blue-600 hover:text-blue-800">
                             <Eye className="h-4 w-4" />
                           </button>
@@ -464,8 +464,8 @@ export default function PayablesAgingPage() {
                       </tr>
                       {expandedVendor === vendor.vendorId && (
                         <tr className="bg-gray-50">
-                          <td colSpan={8} className="px-6 py-4">
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                          <td colSpan={8} className="px-3 py-2">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 text-sm">
                               <div>
                                 <p className="text-gray-500 mb-1">Payment Terms</p>
                                 <p className="font-medium text-gray-900">{vendor.paymentTerms}</p>

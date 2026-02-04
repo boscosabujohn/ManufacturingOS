@@ -313,12 +313,12 @@ export default function AddReceivablePage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/finance/receivables')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Receivables</span>
@@ -332,10 +332,10 @@ export default function AddReceivablePage() {
         </div>
       </div>
 
-      <form className="space-y-6">
+      <form className="space-y-3">
         {/* Customer Selection */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <Building2 className="h-5 w-5 mr-2 text-blue-600" />
             Select Customer
           </h2>
@@ -362,8 +362,8 @@ export default function AddReceivablePage() {
 
         {/* Credit Check Results */}
         {formData.creditCheckPerformed && formData.creditInfo && (
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-bold text-gray-900 flex items-center">
                 <Shield className="h-5 w-5 mr-2 text-blue-600" />
                 Credit Check
@@ -377,8 +377,8 @@ export default function AddReceivablePage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <DollarSign className="h-5 w-5 text-blue-600" />
                   <p className="text-xs font-medium text-blue-600 uppercase">Credit Limit</p>
@@ -386,7 +386,7 @@ export default function AddReceivablePage() {
                 <p className="text-xl font-bold text-blue-900">{formatCurrency(formData.creditInfo.creditLimit)}</p>
               </div>
 
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <TrendingUp className="h-5 w-5 text-orange-600" />
                   <p className="text-xs font-medium text-orange-600 uppercase">Credit Used</p>
@@ -395,7 +395,7 @@ export default function AddReceivablePage() {
                 <p className="text-xs text-orange-600 mt-1">{getCreditUtilizationPercentage().toFixed(1)}% utilized</p>
               </div>
 
-              <div className={`rounded-lg p-4 border ${
+              <div className={`rounded-lg p-3 border ${
                 formData.creditInfo.availableCredit > 1000000 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
               }`}>
                 <div className="flex items-center space-x-2 mb-2">
@@ -409,7 +409,7 @@ export default function AddReceivablePage() {
             </div>
 
             {/* Credit Utilization Bar */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-gray-600">Credit Utilization</span>
                 <span className="font-semibold text-gray-900">{getCreditUtilizationPercentage().toFixed(1)}%</span>
@@ -427,7 +427,7 @@ export default function AddReceivablePage() {
             </div>
 
             {/* Risk Rating & Payment Terms */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="bg-gray-50 rounded p-3">
                 <p className="text-xs font-medium text-gray-500 uppercase mb-1">Risk Rating</p>
                 <span className={`px-3 py-1 text-sm font-semibold rounded ${
@@ -446,7 +446,7 @@ export default function AddReceivablePage() {
 
             {/* Credit Warnings */}
             {formData.creditInfo.creditStatus !== 'approved' && (
-              <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start space-x-3">
+              <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start space-x-3">
                 <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm font-semibold text-yellow-900">Credit Status Warning</p>
@@ -461,15 +461,15 @@ export default function AddReceivablePage() {
 
         {/* Invoice Selection */}
         {selectedCustomerData && (
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
               <Receipt className="h-5 w-5 mr-2 text-blue-600" />
               Select Invoice
             </h2>
 
             {selectedCustomerData.unpaidInvoices.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
-                <Receipt className="h-12 w-12 mx-auto mb-3 text-gray-400" />
+                <Receipt className="h-12 w-12 mb-3 text-gray-400" />
                 <p>No unpaid invoices for this customer.</p>
               </div>
             ) : (
@@ -482,7 +482,7 @@ export default function AddReceivablePage() {
                     <div
                       key={invoice.id}
                       onClick={() => handleInvoiceChange(invoice.id)}
-                      className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                      className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
                         isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
                       }`}
                     >
@@ -528,13 +528,13 @@ export default function AddReceivablePage() {
 
         {/* Amount & Due Date (Auto-filled) */}
         {formData.selectedInvoice && (
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
               <DollarSign className="h-5 w-5 mr-2 text-blue-600" />
               Amount Details
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Amount (₹) <span className="text-red-500">*</span>
@@ -578,13 +578,13 @@ export default function AddReceivablePage() {
 
         {/* Collection Details */}
         {formData.selectedInvoice && (
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
               <Target className="h-5 w-5 mr-2 text-blue-600" />
               Collection Details
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* Collection Agent */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -659,7 +659,7 @@ export default function AddReceivablePage() {
             <button
               type="button"
               onClick={() => router.push('/finance/receivables')}
-              className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+              className="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
             >
               Cancel
             </button>
@@ -667,7 +667,7 @@ export default function AddReceivablePage() {
               type="button"
               onClick={(e) => handleSubmit(e, false)}
               disabled={isSubmitting}
-              className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save className="h-5 w-5" />
               <span>{isSubmitting && !saveToQueue ? 'Saving...' : 'Save'}</span>
@@ -676,7 +676,7 @@ export default function AddReceivablePage() {
               type="button"
               onClick={(e) => handleSubmit(e, true)}
               disabled={isSubmitting}
-              className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <FileCheck className="h-5 w-5" />
               <span>{isSubmitting && saveToQueue ? 'Adding...' : 'Save & Add to Collection Queue'}</span>

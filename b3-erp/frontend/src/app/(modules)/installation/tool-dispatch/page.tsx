@@ -30,7 +30,7 @@ export default function ToolDispatchPage() {
     };
 
     return (
-        <div className="container mx-auto py-6 space-y-8">
+        <div className="w-full py-6 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -92,7 +92,7 @@ export default function ToolDispatchPage() {
                     <CardContent className="flex flex-col items-center justify-center h-40">
                         {dispatched ? (
                             <div className="text-center space-y-2">
-                                <div className="h-12 w-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
+                                <div className="h-12 w-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                                     <PackageCheck className="h-6 w-6" />
                                 </div>
                                 <h3 className="font-bold text-lg text-green-700">Dispatched</h3>
@@ -100,7 +100,7 @@ export default function ToolDispatchPage() {
                             </div>
                         ) : (
                             <div className="text-center space-y-2">
-                                <div className="h-12 w-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto">
+                                <div className="h-12 w-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center">
                                     <Truck className="h-6 w-6" />
                                 </div>
                                 <h3 className="font-bold text-lg text-orange-700">Ready for Dispatch</h3>

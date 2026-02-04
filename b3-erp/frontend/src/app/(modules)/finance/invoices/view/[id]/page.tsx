@@ -208,20 +208,20 @@ export default function ViewInvoicePage() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/finance/invoices')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Invoices</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           {/* Invoice Header Info */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4 flex-1">
               <div className="h-16 w-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
                 <Receipt className="h-8 w-8 text-white" />
@@ -274,28 +274,28 @@ export default function ViewInvoicePage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <p className="text-xs font-medium text-blue-600 uppercase mb-1">Invoice Amount</p>
               <p className="text-2xl font-bold text-blue-900">₹{invoice.total.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <p className="text-xs font-medium text-green-600 uppercase mb-1">Paid Amount</p>
               <p className="text-2xl font-bold text-green-900">₹{invoice.paidAmount.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <p className="text-xs font-medium text-orange-600 uppercase mb-1">Balance Due</p>
               <p className="text-2xl font-bold text-orange-900">₹{invoice.balanceDue.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <p className="text-xs font-medium text-purple-600 uppercase mb-1">Due Date</p>
               <p className="text-lg font-semibold text-purple-900">{invoice.dueDate}</p>
             </div>
           </div>
 
           {/* Progress Tracker */}
-          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-            <h3 className="text-sm font-bold text-gray-700 uppercase mb-4">Invoice Status Progress</h3>
+          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-bold text-gray-700 uppercase mb-2">Invoice Status Progress</h3>
             <div className="relative">
               <div className="flex items-center justify-between">
                 {progressStages.map((stage, index) => {
@@ -343,7 +343,7 @@ export default function ViewInvoicePage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -368,19 +368,19 @@ export default function ViewInvoicePage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Customer and Invoice Information */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Customer Information */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Customer Information
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Customer Name</p>
                     <p className="text-sm font-semibold text-gray-900">{invoice.customer}</p>
@@ -408,11 +408,11 @@ export default function ViewInvoicePage() {
 
               {/* Invoice Details */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Receipt className="h-5 w-5 mr-2 text-blue-600" />
                   Invoice Details
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Invoice Number</p>
                     <p className="text-sm font-semibold text-gray-900">{invoice.invoiceNumber}</p>
@@ -444,14 +444,14 @@ export default function ViewInvoicePage() {
             </div>
 
             {/* Addresses */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Billing Address */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <MapPin className="h-5 w-5 mr-2 text-blue-600" />
                   Billing Address
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-900">{billingAddress.street}</p>
                   <p className="text-sm text-gray-900 mt-1">{billingAddress.city}, {billingAddress.state}</p>
                   <p className="text-sm text-gray-900 mt-1">{billingAddress.pincode}</p>
@@ -461,11 +461,11 @@ export default function ViewInvoicePage() {
 
               {/* Shipping Address */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <MapPin className="h-5 w-5 mr-2 text-blue-600" />
                   Shipping Address
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-900">{shippingAddress.street}</p>
                   <p className="text-sm text-gray-900 mt-1">{shippingAddress.city}, {shippingAddress.state}</p>
                   <p className="text-sm text-gray-900 mt-1">{shippingAddress.pincode}</p>
@@ -476,11 +476,11 @@ export default function ViewInvoicePage() {
 
             {/* Notes */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <FileText className="h-5 w-5 mr-2 text-blue-600" />
                 Notes
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-900">{invoice.notes}</p>
               </div>
             </div>
@@ -490,37 +490,37 @@ export default function ViewInvoicePage() {
         {/* Line Items Tab */}
         {activeTab === 'line_items' && (
           <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Invoice Line Items</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Invoice Line Items</h3>
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-gradient-to-r from-blue-50 to-blue-100 border-b border-gray-200">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Item</th>
-                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">HSN Code</th>
-                      <th className="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase">Quantity</th>
-                      <th className="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase">Unit Price</th>
-                      <th className="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase">Tax Rate</th>
-                      <th className="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase">Tax Amount</th>
-                      <th className="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase">Total</th>
+                      <th className="px-3 py-2 text-left text-xs font-bold text-gray-700 uppercase">Item</th>
+                      <th className="px-3 py-2 text-left text-xs font-bold text-gray-700 uppercase">HSN Code</th>
+                      <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase">Quantity</th>
+                      <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase">Unit Price</th>
+                      <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase">Tax Rate</th>
+                      <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase">Tax Amount</th>
+                      <th className="px-3 py-2 text-right text-xs font-bold text-gray-700 uppercase">Total</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     {mockLineItems.map((item) => (
                       <tr key={item.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <p className="text-sm font-medium text-gray-900">{item.item}</p>
                           <p className="text-xs text-gray-500 mt-1">{item.description}</p>
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-900">{item.hsn}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900 text-right">{item.quantity}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900 text-right">₹{item.unitPrice.toLocaleString('en-IN')}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900 text-right">
+                        <td className="px-3 py-2 text-sm text-gray-900">{item.hsn}</td>
+                        <td className="px-3 py-2 text-sm text-gray-900 text-right">{item.quantity}</td>
+                        <td className="px-3 py-2 text-sm text-gray-900 text-right">₹{item.unitPrice.toLocaleString('en-IN')}</td>
+                        <td className="px-3 py-2 text-sm text-gray-900 text-right">
                           {item.taxRate}%
                           <span className="block text-xs text-gray-500">{item.taxType}</span>
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-900 text-right">₹{item.taxAmount.toLocaleString('en-IN')}</td>
-                        <td className="px-6 py-4 text-sm font-bold text-gray-900 text-right">₹{item.total.toLocaleString('en-IN')}</td>
+                        <td className="px-3 py-2 text-sm text-gray-900 text-right">₹{item.taxAmount.toLocaleString('en-IN')}</td>
+                        <td className="px-3 py-2 text-sm font-bold text-gray-900 text-right">₹{item.total.toLocaleString('en-IN')}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -528,7 +528,7 @@ export default function ViewInvoicePage() {
               </div>
 
               {/* Totals Section */}
-              <div className="bg-gray-50 p-6 border-t border-gray-200">
+              <div className="bg-gray-50 p-3 border-t border-gray-200">
                 <div className="max-w-md ml-auto space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Subtotal:</span>
@@ -573,7 +573,7 @@ export default function ViewInvoicePage() {
         {/* Payment History Tab */}
         {activeTab === 'payment_history' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Payment History</h3>
               <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                 <CreditCard className="h-4 w-4" />
@@ -582,24 +582,24 @@ export default function ViewInvoicePage() {
             </div>
 
             {/* Payment Summary */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                 <p className="text-xs font-medium text-blue-600 uppercase mb-1">Total Invoice</p>
                 <p className="text-2xl font-bold text-blue-900">₹{invoice.total.toLocaleString('en-IN')}</p>
               </div>
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                 <p className="text-xs font-medium text-green-600 uppercase mb-1">Amount Paid</p>
                 <p className="text-2xl font-bold text-green-900">₹{invoice.paidAmount.toLocaleString('en-IN')}</p>
                 <p className="text-xs text-green-600 mt-1">{((invoice.paidAmount / invoice.total) * 100).toFixed(1)}% paid</p>
               </div>
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                 <p className="text-xs font-medium text-orange-600 uppercase mb-1">Balance Due</p>
                 <p className="text-2xl font-bold text-orange-900">₹{invoice.balanceDue.toLocaleString('en-IN')}</p>
               </div>
             </div>
 
             {/* Payment Timeline */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {mockPayments.map((payment, index) => {
                 const isLast = index === mockPayments.length - 1;
 
@@ -614,7 +614,7 @@ export default function ViewInvoicePage() {
                         <CheckCircle className="h-5 w-5" />
                       </div>
 
-                      <div className="flex-1 bg-gradient-to-br from-gray-50 to-green-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                      <div className="flex-1 bg-gradient-to-br from-gray-50 to-green-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <h4 className="text-base font-bold text-gray-900">Payment Received</h4>
@@ -627,7 +627,7 @@ export default function ViewInvoicePage() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
                           <div>
                             <p className="text-xs font-medium text-gray-500 uppercase mb-1">Payment Method</p>
                             <div className="flex items-center space-x-2">
@@ -660,7 +660,7 @@ export default function ViewInvoicePage() {
                     <Receipt className="h-5 w-5" />
                   </div>
 
-                  <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-base font-bold text-gray-900">Invoice Created</h4>

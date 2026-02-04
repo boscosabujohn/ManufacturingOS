@@ -247,7 +247,7 @@ export default function DatabaseExportPage() {
                         : 'border-gray-200 hover:border-blue-300'
                       }`}
                   >
-                    <IconComponent className={`w-8 h-8 mx-auto mb-2 ${selectedFormat === format.id ? 'text-blue-600' : 'text-gray-600'}`} />
+                    <IconComponent className={`w-8 h-8 mb-2 ${selectedFormat === format.id ? 'text-blue-600' : 'text-gray-600'}`} />
                     <p className="font-semibold text-sm text-gray-900">{format.name}</p>
                     <p className="text-xs text-gray-600 mt-1">{format.description}</p>
                   </button>

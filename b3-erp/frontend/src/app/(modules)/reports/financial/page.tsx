@@ -44,7 +44,7 @@ export default function FinancialReportsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6">
           <Link href="/reports" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4">
@@ -131,7 +131,7 @@ export default function FinancialReportsPage() {
 
         {filteredReports.length === 0 && (
           <div className="text-center py-12 bg-white rounded-lg shadow">
-            <FileText className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+            <FileText className="w-12 h-12 text-gray-400 mb-3" />
             <p className="text-gray-600">No reports found matching your criteria</p>
           </div>
         )}

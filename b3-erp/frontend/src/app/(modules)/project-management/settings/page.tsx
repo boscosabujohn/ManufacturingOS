@@ -220,7 +220,7 @@ export default function ProjectSettingsPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-2 max-w-[1400px] mx-auto">
+    <div className="px-4 sm:px-6 lg:px-8 py-2 max-w-[1400px]">
      {/* Header with Title and Quick Access */}
      <div className="mb-3">
       <div className="flex flex-col gap-4">
@@ -1184,7 +1184,7 @@ export default function ProjectSettingsPage() {
       <div className="bg-gray-50 rounded-lg p-3">
        <div className="flex flex-col md:flex-row items-center justify-center gap-3">
         <div className="text-center">
-         <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+         <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2">
           <Users className="w-8 h-8 text-blue-600" />
          </div>
          <p className="text-sm font-medium text-gray-900">Project Manager</p>
@@ -1192,7 +1192,7 @@ export default function ProjectSettingsPage() {
         </div>
         <div className="text-gray-400">→</div>
         <div className="text-center">
-         <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+         <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2">
           <Shield className="w-8 h-8 text-purple-600" />
          </div>
          <p className="text-sm font-medium text-gray-900">Department Head</p>
@@ -1200,7 +1200,7 @@ export default function ProjectSettingsPage() {
         </div>
         <div className="text-gray-400">→</div>
         <div className="text-center">
-         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
           <DollarSign className="w-8 h-8 text-green-600" />
          </div>
          <p className="text-sm font-medium text-gray-900">Finance</p>
@@ -1208,7 +1208,7 @@ export default function ProjectSettingsPage() {
         </div>
         <div className="text-gray-400">→</div>
         <div className="text-center">
-         <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+         <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-2">
           <AlertCircle className="w-8 h-8 text-red-600" />
          </div>
          <p className="text-sm font-medium text-gray-900">CEO</p>

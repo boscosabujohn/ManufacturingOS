@@ -175,8 +175,8 @@ export default function ReportBuilderPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-sky-50 to-blue-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-sky-50 to-blue-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Custom Report Builder</h1>
@@ -188,7 +188,7 @@ export default function ReportBuilderPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
             <div className="flex items-center gap-3 mb-2">
               <FileText className="h-6 w-6 text-sky-600" />
@@ -230,12 +230,12 @@ export default function ReportBuilderPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+          <div className="lg:col-span-2 space-y-2">
             <h2 className="text-xl font-semibold text-gray-900">My Reports</h2>
             {reports.map((report) => (
-              <div key={report.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <div className="flex items-start justify-between mb-4">
+              <div key={report.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       {getReportTypeIcon(report.reportType)}
@@ -258,7 +258,7 @@ export default function ReportBuilderPage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-2 mb-2">
                   <div>
                     <p className="text-xs text-gray-600 mb-1">Data Sources:</p>
                     <div className="flex flex-wrap gap-1">
@@ -281,7 +281,7 @@ export default function ReportBuilderPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 pt-4 border-t border-gray-200 mb-4">
+                <div className="grid grid-cols-4 gap-2 pt-4 border-t border-gray-200 mb-2">
                   <div>
                     <p className="text-xs text-gray-600">Created By</p>
                     <p className="text-sm font-medium text-gray-900">{report.createdBy}</p>
@@ -326,9 +326,9 @@ export default function ReportBuilderPage() {
             ))}
           </div>
 
-          <div className="space-y-6">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Available Data Sources</h3>
+          <div className="space-y-3">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Available Data Sources</h3>
               <div className="space-y-2">
                 {dataSources.map((ds) => {
                   const IconComponent = ds.icon
@@ -350,7 +350,7 @@ export default function ReportBuilderPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-sky-600 to-blue-600 rounded-xl shadow-sm p-6 text-white">
+            <div className="bg-gradient-to-r from-sky-600 to-blue-600 rounded-xl shadow-sm p-3 text-white">
               <h3 className="text-lg font-semibold mb-3">Report Builder Features</h3>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">

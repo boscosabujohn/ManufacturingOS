@@ -239,10 +239,10 @@ export default function PendingHandoverPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-amber-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-amber-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -303,7 +303,7 @@ export default function PendingHandoverPage() {
 
         {/* Search and Filter */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -335,7 +335,7 @@ export default function PendingHandoverPage() {
 
             return (
               <div key={handover.id} className={`bg-white rounded-xl shadow-sm border-2 p-3 hover:shadow-md transition-shadow ${isUrgent ? 'border-red-300' : 'border-gray-200'}`}>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {/* Header */}
                   <div className="flex items-start justify-between">
                     <div>
@@ -353,7 +353,7 @@ export default function PendingHandoverPage() {
                   </div>
 
                   {/* Customer */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                  <div className="bg-gray-50 rounded-lg p-3 space-y-2">
                     <div className="flex items-center gap-2 text-gray-700">
                       <User className="w-4 h-4 text-gray-400" />
                       <span className="font-medium">{handover.customerName}</span>
@@ -379,7 +379,7 @@ export default function PendingHandoverPage() {
                   </div>
 
                   {/* Schedule */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-5 h-5 text-blue-600" />
@@ -495,7 +495,7 @@ export default function PendingHandoverPage() {
 
         {filteredHandovers.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Package className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Pending Handovers</h3>
             <p className="text-gray-600">No handovers match your search.</p>
           </div>

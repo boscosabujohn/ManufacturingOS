@@ -291,9 +291,9 @@ export default function DiscountsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-end mb-6">
+      <div className="flex items-center justify-end mb-3">
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
           <Plus className="h-5 w-5" />
           Create Discount
@@ -301,7 +301,7 @@ export default function DiscountsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -348,8 +348,8 @@ export default function DiscountsPage() {
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -378,12 +378,12 @@ export default function DiscountsPage() {
       </div>
 
       {/* Discounts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredDiscounts.map((discount) => (
           <div key={discount.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="p-2 bg-blue-100 rounded-lg">
@@ -401,7 +401,7 @@ export default function DiscountsPage() {
               </div>
 
               {/* Details Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-600 mb-1">Discount Type</p>
                   <p className="font-semibold text-gray-900">{getTypeLabel(discount.type)}</p>
@@ -425,7 +425,7 @@ export default function DiscountsPage() {
               </div>
 
               {/* Category */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs text-gray-600 mb-2">Category</p>
                 <span className="inline-flex items-center gap-1 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
                   <Package className="h-3 w-3" />
@@ -434,7 +434,7 @@ export default function DiscountsPage() {
               </div>
 
               {/* Validity */}
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg">
+              <div className="mb-2 p-3 bg-blue-50 rounded-lg">
                 <div className="flex items-center gap-2 text-sm">
                   <Calendar className="h-4 w-4 text-blue-600" />
                   <span className="text-gray-700">
@@ -444,7 +444,7 @@ export default function DiscountsPage() {
               </div>
 
               {/* Usage Stats */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between text-sm mb-2">
                   <span className="text-gray-600">Usage</span>
                   <span className="font-medium text-gray-900">
@@ -471,7 +471,7 @@ export default function DiscountsPage() {
 
               {/* Max Discount */}
               {discount.maxDiscount && (
-                <div className="mb-4 p-3 bg-orange-50 rounded-lg">
+                <div className="mb-2 p-3 bg-orange-50 rounded-lg">
                   <p className="text-xs text-orange-700 mb-1">Maximum Discount Cap</p>
                   <p className="font-semibold text-orange-900">₹{discount.maxDiscount.toLocaleString('en-IN')}</p>
                 </div>
@@ -493,7 +493,7 @@ export default function DiscountsPage() {
 
       {filteredDiscounts.length === 0 && (
         <div className="text-center py-12">
-          <TrendingDown className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <TrendingDown className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No discounts found matching your criteria</p>
         </div>
       )}

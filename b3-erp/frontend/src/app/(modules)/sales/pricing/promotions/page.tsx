@@ -339,9 +339,9 @@ export default function PromotionsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-end mb-6">
+      <div className="flex items-center justify-end mb-3">
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
           <Plus className="h-5 w-5" />
           Create Promotion
@@ -349,7 +349,7 @@ export default function PromotionsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -396,8 +396,8 @@ export default function PromotionsPage() {
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -426,11 +426,11 @@ export default function PromotionsPage() {
       </div>
 
       {/* Promotions Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredPromotions.map((promo) => (
           <div key={promo.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow overflow-hidden">
             {/* Promotional Banner */}
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white">
+            <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-3 text-white">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg">
@@ -450,7 +450,7 @@ export default function PromotionsPage() {
 
             <div className="p-6">
               {/* Type and Category */}
-              <div className="flex gap-2 mb-4">
+              <div className="flex gap-2 mb-2">
                 <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium border ${getTypeColor(promo.type)}`}>
                   {promo.type.toUpperCase()}
                 </span>
@@ -461,7 +461,7 @@ export default function PromotionsPage() {
               </div>
 
               {/* Discount Info */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 mb-4 border border-green-200">
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 mb-2 border border-green-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-green-700 font-medium">Discount Offer</p>
@@ -479,7 +479,7 @@ export default function PromotionsPage() {
               </div>
 
               {/* Details Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-600 mb-1">Min Purchase</p>
                   <p className="font-semibold text-gray-900">₹{(promo.minPurchase / 1000).toFixed(0)}K</p>
@@ -491,7 +491,7 @@ export default function PromotionsPage() {
               </div>
 
               {/* Validity Period */}
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex items-center gap-2 text-sm mb-2">
                   <Calendar className="h-4 w-4 text-blue-600" />
                   <span className="font-medium text-blue-900">Campaign Period</span>
@@ -502,7 +502,7 @@ export default function PromotionsPage() {
               </div>
 
               {/* Performance Metrics */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between text-sm mb-2">
                   <span className="text-gray-600 flex items-center gap-2">
                     <Target className="h-4 w-4" />
@@ -533,7 +533,7 @@ export default function PromotionsPage() {
 
               {/* Revenue */}
               {promo.revenue > 0 && (
-                <div className="bg-purple-50 rounded-lg p-3 mb-4 border border-purple-200">
+                <div className="bg-purple-50 rounded-lg p-3 mb-2 border border-purple-200">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs text-purple-700 mb-1">Revenue Generated</p>
@@ -560,7 +560,7 @@ export default function PromotionsPage() {
 
       {filteredPromotions.length === 0 && (
         <div className="text-center py-12">
-          <Megaphone className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Megaphone className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No promotions found matching your criteria</p>
         </div>
       )}

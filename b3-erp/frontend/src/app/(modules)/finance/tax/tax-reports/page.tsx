@@ -177,8 +177,8 @@ export default function TaxReportsPage() {
     .reduce((sum, r) => sum + r.taxAmount, 0)
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -192,7 +192,7 @@ export default function TaxReportsPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -239,15 +239,15 @@ export default function TaxReportsPage() {
         </div>
 
         {/* Tax Summary */}
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h2 className="text-2xl font-bold">Tax Summary</h2>
               <p className="text-green-100 mt-1">{taxSummary.period}</p>
             </div>
             <Shield className="h-12 w-12 text-green-200" />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             <div>
               <p className="text-green-200 text-sm">GST Collected</p>
               <p className="text-xl font-bold mt-1">{formatCurrency(taxSummary.gstCollected)}</p>
@@ -281,11 +281,11 @@ export default function TaxReportsPage() {
             <h2 className="text-lg font-semibold text-gray-900">Tax Returns Status</h2>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {taxReturns.map((taxReturn) => (
                 <div key={taxReturn.id} className="p-5 rounded-lg border-2 border-gray-200 hover:shadow-lg transition-shadow">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-start gap-4">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex items-start gap-2">
                       <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg">
                         <FileText className="h-6 w-6 text-white" />
                       </div>
@@ -307,7 +307,7 @@ export default function TaxReportsPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                     <div>
                       <p className="text-xs text-gray-500 mb-1">Tax Amount</p>
                       <p className="font-semibold text-gray-900">{formatCurrency(taxReturn.taxAmount)}</p>
@@ -361,7 +361,7 @@ export default function TaxReportsPage() {
         </div>
 
         {/* Compliance Dashboard */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold text-gray-900">GST Compliance</h3>

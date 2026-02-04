@@ -214,10 +214,10 @@ export default function TermsSettingsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -236,7 +236,7 @@ export default function TermsSettingsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -283,7 +283,7 @@ export default function TermsSettingsPage() {
       </div>
 
       {/* Filter */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex flex-wrap gap-2">
           {termTypes.map(type => (
             <button
@@ -302,12 +302,12 @@ export default function TermsSettingsPage() {
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredTemplates.map((template) => (
           <div key={template.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <FileText className="h-5 w-5 text-blue-600" />
@@ -321,19 +321,19 @@ export default function TermsSettingsPage() {
               </div>
 
               {/* Type Badge */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium border ${getTypeColor(template.type)}`}>
                   {template.type.toUpperCase()}
                 </span>
               </div>
 
               {/* Content Preview */}
-              <div className="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mb-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <p className="text-sm text-gray-700 line-clamp-4">{template.content}</p>
               </div>
 
               {/* Applicable To */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs text-gray-600 mb-2 font-medium">Applicable To:</p>
                 <div className="flex flex-wrap gap-2">
                   {template.applicableTo.map((item, index) => (
@@ -345,7 +345,7 @@ export default function TermsSettingsPage() {
               </div>
 
               {/* Metadata */}
-              <div className="mb-4 grid grid-cols-2 gap-3 text-sm">
+              <div className="mb-2 grid grid-cols-2 gap-3 text-sm">
                 <div>
                   <p className="text-gray-600">Created</p>
                   <p className="font-medium text-gray-900">{new Date(template.createdDate).toLocaleDateString('en-IN')}</p>
@@ -357,7 +357,7 @@ export default function TermsSettingsPage() {
               </div>
 
               {/* Usage Count */}
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-700 mb-1">Usage Count</p>
                 <p className="font-semibold text-blue-900">{template.usageCount.toLocaleString('en-IN')} times</p>
               </div>
@@ -384,7 +384,7 @@ export default function TermsSettingsPage() {
 
       {filteredTemplates.length === 0 && (
         <div className="text-center py-12">
-          <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <FileText className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No templates found matching your criteria</p>
         </div>
       )}

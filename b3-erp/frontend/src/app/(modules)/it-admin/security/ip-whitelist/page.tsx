@@ -308,7 +308,7 @@ const IPWhitelistPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 max-w-[1600px]">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
@@ -528,7 +528,7 @@ const IPWhitelistPage = () => {
 
             {filteredEntries.length === 0 && (
               <div className="text-center py-12">
-                <Shield className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <Shield className="w-12 h-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No IP entries found matching your criteria</p>
               </div>
             )}

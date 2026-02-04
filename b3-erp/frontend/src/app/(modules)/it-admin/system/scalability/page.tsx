@@ -7,7 +7,7 @@ import { Server, Database, Zap, Activity, Cpu, HardDrive, Network, ArrowRight } 
 export default function ScalabilityPage() {
     return (
         <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full max-w-full mx-auto space-y-6">
+            <div className="w-full space-y-6">
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <div>

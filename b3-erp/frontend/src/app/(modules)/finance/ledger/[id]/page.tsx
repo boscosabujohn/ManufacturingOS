@@ -28,8 +28,8 @@ export default function AccountLedgerPage() {
     ];
 
     return (
-        <div className="container mx-auto p-6">
-            <div className="flex items-center justify-between mb-6">
+        <div className="w-full p-3">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -48,7 +48,7 @@ export default function AccountLedgerPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                 <Card>
                     <CardContent className="pt-6">
                         <p className="text-sm text-gray-600">Current Balance</p>

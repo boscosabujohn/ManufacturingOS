@@ -533,9 +533,9 @@ export default function SupportReports() {
         {/* Custom Report Builder Tab */}
         {activeTab === 'custom' && (
           <div className="p-6">
-            <div className="max-w-3xl mx-auto">
+            <div className="w-full">
               <div className="text-center py-12">
-                <Settings className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <Settings className="h-16 w-16 text-gray-400 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Report Builder</h3>
                 <p className="text-gray-600 mb-6">Create custom reports with your own metrics, filters, and visualizations</p>
                 
@@ -565,7 +565,7 @@ export default function SupportReports() {
                   </ul>
                 </div>
 
-                <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2 mx-auto">
+                <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
                   <Plus className="h-5 w-5" />
                   Start Building
                 </button>

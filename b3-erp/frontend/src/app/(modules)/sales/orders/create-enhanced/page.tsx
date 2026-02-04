@@ -289,15 +289,15 @@ export default function CreateSalesOrderEnhancedPage() {
   const formatCurrency = (amount: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       <DraftRecoveryBanner
         hasDraft={showDraftBanner}
         onRestore={() => { restoreDraft(); setShowDraftBanner(false); }}
         onDiscard={() => { clearDraft(); setShowDraftBanner(false); }}
       />
 
-      <div className="mb-6">
-        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Sales Orders</span>
         </button>
@@ -316,7 +316,7 @@ export default function CreateSalesOrderEnhancedPage() {
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-2">
         <ProgressBar value={completionPercentage} max={100} label="Order completion" showValue variant="gradient" color="blue" />
       </div>
 
@@ -324,10 +324,10 @@ export default function CreateSalesOrderEnhancedPage() {
         <StepIndicator steps={steps} currentStep={currentStep} onStepClick={(i) => { if (i <= currentStep) setCurrentStep(i); }} variant="circles" />
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         {/* Step 1: Customer */}
         {currentStep === 0 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Building2 className="h-5 w-5 text-gray-500" />
               Customer Selection
@@ -348,7 +348,7 @@ export default function CreateSalesOrderEnhancedPage() {
               {customerSearch && (
                 <div className="mt-2 border border-gray-200 rounded-lg divide-y max-h-60 overflow-y-auto">
                   {filteredCustomers.map((c) => (
-                    <button key={c.id} onClick={() => selectCustomer(c)} className="w-full p-4 text-left hover:bg-blue-50">
+                    <button key={c.id} onClick={() => selectCustomer(c)} className="w-full p-3 text-left hover:bg-blue-50">
                       <p className="font-medium">{c.name}</p>
                       <p className="text-sm text-gray-600">{c.company}</p>
                       <p className="text-sm text-gray-500">{c.email} | {c.phone}</p>
@@ -360,7 +360,7 @@ export default function CreateSalesOrderEnhancedPage() {
             </div>
 
             {formData.customer && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-start justify-between">
                   <div>
                     <h4 className="font-semibold text-blue-900">{formData.customer.name}</h4>
@@ -371,7 +371,7 @@ export default function CreateSalesOrderEnhancedPage() {
                     Change
                   </button>
                 </div>
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-blue-700 font-medium">Billing Address</p>
                     <p className="text-blue-800">{formData.customer.billingAddress}</p>
@@ -384,7 +384,7 @@ export default function CreateSalesOrderEnhancedPage() {
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Order Date</label>
                 <input
@@ -415,7 +415,7 @@ export default function CreateSalesOrderEnhancedPage() {
 
         {/* Step 2: Items */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
                 <Package className="h-5 w-5 text-gray-500" />
@@ -431,7 +431,7 @@ export default function CreateSalesOrderEnhancedPage() {
               <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">{errors.items}</div>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {formData.items.map((item, index) => (
                 <div key={item.id} className="p-4 border border-gray-200 rounded-lg">
                   <div className="flex items-center justify-between mb-3">
@@ -511,7 +511,7 @@ export default function CreateSalesOrderEnhancedPage() {
               ))}
             </div>
 
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <div className="flex items-center justify-between">
                 <span className="text-purple-900 font-medium">Order Total</span>
                 <span className="text-2xl font-bold text-purple-900">{formatCurrency(calculateTotals.total)}</span>
@@ -527,13 +527,13 @@ export default function CreateSalesOrderEnhancedPage() {
 
         {/* Step 3: Shipping & Payment */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Truck className="h-5 w-5 text-gray-500" />
               Shipping & Payment
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Expected Delivery Date *</label>
                 <input
@@ -619,11 +619,11 @@ export default function CreateSalesOrderEnhancedPage() {
 
         {/* Step 4: Review */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Review Order</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Order Details</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Order #:</span><span className="font-mono">{formData.orderNumber}</span></div>
@@ -633,7 +633,7 @@ export default function CreateSalesOrderEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Customer</h4>
                 <div className="text-sm">
                   <p className="font-medium">{formData.customer?.name}</p>
@@ -644,7 +644,7 @@ export default function CreateSalesOrderEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-3">
               <h4 className="font-semibold text-gray-900 mb-3">Order Items ({formData.items.filter(i => i.productCode).length})</h4>
               <table className="w-full text-sm">
                 <thead className="border-b">
@@ -668,7 +668,7 @@ export default function CreateSalesOrderEnhancedPage() {
               </table>
             </div>
 
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <h4 className="font-semibold text-purple-900 mb-2">Order Summary</h4>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between"><span>Subtotal:</span><span>{formatCurrency(calculateTotals.subtotal)}</span></div>
@@ -680,7 +680,7 @@ export default function CreateSalesOrderEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <CreditCard className="h-5 w-5 text-green-600 mt-0.5" />
                 <div>

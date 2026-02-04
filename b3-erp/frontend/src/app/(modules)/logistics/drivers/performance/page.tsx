@@ -723,7 +723,7 @@ export default function DriverPerformancePage() {
                     <div className={`text-3xl font-bold ${getScoreColor(driver.performanceScore)}`}>
                       {driver.performanceScore}
                     </div>
-                    <div className="flex-1 bg-gray-200 rounded-full h-2 w-20 mt-2 mx-auto">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2 w-20 mt-2">
                       <div
                         className={`h-2 rounded-full ${
                           driver.performanceScore >= 90 ? 'bg-green-500' :

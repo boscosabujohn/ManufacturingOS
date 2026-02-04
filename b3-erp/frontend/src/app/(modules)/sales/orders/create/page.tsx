@@ -266,10 +266,10 @@ export default function CreateSalesOrderPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 py-6">
-      <div className="space-y-6">
+    <div className="w-full h-full px-4 py-2">
+      <div className="space-y-3">
         {/* Inline Header with Actions */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -298,16 +298,16 @@ export default function CreateSalesOrderPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
           {/* Main Form - Left Side */}
-          <div className="xl:col-span-2 space-y-4">
+          <div className="xl:col-span-2 space-y-2">
             {/* Order Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Order Details
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Order Number
@@ -361,8 +361,8 @@ export default function CreateSalesOrderPage() {
             </div>
 
             {/* Customer Selection */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <User className="w-5 h-5 text-blue-600" />
                 Customer Information
               </h2>
@@ -423,7 +423,7 @@ export default function CreateSalesOrderPage() {
                   )}
                 </div>
               ) : (
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3 flex-1">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
@@ -461,8 +461,8 @@ export default function CreateSalesOrderPage() {
             </div>
 
             {/* Line Items */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                   <Package className="w-5 h-5 text-blue-600" />
                   Order Items
@@ -582,9 +582,9 @@ export default function CreateSalesOrderPage() {
             </div>
 
             {/* Additional Terms */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <CreditCard className="w-5 h-5 text-blue-600" />
                   Payment
                 </h2>
@@ -603,8 +603,8 @@ export default function CreateSalesOrderPage() {
                 </select>
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Truck className="w-5 h-5 text-blue-600" />
                   Delivery
                 </h2>
@@ -617,8 +617,8 @@ export default function CreateSalesOrderPage() {
                 />
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Shipping Method</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Shipping Method</h2>
                 <input
                   type="text"
                   placeholder="e.g., Standard, Express"
@@ -630,9 +630,9 @@ export default function CreateSalesOrderPage() {
             </div>
 
             {/* Notes & Terms */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Internal Notes</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Internal Notes</h2>
                 <textarea
                   placeholder="Add any internal notes for this order..."
                   value={notes}
@@ -642,8 +642,8 @@ export default function CreateSalesOrderPage() {
                 />
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Terms & Conditions</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Terms & Conditions</h2>
                 <textarea
                   placeholder="Enter terms and conditions..."
                   value={termsAndConditions}
@@ -655,27 +655,27 @@ export default function CreateSalesOrderPage() {
             </div>
 
             {/* Document Upload Section */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Upload className="w-5 h-5 text-blue-600" />
                 Document Upload
               </h2>
 
               {uploadErrors.length > 0 && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg">
                   {uploadErrors.map((error, idx) => (
                     <p key={idx} className="text-sm text-red-700">{error}</p>
                   ))}
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {/* PO Document */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Purchase Order (PO) <span className="text-red-500">*</span>
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 hover:border-blue-400 transition-colors">
                     {!documents.po ? (
                       <label className="cursor-pointer">
                         <input
@@ -685,7 +685,7 @@ export default function CreateSalesOrderPage() {
                           className="hidden"
                         />
                         <div className="text-center">
-                          <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                          <Upload className="w-8 h-8 text-gray-400 mb-2" />
                           <p className="text-sm text-gray-600">Click to upload PO</p>
                           <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX</p>
                         </div>
@@ -712,7 +712,7 @@ export default function CreateSalesOrderPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Technical Specifications
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 hover:border-blue-400 transition-colors">
                     {!documents.specs ? (
                       <label className="cursor-pointer">
                         <input
@@ -722,7 +722,7 @@ export default function CreateSalesOrderPage() {
                           className="hidden"
                         />
                         <div className="text-center">
-                          <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                          <Upload className="w-8 h-8 text-gray-400 mb-2" />
                           <p className="text-sm text-gray-600">Click to upload specs</p>
                           <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX</p>
                         </div>
@@ -749,7 +749,7 @@ export default function CreateSalesOrderPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Technical Drawings
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 hover:border-blue-400 transition-colors">
                     {!documents.drawings ? (
                       <label className="cursor-pointer">
                         <input
@@ -759,7 +759,7 @@ export default function CreateSalesOrderPage() {
                           className="hidden"
                         />
                         <div className="text-center">
-                          <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                          <Upload className="w-8 h-8 text-gray-400 mb-2" />
                           <p className="text-sm text-gray-600">Click to upload drawings</p>
                           <p className="text-xs text-gray-500 mt-1">PDF, DWG, DXF</p>
                         </div>
@@ -786,7 +786,7 @@ export default function CreateSalesOrderPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Other Documents
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 hover:border-blue-400 transition-colors">
                     <label className="cursor-pointer">
                       <input
                         type="file"
@@ -795,7 +795,7 @@ export default function CreateSalesOrderPage() {
                         className="hidden"
                       />
                       <div className="text-center">
-                        <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                        <Upload className="w-8 h-8 text-gray-400 mb-2" />
                         <p className="text-sm text-gray-600">Click to upload</p>
                         <p className="text-xs text-gray-500 mt-1">Any file type</p>
                       </div>
@@ -829,9 +829,9 @@ export default function CreateSalesOrderPage() {
           </div>
 
           {/* Summary - Right Side */}
-          <div className="space-y-4">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-4">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="space-y-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-4">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Calculator className="w-5 h-5 text-blue-600" />
                 Order Summary
               </h2>
@@ -879,7 +879,7 @@ export default function CreateSalesOrderPage() {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Quick Actions</h3>
               <div className="space-y-2">
                 <button className="w-full flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">

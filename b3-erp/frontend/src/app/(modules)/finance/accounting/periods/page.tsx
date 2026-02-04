@@ -266,14 +266,14 @@ export default function FinancialPeriodsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-purple-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full px-3 py-2">
           {/* Action Bar */}
-          <div className="mb-6">
-            <div className="flex items-center justify-end mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-end mb-2">
               <div className="flex items-center gap-3">
                 <Link
                   href="/finance/accounting/periods/create"
-                  className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl"
+                  className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg shadow-lg transition-all hover:shadow-xl"
                 >
                   <Plus className="w-5 h-5" />
                   <span className="font-semibold">New Financial Year</span>
@@ -282,8 +282,8 @@ export default function FinancialPeriodsPage() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-purple-100 text-sm">Active Financial Years</p>
                   <Calendar className="w-8 h-8 text-purple-200" />
@@ -292,7 +292,7 @@ export default function FinancialPeriodsPage() {
                 <p className="text-sm text-purple-100 mt-2">Out of {financialYears.length} total</p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-green-100 text-sm">Open Periods</p>
                   <Unlock className="w-8 h-8 text-green-200" />
@@ -301,7 +301,7 @@ export default function FinancialPeriodsPage() {
                 <p className="text-sm text-green-100 mt-2">Current period: {periods.find((p) => p.isCurrent)?.periodName}</p>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-blue-100 text-sm">Closed Periods</p>
                   <Lock className="w-8 h-8 text-blue-200" />
@@ -310,7 +310,7 @@ export default function FinancialPeriodsPage() {
                 <p className="text-sm text-blue-100 mt-2">Locked for editing</p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-orange-100 text-sm">Total Transactions</p>
                   <FileText className="w-8 h-8 text-orange-200" />
@@ -322,8 +322,8 @@ export default function FinancialPeriodsPage() {
           </div>
 
           {/* Financial Years Section */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-xl shadow-lg p-3 mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Calendar className="w-6 h-6 text-purple-600" />
                 Financial Years
@@ -334,14 +334,14 @@ export default function FinancialPeriodsPage() {
               {financialYears.map((year) => (
                 <div
                   key={year.id}
-                  className={`border-2 rounded-xl p-6 transition-all cursor-pointer ${selectedYear === year.yearCode
+                  className={`border-2 rounded-xl p-3 transition-all cursor-pointer ${selectedYear === year.yearCode
                       ? 'border-purple-500 bg-purple-50 shadow-md'
                       : 'border-gray-200 hover:border-purple-300 hover:shadow-sm'
                     }`}
                   onClick={() => setSelectedYear(year.yearCode)}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${year.isCurrent ? 'bg-purple-600' : 'bg-gray-400'
                         }`}>
                         <Calendar className="w-6 h-6 text-white" />
@@ -361,7 +361,7 @@ export default function FinancialPeriodsPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
                       <div className="text-center">
                         <p className="text-2xl font-bold text-gray-900">{year.periodsCount}</p>
                         <p className="text-xs text-gray-500">Total Periods</p>
@@ -406,7 +406,7 @@ export default function FinancialPeriodsPage() {
           {/* Periods for Selected Year */}
           {currentYear && (
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 text-white">
+              <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 text-white">
                 <h2 className="text-2xl font-bold flex items-center gap-2">
                   <ChevronRight className="w-6 h-6" />
                   Periods for {currentYear.yearName}
@@ -417,11 +417,11 @@ export default function FinancialPeriodsPage() {
               </div>
 
               <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                   {yearPeriods.map((period) => (
                     <div
                       key={period.id}
-                      className={`border-2 rounded-xl p-4 transition-all ${period.isCurrent
+                      className={`border-2 rounded-xl p-3 transition-all ${period.isCurrent
                           ? 'border-purple-500 bg-purple-50 shadow-md'
                           : period.status === 'Open'
                             ? 'border-green-300 hover:shadow-md'
@@ -499,13 +499,13 @@ export default function FinancialPeriodsPage() {
               </div>
 
               {/* Period Closing Checklist */}
-              <div className="border-t border-gray-200 p-6 bg-gray-50">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="border-t border-gray-200 p-3 bg-gray-50">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
                   Period End Closing Checklist
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-green-600" />
@@ -513,7 +513,7 @@ export default function FinancialPeriodsPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-green-600" />
@@ -521,7 +521,7 @@ export default function FinancialPeriodsPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-green-600" />
@@ -533,7 +533,7 @@ export default function FinancialPeriodsPage() {
                   {/* Inventory Valuation - Clickable */}
                   <button
                     onClick={() => setShowInventoryModal(true)}
-                    className="bg-white border border-gray-200 rounded-lg p-4 hover:border-orange-400 hover:bg-orange-50 transition-all"
+                    className="bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-400 hover:bg-orange-50 transition-all"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -551,7 +551,7 @@ export default function FinancialPeriodsPage() {
                   {/* Accruals and Provisions - Clickable */}
                   <button
                     onClick={() => setShowAccrualsModal(true)}
-                    className="bg-white border border-gray-200 rounded-lg p-4 hover:border-red-400 hover:bg-red-50 transition-all"
+                    className="bg-white border border-gray-200 rounded-lg p-3 hover:border-red-400 hover:bg-red-50 transition-all"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -569,7 +569,7 @@ export default function FinancialPeriodsPage() {
                   {/* Management Review - Clickable */}
                   <button
                     onClick={() => setShowReviewModal(true)}
-                    className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:bg-blue-50 transition-all"
+                    className="bg-white border border-gray-200 rounded-lg p-3 hover:border-blue-400 hover:bg-blue-50 transition-all"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -592,9 +592,9 @@ export default function FinancialPeriodsPage() {
 
       {/* Inventory Valuation Modal */}
       {showInventoryModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-3 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Package className="w-8 h-8" />
@@ -613,14 +613,14 @@ export default function FinancialPeriodsPage() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Summary */}
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                   <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <Calculator className="w-5 h-5 text-orange-600" />
                     Valuation Summary
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm text-gray-600">Total Items</p>
                       <p className="text-xl font-bold text-gray-900">1,247</p>
@@ -692,9 +692,9 @@ export default function FinancialPeriodsPage() {
 
       {/* Accruals and Provisions Modal */}
       {showAccrualsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-gradient-to-r from-red-500 to-red-600 p-6 text-white">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+            <div className="bg-gradient-to-r from-red-500 to-red-600 p-3 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <DollarSign className="w-8 h-8" />
@@ -713,7 +713,7 @@ export default function FinancialPeriodsPage() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Accruals Section */}
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
@@ -721,21 +721,21 @@ export default function FinancialPeriodsPage() {
                     Expense Accruals
                   </h3>
                   <div className="space-y-3">
-                    <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="border border-gray-200 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-gray-900">Electricity Charges</span>
                         <span className="text-lg font-bold text-gray-900">₹45,000</span>
                       </div>
                       <p className="text-sm text-gray-600">Estimated utility charges for the month</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="border border-gray-200 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-gray-900">Professional Fees</span>
                         <span className="text-lg font-bold text-gray-900">₹1,25,000</span>
                       </div>
                       <p className="text-sm text-gray-600">Consultant and audit fees accrual</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="border border-gray-200 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-gray-900">Salary Accrual</span>
                         <span className="text-lg font-bold text-gray-900">₹8,50,000</span>
@@ -752,14 +752,14 @@ export default function FinancialPeriodsPage() {
                     Provisions
                   </h3>
                   <div className="space-y-3">
-                    <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="border border-gray-200 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-gray-900">Warranty Provision</span>
                         <span className="text-lg font-bold text-gray-900">₹2,50,000</span>
                       </div>
                       <p className="text-sm text-gray-600">Estimated warranty claims for products sold</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="border border-gray-200 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-gray-900">Bad Debt Provision</span>
                         <span className="text-lg font-bold text-gray-900">₹75,000</span>
@@ -770,7 +770,7 @@ export default function FinancialPeriodsPage() {
                 </div>
 
                 {/* Total Summary */}
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-gray-900">Total Accruals & Provisions</span>
                     <span className="text-2xl font-bold text-red-600">₹13,45,000</span>
@@ -801,9 +801,9 @@ export default function FinancialPeriodsPage() {
 
       {/* Management Review Modal */}
       {showReviewModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-3 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Users className="w-8 h-8" />
@@ -822,30 +822,30 @@ export default function FinancialPeriodsPage() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Financial Highlights */}
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-green-600" />
                     Financial Highlights
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                       <p className="text-sm text-gray-600 mb-1">Total Revenue</p>
                       <p className="text-2xl font-bold text-green-600">₹1,25,67,000</p>
                       <p className="text-xs text-green-700 mt-1">↑ 12% vs last month</p>
                     </div>
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                       <p className="text-sm text-gray-600 mb-1">Total Expenses</p>
                       <p className="text-2xl font-bold text-blue-600">₹87,45,000</p>
                       <p className="text-xs text-blue-700 mt-1">↑ 5% vs last month</p>
                     </div>
-                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                       <p className="text-sm text-gray-600 mb-1">Net Profit</p>
                       <p className="text-2xl font-bold text-purple-600">₹38,22,000</p>
                       <p className="text-xs text-purple-700 mt-1">↑ 25% vs last month</p>
                     </div>
-                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                       <p className="text-sm text-gray-600 mb-1">Profit Margin</p>
                       <p className="text-2xl font-bold text-orange-600">30.4%</p>
                       <p className="text-xs text-orange-700 mt-1">↑ 3.2% vs last month</p>

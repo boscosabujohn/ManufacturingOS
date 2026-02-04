@@ -1054,7 +1054,7 @@ export default function ContactsPage() {
             </div>
             <div className="space-y-2">
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors cursor-pointer">
-                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                <Upload className="h-12 w-12 text-gray-400 mb-2" />
                 <p className="text-sm text-gray-600 mb-2">
                   Drop your CSV or Excel file here, or click to browse
                 </p>

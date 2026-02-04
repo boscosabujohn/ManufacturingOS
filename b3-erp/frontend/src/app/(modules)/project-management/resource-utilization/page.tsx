@@ -618,7 +618,7 @@ export default function ResourceUtilizationPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-2 mx-auto">
+   <div className="px-4 sm:px-6 lg:px-8 py-2">
     {/* Page Header */}
     <div className="mb-3">
      <h1 className="text-3xl font-bold text-gray-900">Resource Utilization Analytics</h1>
@@ -1077,7 +1077,7 @@ export default function ResourceUtilizationPage() {
     {/* Empty State */}
     {filteredResources.length === 0 && (
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-      <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+      <AlertCircle className="w-12 h-12 text-gray-400 mb-4" />
       <h3 className="text-lg font-medium text-gray-900 mb-2">No resources found</h3>
       <p className="text-gray-600">Try adjusting your search or filter criteria</p>
      </div>

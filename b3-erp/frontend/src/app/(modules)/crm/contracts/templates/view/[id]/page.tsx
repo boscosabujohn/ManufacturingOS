@@ -103,7 +103,7 @@ export default function ViewTemplatePage() {
 
   return (
     <div className="w-full h-full px-3 py-2 ">
-      <div className="max-w-6xl mx-auto space-y-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>

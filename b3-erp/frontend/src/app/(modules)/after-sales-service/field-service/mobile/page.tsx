@@ -512,7 +512,7 @@ export default function MobileAppPage() {
               <div className="bg-gray-900 rounded-2xl p-4 shadow-xl">
                 <div className={`bg-gradient-to-br ${screen.color} rounded-lg aspect-[9/16] flex items-center justify-center`}>
                   <div className="text-center text-white">
-                    <Smartphone className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <Smartphone className="h-12 w-12 mb-2 opacity-50" />
                     <p className="text-sm font-medium opacity-75">{screen.title}</p>
                   </div>
                 </div>
@@ -629,7 +629,7 @@ export default function MobileAppPage() {
             <div className="bg-white border-4 border-gray-200 rounded-lg p-8 mb-6 inline-block">
               <div className="w-64 h-64 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-lg flex items-center justify-center">
                 <div className="text-center">
-                  <QrCode className="h-32 w-32 text-emerald-600 mx-auto mb-4" />
+                  <QrCode className="h-32 w-32 text-emerald-600 mb-4" />
                   <p className="text-sm text-gray-600">QR Code</p>
                   <p className="text-xs text-gray-500 mt-2">Scan with camera app</p>
                 </div>
@@ -903,7 +903,7 @@ export default function MobileAppPage() {
       {/* Analytics Modal */}
       {showAnalyticsModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-7xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
             <div className="bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 px-6 py-4 border-b border-green-200 sticky top-0 z-10">
               <div className="flex items-start justify-between">
@@ -1074,7 +1074,7 @@ export default function MobileAppPage() {
       {/* Reviews Modal */}
       {showReviewsModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
             <div className="bg-gradient-to-r from-yellow-50 via-amber-50 to-orange-50 px-6 py-4 border-b border-yellow-200 sticky top-0 z-10">
               <div className="flex items-start justify-between">

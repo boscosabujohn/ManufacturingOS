@@ -501,7 +501,7 @@ export default function ServiceRequestsPage() {
           {/* View Details Modal */}
           {showDetailsModal && selectedRequest && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-              <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
                 {/* Modal Header */}
                 <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg z-10">
                   <div>

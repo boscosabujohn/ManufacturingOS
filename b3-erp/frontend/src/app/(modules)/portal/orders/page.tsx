@@ -54,7 +54,7 @@ export default function PortalOrdersPage() {
     ];
 
     return (
-        <div className="w-full max-w-full mx-auto min-h-screen bg-gray-50 p-6">
+        <div className="w-full min-h-screen bg-gray-50 p-6">
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <Link href="/portal" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">

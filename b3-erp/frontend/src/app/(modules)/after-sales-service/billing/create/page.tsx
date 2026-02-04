@@ -161,7 +161,7 @@ export default function CreateInvoicePage() {
   };
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto">
+    <div className="p-6 max-w-[1400px]">
       {/* Header */}
       <div className="mb-6">
         <button

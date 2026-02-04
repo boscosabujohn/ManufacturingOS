@@ -256,7 +256,7 @@ export default function AssignmentRulesPage() {
       <div className="p-6 space-y-2">
         {rules.length === 0 ? (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-            <Cog className="w-16 h-16 text-gray-300 mx-auto mb-2" />
+            <Cog className="w-16 h-16 text-gray-300 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Assignment Rules</h3>
             <p className="text-gray-600 mb-2">Create your first rule to automate lead distribution</p>
             <button

@@ -294,7 +294,7 @@ export default function BrandingPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Primary Logo</label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                    <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                    <Upload className="w-12 h-12 text-gray-400 mb-3" />
                     <p className="text-sm font-medium text-gray-900 mb-1">Drop your logo here or click to browse</p>
                     <p className="text-xs text-gray-500 mb-4">PNG, SVG (Max 2MB, Recommended: 200x60px)</p>
                     <input type="file" className="hidden" id="primary-logo" accept="image/png,image/svg+xml" />
@@ -308,7 +308,7 @@ export default function BrandingPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Secondary Logo (Light)</label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                    <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                    <Upload className="w-12 h-12 text-gray-400 mb-3" />
                     <p className="text-sm font-medium text-gray-900 mb-1">Drop your light logo here or click to browse</p>
                     <p className="text-xs text-gray-500 mb-4">PNG, SVG (Max 2MB)</p>
                     <input type="file" className="hidden" id="secondary-logo" accept="image/png,image/svg+xml" />
@@ -322,7 +322,7 @@ export default function BrandingPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Favicon</label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                    <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                    <Upload className="w-12 h-12 text-gray-400 mb-3" />
                     <p className="text-sm font-medium text-gray-900 mb-1">Drop your favicon here or click to browse</p>
                     <p className="text-xs text-gray-500 mb-4">ICO, PNG (32x32px or 64x64px)</p>
                     <input type="file" className="hidden" id="favicon" accept="image/x-icon,image/png" />

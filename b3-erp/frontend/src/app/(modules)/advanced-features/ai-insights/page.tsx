@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function AIInsightsPage() {
     return (
-        <div className="w-full max-w-full mx-auto min-h-screen bg-gray-50 p-6">
+        <div className="w-full min-h-screen bg-gray-50 p-6">
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <Link href="/advanced-features" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">

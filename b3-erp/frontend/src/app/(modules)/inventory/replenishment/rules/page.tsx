@@ -384,7 +384,7 @@ export default function ReplenishmentRulesPage() {
 
       {filteredRules.length === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <Settings className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+          <Settings className="w-12 h-12 text-gray-400 mb-3" />
           <p className="text-gray-500">No replenishment rules found</p>
           <p className="text-sm text-gray-400 mt-1">Create a new rule to get started</p>
         </div>

@@ -469,20 +469,20 @@ export default function ViewReceivablePage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/finance/receivables')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Receivables</span>
         </button>
 
         {/* Receivable Header Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-start justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <Building2 className="h-8 w-8 text-white" />
@@ -546,8 +546,8 @@ export default function ViewReceivablePage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
               <div className="flex items-center space-x-2 mb-2">
                 <AlertCircle className="h-5 w-5 text-red-600" />
                 <p className="text-xs font-medium text-red-600 uppercase">Total Outstanding</p>
@@ -556,7 +556,7 @@ export default function ViewReceivablePage() {
               <p className="text-xs text-red-600 mt-1">{formatCurrency(receivable.totalOutstanding)}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center space-x-2 mb-2">
                 <XCircle className="h-5 w-5 text-orange-600" />
                 <p className="text-xs font-medium text-orange-600 uppercase">Overdue Amount</p>
@@ -565,7 +565,7 @@ export default function ViewReceivablePage() {
               <p className="text-xs text-orange-600 mt-1">{((receivable.overdueAmount / receivable.totalOutstanding) * 100).toFixed(1)}% of total</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Clock className="h-5 w-5 text-yellow-600" />
                 <p className="text-xs font-medium text-yellow-600 uppercase">Due This Week</p>
@@ -574,7 +574,7 @@ export default function ViewReceivablePage() {
               <p className="text-xs text-yellow-600 mt-1">Requires attention</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center space-x-2 mb-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 <p className="text-xs font-medium text-green-600 uppercase">Last Collection</p>
@@ -585,8 +585,8 @@ export default function ViewReceivablePage() {
           </div>
 
           {/* Aging Progress Tracker */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h3 className="text-sm font-bold text-gray-900 mb-4">Aging Analysis</h3>
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-bold text-gray-900 mb-2">Aging Analysis</h3>
             <div className="space-y-3">
               {/* Progress Bar */}
               <div className="flex h-8 rounded-lg overflow-hidden border-2 border-gray-300">
@@ -620,7 +620,7 @@ export default function ViewReceivablePage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -644,16 +644,16 @@ export default function ViewReceivablePage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Customer Overview</h2>
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Customer Overview</h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Customer Details */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Customer Details
                 </h3>
@@ -686,8 +686,8 @@ export default function ViewReceivablePage() {
               </div>
 
               {/* Credit Limit & DSO */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <CreditCard className="h-5 w-5 mr-2 text-blue-600" />
                   Credit Limit & Performance
                 </h3>
@@ -733,8 +733,8 @@ export default function ViewReceivablePage() {
               </div>
 
               {/* Contact Information */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <User className="h-5 w-5 mr-2 text-blue-600" />
                   Contact Information
                 </h3>
@@ -774,8 +774,8 @@ export default function ViewReceivablePage() {
               </div>
 
               {/* Collection Info */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Target className="h-5 w-5 mr-2 text-blue-600" />
                   Collection Information
                 </h3>
@@ -818,7 +818,7 @@ export default function ViewReceivablePage() {
         {/* Invoices Tab */}
         {activeTab === 'invoices' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Outstanding Invoices</h3>
               <div className="flex items-center space-x-3">
                 <span className="text-sm text-gray-600">{receivable.invoices.length} invoices</span>
@@ -882,7 +882,7 @@ export default function ViewReceivablePage() {
         {/* Collection Activities Tab */}
         {activeTab === 'collection_activities' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Collection Activity Timeline</h3>
               <div className="flex flex-wrap gap-2">
                 <button className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-sm font-medium">
@@ -900,7 +900,7 @@ export default function ViewReceivablePage() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {receivable.collectionActivities.map((activity, index) => {
                 const ActivityIcon = activityIcons[activity.activityType];
                 const isLast = index === receivable.collectionActivities.length - 1;
@@ -916,7 +916,7 @@ export default function ViewReceivablePage() {
                         <ActivityIcon className="h-5 w-5" />
                       </div>
 
-                      <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                      <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <div className="flex items-center space-x-2 mb-1">

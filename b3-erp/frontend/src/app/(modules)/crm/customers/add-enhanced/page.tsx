@@ -434,7 +434,7 @@ export default function AddCustomerEnhancedPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto p-3 space-y-3">
+      <div className="w-full p-3 space-y-3">
         <DraftRecoveryBanner
           hasDraft={showDraftBanner}
           onRestore={() => { const d = restoreDraft(); if (d) setFormData(d); setShowDraftBanner(false); }}

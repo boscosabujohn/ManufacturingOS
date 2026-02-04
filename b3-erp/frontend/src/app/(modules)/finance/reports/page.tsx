@@ -51,24 +51,24 @@ export default function FinancialReportsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
-          <div className="max-w-7xl mx-auto space-y-6">
+        <div className="w-full px-3 py-2 ">
+          <div className="w-full space-y-3">
             {/* Report Categories */}
             {reportCategories.map((category) => (
-              <div key={category.title} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <div className="flex items-center gap-3 mb-4">
+              <div key={category.title} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <div className="flex items-center gap-3 mb-2">
                   <div className={`w-10 h-10 bg-${category.color}-100 rounded-lg flex items-center justify-center`}>
                     <category.icon className={`w-6 h-6 text-${category.color}-600`} />
                   </div>
                   <h2 className="text-xl font-bold text-gray-900">{category.title}</h2>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                   {category.reports.map((report) => (
                     <Link
                       key={report.name}
                       href={report.href}
-                      className="group p-4 rounded-lg border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all"
+                      className="group p-3 rounded-lg border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all"
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">

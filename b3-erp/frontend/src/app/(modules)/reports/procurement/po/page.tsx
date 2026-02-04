@@ -18,7 +18,7 @@ export default function PurchaseOrderReport() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Purchase Orders</h1>
@@ -60,7 +60,7 @@ export default function PurchaseOrderReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-orange-50 rounded-lg border border-dashed border-orange-200">
                             <div className="text-center">
-                                <Clock className="w-8 h-8 text-orange-500 mx-auto mb-2" />
+                                <Clock className="w-8 h-8 text-orange-500 mb-2" />
                                 <p className="text-orange-700 font-medium">45 Pending Orders</p>
                                 <p className="text-sm text-orange-600">Click to track status</p>
                             </div>
@@ -73,7 +73,7 @@ export default function PurchaseOrderReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-green-50 rounded-lg border border-dashed border-green-200">
                             <div className="text-center">
-                                <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                                <CheckCircle className="w-8 h-8 text-green-500 mb-2" />
                                 <p className="text-green-700 font-medium">72 Received Orders</p>
                                 <p className="text-sm text-green-600">Click to view history</p>
                             </div>

@@ -74,9 +74,9 @@ export default function ExpenseClaimsPage() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Expense Claims</h1>
                     <p className="text-gray-600">Submit and manage employee expense claims</p>
@@ -88,7 +88,7 @@ export default function ExpenseClaimsPage() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium text-gray-600">Total Claims</CardTitle>
@@ -135,7 +135,7 @@ export default function ExpenseClaimsPage() {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex gap-2 mb-6">
+            <div className="flex gap-2 mb-3">
                 {['all', 'draft', 'pending', 'approved', 'rejected', 'paid'].map((status) => (
                     <Button
                         key={status}
@@ -154,8 +154,8 @@ export default function ExpenseClaimsPage() {
             ) : filteredClaims.length === 0 ? (
                 <Card>
                     <CardContent className="text-center py-12">
-                        <DollarSign className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                        <p className="text-gray-500 mb-4">No expense claims found</p>
+                        <DollarSign className="mx-auto h-12 w-12 text-gray-400 mb-2" />
+                        <p className="text-gray-500 mb-2">No expense claims found</p>
                         <Button onClick={() => setShowForm(true)}>
                             <Plus className="mr-2 h-4 w-4" />
                             Submit Your First Claim
@@ -217,7 +217,7 @@ export default function ExpenseClaimsPage() {
                             <CardTitle>Submit New Expense Claim</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="space-y-4">
+                            <div className="space-y-2">
                                 <div>
                                     <Label>Category</Label>
                                     <Select>
@@ -243,7 +243,7 @@ export default function ExpenseClaimsPage() {
                                 </div>
                                 <div>
                                     <Label>Receipts</Label>
-                                    <div className="border-2 border-dashed rounded-lg p-4 text-center">
+                                    <div className="border-2 border-dashed rounded-lg p-3 text-center">
                                         <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
                                         <p className="text-sm text-gray-600">Click to upload receipts</p>
                                     </div>

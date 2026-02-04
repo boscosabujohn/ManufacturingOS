@@ -435,7 +435,7 @@ export default function CPQProductsCatalogPage() {
       {/* No Results */}
       {filteredProducts.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <Package className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <Package className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No products found matching your criteria</p>
           <button
             onClick={() => {

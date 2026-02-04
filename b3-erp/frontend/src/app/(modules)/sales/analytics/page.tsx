@@ -67,10 +67,10 @@ export default function SalesAnalyticsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -97,7 +97,7 @@ export default function SalesAnalyticsPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-blue-100">Total Revenue</p>
@@ -160,8 +160,8 @@ export default function SalesAnalyticsPage() {
       </div>
 
       {/* Quick Links */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-        <Link href="/sales/analytics/reports" className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
+        <Link href="/sales/analytics/reports" className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-100 rounded-lg">
               <BarChart3 className="h-6 w-6 text-blue-600" />
@@ -173,7 +173,7 @@ export default function SalesAnalyticsPage() {
           </div>
         </Link>
 
-        <Link href="/sales/analytics/products" className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+        <Link href="/sales/analytics/products" className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-purple-100 rounded-lg">
               <Package className="h-6 w-6 text-purple-600" />
@@ -185,7 +185,7 @@ export default function SalesAnalyticsPage() {
           </div>
         </Link>
 
-        <Link href="/sales/analytics/customers" className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+        <Link href="/sales/analytics/customers" className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-green-100 rounded-lg">
               <Users className="h-6 w-6 text-green-600" />
@@ -197,7 +197,7 @@ export default function SalesAnalyticsPage() {
           </div>
         </Link>
 
-        <Link href="/sales/analytics/forecast" className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+        <Link href="/sales/analytics/forecast" className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-orange-100 rounded-lg">
               <TrendingUp className="h-6 w-6 text-orange-600" />
@@ -209,7 +209,7 @@ export default function SalesAnalyticsPage() {
           </div>
         </Link>
 
-        <Link href="/sales/analytics/targets" className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+        <Link href="/sales/analytics/targets" className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-pink-100 rounded-lg">
               <Target className="h-6 w-6 text-pink-600" />
@@ -223,14 +223,14 @@ export default function SalesAnalyticsPage() {
       </div>
 
       {/* Monthly Trend Chart */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900">Revenue Trend (₹ Lakhs)</h2>
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-600">Jan - Oct 2025</span>
           </div>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {monthlySales.map((data, index) => (
             <div key={data.month} className="space-y-2">
               <div className="flex items-center justify-between text-sm">
@@ -250,14 +250,14 @@ export default function SalesAnalyticsPage() {
       </div>
 
       {/* Category Performance & Regional Performance */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Category Performance */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold text-gray-900">Category Performance</h2>
             <PieChart className="h-5 w-5 text-gray-600" />
           </div>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {categoryData.map((cat) => (
               <div key={cat.category} className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
@@ -285,12 +285,12 @@ export default function SalesAnalyticsPage() {
         </div>
 
         {/* Regional Performance */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold text-gray-900">Regional Performance</h2>
             <BarChart3 className="h-5 w-5 text-gray-600" />
           </div>
-          <div className="space-y-6">
+          <div className="space-y-3">
             {regionalData.map((region) => (
               <div key={region.region} className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -319,8 +319,8 @@ export default function SalesAnalyticsPage() {
       </div>
 
       {/* Top Performing Products */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900">Top Performing Kitchen Products</h2>
           <Package className="h-5 w-5 text-gray-600" />
         </div>

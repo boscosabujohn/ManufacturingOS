@@ -1483,7 +1483,7 @@ export default function CustomerPortalViewPage() {
       {/* Document View Modal */}
       {showDocumentModal && selectedDocument && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
-          <div className="bg-white rounded-lg p-3 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg p-3  w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">{selectedDocument.name}</h3>
@@ -1516,7 +1516,7 @@ export default function CustomerPortalViewPage() {
               </div>
 
               <div className="bg-gray-100 rounded-lg p-8 text-center">
-                <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
+                <FileText className="w-16 h-16 text-gray-400 mb-2" />
                 <p className="text-gray-600">Document preview would be displayed here</p>
               </div>
             </div>

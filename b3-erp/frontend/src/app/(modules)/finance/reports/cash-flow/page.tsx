@@ -134,18 +134,18 @@ export default function CashFlowStatementPage() {
 
     return (
       <tr className={`border-b border-gray-700 ${isTotal ? 'bg-gray-800 font-bold' : 'hover:bg-gray-800/50'}`}>
-        <td className={`px-6 py-3 ${isSubItem ? 'pl-12' : ''} ${isTotal ? 'text-white' : 'text-gray-300'}`}>
+        <td className={`px-3 py-2 ${isSubItem ? 'pl-12' : ''} ${isTotal ? 'text-white' : 'text-gray-300'}`}>
           {label}
         </td>
-        <td className={`px-6 py-3 text-right ${isNegative ? 'text-red-400' : 'text-green-400'}`}>
+        <td className={`px-3 py-2 text-right ${isNegative ? 'text-red-400' : 'text-green-400'}`}>
           {isNegative && '('}{formatCurrency(data.current)}{isNegative && ')'}
         </td>
         {showComparison && (
           <>
-            <td className={`px-6 py-3 text-right ${data.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
+            <td className={`px-3 py-2 text-right ${data.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
               {data.previous < 0 && '('}{formatCurrency(data.previous)}{data.previous < 0 && ')'}
             </td>
-            <td className={`px-6 py-3 text-right ${variance >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+            <td className={`px-3 py-2 text-right ${variance >= 0 ? 'text-green-400' : 'text-red-400'}`}>
               {formatVariance(data.current, data.previous)}
             </td>
           </>
@@ -184,8 +184,8 @@ export default function CashFlowStatementPage() {
   const freeCashFlow = operatingTotal.current + investingTotal.current;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 p-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -209,8 +209,8 @@ export default function CashFlowStatementPage() {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Activity className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -222,7 +222,7 @@ export default function CashFlowStatementPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
               <TrendingDown className="w-5 h-5" />
@@ -236,7 +236,7 @@ export default function CashFlowStatementPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
               <Activity className="w-5 h-5" />
@@ -250,7 +250,7 @@ export default function CashFlowStatementPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -264,8 +264,8 @@ export default function CashFlowStatementPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-gray-400" />
               <select
@@ -304,12 +304,12 @@ export default function CashFlowStatementPage() {
             <table className="w-full">
               <thead className="bg-gray-900/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Particulars</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Current Period</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Particulars</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Current Period</th>
                   {showComparison && (
                     <>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Previous Period</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Variance</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Previous Period</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Variance</th>
                     </>
                   )}
                 </tr>
@@ -318,21 +318,21 @@ export default function CashFlowStatementPage() {
                 {/* Operating Activities */}
                 <tr className="bg-green-900/20 border-b-2 border-green-600">
                   <td
-                    className="px-6 py-3 font-bold text-green-400 cursor-pointer flex items-center gap-2"
+                    className="px-3 py-2 font-bold text-green-400 cursor-pointer flex items-center gap-2"
                     onClick={() => toggleSection('operating')}
                   >
                     {expandedSections.operating ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                     Cash Flow from Operating Activities
                   </td>
-                  <td className="px-6 py-3 text-right font-bold text-green-400">
+                  <td className="px-3 py-2 text-right font-bold text-green-400">
                     {formatCurrency(operatingTotal.current)}
                   </td>
                   {showComparison && (
                     <>
-                      <td className="px-6 py-3 text-right font-bold text-green-400">
+                      <td className="px-3 py-2 text-right font-bold text-green-400">
                         {formatCurrency(operatingTotal.previous)}
                       </td>
-                      <td className={`px-6 py-3 text-right font-bold ${
+                      <td className={`px-3 py-2 text-right font-bold ${
                         (operatingTotal.current - operatingTotal.previous) >= 0 ? 'text-green-400' : 'text-red-400'
                       }`}>
                         {formatVariance(operatingTotal.current, operatingTotal.previous)}
@@ -353,21 +353,21 @@ export default function CashFlowStatementPage() {
                 {/* Investing Activities */}
                 <tr className="bg-orange-900/20 border-b-2 border-orange-600">
                   <td
-                    className="px-6 py-3 font-bold text-orange-400 cursor-pointer flex items-center gap-2"
+                    className="px-3 py-2 font-bold text-orange-400 cursor-pointer flex items-center gap-2"
                     onClick={() => toggleSection('investing')}
                   >
                     {expandedSections.investing ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                     Cash Flow from Investing Activities
                   </td>
-                  <td className={`px-6 py-3 text-right font-bold ${investingTotal.current < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                  <td className={`px-3 py-2 text-right font-bold ${investingTotal.current < 0 ? 'text-red-400' : 'text-green-400'}`}>
                     {investingTotal.current < 0 && '('}{formatCurrency(investingTotal.current)}{investingTotal.current < 0 && ')'}
                   </td>
                   {showComparison && (
                     <>
-                      <td className={`px-6 py-3 text-right font-bold ${investingTotal.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                      <td className={`px-3 py-2 text-right font-bold ${investingTotal.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
                         {investingTotal.previous < 0 && '('}{formatCurrency(investingTotal.previous)}{investingTotal.previous < 0 && ')'}
                       </td>
-                      <td className={`px-6 py-3 text-right font-bold ${
+                      <td className={`px-3 py-2 text-right font-bold ${
                         (investingTotal.current - investingTotal.previous) >= 0 ? 'text-green-400' : 'text-red-400'
                       }`}>
                         {formatVariance(investingTotal.current, investingTotal.previous)}
@@ -389,21 +389,21 @@ export default function CashFlowStatementPage() {
                 {/* Financing Activities */}
                 <tr className="bg-purple-900/20 border-b-2 border-purple-600">
                   <td
-                    className="px-6 py-3 font-bold text-purple-400 cursor-pointer flex items-center gap-2"
+                    className="px-3 py-2 font-bold text-purple-400 cursor-pointer flex items-center gap-2"
                     onClick={() => toggleSection('financing')}
                   >
                     {expandedSections.financing ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                     Cash Flow from Financing Activities
                   </td>
-                  <td className={`px-6 py-3 text-right font-bold ${financingTotal.current < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                  <td className={`px-3 py-2 text-right font-bold ${financingTotal.current < 0 ? 'text-red-400' : 'text-green-400'}`}>
                     {financingTotal.current < 0 && '('}{formatCurrency(financingTotal.current)}{financingTotal.current < 0 && ')'}
                   </td>
                   {showComparison && (
                     <>
-                      <td className={`px-6 py-3 text-right font-bold ${financingTotal.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                      <td className={`px-3 py-2 text-right font-bold ${financingTotal.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
                         {financingTotal.previous < 0 && '('}{formatCurrency(financingTotal.previous)}{financingTotal.previous < 0 && ')'}
                       </td>
-                      <td className={`px-6 py-3 text-right font-bold ${
+                      <td className={`px-3 py-2 text-right font-bold ${
                         (financingTotal.current - financingTotal.previous) >= 0 ? 'text-green-400' : 'text-red-400'
                       }`}>
                         {formatVariance(financingTotal.current, financingTotal.previous)}
@@ -424,16 +424,16 @@ export default function CashFlowStatementPage() {
 
                 {/* Net Cash Flow */}
                 <tr className="bg-blue-900/20 border-b-2 border-blue-600">
-                  <td className="px-6 py-3 font-bold text-blue-400">Net Increase/(Decrease) in Cash</td>
-                  <td className={`px-6 py-3 text-right font-bold ${netCashFlow.current < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                  <td className="px-3 py-2 font-bold text-blue-400">Net Increase/(Decrease) in Cash</td>
+                  <td className={`px-3 py-2 text-right font-bold ${netCashFlow.current < 0 ? 'text-red-400' : 'text-green-400'}`}>
                     {netCashFlow.current < 0 && '('}{formatCurrency(netCashFlow.current)}{netCashFlow.current < 0 && ')'}
                   </td>
                   {showComparison && (
                     <>
-                      <td className={`px-6 py-3 text-right font-bold ${netCashFlow.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                      <td className={`px-3 py-2 text-right font-bold ${netCashFlow.previous < 0 ? 'text-red-400' : 'text-green-400'}`}>
                         {netCashFlow.previous < 0 && '('}{formatCurrency(netCashFlow.previous)}{netCashFlow.previous < 0 && ')'}
                       </td>
-                      <td className={`px-6 py-3 text-right font-bold ${
+                      <td className={`px-3 py-2 text-right font-bold ${
                         (netCashFlow.current - netCashFlow.previous) >= 0 ? 'text-green-400' : 'text-red-400'
                       }`}>
                         {formatVariance(netCashFlow.current, netCashFlow.previous)}
@@ -445,16 +445,16 @@ export default function CashFlowStatementPage() {
                 {/* Opening & Closing Cash */}
                 {renderCashFlowRow('Add: Opening Cash & Cash Equivalents', openingCash)}
                 <tr className="bg-gray-900/50 border-t-2 border-gray-600">
-                  <td className="px-6 py-4 font-bold text-white text-lg">Closing Cash & Cash Equivalents</td>
-                  <td className="px-6 py-4 text-right font-bold text-white text-lg">
+                  <td className="px-3 py-2 font-bold text-white text-lg">Closing Cash & Cash Equivalents</td>
+                  <td className="px-3 py-2 text-right font-bold text-white text-lg">
                     {formatCurrency(closingCash.current)}
                   </td>
                   {showComparison && (
                     <>
-                      <td className="px-6 py-4 text-right font-bold text-white text-lg">
+                      <td className="px-3 py-2 text-right font-bold text-white text-lg">
                         {formatCurrency(closingCash.previous)}
                       </td>
-                      <td className={`px-6 py-4 text-right font-bold text-lg ${
+                      <td className={`px-3 py-2 text-right font-bold text-lg ${
                         (closingCash.current - closingCash.previous) >= 0 ? 'text-green-400' : 'text-red-400'
                       }`}>
                         {formatVariance(closingCash.current, closingCash.previous)}
@@ -468,20 +468,20 @@ export default function CashFlowStatementPage() {
         </div>
 
         {/* Cash Flow Ratios */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h3 className="text-xl font-bold text-white mb-4">Cash Flow Analysis</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <h3 className="text-xl font-bold text-white mb-2">Cash Flow Analysis</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-700">
               <div className="text-gray-400 text-sm mb-2">Operating Cash Flow Ratio</div>
               <div className="text-2xl font-bold text-white mb-1">{operatingCashFlowRatio.toFixed(2)}%</div>
               <div className="text-xs text-gray-500">Operating CF / Current Liabilities</div>
             </div>
-            <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+            <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-700">
               <div className="text-gray-400 text-sm mb-2">Cash Flow Margin</div>
               <div className="text-2xl font-bold text-white mb-1">{cashFlowMargin.toFixed(2)}%</div>
               <div className="text-xs text-gray-500">Operating CF / Revenue</div>
             </div>
-            <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+            <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-700">
               <div className="text-gray-400 text-sm mb-2">Free Cash Flow</div>
               <div className="text-2xl font-bold text-white mb-1">{formatCurrency(freeCashFlow)}</div>
               <div className="text-xs text-gray-500">Operating CF + Investing CF</div>

@@ -295,7 +295,7 @@ export default function TraceTrackingPage() {
             ) : (
               <div className="flex-1 flex items-center justify-center p-8">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                     <Navigation className="w-10 h-10 text-gray-400" />
                   </div>
                   <p className="text-gray-500 font-bold mb-1">Enter tracking number</p>
@@ -323,7 +323,7 @@ export default function TraceTrackingPage() {
                     </div>
 
                     {/* Route Line */}
-                    <div className="w-1 h-32 bg-gradient-to-b from-blue-500 via-orange-500 to-green-500 mx-auto rounded-full"></div>
+                    <div className="w-1 h-32 bg-gradient-to-b from-blue-500 via-orange-500 to-green-500 rounded-full"></div>
 
                     {/* Current Position */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -359,7 +359,7 @@ export default function TraceTrackingPage() {
             </div>
           ) : (
             <div className="text-center p-8">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-4">
                 <MapPin className="w-12 h-12 text-gray-400" />
               </div>
               <p className="text-gray-500 font-bold mb-1">Map View</p>

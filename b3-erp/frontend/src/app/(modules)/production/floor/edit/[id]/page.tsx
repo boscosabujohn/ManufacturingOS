@@ -767,7 +767,7 @@ export default function ProductionFloorEditPage() {
 
           {downtimeEntries.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              <AlertTriangle className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+              <AlertTriangle className="w-12 h-12 mb-2 text-gray-400" />
               <p>No downtime entries. Click "Add Downtime" to log downtime.</p>
             </div>
           ) : (
@@ -935,7 +935,7 @@ export default function ProductionFloorEditPage() {
 
           {materialEntries.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              <Package className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+              <Package className="w-12 h-12 mb-2 text-gray-400" />
               <p>No material entries. Enable backflush or add manually.</p>
             </div>
           ) : (
@@ -1084,7 +1084,7 @@ export default function ProductionFloorEditPage() {
 
           {toolChangeEntries.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              <Wrench className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+              <Wrench className="w-12 h-12 mb-2 text-gray-400" />
               <p>No tool changes logged. Click "Add Tool Change" if any tools were changed.</p>
             </div>
           ) : (
@@ -1208,7 +1208,7 @@ export default function ProductionFloorEditPage() {
 
           {laborEntries.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              <User className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+              <User className="w-12 h-12 mb-2 text-gray-400" />
               <p>No labor entries. Add operators if multiple operators worked on this WO.</p>
             </div>
           ) : (

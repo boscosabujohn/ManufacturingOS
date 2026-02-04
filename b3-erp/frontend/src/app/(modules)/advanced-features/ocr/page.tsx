@@ -19,7 +19,7 @@ export default function OCRPage() {
     };
 
     return (
-        <div className="w-full max-w-full mx-auto min-h-screen bg-gray-50 p-6">
+        <div className="w-full min-h-screen bg-gray-50 p-6">
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <Link href="/advanced-features" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
@@ -39,7 +39,7 @@ export default function OCRPage() {
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                         <h2 className="text-lg font-bold text-gray-900 mb-4">Upload Document</h2>
                         <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-500 transition-colors cursor-pointer bg-gray-50">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
                                 <Upload className="w-6 h-6" />
                             </div>
                             <p className="text-gray-900 font-medium mb-1">Click to upload or drag and drop</p>

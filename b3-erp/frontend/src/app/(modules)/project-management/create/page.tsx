@@ -272,7 +272,7 @@ export default function CreateProjectPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="w-full mx-auto px-3 py-2">
+   <div className="w-full px-3 py-2">
     {/* Page Header with Template Actions */}
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
      <div className="flex items-center justify-between mb-4">

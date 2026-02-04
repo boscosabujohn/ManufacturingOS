@@ -239,12 +239,12 @@ export default function EditInvoicePage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+        <div className="w-full px-3 py-2 w-full max-w-full">
           {/* Header */}
-          <div className="mb-6">
+          <div className="mb-3">
             <button
               onClick={() => router.back()}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
             >
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Back to Invoice</span>
@@ -262,15 +262,15 @@ export default function EditInvoicePage() {
           </div>
 
           {/* Form */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Basic Invoice Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Receipt className="h-5 w-5 mr-2 text-blue-600" />
                 Invoice Details
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Invoice Number <span className="text-red-500">*</span>
@@ -341,13 +341,13 @@ export default function EditInvoicePage() {
             </div>
 
             {/* Customer Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                 Customer Details
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Customer <span className="text-red-500">*</span>
@@ -378,15 +378,15 @@ export default function EditInvoicePage() {
             </div>
 
             {/* Addresses */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Billing Address */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <MapPin className="h-5 w-5 mr-2 text-blue-600" />
                   Billing Address
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
                     <input
@@ -396,7 +396,7 @@ export default function EditInvoicePage() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
                       <input
@@ -432,13 +432,13 @@ export default function EditInvoicePage() {
               </div>
 
               {/* Shipping Address */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <MapPin className="h-5 w-5 mr-2 text-blue-600" />
                   Shipping Address
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
                     <input
@@ -448,7 +448,7 @@ export default function EditInvoicePage() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
                       <input
@@ -485,8 +485,8 @@ export default function EditInvoicePage() {
             </div>
 
             {/* Line Items */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-bold text-gray-900 flex items-center">
                   <Package className="h-5 w-5 mr-2 text-blue-600" />
                   Line Items
@@ -500,10 +500,10 @@ export default function EditInvoicePage() {
                 </button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {formData.lineItems.map((item, index) => (
-                  <div key={item.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                    <div className="grid grid-cols-12 gap-4">
+                  <div key={item.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                    <div className="grid grid-cols-12 gap-2">
                       {/* Item Details */}
                       <div className="col-span-12 md:col-span-4">
                         <label className="block text-xs font-medium text-gray-700 mb-1">Item Name</label>
@@ -617,7 +617,7 @@ export default function EditInvoicePage() {
               </div>
 
               {/* Totals */}
-              <div className="mt-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+              <div className="mt-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                 <div className="max-w-md ml-auto space-y-3">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-700">Subtotal:</span>
@@ -676,9 +676,9 @@ export default function EditInvoicePage() {
             </div>
 
             {/* Notes and Terms */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Notes
                 </h2>
@@ -691,8 +691,8 @@ export default function EditInvoicePage() {
                 />
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Terms & Conditions
                 </h2>
@@ -710,7 +710,7 @@ export default function EditInvoicePage() {
       </div>
 
       {/* Fixed Footer */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.back()}

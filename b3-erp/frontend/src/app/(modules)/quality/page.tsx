@@ -114,7 +114,7 @@ export default function QualityDashboard() {
 
     if (loading) {
         return (
-            <div className="container mx-auto p-6 flex items-center justify-center min-h-[400px]">
+            <div className="w-full p-6 flex items-center justify-center min-h-[400px]">
                 <div className="flex flex-col items-center gap-4">
                     <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
                     <p className="text-gray-600">Loading quality dashboard...</p>
@@ -125,7 +125,7 @@ export default function QualityDashboard() {
 
     if (error) {
         return (
-            <div className="container mx-auto p-6">
+            <div className="w-full p-6">
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                     <p className="text-red-600">{error}</p>
                     <button
@@ -140,7 +140,7 @@ export default function QualityDashboard() {
     }
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             {/* Header */}
             <div className="mb-6">
                 <h1 className="text-3xl font-bold mb-2">Quality Management Dashboard</h1>
@@ -271,7 +271,7 @@ export default function QualityDashboard() {
                     <div className="space-y-3">
                         {alerts.length === 0 ? (
                             <div className="text-center py-4 text-gray-500">
-                                <CheckCircle2 className="h-8 w-8 mx-auto mb-2 text-green-500" />
+                                <CheckCircle2 className="h-8 w-8 mb-2 text-green-500" />
                                 <p>No quality alerts at this time</p>
                             </div>
                         ) : (

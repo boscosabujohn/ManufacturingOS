@@ -77,7 +77,7 @@ export default function DowntimeLogPage() {
       </div>
 
       {/* Info Banner */}
-      <div className="max-w-3xl mx-auto mb-6">
+      <div className="w-full mb-6">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
           <Info className="w-5 h-5 text-blue-600 mt-0.5" />
           <div>
@@ -95,7 +95,7 @@ export default function DowntimeLogPage() {
       </div>
 
       {/* Form */}
-      <div className="max-w-3xl mx-auto">
+      <div className="w-full">
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <div className="flex items-center gap-2 mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
             <AlertTriangle className="w-5 h-5 text-yellow-600" />

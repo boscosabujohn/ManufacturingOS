@@ -255,7 +255,7 @@ export default function AddInvoiceEnhancedPage() {
   const formatCurrency = (amount: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(amount);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       {showDraftBanner && (
         <DraftRecoveryBanner
           hasDraft={hasDraft}
@@ -264,8 +264,8 @@ export default function AddInvoiceEnhancedPage() {
         />
       )}
 
-      <div className="mb-6">
-        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Invoices</span>
         </button>
@@ -284,7 +284,7 @@ export default function AddInvoiceEnhancedPage() {
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-2">
         <div className="flex items-center gap-3">
           <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
@@ -300,16 +300,16 @@ export default function AddInvoiceEnhancedPage() {
         <StepIndicator steps={steps} currentStep={currentStep} onStepClick={(i) => { if (i <= currentStep) setCurrentStep(i); }} variant="circles" />
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         {/* Step 1: Customer */}
         {currentStep === 0 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Building2 className="h-5 w-5 text-gray-500" />
               Customer Information
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Search Customer *</label>
                 <div className="relative">
@@ -336,7 +336,7 @@ export default function AddInvoiceEnhancedPage() {
               </div>
 
               {formData.customer && (
-                <div className="md:col-span-2 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="md:col-span-2 bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <h4 className="font-semibold text-blue-900">{formData.customer}</h4>
                   <p className="text-sm text-blue-700 font-mono">{formData.customerGST}</p>
                 </div>
@@ -394,7 +394,7 @@ export default function AddInvoiceEnhancedPage() {
 
         {/* Step 2: Line Items */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
                 <DollarSign className="h-5 w-5 text-gray-500" />
@@ -410,7 +410,7 @@ export default function AddInvoiceEnhancedPage() {
               <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">{errors.lineItems}</div>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {formData.lineItems.map((item, index) => (
                 <div key={item.id} className="p-4 border border-gray-200 rounded-lg">
                   <div className="flex items-center justify-between mb-3">
@@ -487,7 +487,7 @@ export default function AddInvoiceEnhancedPage() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Discount Type</label>
                 <select
@@ -519,10 +519,10 @@ export default function AddInvoiceEnhancedPage() {
 
         {/* Step 3: Addresses */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Billing & Shipping Address</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3">Billing Address</h4>
                 <div className="space-y-3">
@@ -635,7 +635,7 @@ export default function AddInvoiceEnhancedPage() {
 
         {/* Step 4: Review */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold text-gray-900">Review Invoice</h3>
               <button onClick={() => setShowPreview(!showPreview)} className="flex items-center gap-2 text-blue-600 hover:underline">
@@ -644,8 +644,8 @@ export default function AddInvoiceEnhancedPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Invoice Details</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Invoice #:</span><span className="font-mono">{formData.invoiceNumber}</span></div>
@@ -656,7 +656,7 @@ export default function AddInvoiceEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <h4 className="font-semibold text-green-900 mb-3">Amount Summary</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span>Subtotal:</span><span>{formatCurrency(calculateTotals.subtotal)}</span></div>
@@ -669,7 +669,7 @@ export default function AddInvoiceEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-3">
               <h4 className="font-semibold text-gray-900 mb-3">Line Items ({formData.lineItems.length})</h4>
               <table className="w-full text-sm">
                 <thead className="border-b">

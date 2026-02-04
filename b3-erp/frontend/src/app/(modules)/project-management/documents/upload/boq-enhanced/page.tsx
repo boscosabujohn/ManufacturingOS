@@ -570,7 +570,7 @@ export default function UploadBOQEnhancedPage() {
                       </td>
                       <td className="px-4 py-3 text-center">
                         {item.isValid ? (
-                          <CheckCircle className="w-5 h-5 text-green-600 mx-auto" />
+                          <CheckCircle className="w-5 h-5 text-green-600" />
                         ) : (
                           <div className="flex flex-col items-center">
                             <AlertCircle className="w-5 h-5 text-red-600" />

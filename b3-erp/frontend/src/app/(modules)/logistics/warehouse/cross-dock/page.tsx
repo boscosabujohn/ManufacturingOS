@@ -530,7 +530,7 @@ export default function CrossDockPage() {
 
       {filteredOps.length === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <Package className="w-16 h-16 text-gray-400 mb-4" />
           <p className="text-gray-500 text-lg mb-2">No cross-dock operations found</p>
           <p className="text-sm text-gray-400">Try adjusting your search or filter criteria</p>
         </div>

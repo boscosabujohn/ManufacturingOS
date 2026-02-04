@@ -634,7 +634,7 @@ export default function AddWorkOrderEnhancedPage() {
               <h4 className="font-semibold text-gray-900 mb-2">Material Requirements</h4>
               {formData.materialRequirements.length === 0 ? (
                 <div className="text-center py-8 bg-gray-50 rounded-lg">
-                  <Package className="h-10 w-10 text-gray-400 mx-auto mb-2" />
+                  <Package className="h-10 w-10 text-gray-400 mb-2" />
                   <p className="text-gray-500">Select a product to load materials</p>
                 </div>
               ) : (
@@ -677,7 +677,7 @@ export default function AddWorkOrderEnhancedPage() {
               <h4 className="font-semibold text-gray-900 mb-2">Operations / Routing</h4>
               {formData.operations.length === 0 ? (
                 <div className="text-center py-8 bg-gray-50 rounded-lg">
-                  <Settings className="h-10 w-10 text-gray-400 mx-auto mb-2" />
+                  <Settings className="h-10 w-10 text-gray-400 mb-2" />
                   <p className="text-gray-500">Select a product to load operations</p>
                 </div>
               ) : (

@@ -221,10 +221,10 @@ export default function GLEntryViewPage() {
   const TypeIcon = entryTypeConfig[entry.entryType].icon;
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div className="flex items-start space-x-4">
             <button
               onClick={() => router.back()}
@@ -321,7 +321,7 @@ export default function GLEntryViewPage() {
 
         {/* Balance Check Alert */}
         {entry.isBalanced ? (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-start space-x-3">
             <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-green-900">Entry Balanced</h3>
@@ -331,7 +331,7 @@ export default function GLEntryViewPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start space-x-3">
             <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-red-900">Entry Not Balanced</h3>
@@ -344,7 +344,7 @@ export default function GLEntryViewPage() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="flex space-x-8">
           <button
             onClick={() => setActiveTab('details')}
@@ -381,10 +381,10 @@ export default function GLEntryViewPage() {
 
       {/* Tab Content */}
       {activeTab === 'details' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Entry Information */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <FileText className="h-5 w-5 mr-2 text-blue-600" />
               Entry Information
             </h2>
@@ -429,13 +429,13 @@ export default function GLEntryViewPage() {
           </div>
 
           {/* Amounts Summary */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <DollarSign className="h-5 w-5 mr-2 text-green-600" />
               Amounts Summary
             </h2>
-            <div className="space-y-4">
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="space-y-2">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-orange-600">Total Debits</p>
@@ -445,7 +445,7 @@ export default function GLEntryViewPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-green-600">Total Credits</p>
@@ -455,7 +455,7 @@ export default function GLEntryViewPage() {
                 </div>
               </div>
 
-              <div className={`bg-gradient-to-br rounded-lg p-4 border ${entry.isBalanced
+              <div className={`bg-gradient-to-br rounded-lg p-3 border ${entry.isBalanced
                   ? 'from-blue-50 to-blue-100 border-blue-200'
                   : 'from-red-50 to-red-100 border-red-200'
                 }`}>
@@ -482,8 +482,8 @@ export default function GLEntryViewPage() {
           </div>
 
           {/* User Information */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <User className="h-5 w-5 mr-2 text-purple-600" />
               User Information
             </h2>
@@ -538,8 +538,8 @@ export default function GLEntryViewPage() {
 
           {/* Notes */}
           {entry.notes && (
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
                 <FileText className="h-5 w-5 mr-2 text-indigo-600" />
                 Notes
               </h2>
@@ -555,31 +555,31 @@ export default function GLEntryViewPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Line #</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit (₹)</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit (₹)</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cost Center</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dimensions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Line #</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Account</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Debit (₹)</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Credit (₹)</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Cost Center</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Dimensions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {entry.journalLines.map((line) => (
                   <tr key={line.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm">
                         {line.lineNumber}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="font-mono font-semibold text-blue-600">{line.accountCode}</div>
                       <div className="text-sm text-gray-700">{line.accountName}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm text-gray-900">{line.description}</div>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       {line.debitAmount > 0 ? (
                         <span className="font-bold text-orange-700">
                           {line.debitAmount.toLocaleString()}
@@ -588,7 +588,7 @@ export default function GLEntryViewPage() {
                         <span className="text-gray-400">-</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       {line.creditAmount > 0 ? (
                         <span className="font-bold text-green-700">
                           {line.creditAmount.toLocaleString()}
@@ -597,14 +597,14 @@ export default function GLEntryViewPage() {
                         <span className="text-gray-400">-</span>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       {line.costCenter ? (
                         <span className="text-sm text-gray-700">{line.costCenter}</span>
                       ) : (
                         <span className="text-gray-400">-</span>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="space-y-1">
                         {line.dimension1 && (
                           <div className="text-xs text-gray-600">D1: {line.dimension1}</div>
@@ -622,20 +622,20 @@ export default function GLEntryViewPage() {
               </tbody>
               <tfoot className="bg-gray-50 border-t-2 border-gray-300">
                 <tr>
-                  <td colSpan={3} className="px-6 py-4 text-right font-bold text-gray-900">
+                  <td colSpan={3} className="px-3 py-2 text-right font-bold text-gray-900">
                     Totals:
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <span className="font-bold text-orange-700 text-lg">
                       ₹{entry.totalDebit.toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <span className="font-bold text-green-700 text-lg">
                       ₹{entry.totalCredit.toLocaleString()}
                     </span>
                   </td>
-                  <td colSpan={2} className="px-6 py-4">
+                  <td colSpan={2} className="px-3 py-2">
                     {entry.isBalanced ? (
                       <span className="flex items-center text-sm text-green-700 font-semibold">
                         <CheckCircle className="h-4 w-4 mr-1" />
@@ -703,7 +703,7 @@ export default function GLEntryViewPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
             <div className="p-6">
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center space-x-3 mb-2">
                 <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
                   <RotateCcw className="h-6 w-6 text-red-600" />
                 </div>
@@ -713,7 +713,7 @@ export default function GLEntryViewPage() {
                 </div>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-3">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Reason for Reversal *
                 </label>
@@ -726,7 +726,7 @@ export default function GLEntryViewPage() {
                 />
               </div>
 
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-6">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-3">
                 <p className="text-sm text-yellow-800">
                   <AlertCircle className="h-4 w-4 inline mr-1" />
                   This action will create a reversal entry and mark the original entry as reversed. This action cannot be undone.

@@ -84,19 +84,19 @@ import { FinanceService, FinanceDashboardStats } from '@/services/finance.servic
 // Dashboard skeleton loader component
 function DashboardSkeleton() {
   return (
-    <div className="animate-pulse space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="animate-pulse space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="bg-white rounded-xl p-6 h-32">
-            <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+          <div key={i} className="bg-white rounded-xl p-3 h-32">
+            <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
             <div className="h-8 bg-gray-200 rounded w-3/4"></div>
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {[...Array(2)].map((_, i) => (
-          <div key={i} className="bg-white rounded-xl p-6 h-64">
-            <div className="h-4 bg-gray-200 rounded w-1/3 mb-4"></div>
+          <div key={i} className="bg-white rounded-xl p-3 h-64">
+            <div className="h-4 bg-gray-200 rounded w-1/3 mb-2"></div>
             <div className="space-y-3">
               <div className="h-4 bg-gray-200 rounded"></div>
               <div className="h-4 bg-gray-200 rounded w-5/6"></div>
@@ -362,7 +362,7 @@ export default function FinanceDashboard() {
     return (
       <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="flex-1 overflow-y-auto overflow-x-hidden">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+          <div className="w-full px-3 py-2 w-full">
             <DashboardSkeleton />
           </div>
         </div>
@@ -376,12 +376,12 @@ export default function FinanceDashboard() {
       <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+            <AlertCircle className="w-16 h-16 text-red-500 mb-2" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Failed to Load Dashboard</h2>
-            <p className="text-gray-600 mb-4">{error}</p>
+            <p className="text-gray-600 mb-2">{error}</p>
             <button
               onClick={refreshData}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 mx-auto"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               <RefreshCw className="w-4 h-4" />
               Try Again
@@ -409,9 +409,9 @@ export default function FinanceDashboard() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+        <div className="w-full px-3 py-2 w-full">
           {/* Header Actions */}
-          <div className="mb-6 flex items-center justify-between gap-3">
+          <div className="mb-3 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => openModal('quickJournal')}
@@ -467,7 +467,7 @@ export default function FinanceDashboard() {
           </div>
 
           {/* Key Metrics - Top Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
             {isLoading ? (
               <>
                 <CardSkeleton />
@@ -550,12 +550,12 @@ export default function FinanceDashboard() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-lg p-3 mb-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
               <ArrowRight className="w-5 h-5 text-blue-600" />
               Quick Actions
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               {quickActions.map((action) => {
                 const colorMap: any = {
                   blue: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
@@ -567,7 +567,7 @@ export default function FinanceDashboard() {
                   <Link
                     key={action.label}
                     href={action.href}
-                    className={`bg-gradient-to-r ${colorMap[action.color]} text-white p-4 rounded-lg shadow-md transition-all hover:shadow-xl flex items-center gap-3`}
+                    className={`bg-gradient-to-r ${colorMap[action.color]} text-white p-3 rounded-lg shadow-md transition-all hover:shadow-xl flex items-center gap-3`}
                   >
                     <action.icon className="w-8 h-8" />
                     <span className="font-semibold">{action.label}</span>
@@ -578,11 +578,11 @@ export default function FinanceDashboard() {
           </div>
 
           {/* Middle Row - Revenue/Expense & Cash Flow */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
             {/* Revenue vs Expense */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Monthly Revenue vs Expense</h2>
-              <div className="space-y-4">
+            <div className="bg-white rounded-xl shadow-lg p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Monthly Revenue vs Expense</h2>
+              <div className="space-y-2">
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-gray-600">Revenue</span>
@@ -629,10 +629,10 @@ export default function FinanceDashboard() {
             </div>
 
             {/* Anticipated Cash Flow */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Anticipated Cash Flow</h2>
-              <div className="space-y-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-white rounded-xl shadow-lg p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Anticipated Cash Flow</h2>
+              <div className="space-y-2">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <ArrowUpRight className="w-5 h-5 text-green-600" />
@@ -658,7 +658,7 @@ export default function FinanceDashboard() {
                   </div>
                 </div>
 
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <ArrowDownRight className="w-5 h-5 text-orange-600" />
@@ -699,10 +699,10 @@ export default function FinanceDashboard() {
           </div>
 
           {/* Bottom Row - Recent Transactions & Financial Reports */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Recent Transactions */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-xl font-bold text-gray-900">Recent Transactions</h2>
                 <Link href="/finance/transactions" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
                   View All →
@@ -747,14 +747,14 @@ export default function FinanceDashboard() {
             </div>
 
             {/* Financial Reports */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Financial Reports</h2>
-              <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white rounded-xl shadow-lg p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Financial Reports</h2>
+              <div className="grid grid-cols-2 gap-2">
                 {financialReports.map((report) => (
                   <Link
                     key={report.name}
                     href={report.href}
-                    className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-blue-50 hover:to-blue-100 border border-gray-200 hover:border-blue-300 rounded-lg p-4 transition-all hover:shadow-md group"
+                    className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-blue-50 hover:to-blue-100 border border-gray-200 hover:border-blue-300 rounded-lg p-3 transition-all hover:shadow-md group"
                   >
                     <report.icon className="w-8 h-8 text-gray-600 group-hover:text-blue-600 mb-2 transition-colors" />
                     <h3 className="font-semibold text-gray-900 mb-1">{report.name}</h3>

@@ -508,7 +508,7 @@ const ProductionSchedulingEditPage = () => {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <X className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <X className="w-16 h-16 text-red-500 mb-4" />
           <p className="text-xl text-gray-800">Schedule not found</p>
         </div>
       </div>
@@ -971,7 +971,7 @@ const ProductionSchedulingEditPage = () => {
 
               {scheduleData.workOrders.length === 0 && (
                 <div className="text-center py-12 text-gray-500">
-                  <Package className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                  <Package className="w-12 h-12 mb-3 opacity-50" />
                   <p>No work orders scheduled</p>
                   <p className="text-sm">Click "Add Work Orders" to begin</p>
                 </div>

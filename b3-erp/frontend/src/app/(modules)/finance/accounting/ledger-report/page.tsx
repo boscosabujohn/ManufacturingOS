@@ -253,10 +253,10 @@ export default function LedgerReportPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
               <BookOpen className="h-8 w-8 text-blue-600" />
@@ -296,8 +296,8 @@ export default function LedgerReportPage() {
         </div>
 
         {/* Account Selection & Info */}
-        <div className="bg-gradient-to-br from-blue-50 to-purple-100 border border-blue-200 rounded-lg p-6 mb-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-gradient-to-br from-blue-50 to-purple-100 border border-blue-200 rounded-lg p-3 mb-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Select Account</label>
               <div className="relative">
@@ -316,7 +316,7 @@ export default function LedgerReportPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <h3 className="text-sm font-medium text-gray-700 mb-3">Account Information</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -343,8 +343,8 @@ export default function LedgerReportPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Opening Balance</p>
@@ -355,7 +355,7 @@ export default function LedgerReportPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">Total Debits</p>
@@ -365,7 +365,7 @@ export default function LedgerReportPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Total Credits</p>
@@ -375,7 +375,7 @@ export default function LedgerReportPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Closing Balance</p>
@@ -389,12 +389,12 @@ export default function LedgerReportPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
-        <div className="flex items-center space-x-2 mb-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+        <div className="flex items-center space-x-2 mb-2">
           <Filter className="h-5 w-5 text-gray-600" />
           <h2 className="text-lg font-semibold text-gray-900">Filters & Options</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
             <div className="relative">
@@ -465,8 +465,8 @@ export default function LedgerReportPage() {
 
       {/* Month Breakdown */}
       {showMonthBreakdown && (
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-6">
-          <div className="bg-gray-50 border-b border-gray-200 px-6 py-4">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-3">
+          <div className="bg-gray-50 border-b border-gray-200 px-3 py-2">
             <h2 className="text-lg font-semibold text-gray-900 flex items-center">
               <BarChart3 className="h-5 w-5 mr-2 text-blue-600" />
               Month-wise Breakdown
@@ -476,31 +476,31 @@ export default function LedgerReportPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Month</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Opening Balance</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Total Debit</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Total Credit</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Closing Balance</th>
-                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Transactions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Month</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Opening Balance</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Total Debit</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Total Credit</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Closing Balance</th>
+                  <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase">Transactions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {mockMonthBreakdown.map((month) => (
                   <tr key={month.month} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-semibold text-gray-900">{month.month}</td>
-                    <td className="px-6 py-4 text-right font-semibold text-gray-700">
+                    <td className="px-3 py-2 font-semibold text-gray-900">{month.month}</td>
+                    <td className="px-3 py-2 text-right font-semibold text-gray-700">
                       ₹{month.openingBalance.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 text-right font-semibold text-orange-700">
+                    <td className="px-3 py-2 text-right font-semibold text-orange-700">
                       ₹{month.totalDebit.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 text-right font-semibold text-green-700">
+                    <td className="px-3 py-2 text-right font-semibold text-green-700">
                       ₹{month.totalCredit.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 text-right font-bold text-blue-700">
+                    <td className="px-3 py-2 text-right font-bold text-blue-700">
                       ₹{month.closingBalance.toLocaleString()} {month.balanceType}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
                         {month.transactionCount}
                       </span>
@@ -515,7 +515,7 @@ export default function LedgerReportPage() {
 
       {/* Transactions Table */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="bg-gray-50 border-b border-gray-200 px-6 py-4">
+        <div className="bg-gray-50 border-b border-gray-200 px-3 py-2">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center">
             <FileText className="h-5 w-5 mr-2 text-blue-600" />
             Transaction Details
@@ -525,50 +525,50 @@ export default function LedgerReportPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b-2 border-gray-300">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Entry No.</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit (₹)</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit (₹)</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Balance (₹)</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Entry No.</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Debit (₹)</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Credit (₹)</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Balance (₹)</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {/* Opening Balance Row */}
               <tr className="bg-blue-50 font-semibold">
-                <td className="px-6 py-4" colSpan={4}>
+                <td className="px-3 py-2" colSpan={4}>
                   <div className="flex items-center space-x-2">
                     <Info className="h-5 w-5 text-blue-600" />
                     <span className="text-blue-900">Opening Balance</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right text-gray-400">-</td>
-                <td className="px-6 py-4 text-right text-gray-400">-</td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-3 py-2 text-right text-gray-400">-</td>
+                <td className="px-3 py-2 text-right text-gray-400">-</td>
+                <td className="px-3 py-2 text-right">
                   <span className={`font-bold ${account.openingBalanceType === 'Dr' ? 'text-orange-700' : 'text-green-700'}`}>
                     ₹{account.openingBalance.toLocaleString()} {account.openingBalanceType}
                   </span>
                 </td>
-                <td className="px-6 py-4"></td>
+                <td className="px-3 py-2"></td>
               </tr>
 
               {/* Transaction Rows */}
               {paginatedTransactions.map((transaction) => (
                 <tr key={transaction.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm text-gray-900">{transaction.date}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{transaction.date}</td>
+                  <td className="px-3 py-2">
                     <div className="font-mono text-sm font-semibold text-blue-600">{transaction.entryNumber}</div>
                     <div className="text-xs text-gray-500">{transaction.referenceNumber}</div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{transaction.description}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{transaction.description}</td>
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 text-xs font-semibold rounded ${transactionTypeConfig[transaction.transactionType].color}`}>
                       {transaction.transactionType}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     {transaction.debitAmount > 0 ? (
                       <span className="font-semibold text-orange-700">
                         {transaction.debitAmount.toLocaleString()}
@@ -577,7 +577,7 @@ export default function LedgerReportPage() {
                       <span className="text-gray-400">-</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     {transaction.creditAmount > 0 ? (
                       <span className="font-semibold text-green-700">
                         {transaction.creditAmount.toLocaleString()}
@@ -586,12 +586,12 @@ export default function LedgerReportPage() {
                       <span className="text-gray-400">-</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <span className={`font-bold ${transaction.balanceType === 'Dr' ? 'text-orange-700' : 'text-green-700'}`}>
                       {transaction.balance.toLocaleString()} {transaction.balanceType}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <button
                       onClick={() => router.push(`/finance/accounting/view/${transaction.entryNumber}`)}
                       className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
@@ -605,27 +605,27 @@ export default function LedgerReportPage() {
 
               {/* Closing Balance Row */}
               <tr className="bg-blue-50 font-bold border-t-2 border-gray-300">
-                <td className="px-6 py-4" colSpan={4}>
+                <td className="px-3 py-2" colSpan={4}>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="h-5 w-5 text-blue-600" />
                     <span className="text-blue-900">Closing Balance</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right text-orange-700">₹{totalDebit.toLocaleString()}</td>
-                <td className="px-6 py-4 text-right text-green-700">₹{totalCredit.toLocaleString()}</td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-3 py-2 text-right text-orange-700">₹{totalDebit.toLocaleString()}</td>
+                <td className="px-3 py-2 text-right text-green-700">₹{totalCredit.toLocaleString()}</td>
+                <td className="px-3 py-2 text-right">
                   <span className="font-bold text-blue-900 text-lg">
                     ₹{closingBalance.toLocaleString()} Dr
                   </span>
                 </td>
-                <td className="px-6 py-4"></td>
+                <td className="px-3 py-2"></td>
               </tr>
             </tbody>
           </table>
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredTransactions.length)} of{' '}
             {filteredTransactions.length} transactions

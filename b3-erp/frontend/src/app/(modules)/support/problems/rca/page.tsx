@@ -503,7 +503,7 @@ export default function RootCauseAnalysis() {
 
       {filteredRCAs.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <FileText className="h-12 w-12 text-gray-400 mb-4" />
           <p className="text-gray-600">No RCA records found matching your filters.</p>
         </div>
       )}

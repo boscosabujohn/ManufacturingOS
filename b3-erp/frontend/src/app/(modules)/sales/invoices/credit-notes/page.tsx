@@ -195,10 +195,10 @@ export default function CreditNotesPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -217,8 +217,8 @@ export default function CreditNotesPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-100 text-sm font-medium">Total Credit Notes</p>
@@ -231,7 +231,7 @@ export default function CreditNotesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm font-medium">Pending Processing</p>
@@ -244,7 +244,7 @@ export default function CreditNotesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Approved</p>
@@ -259,8 +259,8 @@ export default function CreditNotesPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -286,10 +286,10 @@ export default function CreditNotesPage() {
         </div>
 
         {/* Credit Notes Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredCreditNotes.map((note) => (
-            <div key={note.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-              <div className="space-y-4">
+            <div key={note.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+              <div className="space-y-2">
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div>
@@ -306,14 +306,14 @@ export default function CreditNotesPage() {
                 </div>
 
                 {/* Amount */}
-                <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg p-4 text-white">
+                <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg p-3 text-white">
                   <p className="text-purple-100 text-sm font-medium">Credit Amount</p>
                   <p className="text-3xl font-bold mt-1">₹{note.amount.toLocaleString('en-IN')}</p>
                   <p className="text-purple-100 text-xs mt-1">{note.itemsCount} items</p>
                 </div>
 
                 {/* Type and Reason */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <div className="space-y-2">
                     <div>
                       <p className="text-sm font-medium text-blue-900">Type</p>
@@ -327,7 +327,7 @@ export default function CreditNotesPage() {
                 </div>
 
                 {/* Dates */}
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-gray-600">Issue Date</p>
                     <p className="font-medium text-gray-900">{new Date(note.issueDate).toLocaleDateString('en-IN')}</p>
@@ -390,7 +390,7 @@ export default function CreditNotesPage() {
 
         {filteredCreditNotes.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <FileText className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Credit Notes</h3>
             <p className="text-gray-600">No credit notes match your search.</p>
           </div>

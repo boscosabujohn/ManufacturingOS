@@ -420,7 +420,7 @@ export default function CPQQuotesVersionsPage() {
       <div className="space-y-4">
         {Object.keys(groupedVersions).length === 0 ? (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-            <GitBranch className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <GitBranch className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-gray-600">No versions found matching your filters</p>
           </div>
         ) : (

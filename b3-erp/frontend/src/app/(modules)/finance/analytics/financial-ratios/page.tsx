@@ -45,8 +45,8 @@ export default function FinancialRatiosPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Financial Ratios Analysis</h1>
           <p className="text-gray-600 mt-1">Comprehensive financial ratio analysis and benchmarking</p>
@@ -58,14 +58,14 @@ export default function FinancialRatiosPage() {
               <h2 className="text-lg font-semibold text-gray-900">{category} Ratios</h2>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {ratios
                   .filter(r => r.category === category)
                   .map((ratio, idx) => {
                     const status = getRatioStatus(ratio.value, ratio.benchmark, category)
                     return (
                       <div key={idx} className="border-2 border-gray-200 rounded-xl p-5">
-                        <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-start justify-between mb-2">
                           <div>
                             <h3 className="text-lg font-semibold text-gray-900">{ratio.name}</h3>
                             <p className="text-sm text-gray-600 mt-1">{ratio.formula}</p>
@@ -76,7 +76,7 @@ export default function FinancialRatiosPage() {
                             </p>
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                           <div className="bg-gray-50 rounded-lg p-3">
                             <p className="text-xs text-gray-600 mb-1">Benchmark</p>
                             <p className="text-lg font-semibold text-gray-900">

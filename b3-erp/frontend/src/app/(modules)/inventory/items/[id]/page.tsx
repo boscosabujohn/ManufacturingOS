@@ -35,7 +35,7 @@ export default function ItemDetailPage() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <div>
@@ -151,7 +151,7 @@ export default function ItemDetailPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="text-center py-4">
-                                <Package className="w-12 h-12 text-blue-600 mx-auto mb-2" />
+                                <Package className="w-12 h-12 text-blue-600 mb-2" />
                                 <p className="text-3xl font-bold text-gray-900">{item.currentStock}</p>
                                 <p className="text-sm text-gray-500">{item.uom} Available</p>
                             </div>

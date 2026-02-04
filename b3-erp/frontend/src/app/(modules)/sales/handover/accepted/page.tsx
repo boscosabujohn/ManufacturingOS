@@ -230,10 +230,10 @@ export default function AcceptedHandoverPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -310,7 +310,7 @@ export default function AcceptedHandoverPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredHandovers.map((handover) => (
             <div key={handover.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div>
@@ -324,7 +324,7 @@ export default function AcceptedHandoverPage() {
                 </div>
 
                 {/* Handover Details */}
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
                     <span className="font-medium text-green-900">Handover Completed</span>
@@ -342,7 +342,7 @@ export default function AcceptedHandoverPage() {
                 </div>
 
                 {/* Accepted By */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm font-medium text-blue-900 mb-2">Accepted By</p>
                   <div className="space-y-1 text-sm">
                     <p className="font-medium text-blue-900">{handover.acceptedBy}</p>
@@ -376,7 +376,7 @@ export default function AcceptedHandoverPage() {
                 </div>
 
                 {/* Documents */}
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                   <p className="text-sm font-medium text-purple-900 mb-2">Documents Handed Over</p>
                   <div className="flex flex-wrap gap-2">
                     {handover.documentsHandedOver.map((doc, idx) => (
@@ -389,7 +389,7 @@ export default function AcceptedHandoverPage() {
 
                 {/* Rating */}
                 {handover.rating && (
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-yellow-900">Customer Rating</span>
                       {renderStars(handover.rating)}
@@ -441,7 +441,7 @@ export default function AcceptedHandoverPage() {
 
         {filteredHandovers.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <CheckCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <CheckCircle className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Accepted Handovers</h3>
             <p className="text-gray-600">No handovers match your search.</p>
           </div>

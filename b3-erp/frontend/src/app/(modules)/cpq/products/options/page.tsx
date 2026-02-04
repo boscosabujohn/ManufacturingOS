@@ -362,7 +362,7 @@ export default function CPQProductsOptionsPage() {
               {filteredOptions.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="px-4 py-12 text-center">
-                    <Sliders className="h-12 w-12 mx-auto text-gray-400 mb-3" />
+                    <Sliders className="h-12 w-12 text-gray-400 mb-3" />
                     <p className="text-gray-600 text-lg">No options found</p>
                     <p className="text-gray-500 text-sm mt-2">
                       {searchQuery || appliedFilters

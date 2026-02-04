@@ -81,7 +81,7 @@ const quickSettings = [
 export default function SettingsPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="w-full max-w-full mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">

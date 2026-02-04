@@ -348,10 +348,10 @@ export default function CustomersAnalyticsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -366,7 +366,7 @@ export default function CustomersAnalyticsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -424,8 +424,8 @@ export default function CustomersAnalyticsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Customer Type</label>
             <select
@@ -472,12 +472,12 @@ export default function CustomersAnalyticsPage() {
       </div>
 
       {/* Customers Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredCustomers.map((customer, index) => (
           <div key={customer.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white font-bold text-sm">
@@ -495,7 +495,7 @@ export default function CustomersAnalyticsPage() {
               </div>
 
               {/* Key Metrics Grid */}
-              <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="grid grid-cols-3 gap-3 mb-2">
                 <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <p className="text-xs text-green-700 mb-1">Total Revenue</p>
                   <p className="font-semibold text-green-900">₹{(customer.totalRevenue / 100000).toFixed(2)}L</p>
@@ -511,7 +511,7 @@ export default function CustomersAnalyticsPage() {
               </div>
 
               {/* Lifetime Value */}
-              <div className="mb-4 p-3 bg-gradient-to-r from-orange-50 to-pink-50 rounded-lg border border-orange-200">
+              <div className="mb-2 p-3 bg-gradient-to-r from-orange-50 to-pink-50 rounded-lg border border-orange-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs text-orange-700 mb-1">Lifetime Value</p>
@@ -522,7 +522,7 @@ export default function CustomersAnalyticsPage() {
               </div>
 
               {/* Performance Metrics */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
@@ -540,7 +540,7 @@ export default function CustomersAnalyticsPage() {
               </div>
 
               {/* Growth & Favorite Category */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center gap-1 mb-1">
                     {customer.growthRate >= 0 ? (
@@ -564,7 +564,7 @@ export default function CustomersAnalyticsPage() {
               </div>
 
               {/* Additional Details */}
-              <div className="mb-4 text-sm space-y-1">
+              <div className="mb-2 text-sm space-y-1">
                 <p className="text-gray-600">Order Frequency: <span className="font-medium text-gray-900">{customer.orderFrequency}x/month</span></p>
                 <p className="text-gray-600">Payment Terms: <span className="font-medium text-gray-900">{customer.paymentTerms}</span></p>
                 <p className="text-gray-600">Credit Limit: <span className="font-medium text-gray-900">₹{(customer.creditLimit / 100000).toFixed(1)}L</span></p>
@@ -572,7 +572,7 @@ export default function CustomersAnalyticsPage() {
               </div>
 
               {/* Timeline */}
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-4 w-4 text-blue-600" />
                   <p className="text-xs text-blue-700 font-medium">Customer Since</p>
@@ -599,7 +599,7 @@ export default function CustomersAnalyticsPage() {
 
       {filteredCustomers.length === 0 && (
         <div className="text-center py-12">
-          <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Users className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No customers found matching your criteria</p>
         </div>
       )}

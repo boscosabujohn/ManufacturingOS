@@ -118,10 +118,10 @@ export default function CreateInvoicePage() {
   const total = items.reduce((sum, item) => sum + item.amount, 0);
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -145,12 +145,12 @@ export default function CreateInvoicePage() {
         </div>
 
         {/* Customer Information */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Building className="w-5 h-5 text-blue-600" />
             Customer Information
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Customer Name <span className="text-red-500">*</span>
@@ -203,9 +203,9 @@ export default function CreateInvoicePage() {
         </div>
 
         {/* Invoice Details */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Invoice Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Invoice Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Invoice Date <span className="text-red-500">*</span>
@@ -248,8 +248,8 @@ export default function CreateInvoicePage() {
         </div>
 
         {/* Line Items */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-semibold text-gray-900">Line Items</h2>
             <button
               onClick={addItem}
@@ -260,9 +260,9 @@ export default function CreateInvoicePage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {items.map((item, index) => (
-              <div key={item.id} className="border border-gray-200 rounded-lg p-4 space-y-3">
+              <div key={item.id} className="border border-gray-200 rounded-lg p-3 space-y-3">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700">Item #{index + 1}</span>
                   {items.length > 1 && (
@@ -352,7 +352,7 @@ export default function CreateInvoicePage() {
         </div>
 
         {/* Summary */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex justify-between items-start">
             <div className="flex-1">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Notes</h3>
@@ -366,7 +366,7 @@ export default function CreateInvoicePage() {
             </div>
 
             <div className="w-80 ml-6">
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Subtotal:</span>
                   <span className="font-medium text-gray-900">₹{subtotal.toFixed(2)}</span>

@@ -202,8 +202,8 @@ export default function AlertsNotificationsPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-rose-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-rose-50 to-pink-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Alerts & Notifications</h1>
@@ -215,7 +215,7 @@ export default function AlertsNotificationsPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
             <div className="flex items-center gap-3 mb-2">
               <Bell className="h-6 w-6 text-rose-600" />
@@ -265,8 +265,8 @@ export default function AlertsNotificationsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <div className="space-y-2">
             <h2 className="text-xl font-semibold text-gray-900">Recent Alerts</h2>
             {alerts.map((alert) => (
               <div key={alert.id} className={`rounded-xl shadow-sm border-2 p-5 ${getAlertColor(alert.type)} ${!alert.read ? 'ring-2 ring-offset-2 ring-rose-500' : ''}`}>
@@ -307,7 +307,7 @@ export default function AlertsNotificationsPage() {
             ))}
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h2 className="text-xl font-semibold text-gray-900">Notification Rules</h2>
             {notificationRules.map((rule) => (
               <div key={rule.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
@@ -379,10 +379,10 @@ export default function AlertsNotificationsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-rose-600 to-pink-600 rounded-xl shadow-sm p-6 text-white">
-          <h3 className="text-lg font-semibold mb-4">Notification Capabilities</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+        <div className="bg-gradient-to-r from-rose-600 to-pink-600 rounded-xl shadow-sm p-3 text-white">
+          <h3 className="text-lg font-semibold mb-2">Notification Capabilities</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Event-Based Triggers</h4>
               <ul className="space-y-1 text-sm">
                 <li>• Payment due date reminders</li>
@@ -391,7 +391,7 @@ export default function AlertsNotificationsPage() {
                 <li>• Compliance deadline reminders</li>
               </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Multi-Channel Delivery</h4>
               <ul className="space-y-1 text-sm">
                 <li>• In-app notifications</li>
@@ -400,7 +400,7 @@ export default function AlertsNotificationsPage() {
                 <li>• Mobile push notifications</li>
               </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Smart Features</h4>
               <ul className="space-y-1 text-sm">
                 <li>• Role-based notification routing</li>

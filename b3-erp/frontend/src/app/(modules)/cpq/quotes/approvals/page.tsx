@@ -524,7 +524,7 @@ export default function CPQQuotesApprovalsPage() {
       <div className="space-y-4">
         {filteredApprovals.length === 0 ? (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-            <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <AlertCircle className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-gray-600">No approval requests found matching your filters</p>
           </div>
         ) : (

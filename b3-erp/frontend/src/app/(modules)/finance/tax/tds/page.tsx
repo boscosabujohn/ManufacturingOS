@@ -361,8 +361,8 @@ export default function TDSManagementPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -397,8 +397,8 @@ export default function TDSManagementPage() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingDown className="w-8 h-8 opacity-80" />
               <FileText className="w-5 h-5" />
@@ -408,7 +408,7 @@ export default function TDSManagementPage() {
             <div className="mt-2 text-xs text-purple-100">For {quarterFilter}</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 opacity-80" />
               <Calendar className="w-5 h-5" />
@@ -420,7 +420,7 @@ export default function TDSManagementPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <AlertCircle className="w-8 h-8 opacity-80" />
               <Clock className="w-5 h-5" />
@@ -430,7 +430,7 @@ export default function TDSManagementPage() {
             <div className="mt-2 text-xs text-orange-100">To be paid</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Users className="w-8 h-8 opacity-80" />
               <FileText className="w-5 h-5" />
@@ -446,7 +446,7 @@ export default function TDSManagementPage() {
           <div className="flex border-b border-gray-700">
             <button
               onClick={() => setActiveTab('transactions')}
-              className={`flex-1 px-6 py-4 font-medium transition-colors ${
+              className={`flex-1 px-3 py-2 font-medium transition-colors ${
                 activeTab === 'transactions'
                   ? 'bg-purple-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
@@ -459,7 +459,7 @@ export default function TDSManagementPage() {
             </button>
             <button
               onClick={() => setActiveTab('returns')}
-              className={`flex-1 px-6 py-4 font-medium transition-colors ${
+              className={`flex-1 px-3 py-2 font-medium transition-colors ${
                 activeTab === 'returns'
                   ? 'bg-purple-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
@@ -472,7 +472,7 @@ export default function TDSManagementPage() {
             </button>
             <button
               onClick={() => setActiveTab('challans')}
-              className={`flex-1 px-6 py-4 font-medium transition-colors ${
+              className={`flex-1 px-3 py-2 font-medium transition-colors ${
                 activeTab === 'challans'
                   ? 'bg-purple-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
@@ -490,7 +490,7 @@ export default function TDSManagementPage() {
             <>
               {/* Filters */}
               <div className="p-6 border-b border-gray-700">
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-2">
                   <div className="flex-1 min-w-[300px]">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -541,45 +541,45 @@ export default function TDSManagementPage() {
                 <table className="w-full">
                   <thead className="bg-gray-900/50">
                     <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Payment Ref</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Deductee</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Section</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Gross Amount</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">TDS Amount</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Net Payment</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Challan</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Payment Ref</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Deductee</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Section</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Gross Amount</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">TDS Amount</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Net Payment</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Challan</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredTransactions.map((txn) => (
                       <tr key={txn.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                        <td className="px-6 py-4 text-white text-sm">
+                        <td className="px-3 py-2 text-white text-sm">
                           {new Date(txn.date).toLocaleDateString()}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="font-medium text-white text-sm">{txn.paymentRef}</div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="text-white text-sm">{txn.deductee}</div>
                           <div className="text-xs text-gray-400 font-mono">{txn.pan}</div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           {getSectionBadge(txn.section)}
                           <div className="text-xs text-gray-400 mt-1">{txn.tdsRate}%</div>
                         </td>
-                        <td className="px-6 py-4 text-right text-white font-medium">
+                        <td className="px-3 py-2 text-right text-white font-medium">
                           {formatCurrency(txn.grossAmount)}
                         </td>
-                        <td className="px-6 py-4 text-right text-purple-400 font-medium">
+                        <td className="px-3 py-2 text-right text-purple-400 font-medium">
                           {formatCurrency(txn.tdsAmount)}
                         </td>
-                        <td className="px-6 py-4 text-right text-white font-medium">
+                        <td className="px-3 py-2 text-right text-white font-medium">
                           {formatCurrency(txn.netPayment)}
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           {txn.challanNumber ? (
                             <div>
                               <div className="text-white text-xs font-mono">{txn.challanNumber}</div>
@@ -589,7 +589,7 @@ export default function TDSManagementPage() {
                             <span className="text-gray-500 text-xs">Not deposited</span>
                           )}
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           {txn.deposited ? (
                             <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
                               <CheckCircle className="w-3 h-3" />
@@ -602,7 +602,7 @@ export default function TDSManagementPage() {
                             </span>
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex items-center justify-center gap-2">
                             <button
                               onClick={() => handleViewTransaction(txn)}
@@ -634,27 +634,27 @@ export default function TDSManagementPage() {
               <table className="w-full">
                 <thead className="bg-gray-900/50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Form Type</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Quarter</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Due Date</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Total Deductions</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Total Deposited</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Deductees</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Form Type</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Quarter</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Due Date</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Total Deductions</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Total Deposited</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Deductees</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {tdsReturns.map((ret) => (
                     <tr key={ret.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="font-medium text-white">{ret.formType}</div>
                         {ret.acknowledgementNumber && (
                           <div className="text-xs text-gray-400 font-mono mt-1">ACK: {ret.acknowledgementNumber}</div>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-white text-sm">{ret.quarter}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2 text-white text-sm">{ret.quarter}</td>
+                      <td className="px-3 py-2">
                         <div className="text-white text-sm">{new Date(ret.dueDate).toLocaleDateString()}</div>
                         {ret.filedDate && (
                           <div className="text-xs text-green-400 mt-1">
@@ -662,19 +662,19 @@ export default function TDSManagementPage() {
                           </div>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-right text-purple-400 font-medium">
+                      <td className="px-3 py-2 text-right text-purple-400 font-medium">
                         {formatCurrency(ret.totalDeductions)}
                       </td>
-                      <td className="px-6 py-4 text-right text-green-400 font-medium">
+                      <td className="px-3 py-2 text-right text-green-400 font-medium">
                         {formatCurrency(ret.totalDeposited)}
                       </td>
-                      <td className="px-6 py-4 text-center text-white font-medium">
+                      <td className="px-3 py-2 text-center text-white font-medium">
                         {ret.deducteeCount}
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         {getStatusBadge(ret.status)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => handleViewReturn(ret)}
@@ -714,31 +714,31 @@ export default function TDSManagementPage() {
               <table className="w-full">
                 <thead className="bg-gray-900/50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Challan Number</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Section</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Amount</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Bank</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Challan Number</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Section</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Amount</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Bank</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {challans.map((challan) => (
                     <tr key={challan.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="px-6 py-4 text-white font-mono text-sm">{challan.challanNumber}</td>
-                      <td className="px-6 py-4 text-white text-sm">
+                      <td className="px-3 py-2 text-white font-mono text-sm">{challan.challanNumber}</td>
+                      <td className="px-3 py-2 text-white text-sm">
                         {new Date(challan.date).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 text-white text-sm">{challan.section}</td>
-                      <td className="px-6 py-4 text-right text-purple-400 font-medium">
+                      <td className="px-3 py-2 text-white text-sm">{challan.section}</td>
+                      <td className="px-3 py-2 text-right text-purple-400 font-medium">
                         {formatCurrency(challan.amount)}
                       </td>
-                      <td className="px-6 py-4 text-white text-sm">{challan.bankName}</td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-white text-sm">{challan.bankName}</td>
+                      <td className="px-3 py-2 text-center">
                         {getStatusBadge(challan.status)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => handleViewChallan(challan)}

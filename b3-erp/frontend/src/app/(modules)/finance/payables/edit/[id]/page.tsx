@@ -286,12 +286,12 @@ export default function EditPayablePage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push(`/finance/payables/view/${payableId}`)}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Payable Details</span>
@@ -305,15 +305,15 @@ export default function EditPayablePage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Vendor & Bill Details */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <Building2 className="h-5 w-5 mr-2 text-orange-600" />
             Vendor & Bill Information
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {/* Vendor Selection */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -432,8 +432,8 @@ export default function EditPayablePage() {
         </div>
 
         {/* Line Items */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
               <Package className="h-5 w-5 mr-2 text-orange-600" />
               Line Items
@@ -448,10 +448,10 @@ export default function EditPayablePage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {formData.lineItems.map((item, index) => (
-              <div key={item.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                <div className="flex items-center justify-between mb-4">
+              <div key={item.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-gray-900">Item {index + 1}</h3>
                   {formData.lineItems.length > 1 && (
                     <button
@@ -464,7 +464,7 @@ export default function EditPayablePage() {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                   {/* Product/Service */}
                   <div className="lg:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -595,7 +595,7 @@ export default function EditPayablePage() {
 
                   {/* Item Summary */}
                   <div className="lg:col-span-4 bg-blue-50 rounded-lg p-3 border border-blue-200">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                       <div>
                         <p className="text-gray-600">Taxable Amount:</p>
                         <p className="font-bold text-gray-900">{formatCurrency(item.taxableAmount)}</p>
@@ -621,8 +621,8 @@ export default function EditPayablePage() {
         </div>
 
         {/* Bill Summary */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <Calculator className="h-5 w-5 mr-2 text-orange-600" />
             Bill Summary
           </h2>
@@ -660,13 +660,13 @@ export default function EditPayablePage() {
         </div>
 
         {/* Additional Information */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
             <FileText className="h-5 w-5 mr-2 text-orange-600" />
             Additional Information
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {/* Payment Terms */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -702,7 +702,7 @@ export default function EditPayablePage() {
           <button
             type="button"
             onClick={() => router.push(`/finance/payables/view/${payableId}`)}
-            className="flex items-center space-x-2 px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+            className="flex items-center space-x-2 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
           >
             <X className="h-5 w-5" />
             <span>Cancel</span>
@@ -710,7 +710,7 @@ export default function EditPayablePage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex items-center space-x-2 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center space-x-2 px-3 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Save className="h-5 w-5" />
             <span>{isSubmitting ? 'Updating...' : 'Update Payable'}</span>

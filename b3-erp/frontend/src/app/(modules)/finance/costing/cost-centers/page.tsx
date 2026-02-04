@@ -587,8 +587,8 @@ export default function CostCentersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 p-6">
-      <div className="w-full space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 p-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -597,7 +597,7 @@ export default function CostCentersPage() {
           </div>
           <button
             onClick={handleAddCostCenter}
-            className="flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-lg"
+            className="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-lg"
           >
             <Plus className="w-5 h-5" />
             Add Cost Center
@@ -605,8 +605,8 @@ export default function CostCentersPage() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Target className="w-8 h-8 opacity-80" />
               <Building className="w-5 h-5" />
@@ -616,7 +616,7 @@ export default function CostCentersPage() {
             <div className="mt-2 text-xs text-blue-100">{costCenters.filter(cc => cc.status === 'Active').length} active</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -626,7 +626,7 @@ export default function CostCentersPage() {
             <div className="mt-2 text-xs text-purple-100">Allocated amount</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <BarChart3 className="w-8 h-8 opacity-80" />
               <TrendingDown className="w-5 h-5" />
@@ -638,7 +638,7 @@ export default function CostCentersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -652,7 +652,7 @@ export default function CostCentersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Users className="w-8 h-8 opacity-80" />
               <TrendingUp className="w-5 h-5" />
@@ -664,8 +664,8 @@ export default function CostCentersPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -742,16 +742,16 @@ export default function CostCentersPage() {
             <table className="w-full">
               <thead className="bg-gray-900/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Cost Center</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Manager</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Budget</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Actual Cost</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Variance</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Utilization</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Employees</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Cost Center</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Type</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Manager</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Budget</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Actual Cost</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Variance</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Utilization</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Employees</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -760,17 +760,17 @@ export default function CostCentersPage() {
 
                   return (
                     <tr key={cc.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className="font-medium text-white">{cc.name}</div>
                           <div className="text-sm text-gray-400 font-mono">{cc.code}</div>
                           <div className="text-xs text-gray-500 mt-1">{cc.department}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         {getTypeBadge(cc.type)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <div className="w-8 h-8 bg-indigo-500/20 rounded-full flex items-center justify-center">
                             <Users className="w-4 h-4 text-indigo-400" />
@@ -781,18 +781,18 @@ export default function CostCentersPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right text-white font-medium">
+                      <td className="px-3 py-2 text-right text-white font-medium">
                         {formatCurrency(cc.budgetAllocated)}
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <div className={`font-medium ${cc.variance < 0 ? 'text-orange-400' : 'text-green-400'}`}>
                           {formatCurrency(cc.actualCost)}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         {getVarianceIndicator(cc.variance, cc.variancePercent)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-col items-center">
                           <span className={`text-sm font-medium mb-1 ${utilizationPercent > 100 ? 'text-red-400' :
                               utilizationPercent > 90 ? 'text-orange-400' :
@@ -811,16 +811,16 @@ export default function CostCentersPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         <div className="flex items-center justify-center gap-1">
                           <Users className="w-4 h-4 text-gray-400" />
                           <span className="text-white font-medium">{cc.employeeCount}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         {getStatusBadge(cc.status)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => handleViewCostCenter(cc)}
@@ -854,7 +854,7 @@ export default function CostCentersPage() {
 
           {filteredCostCenters.length === 0 && (
             <div className="text-center py-12">
-              <Building className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+              <Building className="w-16 h-16 text-gray-600 mb-2" />
               <p className="text-gray-400 text-lg">No cost centers found</p>
               <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filters</p>
             </div>
@@ -863,7 +863,7 @@ export default function CostCentersPage() {
 
         {/* Pagination */}
         {filteredCostCenters.length > 0 && (
-          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
+          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
             <div className="text-gray-400 text-sm">
               Showing {filteredCostCenters.length} of {costCenters.length} cost centers
             </div>

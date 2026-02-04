@@ -625,7 +625,7 @@ export default function BOMAddPage() {
                     ))
                   ) : (
                     <div className="px-4 py-8 text-center text-gray-500">
-                      <Package className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                      <Package className="h-8 w-8 mb-2 text-gray-400" />
                       <p className="text-sm">No items found</p>
                     </div>
                   )}
@@ -1053,12 +1053,12 @@ export default function BOMAddPage() {
 
         {components.length === 0 ? (
           <div className="py-12 text-center border-2 border-dashed border-gray-300 rounded-lg">
-            <Package className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <Package className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-gray-600 font-medium">No components added yet</p>
             <p className="text-sm text-gray-500 mt-1">Click "Add Component" to start building your BOM</p>
             <button
               onClick={() => addComponent(0)}
-              className="mt-4 flex items-center space-x-2 px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mx-auto"
+              className="mt-4 flex items-center space-x-2 px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               <Plus className="h-4 w-4" />
               <span>Add First Component</span>

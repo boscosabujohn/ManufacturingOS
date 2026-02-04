@@ -369,7 +369,7 @@ export default function CompanySettingsPage() {
               {settings.logoUrl ? (
                 <img src={settings.logoUrl} alt="Company Logo" className="mx-auto mb-4 max-h-32" />
               ) : (
-                <Building2 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                <Building2 className="w-16 h-16 text-gray-300 mb-4" />
               )}
               <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
                 Upload Logo

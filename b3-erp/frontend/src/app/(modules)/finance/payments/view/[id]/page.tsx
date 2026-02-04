@@ -282,12 +282,12 @@ export default function PaymentViewPage() {
   const progressSteps = getProgressSteps();
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/finance/payments')}
-          className="flex items-center text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Payments
@@ -348,8 +348,8 @@ export default function PaymentViewPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Payment Amount</p>
@@ -361,7 +361,7 @@ export default function PaymentViewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Transaction Fee</p>
@@ -373,7 +373,7 @@ export default function PaymentViewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Net Amount</p>
@@ -385,7 +385,7 @@ export default function PaymentViewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Payment Date</p>
@@ -398,8 +398,8 @@ export default function PaymentViewPage() {
       </div>
 
       {/* Progress Tracker */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Payment Progress</h3>
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Payment Progress</h3>
         <div className="flex items-center justify-between">
           {progressSteps.map((step, index) => (
             <div key={index} className="flex items-center flex-1">
@@ -446,7 +446,7 @@ export default function PaymentViewPage() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {['overview', 'details', 'activity'].map((tab) => (
             <button
@@ -466,19 +466,19 @@ export default function PaymentViewPage() {
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Party Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <User className="h-5 w-5 mr-2 text-blue-600" />
               {payment.partyType === 'customer' ? 'Customer' : 'Vendor'} Information
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500">Name</p>
                 <p className="font-semibold text-gray-900">{payment.partyName}</p>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-500">ID</p>
                   <p className="font-medium text-gray-900">{payment.partyId}</p>
@@ -513,12 +513,12 @@ export default function PaymentViewPage() {
           </div>
 
           {/* Invoice Reference */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <FileText className="h-5 w-5 mr-2 text-purple-600" />
               Invoice Reference
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500">Invoice Number</p>
                 <button
@@ -529,7 +529,7 @@ export default function PaymentViewPage() {
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </button>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-500">Invoice Amount</p>
                   <p className="font-bold text-gray-900">
@@ -541,7 +541,7 @@ export default function PaymentViewPage() {
                   <p className="font-medium text-gray-900">{payment.dueDate}</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-500">Paid Amount</p>
                   <p className="font-bold text-green-700">
@@ -572,12 +572,12 @@ export default function PaymentViewPage() {
           </div>
 
           {/* Payment Method Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <MethodIcon className="h-5 w-5 mr-2 text-green-600" />
               Payment Method Details
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500">Payment Method</p>
                 <p className="font-semibold text-gray-900">{methodConfig[payment.paymentMethod].label}</p>
@@ -591,7 +591,7 @@ export default function PaymentViewPage() {
                     <p className="text-sm text-gray-500">Bank Name</p>
                     <p className="font-medium text-gray-900">{payment.bankName}</p>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm text-gray-500">Account Number</p>
                       <p className="font-mono text-gray-900">{payment.bankAccountNumber}</p>
@@ -614,7 +614,7 @@ export default function PaymentViewPage() {
                 </div>
               )}
               {payment.cardLastFourDigits && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-500">Card Type</p>
                     <p className="font-medium text-gray-900">{payment.cardType}</p>
@@ -626,7 +626,7 @@ export default function PaymentViewPage() {
                 </div>
               )}
               {payment.checkNumber && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-500">Check Number</p>
                     <p className="font-mono text-gray-900">{payment.checkNumber}</p>
@@ -649,12 +649,12 @@ export default function PaymentViewPage() {
           </div>
 
           {/* Reconciliation Status */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <CheckCircle className="h-5 w-5 mr-2 text-indigo-600" />
               Reconciliation Status
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500">Status</p>
                 <span
@@ -699,14 +699,14 @@ export default function PaymentViewPage() {
       )}
 
       {activeTab === 'details' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Transaction Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <Hash className="h-5 w-5 mr-2 text-blue-600" />
               Transaction Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <div>
                 <p className="text-sm text-gray-500">Payment Number</p>
                 <p className="font-mono text-gray-900 font-semibold">{payment.paymentNumber}</p>
@@ -735,8 +735,8 @@ export default function PaymentViewPage() {
           </div>
 
           {/* Amount Breakdown */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <DollarSign className="h-5 w-5 mr-2 text-green-600" />
               Amount Breakdown
             </h3>
@@ -763,12 +763,12 @@ export default function PaymentViewPage() {
           </div>
 
           {/* Bank & Transaction Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <Building className="h-5 w-5 mr-2 text-indigo-600" />
               Bank & Transaction Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <p className="text-sm text-gray-500">Bank Name</p>
                 <p className="font-semibold text-gray-900">{payment.bankName}</p>
@@ -789,18 +789,18 @@ export default function PaymentViewPage() {
           </div>
 
           {/* Notes */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Notes</h3>
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500 mb-2">Payment Notes</p>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-gray-900">{payment.notes}</p>
                 </div>
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-2">Internal Notes</p>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <p className="text-gray-900">{payment.internalNotes}</p>
                 </div>
               </div>
@@ -808,8 +808,8 @@ export default function PaymentViewPage() {
           </div>
 
           {/* Attachments */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Attachments</h3>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Attachments</h3>
             <div className="space-y-2">
               {payment.attachments.map((attachment, index) => (
                 <div
@@ -832,12 +832,12 @@ export default function PaymentViewPage() {
       )}
 
       {activeTab === 'activity' && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
             <Activity className="h-5 w-5 mr-2 text-purple-600" />
             Activity Timeline
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {activityLogs.map((log, index) => (
               <div key={log.id} className="flex items-start space-x-4">
                 <div className="flex flex-col items-center">
@@ -865,7 +865,7 @@ export default function PaymentViewPage() {
                   {index < activityLogs.length - 1 && <div className="w-0.5 h-12 bg-gray-200 mt-2"></div>}
                 </div>
                 <div className="flex-1 pb-8">
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-semibold text-gray-900">{log.action}</h4>
                       <span className="text-xs text-gray-500">{new Date(log.timestamp).toLocaleString('en-IN')}</span>

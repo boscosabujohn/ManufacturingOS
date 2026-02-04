@@ -199,8 +199,8 @@ export default function StandardCostingPage() {
   const grandTotal = totalMaterial + totalLabor + totalOverhead
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -214,7 +214,7 @@ export default function StandardCostingPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -263,7 +263,7 @@ export default function StandardCostingPage() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Standard Costs List */}
           <div className="lg:col-span-1 bg-white rounded-xl shadow-sm border border-gray-200">
             <div className="p-6 border-b border-gray-200">
@@ -307,12 +307,12 @@ export default function StandardCostingPage() {
           </div>
 
           {/* Cost Breakdown Details */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {selectedCost && (
               <>
                 {/* Header Card */}
-                <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-6 text-white shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-3 text-white shadow-lg">
+                  <div className="flex items-center justify-between mb-2">
                     <div>
                       <h2 className="text-2xl font-bold">{selectedCost.productName}</h2>
                       <p className="text-purple-100 mt-1">{selectedCost.productCode} • Version {selectedCost.version}</p>
@@ -328,7 +328,7 @@ export default function StandardCostingPage() {
                       </button>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <p className="text-purple-200 text-sm">Material Cost</p>
                       <p className="text-2xl font-bold mt-1">{formatCurrency(selectedCost.materialCost)}</p>
@@ -355,7 +355,7 @@ export default function StandardCostingPage() {
                   <div className="p-6 border-b border-gray-200">
                     <h3 className="text-lg font-semibold text-gray-900">Cost Breakdown</h3>
                   </div>
-                  <div className="p-6 space-y-6">
+                  <div className="p-6 space-y-3">
                     {/* Material Breakdown */}
                     <div>
                       <div className="flex items-center justify-between mb-3">

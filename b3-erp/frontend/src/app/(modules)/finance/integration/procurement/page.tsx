@@ -75,8 +75,8 @@ export default function ProcurementIntegrationPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-blue-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-blue-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Procurement Integration</h1>
@@ -88,7 +88,7 @@ export default function ProcurementIntegrationPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
             <div className="flex items-center gap-3 mb-2">
               <ShoppingCart className="h-6 w-6 text-cyan-600" />
@@ -136,51 +136,51 @@ export default function ProcurementIntegrationPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">PO Number</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Supplier</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">PO Amount</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Received</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Invoiced</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Paid</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">GR Status</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Invoice Status</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Payment Status</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Sync</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">PO Number</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Supplier</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">PO Amount</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Received</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Invoiced</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Paid</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">GR Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Invoice Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Payment Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Sync</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {syncData.map((po) => (
                   <tr key={po.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-mono text-sm font-medium text-gray-900">{po.poNumber}</span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{po.supplier}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{formatCurrency(po.poAmount)}</td>
-                    <td className="px-6 py-4 text-sm text-green-600">{formatCurrency(po.receivedAmount)}</td>
-                    <td className="px-6 py-4 text-sm text-blue-600">{formatCurrency(po.invoicedAmount)}</td>
-                    <td className="px-6 py-4 text-sm text-purple-600">{formatCurrency(po.paidAmount)}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-sm text-gray-900">{po.supplier}</td>
+                    <td className="px-3 py-2 text-sm font-semibold text-gray-900">{formatCurrency(po.poAmount)}</td>
+                    <td className="px-3 py-2 text-sm text-green-600">{formatCurrency(po.receivedAmount)}</td>
+                    <td className="px-3 py-2 text-sm text-blue-600">{formatCurrency(po.invoicedAmount)}</td>
+                    <td className="px-3 py-2 text-sm text-purple-600">{formatCurrency(po.paidAmount)}</td>
+                    <td className="px-3 py-2">
                       <div className="flex justify-center">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getGRStatusColor(po.grStatus)}`}>
                           {po.grStatus.toUpperCase()}
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex justify-center">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getInvoiceStatusColor(po.invoiceStatus)}`}>
                           {po.invoiceStatus.toUpperCase()}
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex justify-center">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPaymentStatusColor(po.paymentStatus)}`}>
                           {po.paymentStatus.toUpperCase()}
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex justify-center">
                         {po.syncStatus === 'synced' ? (
                           <CheckCircle className="h-5 w-5 text-green-600" />
@@ -198,10 +198,10 @@ export default function ProcurementIntegrationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl shadow-sm p-6 text-white">
-          <h3 className="text-lg font-semibold mb-4">Three-Way Matching Process</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+        <div className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl shadow-sm p-3 text-white">
+          <h3 className="text-lg font-semibold mb-2">Three-Way Matching Process</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <ShoppingCart className="h-5 w-5" />
                 Purchase Order
@@ -213,7 +213,7 @@ export default function ProcurementIntegrationPage() {
                 <li>• Approval workflow tracking</li>
               </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <FileText className="h-5 w-5" />
                 Goods Receipt
@@ -225,7 +225,7 @@ export default function ProcurementIntegrationPage() {
                 <li>• Automatic PO matching</li>
               </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
                 Invoice & Payment

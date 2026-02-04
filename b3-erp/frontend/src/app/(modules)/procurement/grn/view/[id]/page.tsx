@@ -722,7 +722,7 @@ const GRNViewPage = () => {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           <p className="mt-4 text-gray-600">Loading GRN details...</p>
         </div>
       </div>
@@ -733,7 +733,7 @@ const GRNViewPage = () => {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
           <h2 className="text-2xl font-bold text-gray-800 mb-2">GRN Not Found</h2>
           <p className="text-gray-600 mb-4">The requested GRN could not be found.</p>
           <button

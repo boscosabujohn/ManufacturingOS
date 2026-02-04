@@ -738,7 +738,7 @@ const QualityInspectionAddPage = () => {
             <div className="space-y-4">
               {testParameters.length === 0 ? (
                 <div className="text-center py-12 text-gray-500">
-                  <Ruler className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                  <Ruler className="w-12 h-12 mb-3 opacity-50" />
                   <p>No quality parameters defined</p>
                   <p className="text-sm">
                     Select a work order to load specs or add custom parameters
@@ -1286,7 +1286,7 @@ const QualityInspectionAddPage = () => {
                     Photos & Evidence Upload
                   </label>
                   <div className="border-2 border-dashed border-red-300 rounded-lg p-6 text-center hover:border-red-400 cursor-pointer bg-white">
-                    <Camera className="w-8 h-8 text-red-400 mx-auto mb-2" />
+                    <Camera className="w-8 h-8 text-red-400 mb-2" />
                     <p className="text-sm text-red-800">
                       Click to upload defect photos
                     </p>

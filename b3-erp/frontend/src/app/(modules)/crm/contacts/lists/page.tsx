@@ -644,7 +644,7 @@ export default function ContactListsPage() {
       {/* List Contacts Modal */}
       {selectedList && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
-          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[80vh] overflow-y-auto">
+          <div className="bg-white rounded-lg  w-full max-h-[80vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 sticky top-0 bg-white">
               <div className="flex justify-between items-start">
                 <div>

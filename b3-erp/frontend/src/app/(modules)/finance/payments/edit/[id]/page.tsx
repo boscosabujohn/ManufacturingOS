@@ -299,10 +299,10 @@ export default function PaymentEditPage() {
   const requiresCheckDetails = formData.paymentMethod === 'check';
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Header */}
-      <div className="mb-6">
-        <button onClick={handleCancel} className="flex items-center text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <button onClick={handleCancel} className="flex items-center text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Payment Details
         </button>
@@ -331,12 +331,12 @@ export default function PaymentEditPage() {
       </div>
 
       {/* Invoice Summary */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
         <div className="flex items-start">
           <Info className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
           <div className="flex-1">
             <h3 className="font-semibold text-blue-900 mb-2">Invoice Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 text-sm">
               <div>
                 <p className="text-blue-700">Invoice Number</p>
                 <p className="font-semibold text-blue-900">{invoice.invoiceNumber}</p>
@@ -359,14 +359,14 @@ export default function PaymentEditPage() {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Payment Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <DollarSign className="h-5 w-5 mr-2 text-green-600" />
               Payment Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Payment Amount <span className="text-red-500">*</span>
@@ -439,7 +439,7 @@ export default function PaymentEditPage() {
               </div>
 
               <div className="md:col-span-2">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <span className="text-gray-700 font-medium">Net Amount (After Fees)</span>
                     <span className="text-2xl font-bold text-green-700">INR {netAmount.toLocaleString('en-IN')}</span>
@@ -450,12 +450,12 @@ export default function PaymentEditPage() {
           </div>
 
           {/* Payment Method */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <MethodIcon className="h-5 w-5 mr-2 text-purple-600" />
               Payment Method
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-3">
               {paymentMethods.map((method) => {
                 const Icon = method.icon;
                 return (
@@ -463,7 +463,7 @@ export default function PaymentEditPage() {
                     key={method.value}
                     type="button"
                     onClick={() => handleInputChange('paymentMethod', method.value)}
-                    className={`flex flex-col items-center p-4 border-2 rounded-lg transition-all ${
+                    className={`flex flex-col items-center p-3 border-2 rounded-lg transition-all ${
                       formData.paymentMethod === method.value
                         ? 'border-blue-500 bg-blue-50'
                         : 'border-gray-200 hover:border-gray-300'
@@ -478,7 +478,7 @@ export default function PaymentEditPage() {
 
             {/* Bank Details */}
             {requiresBankDetails && (
-              <div className="space-y-4 pt-4 border-t border-gray-200">
+              <div className="space-y-2 pt-4 border-t border-gray-200">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Select Bank Account <span className="text-red-500">*</span>
@@ -495,7 +495,7 @@ export default function PaymentEditPage() {
                     ))}
                   </select>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Bank Name</label>
                     <input
@@ -562,8 +562,8 @@ export default function PaymentEditPage() {
 
             {/* Card Details */}
             {requiresCardDetails && (
-              <div className="space-y-4 pt-4 border-t border-gray-200">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2 pt-4 border-t border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Card Type <span className="text-red-500">*</span>
@@ -602,8 +602,8 @@ export default function PaymentEditPage() {
 
             {/* Check Details */}
             {requiresCheckDetails && (
-              <div className="space-y-4 pt-4 border-t border-gray-200">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2 pt-4 border-t border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Check Number <span className="text-red-500">*</span>
@@ -634,12 +634,12 @@ export default function PaymentEditPage() {
           </div>
 
           {/* Transaction Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <Hash className="h-5 w-5 mr-2 text-blue-600" />
               Transaction Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Reference Number <span className="text-red-500">*</span>
@@ -675,12 +675,12 @@ export default function PaymentEditPage() {
           </div>
 
           {/* Status & Reconciliation */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <CheckCircle className="h-5 w-5 mr-2 text-indigo-600" />
               Status & Reconciliation
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Payment Status</label>
                 <select
@@ -714,9 +714,9 @@ export default function PaymentEditPage() {
           </div>
 
           {/* Notes */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Notes</h3>
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Payment Notes</label>
                 <textarea
@@ -742,11 +742,11 @@ export default function PaymentEditPage() {
           </div>
 
           {/* Attachments */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Attachments</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Attachments</h3>
+            <div className="space-y-2">
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <Upload className="h-12 w-12 text-gray-400 mb-2" />
                 <label className="cursor-pointer">
                   <span className="text-blue-600 hover:text-blue-700 font-medium">Upload files</span>
                   <input type="file" multiple onChange={handleFileUpload} className="hidden" accept=".pdf,.jpg,.png" />
@@ -779,7 +779,7 @@ export default function PaymentEditPage() {
 
           {/* Error Summary */}
           {Object.keys(errors).length > 0 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="flex items-start">
                 <AlertCircle className="h-5 w-5 text-red-600 mr-3 mt-0.5 flex-shrink-0" />
                 <div>

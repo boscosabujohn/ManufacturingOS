@@ -341,9 +341,9 @@ export default function BudgetTracking() {
                       </div>
                     </td>
                     <td className="text-center py-3 px-4">
-                      {utilization < 70 && <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />}
-                      {utilization >= 70 && utilization < 90 && <AlertTriangle className="h-5 w-5 text-amber-600 mx-auto" />}
-                      {utilization >= 90 && <AlertTriangle className="h-5 w-5 text-red-600 mx-auto" />}
+                      {utilization < 70 && <CheckCircle className="h-5 w-5 text-green-600" />}
+                      {utilization >= 70 && utilization < 90 && <AlertTriangle className="h-5 w-5 text-amber-600" />}
+                      {utilization >= 90 && <AlertTriangle className="h-5 w-5 text-red-600" />}
                     </td>
                   </tr>
                 )
@@ -368,7 +368,7 @@ export default function BudgetTracking() {
                   </div>
                 </td>
                 <td className="text-center py-3 px-4">
-                  <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                  <CheckCircle className="h-5 w-5 text-green-600" />
                 </td>
               </tr>
             </tfoot>

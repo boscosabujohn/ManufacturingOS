@@ -19,7 +19,7 @@ export default function OrderFulfillmentReport() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Order Fulfillment</h1>
@@ -61,7 +61,7 @@ export default function OrderFulfillmentReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                             <div className="text-center">
-                                <Clock className="w-8 h-8 text-orange-400 mx-auto mb-2" />
+                                <Clock className="w-8 h-8 text-orange-400 mb-2" />
                                 <p className="text-gray-500">Click to view 25 pending orders</p>
                             </div>
                         </div>
@@ -73,7 +73,7 @@ export default function OrderFulfillmentReport() {
                     <CardContent>
                         <div className="flex items-center justify-center h-40 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                             <div className="text-center">
-                                <Truck className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+                                <Truck className="w-8 h-8 text-purple-400 mb-2" />
                                 <p className="text-gray-500">Click to track 45 active shipments</p>
                             </div>
                         </div>

@@ -200,8 +200,8 @@ export default function AssetDisposalPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
-          <div className="w-full space-y-6">
+        <div className="w-full p-3">
+          <div className="w-full space-y-3">
             {/* Header */}
             <div className="flex items-center justify-between">
               <div>
@@ -215,7 +215,7 @@ export default function AssetDisposalPage() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
                 <div className="flex items-center justify-between">
                   <div>
@@ -267,8 +267,8 @@ export default function AssetDisposalPage() {
             </div>
 
             {/* Filters */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-              <div className="flex flex-wrap items-center gap-4">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="flex flex-wrap items-center gap-2">
                 <div className="flex-1 min-w-[300px]">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -321,13 +321,13 @@ export default function AssetDisposalPage() {
             </div>
 
             {/* Disposal List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {filteredDisposals.map((disposal) => (
                 <div key={disposal.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                   <div className="p-6">
                     {/* Header */}
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-start gap-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-start gap-2">
                         <div className="p-3 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg">
                           <Package className="h-6 w-6 text-white" />
                         </div>
@@ -355,20 +355,20 @@ export default function AssetDisposalPage() {
                     </div>
 
                     {/* Financial Details */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                      <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+                      <div className="bg-gray-50 rounded-lg p-3">
                         <p className="text-xs text-gray-600 mb-1">Original Cost</p>
                         <p className="text-lg font-semibold text-gray-900">{formatCurrency(disposal.originalCost)}</p>
                       </div>
-                      <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="bg-gray-50 rounded-lg p-3">
                         <p className="text-xs text-gray-600 mb-1">Book Value</p>
                         <p className="text-lg font-semibold text-gray-900">{formatCurrency(disposal.bookValue)}</p>
                       </div>
-                      <div className="bg-green-50 rounded-lg p-4">
+                      <div className="bg-green-50 rounded-lg p-3">
                         <p className="text-xs text-green-600 mb-1">Sale Proceeds</p>
                         <p className="text-lg font-semibold text-green-700">{formatCurrency(disposal.saleProceeds)}</p>
                       </div>
-                      <div className={`rounded-lg p-4 ${disposal.gainLoss >= 0 ? 'bg-purple-50' : 'bg-red-50'}`}>
+                      <div className={`rounded-lg p-3 ${disposal.gainLoss >= 0 ? 'bg-purple-50' : 'bg-red-50'}`}>
                         <p className={`text-xs mb-1 ${disposal.gainLoss >= 0 ? 'text-purple-600' : 'text-red-600'}`}>
                           Gain/(Loss)
                         </p>
@@ -379,7 +379,7 @@ export default function AssetDisposalPage() {
                     </div>
 
                     {/* Additional Details */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                       <div>
                         <h4 className="text-sm font-semibold text-gray-700 mb-3">Disposal Information</h4>
                         <div className="space-y-2 text-sm">
@@ -453,7 +453,7 @@ export default function AssetDisposalPage() {
 
             {filteredDisposals.length === 0 && (
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-                <Trash2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <Trash2 className="h-12 w-12 text-gray-400 mb-2" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">No Disposals Found</h3>
                 <p className="text-gray-600">Try adjusting your filters or search query</p>
               </div>

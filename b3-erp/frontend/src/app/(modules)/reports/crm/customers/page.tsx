@@ -152,7 +152,7 @@ export default function CustomerGrowthReport() {
                                 onClick={() => router.push('/reports/crm/customers/acquisition')}
                             >
                                 <div className="text-center group-hover:scale-110 transition-transform">
-                                    <BarChart3 className="w-12 h-12 text-blue-500 mx-auto mb-3" />
+                                    <BarChart3 className="w-12 h-12 text-blue-500 mb-3" />
                                     <p className="text-blue-900 font-bold">Analysis Pending</p>
                                     <p className="text-xs text-blue-600 mt-1">Click to view deep-dive acquisition metrics</p>
                                 </div>
@@ -186,7 +186,7 @@ export default function CustomerGrowthReport() {
                         <CardContent className="p-6">
                             <div className="h-64 bg-gradient-to-b from-purple-50 to-white rounded-xl border border-purple-100 flex items-center justify-center">
                                 <div className="text-center">
-                                    <Target className="w-12 h-12 text-purple-500 mx-auto mb-3" />
+                                    <Target className="w-12 h-12 text-purple-500 mb-3" />
                                     <p className="text-purple-900 font-bold">Market Segmentation</p>
                                     <p className="text-xs text-purple-600 mt-1">Interactive heatmap available in full report</p>
                                 </div>

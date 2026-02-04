@@ -269,7 +269,7 @@ export default function CreateKnowledgeArticle() {
             </h2>
 
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+              <Upload className="h-12 w-12 text-gray-400 mb-3" />
               <p className="text-sm text-gray-600 mb-2">
                 Drag and drop files here, or click to browse
               </p>

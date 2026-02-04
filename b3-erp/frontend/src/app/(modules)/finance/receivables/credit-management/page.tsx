@@ -232,8 +232,8 @@ export default function CreditManagementPage() {
   const customersAtRisk = customers.filter(c => c.status === 'critical' || c.status === 'blocked').length
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -250,7 +250,7 @@ export default function CreditManagementPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -297,8 +297,8 @@ export default function CreditManagementPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -350,13 +350,13 @@ export default function CreditManagementPage() {
         </div>
 
         {/* Customer Credit List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredCustomers.map((customer) => (
             <div key={customer.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="p-6">
                 {/* Customer Header */}
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-start gap-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start gap-2">
                     <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg">
                       <Users className="h-6 w-6 text-white" />
                     </div>
@@ -386,7 +386,7 @@ export default function CreditManagementPage() {
                 </div>
 
                 {/* Credit Information Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                   <div>
                     <h4 className="text-sm font-medium text-gray-600 mb-3">Credit Limits</h4>
                     <div className="space-y-2">
@@ -447,7 +447,7 @@ export default function CreditManagementPage() {
                 </div>
 
                 {/* Credit Utilization Bar */}
-                <div className="mb-6">
+                <div className="mb-3">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="font-medium text-gray-700">Credit Utilization</span>
                     <span className={`font-semibold ${
@@ -523,7 +523,7 @@ export default function CreditManagementPage() {
 
         {filteredCustomers.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Users className="h-12 w-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Customers Found</h3>
             <p className="text-gray-600">Try adjusting your filters or search query</p>
           </div>

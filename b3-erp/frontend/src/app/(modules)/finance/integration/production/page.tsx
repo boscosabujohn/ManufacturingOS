@@ -45,8 +45,8 @@ export default function ProductionIntegrationPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Production Integration</h1>
@@ -58,7 +58,7 @@ export default function ProductionIntegrationPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
             <div className="flex items-center gap-3 mb-2">
               <Factory className="h-6 w-6 text-indigo-600" />
@@ -110,40 +110,40 @@ export default function ProductionIntegrationPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Batch Number</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Product</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Quantity</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Material Cost</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Labor Cost</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Overhead</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Total Cost</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Unit Cost</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Journal Entry</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Status</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Batch Number</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Product</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Quantity</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Material Cost</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Labor Cost</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Overhead</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Total Cost</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Unit Cost</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Journal Entry</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {syncData.map((batch) => (
                   <tr key={batch.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-mono text-sm text-gray-900">{batch.batchNumber}</span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <Package className="h-4 w-4 text-indigo-600" />
                         <span className="text-sm font-medium text-gray-900">{batch.productName}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{batch.quantityProduced.toLocaleString('en-IN')}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatCurrency(batch.materialCost)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatCurrency(batch.laborCost)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatCurrency(batch.overheadCost)}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{formatCurrency(batch.totalCost)}</td>
-                    <td className="px-6 py-4 text-sm text-blue-600 font-medium">{formatCurrency(batch.unitCost)}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-sm text-gray-900">{batch.quantityProduced.toLocaleString('en-IN')}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatCurrency(batch.materialCost)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatCurrency(batch.laborCost)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatCurrency(batch.overheadCost)}</td>
+                    <td className="px-3 py-2 text-sm font-semibold text-gray-900">{formatCurrency(batch.totalCost)}</td>
+                    <td className="px-3 py-2 text-sm text-blue-600 font-medium">{formatCurrency(batch.unitCost)}</td>
+                    <td className="px-3 py-2">
                       <span className="text-sm font-mono text-gray-900">{batch.journalEntry}</span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex justify-center">
                         <span className={`px-3 py-1 rounded-full text-xs font-medium ${batch.syncStatus === 'synced' ? 'bg-green-100 text-green-700' :
                             batch.syncStatus === 'pending' ? 'bg-yellow-100 text-yellow-700' :
@@ -160,10 +160,10 @@ export default function ProductionIntegrationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl shadow-sm p-6 text-white">
-          <h3 className="text-lg font-semibold mb-4">Integration Mapping</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl shadow-sm p-3 text-white">
+          <h3 className="text-lg font-semibold mb-2">Integration Mapping</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Production Data Flow</h4>
               <ul className="space-y-1 text-sm">
                 <li>• Material consumption → Raw material inventory reduction</li>
@@ -172,7 +172,7 @@ export default function ProductionIntegrationPage() {
                 <li>• Finished goods → Finished goods inventory increase</li>
               </ul>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
               <h4 className="font-semibold mb-2">Financial Journal Entries</h4>
               <ul className="space-y-1 text-sm">
                 <li>• Dr. Work-in-Progress | Cr. Raw Materials</li>

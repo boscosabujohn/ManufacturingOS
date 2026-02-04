@@ -122,7 +122,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
 
         {/* Main Content - Scrollable */}
         <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 relative z-0">
-          <div className="px-4 pt-4">
+          <div className="px-2 pt-2">
             <Breadcrumbs />
           </div>
           {children}
@@ -130,7 +130,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
 
         {/* Footer */}
         <footer className="bg-white border-t border-gray-200 flex-shrink-0">
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+          <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-center md:text-left">
                 <p className="text-sm font-semibold text-gray-700 mb-1">

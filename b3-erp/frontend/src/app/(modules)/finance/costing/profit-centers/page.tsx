@@ -200,8 +200,8 @@ export default function ProfitCentersPage() {
   const avgNetMargin = (totalNetProfit / totalRevenue) * 100
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -215,7 +215,7 @@ export default function ProfitCentersPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -262,8 +262,8 @@ export default function ProfitCentersPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -313,13 +313,13 @@ export default function ProfitCentersPage() {
         </div>
 
         {/* Profit Centers List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredCenters.map((center) => (
             <div key={center.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="p-6">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-start gap-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start gap-2">
                     <div className="p-3 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg">
                       <Building className="h-6 w-6 text-white" />
                     </div>
@@ -352,25 +352,25 @@ export default function ProfitCentersPage() {
                 </div>
 
                 {/* Financial Metrics */}
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-                  <div className="bg-blue-50 rounded-lg p-4">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+                  <div className="bg-blue-50 rounded-lg p-3">
                     <p className="text-xs text-blue-600 mb-1">Revenue</p>
                     <p className="text-lg font-semibold text-blue-900">{formatCurrency(center.revenue)}</p>
                   </div>
-                  <div className="bg-orange-50 rounded-lg p-4">
+                  <div className="bg-orange-50 rounded-lg p-3">
                     <p className="text-xs text-orange-600 mb-1">Direct Costs</p>
                     <p className="text-lg font-semibold text-orange-900">{formatCurrency(center.directCosts)}</p>
                   </div>
-                  <div className="bg-green-50 rounded-lg p-4">
+                  <div className="bg-green-50 rounded-lg p-3">
                     <p className="text-xs text-green-600 mb-1">Gross Profit</p>
                     <p className="text-lg font-semibold text-green-900">{formatCurrency(center.grossProfit)}</p>
                     <p className="text-xs text-green-700 mt-1">{center.grossProfitMargin}% margin</p>
                   </div>
-                  <div className="bg-red-50 rounded-lg p-4">
+                  <div className="bg-red-50 rounded-lg p-3">
                     <p className="text-xs text-red-600 mb-1">Allocated Costs</p>
                     <p className="text-lg font-semibold text-red-900">{formatCurrency(center.allocatedCosts)}</p>
                   </div>
-                  <div className="bg-purple-50 rounded-lg p-4">
+                  <div className="bg-purple-50 rounded-lg p-3">
                     <p className="text-xs text-purple-600 mb-1">Net Profit</p>
                     <p className="text-lg font-semibold text-purple-900">{formatCurrency(center.netProfit)}</p>
                     <p className="text-xs text-purple-700 mt-1">{center.netProfitMargin.toFixed(1)}% margin</p>
@@ -378,7 +378,7 @@ export default function ProfitCentersPage() {
                 </div>
 
                 {/* Profit Margin Visualization */}
-                <div className="mb-6">
+                <div className="mb-3">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="font-medium text-gray-700">Profitability Performance</span>
                     <span className="text-gray-600">

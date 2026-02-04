@@ -141,7 +141,7 @@ Estimation Team`)
                       : 'border-gray-300 bg-white hover:border-blue-300'
                   }`}
                 >
-                  <Mail className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <Mail className="w-8 h-8 mb-2 text-blue-600" />
                   <p className="text-sm font-semibold text-gray-900">Email</p>
                   <p className="text-xs text-gray-600 mt-1">Send via email with PDF attachment</p>
                 </button>
@@ -154,7 +154,7 @@ Estimation Team`)
                       : 'border-gray-300 bg-white hover:border-green-300'
                   }`}
                 >
-                  <Phone className="w-8 h-8 mx-auto mb-2 text-green-600" />
+                  <Phone className="w-8 h-8 mb-2 text-green-600" />
                   <p className="text-sm font-semibold text-gray-900">WhatsApp</p>
                   <p className="text-xs text-gray-600 mt-1">Send via WhatsApp Business</p>
                 </button>

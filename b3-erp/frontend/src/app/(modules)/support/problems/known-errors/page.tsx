@@ -394,7 +394,7 @@ export default function KnownErrors() {
 
       {filteredErrors.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <AlertCircle className="h-12 w-12 text-gray-400 mb-4" />
           <p className="text-gray-600">No known errors found matching your filters.</p>
         </div>
       )}

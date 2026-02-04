@@ -647,7 +647,7 @@ const GRNAddPage = () => {
               <div className="space-y-3">
                 {filteredPOs.length === 0 ? (
                   <div className="text-center py-12">
-                    <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                    <AlertCircle className="w-12 h-12 text-gray-400 mb-3" />
                     <p className="text-gray-600">No purchase orders found matching the filters</p>
                   </div>
                 ) : (

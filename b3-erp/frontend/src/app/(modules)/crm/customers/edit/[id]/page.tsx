@@ -967,7 +967,7 @@ export default function EditCustomerPage() {
                   <h3 className="text-lg font-semibold text-gray-900">Existing Addresses</h3>
                   {formData.addresses.length === 0 ? (
                     <div className="text-center py-8 border border-dashed border-gray-300 rounded-lg">
-                      <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                      <MapPin className="h-12 w-12 text-gray-400 mb-3" />
                       <p className="text-gray-500">No addresses added yet</p>
                     </div>
                   ) : (
@@ -1159,7 +1159,7 @@ export default function EditCustomerPage() {
                   <h3 className="text-lg font-semibold text-gray-900">Existing Contacts</h3>
                   {formData.contacts.length === 0 ? (
                     <div className="text-center py-8 border border-dashed border-gray-300 rounded-lg">
-                      <Users className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                      <Users className="h-12 w-12 text-gray-400 mb-3" />
                       <p className="text-gray-500">No contacts added yet</p>
                     </div>
                   ) : (

@@ -391,25 +391,25 @@ export default function TeamWorkload() {
               <p className="text-sm text-gray-600 mb-2">Current Load by Priority</p>
               <div className="grid grid-cols-4 gap-2">
                 <div className="text-center">
-                  <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-1">
+                  <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mb-1">
                     <span className="text-red-700 font-bold">{agent.currentLoad.priority1}</span>
                   </div>
                   <span className="text-xs text-gray-600">P1</span>
                 </div>
                 <div className="text-center">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-1">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mb-1">
                     <span className="text-orange-700 font-bold">{agent.currentLoad.priority2}</span>
                   </div>
                   <span className="text-xs text-gray-600">P2</span>
                 </div>
                 <div className="text-center">
-                  <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mx-auto mb-1">
+                  <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mb-1">
                     <span className="text-yellow-700 font-bold">{agent.currentLoad.priority3}</span>
                   </div>
                   <span className="text-xs text-gray-600">P3</span>
                 </div>
                 <div className="text-center">
-                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-1">
+                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mb-1">
                     <span className="text-green-700 font-bold">{agent.currentLoad.priority4}</span>
                   </div>
                   <span className="text-xs text-gray-600">P4</span>

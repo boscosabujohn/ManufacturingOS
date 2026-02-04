@@ -147,8 +147,8 @@ export default function CurrencyManagementPage() {
   const baseCurrency = currencies.find(c => c.isBaseCurrency)
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -162,7 +162,7 @@ export default function CurrencyManagementPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -209,8 +209,8 @@ export default function CurrencyManagementPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -250,20 +250,20 @@ export default function CurrencyManagementPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Currency</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Symbol</th>
-                  <th className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Exchange Rate</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Decimal Places</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Countries</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Last Updated</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Status</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Actions</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Currency</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Symbol</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Exchange Rate</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Decimal Places</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Countries</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Last Updated</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {filteredCurrencies.map((currency) => (
                   <tr key={currency.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-3">
                         <div className="p-2 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg">
                           <Globe className="h-5 w-5 text-white" />
@@ -279,10 +279,10 @@ export default function CurrencyManagementPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="text-lg font-semibold text-gray-900">{currency.symbol}</span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <div>
                         <p className="font-semibold text-gray-900">
                           {currency.currentRate.toFixed(currency.isBaseCurrency ? 4 : 6)}
@@ -292,14 +292,14 @@ export default function CurrencyManagementPage() {
                         </p>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-900">{currency.decimalPlaces}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-gray-900">{currency.decimalPlaces}</td>
+                    <td className="px-3 py-2">
                       <p className="text-sm text-gray-900">{currency.countries.join(', ')}</p>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
+                    <td className="px-3 py-2 text-sm text-gray-600">
                       {new Date(currency.lastUpdated).toLocaleDateString('en-IN')}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <button className="inline-flex items-center gap-1">
                         {currency.isActive ? (
                           <>
@@ -314,7 +314,7 @@ export default function CurrencyManagementPage() {
                         )}
                       </button>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center justify-center gap-2">
                         <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Eye className="h-4 w-4 text-gray-600" />

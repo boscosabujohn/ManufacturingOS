@@ -365,8 +365,8 @@ export default function GSTManagementPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-6">
-      <div className="w-full space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-3">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -401,8 +401,8 @@ export default function GSTManagementPage() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
               <FileText className="w-5 h-5" />
@@ -412,7 +412,7 @@ export default function GSTManagementPage() {
             <div className="mt-2 text-xs text-green-100">GST collected</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingDown className="w-8 h-8 opacity-80" />
               <FileText className="w-5 h-5" />
@@ -422,7 +422,7 @@ export default function GSTManagementPage() {
             <div className="mt-2 text-xs text-blue-100">GST paid</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <FileText className="w-8 h-8 opacity-80" />
               {netGST >= 0 ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
@@ -432,7 +432,7 @@ export default function GSTManagementPage() {
             <div className="mt-2 text-xs text-purple-100">For current period</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <AlertCircle className="w-8 h-8 opacity-80" />
               <Clock className="w-5 h-5" />
@@ -448,7 +448,7 @@ export default function GSTManagementPage() {
           <div className="flex border-b border-gray-700">
             <button
               onClick={() => setActiveTab('transactions')}
-              className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'transactions'
+              className={`flex-1 px-3 py-2 font-medium transition-colors ${activeTab === 'transactions'
                   ? 'bg-green-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
                 }`}
@@ -460,7 +460,7 @@ export default function GSTManagementPage() {
             </button>
             <button
               onClick={() => setActiveTab('returns')}
-              className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'returns'
+              className={`flex-1 px-3 py-2 font-medium transition-colors ${activeTab === 'returns'
                   ? 'bg-green-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
                 }`}
@@ -477,7 +477,7 @@ export default function GSTManagementPage() {
             <>
               {/* Filters */}
               <div className="p-6 border-b border-gray-700">
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-2">
                   <div className="flex-1 min-w-[300px]">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -526,39 +526,39 @@ export default function GSTManagementPage() {
                 <table className="w-full">
                   <thead className="bg-gray-900/50">
                     <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Invoice</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Party Details</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Type</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Taxable Amount</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">GST Amount</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Total Amount</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Invoice</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Party Details</th>
+                      <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Type</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Taxable Amount</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">GST Amount</th>
+                      <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Total Amount</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                      <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredTransactions.map((txn) => (
                       <tr key={txn.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                        <td className="px-6 py-4 text-white text-sm">
+                        <td className="px-3 py-2 text-white text-sm">
                           {new Date(txn.date).toLocaleDateString()}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="font-medium text-white text-sm">{txn.invoiceNumber}</div>
                           <div className="text-xs text-gray-400">HSN: {txn.hsn || 'N/A'}</div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="text-white text-sm">{txn.partyName}</div>
                           <div className="text-xs text-gray-400 font-mono">{txn.gstin}</div>
                           <div className="text-xs text-gray-500">{txn.placeOfSupply}</div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           {getTypeBadge(txn.transactionType)}
                         </td>
-                        <td className="px-6 py-4 text-right text-white font-medium">
+                        <td className="px-3 py-2 text-right text-white font-medium">
                           {txn.taxableAmount < 0 && '('}{formatCurrency(txn.taxableAmount)}{txn.taxableAmount < 0 && ')'}
                         </td>
-                        <td className="px-6 py-4 text-right">
+                        <td className="px-3 py-2 text-right">
                           <div className="text-green-400 font-medium">
                             {txn.totalTax < 0 && '('}{formatCurrency(txn.totalTax)}{txn.totalTax < 0 && ')'}
                           </div>
@@ -566,10 +566,10 @@ export default function GSTManagementPage() {
                             {txn.gstRate}% ({txn.igst > 0 ? 'IGST' : 'CGST+SGST'})
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-right text-white font-medium">
+                        <td className="px-3 py-2 text-right text-white font-medium">
                           {txn.totalAmount < 0 && '('}{formatCurrency(txn.totalAmount)}{txn.totalAmount < 0 && ')'}
                         </td>
-                        <td className="px-6 py-4 text-center">
+                        <td className="px-3 py-2 text-center">
                           {txn.filed ? (
                             <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
                               <CheckCircle className="w-3 h-3" />
@@ -582,7 +582,7 @@ export default function GSTManagementPage() {
                             </span>
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex items-center justify-center gap-2">
                             <button
                               onClick={() => handleViewTransaction(txn)}
@@ -607,28 +607,28 @@ export default function GSTManagementPage() {
               <table className="w-full">
                 <thead className="bg-gray-900/50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Return Type</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Period</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Due Date</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Total Sales</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Output Tax</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Input Tax</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Net Tax</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Return Type</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Period</th>
+                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Due Date</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Total Sales</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Output Tax</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Input Tax</th>
+                    <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Net Tax</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {gstReturns.map((ret) => (
                     <tr key={ret.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="font-medium text-white">{ret.returnType}</div>
                         {ret.arn && (
                           <div className="text-xs text-gray-400 font-mono mt-1">ARN: {ret.arn}</div>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-white text-sm">{ret.period}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2 text-white text-sm">{ret.period}</td>
+                      <td className="px-3 py-2">
                         <div className="text-white text-sm">{new Date(ret.dueDate).toLocaleDateString()}</div>
                         {ret.filedDate && (
                           <div className="text-xs text-green-400 mt-1">
@@ -636,22 +636,22 @@ export default function GSTManagementPage() {
                           </div>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-right text-white font-medium">
+                      <td className="px-3 py-2 text-right text-white font-medium">
                         {formatCurrency(ret.totalSales)}
                       </td>
-                      <td className="px-6 py-4 text-right text-green-400 font-medium">
+                      <td className="px-3 py-2 text-right text-green-400 font-medium">
                         {formatCurrency(ret.outputTax)}
                       </td>
-                      <td className="px-6 py-4 text-right text-blue-400 font-medium">
+                      <td className="px-3 py-2 text-right text-blue-400 font-medium">
                         {formatCurrency(ret.inputTax)}
                       </td>
-                      <td className="px-6 py-4 text-right text-purple-400 font-medium">
+                      <td className="px-3 py-2 text-right text-purple-400 font-medium">
                         {formatCurrency(ret.netTax)}
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         {getStatusBadge(ret.status)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => handleViewReturn(ret)}

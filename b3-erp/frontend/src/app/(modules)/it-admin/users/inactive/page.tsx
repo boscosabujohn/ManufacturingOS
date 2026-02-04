@@ -68,7 +68,7 @@ export default function InactiveUsersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -160,7 +160,7 @@ export default function InactiveUsersPage() {
 
         {filteredUsers.length === 0 && (
           <div className="text-center py-12 bg-white rounded-lg border border-slate-200">
-            <UserX className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+            <UserX className="w-12 h-12 text-slate-400 mb-4" />
             <p className="text-slate-600">No inactive users found matching your filters</p>
           </div>
         )}

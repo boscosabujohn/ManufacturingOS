@@ -345,13 +345,13 @@ export default function LoadingPage() {
               </div>
             ) : bay.status === 'available' ? (
               <div className="py-8 text-center">
-                <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-3" />
+                <CheckCircle className="w-12 h-12 text-green-500 mb-3" />
                 <p className="text-green-700 font-semibold">Bay Available</p>
                 <p className="text-sm text-gray-500 mt-1">Ready for next shipment</p>
               </div>
             ) : (
               <div className="py-8 text-center">
-                <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-3" />
+                <AlertTriangle className="w-12 h-12 text-red-500 mb-3" />
                 <p className="text-red-700 font-semibold">Under Maintenance</p>
                 <p className="text-sm text-gray-500 mt-1">Bay temporarily unavailable</p>
               </div>
@@ -362,7 +362,7 @@ export default function LoadingPage() {
 
       {filteredBays.length === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <Truck className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+          <Truck className="w-12 h-12 text-gray-400 mb-3" />
           <p className="text-gray-500">No loading bays found</p>
         </div>
       )}

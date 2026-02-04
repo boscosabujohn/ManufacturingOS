@@ -255,10 +255,10 @@ export default function AnticipatedPaymentsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
+        <div className="w-full p-3">
           {/* Header */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                   <ArrowDownCircle className="w-8 h-8 text-orange-600" />
@@ -268,7 +268,7 @@ export default function AnticipatedPaymentsPage() {
               </div>
               <Link
                 href="/finance/cash/anticipated-payments/create"
-                className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl"
+                className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg shadow-lg transition-all hover:shadow-xl"
               >
                 <Plus className="w-5 h-5" />
                 <span className="font-semibold">Add New Payment</span>
@@ -276,8 +276,8 @@ export default function AnticipatedPaymentsPage() {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-orange-100 text-sm">Total Expected</p>
                   <DollarSign className="w-8 h-8 text-orange-200" />
@@ -286,7 +286,7 @@ export default function AnticipatedPaymentsPage() {
                 <p className="text-sm text-orange-100 mt-2">{payments.length} payments</p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-green-100 text-sm">Amount Paid</p>
                   <CheckCircle className="w-8 h-8 text-green-200" />
@@ -297,7 +297,7 @@ export default function AnticipatedPaymentsPage() {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-blue-100 text-sm">Pending Amount</p>
                   <Clock className="w-8 h-8 text-blue-200" />
@@ -306,7 +306,7 @@ export default function AnticipatedPaymentsPage() {
                 <p className="text-sm text-blue-100 mt-2">{stats.thisWeek} due this week</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-3 text-white">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-red-100 text-sm">Urgent Payments</p>
                   <AlertTriangle className="w-8 h-8 text-red-200" />
@@ -318,12 +318,12 @@ export default function AnticipatedPaymentsPage() {
           </div>
 
           {/* Filters */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white rounded-xl shadow-lg p-3 mb-3">
+            <div className="flex items-center gap-2 mb-2">
               <Filter className="w-5 h-5 text-gray-600" />
               <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
               <div className="md:col-span-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -361,7 +361,7 @@ export default function AnticipatedPaymentsPage() {
               </select>
             </div>
 
-            <div className="flex items-center gap-4 mt-4">
+            <div className="flex items-center gap-2 mt-4">
               <button className="flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
                 <Download className="w-4 h-4" />
                 <span>Export to Excel</span>
@@ -379,28 +379,28 @@ export default function AnticipatedPaymentsPage() {
               <table className="w-full">
                 <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Payment Details
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Vendor
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Due Date
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Amount
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Priority
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Approval
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -408,7 +408,7 @@ export default function AnticipatedPaymentsPage() {
                 <tbody className="divide-y divide-gray-200">
                   {paginatedPayments.map((payment) => (
                     <tr key={payment.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-start gap-3">
                           <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <ArrowDownCircle className="w-5 h-5 text-orange-600" />
@@ -422,7 +422,7 @@ export default function AnticipatedPaymentsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <p className="font-medium text-gray-900">{payment.vendorName}</p>
                           <p className="text-sm text-gray-500">{payment.vendorId}</p>
@@ -432,7 +432,7 @@ export default function AnticipatedPaymentsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <Calendar className="w-4 h-4 text-gray-400" />
                           <div>
@@ -454,7 +454,7 @@ export default function AnticipatedPaymentsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <p className="font-bold text-gray-900">{formatCurrency(payment.expectedAmount)}</p>
                           {payment.paidAmount > 0 && (
@@ -468,7 +468,7 @@ export default function AnticipatedPaymentsPage() {
                           <p className="text-xs text-gray-500 mt-1">{payment.paymentMethod}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-col gap-2">
                           <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-bold ${getUrgencyColor(payment.urgency)}`}>
                             {payment.urgency}
@@ -476,7 +476,7 @@ export default function AnticipatedPaymentsPage() {
                           <span className="text-lg">{getPriorityBadge(payment.priority)}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(
                             payment.status
@@ -486,7 +486,7 @@ export default function AnticipatedPaymentsPage() {
                           {payment.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         {payment.requiresApproval ? (
                           payment.isApproved ? (
                             <div className="flex items-center gap-2">
@@ -506,7 +506,7 @@ export default function AnticipatedPaymentsPage() {
                           <span className="text-xs text-gray-500">Not required</span>
                         )}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <button
                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
@@ -537,7 +537,7 @@ export default function AnticipatedPaymentsPage() {
             </div>
 
             {/* Pagination */}
-            <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+            <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
               <div className="text-sm text-gray-700">
                 Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredPayments.length)} of{' '}
                 {filteredPayments.length} payments

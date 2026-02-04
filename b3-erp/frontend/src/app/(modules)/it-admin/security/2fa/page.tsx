@@ -954,7 +954,7 @@ const TwoFactorAuthPage = () => {
         {/* Setup Guide Tab */}
         {activeTab === 'setup' && (
           <div className="p-6">
-            <div className="max-w-3xl mx-auto space-y-6">
+            <div className="w-full space-y-6">
               {/* QR Code Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                 <div className="flex items-center gap-3 mb-4">

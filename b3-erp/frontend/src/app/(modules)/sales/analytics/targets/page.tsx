@@ -264,10 +264,10 @@ export default function TargetsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -286,7 +286,7 @@ export default function TargetsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -349,8 +349,8 @@ export default function TargetsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Target Type</label>
             <select
@@ -383,12 +383,12 @@ export default function TargetsPage() {
       </div>
 
       {/* Targets Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredTargets.map((target) => (
           <div key={target.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="p-2 bg-blue-100 rounded-lg">
@@ -407,7 +407,7 @@ export default function TargetsPage() {
               </div>
 
               {/* Target vs Achieved */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-600 mb-1">Target</p>
                   <p className="font-semibold text-gray-900">₹{(target.target / 100000).toFixed(2)}L</p>
@@ -419,7 +419,7 @@ export default function TargetsPage() {
               </div>
 
               {/* Progress Bar */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between text-sm mb-2">
                   <span className="text-gray-600">Progress</span>
                   <span className="font-bold text-gray-900">{target.progress.toFixed(1)}%</span>
@@ -438,7 +438,7 @@ export default function TargetsPage() {
               </div>
 
               {/* Gap Analysis */}
-              <div className="mb-4 p-3 bg-orange-50 rounded-lg border border-orange-200">
+              <div className="mb-2 p-3 bg-orange-50 rounded-lg border border-orange-200">
                 <p className="text-xs text-orange-700 mb-1">Gap to Target</p>
                 <p className="font-semibold text-orange-900">₹{((target.target - target.achieved) / 100000).toFixed(2)}L</p>
                 <p className="text-xs text-orange-700 mt-1">
@@ -448,7 +448,7 @@ export default function TargetsPage() {
 
               {/* Additional Details */}
               {target.assignedTo && (
-                <div className="mb-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
+                <div className="mb-2 p-3 bg-purple-50 rounded-lg border border-purple-200">
                   <div className="flex items-center gap-2 mb-1">
                     <Users className="h-4 w-4 text-purple-600" />
                     <p className="text-xs text-purple-700 font-medium">Assigned To</p>
@@ -458,21 +458,21 @@ export default function TargetsPage() {
               )}
 
               {target.category && (
-                <div className="mb-4 flex items-center gap-2">
+                <div className="mb-2 flex items-center gap-2">
                   <Package className="h-4 w-4 text-gray-600" />
                   <span className="text-sm text-gray-700">Category: <span className="font-medium text-gray-900">{target.category}</span></span>
                 </div>
               )}
 
               {target.region && (
-                <div className="mb-4 flex items-center gap-2">
+                <div className="mb-2 flex items-center gap-2">
                   <Target className="h-4 w-4 text-gray-600" />
                   <span className="text-sm text-gray-700">Region: <span className="font-medium text-gray-900">{target.region}</span></span>
                 </div>
               )}
 
               {/* Timeline */}
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-4 w-4 text-blue-600" />
                   <p className="text-xs text-blue-700 font-medium">Timeline</p>
@@ -501,7 +501,7 @@ export default function TargetsPage() {
 
       {filteredTargets.length === 0 && (
         <div className="text-center py-12">
-          <Target className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Target className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No targets found matching your criteria</p>
         </div>
       )}

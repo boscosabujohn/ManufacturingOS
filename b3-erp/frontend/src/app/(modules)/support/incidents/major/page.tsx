@@ -327,7 +327,7 @@ const MajorIncidentsPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 max-w-[1600px]">
       {/* Header */}
       <div className="mb-6">
         <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-xl p-6 mb-4">
@@ -542,7 +542,7 @@ const MajorIncidentsPage = () => {
 
       {filteredIncidents.length === 0 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-          <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+          <AlertCircle className="w-12 h-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No major incidents found matching your criteria</p>
         </div>
       )}
@@ -550,7 +550,7 @@ const MajorIncidentsPage = () => {
       {/* Detail Modal */}
       {selectedIncident && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-7xl w-full max-h-[90vh] overflow-auto">
+          <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <div>
                 <h3 className="text-xl font-bold text-gray-900">{selectedIncident.incidentNumber}</h3>

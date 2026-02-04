@@ -415,10 +415,10 @@ export default function DeliveredOrdersPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -439,8 +439,8 @@ export default function DeliveredOrdersPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Total Delivered</p>
@@ -453,7 +453,7 @@ export default function DeliveredOrdersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Total Value</p>
@@ -466,7 +466,7 @@ export default function DeliveredOrdersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-100 text-sm font-medium">On-Time Delivery</p>
@@ -479,7 +479,7 @@ export default function DeliveredOrdersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm font-medium">Avg Rating</p>
@@ -494,8 +494,8 @@ export default function DeliveredOrdersPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -544,14 +544,14 @@ export default function DeliveredOrdersPage() {
         </div>
 
         {/* Orders Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredOrders.map((order) => {
             const hasIssues = order.deliveryStatus !== 'delivered' || !order.onTimeDelivery;
             const needsAction = order.deliveryStatus === 'damaged' || order.deliveryStatus === 'partially_delivered';
 
             return (
-              <div key={order.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div className="space-y-4">
+              <div key={order.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+                <div className="space-y-2">
                   {/* Header */}
                   <div className="flex items-start justify-between">
                     <div>
@@ -583,7 +583,7 @@ export default function DeliveredOrdersPage() {
                   </div>
 
                   {/* Customer Info */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                  <div className="bg-gray-50 rounded-lg p-3 space-y-2">
                     <div className="flex items-center gap-2 text-gray-700">
                       <User className="w-4 h-4 text-gray-400" />
                       <span className="font-medium">{order.customerName}</span>
@@ -645,7 +645,7 @@ export default function DeliveredOrdersPage() {
                   )}
 
                   {/* Order Details */}
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <p className="text-sm text-gray-600">Amount</p>
                       <p className="font-semibold text-gray-900">₹{(order.totalAmount / 1000).toFixed(0)}K</p>
@@ -661,7 +661,7 @@ export default function DeliveredOrdersPage() {
                   </div>
 
                   {/* Tracking Info */}
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <p className="text-gray-600">Carrier</p>
                       <p className="font-medium text-gray-900">{order.carrier}</p>
@@ -730,7 +730,7 @@ export default function DeliveredOrdersPage() {
 
         {filteredOrders.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Package className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Delivered Orders Found</h3>
             <p className="text-gray-600">No orders match your current filters.</p>
           </div>

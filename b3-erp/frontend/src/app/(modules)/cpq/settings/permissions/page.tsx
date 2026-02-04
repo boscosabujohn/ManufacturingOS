@@ -425,9 +425,9 @@ export default function CPQSettingsPermissionsPage() {
                   </td>
                   <td className="py-3 px-4 text-center">
                     {limit.requiresApproval ? (
-                      <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                      <CheckCircle className="h-5 w-5 text-green-600" />
                     ) : (
-                      <XCircle className="h-5 w-5 text-gray-300 mx-auto" />
+                      <XCircle className="h-5 w-5 text-gray-300" />
                     )}
                   </td>
                   <td className="py-3 px-4">

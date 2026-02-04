@@ -381,7 +381,7 @@ export default function CustomReportsPage() {
   const renderReportBuilder = () => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+        <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
           {/* Header */}
           <div className="bg-blue-600 text-white p-6">
             <div className="flex justify-between items-center">
@@ -685,7 +685,7 @@ export default function CustomReportsPage() {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full max-w-full mx-auto space-y-6">
+      <div className="w-full space-y-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex justify-end items-start gap-2 mb-4">

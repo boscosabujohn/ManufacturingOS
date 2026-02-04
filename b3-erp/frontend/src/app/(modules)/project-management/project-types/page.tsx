@@ -465,7 +465,7 @@ export default function ProjectTypesPage() {
  };
 
  return (
-  <div className="p-6 mx-auto">
+  <div className="p-6">
    {/* Header */}
    <div className="mb-3">
     <div className="flex items-center justify-between mb-4">

@@ -30,7 +30,7 @@ export default function ProjectClosurePage() {
     };
 
     return (
-        <div className="container mx-auto py-6 space-y-8">
+        <div className="w-full py-6 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -54,11 +54,11 @@ export default function ProjectClosurePage() {
             {closed ? (
                 <Card className="bg-green-50 border-green-200">
                     <CardContent className="pt-6 text-center py-12">
-                        <div className="h-20 w-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div className="h-20 w-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
                             <CheckCircle className="h-10 w-10" />
                         </div>
                         <h2 className="text-3xl font-bold text-green-800 mb-2">Project Successfully Closed!</h2>
-                        <p className="text-green-700 max-w-md mx-auto mb-8">
+                        <p className="text-green-700 max-w-md mb-8">
                             Thank you for your hard work. The project "Pearl Apartments - Tower A" has been completed and archived.
                         </p>
                         <div className="flex justify-center gap-4">

@@ -188,7 +188,7 @@ export default function UploadRendersPage() {
       {/* Image Preview Modal */}
       {previewFile && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-          <div className={`bg-white rounded-lg shadow-xl flex flex-col transition-all duration-200 ${isMaximized ? 'w-full h-full' : 'w-full max-w-5xl h-[85vh]'}`}>
+          <div className={`bg-white rounded-lg shadow-xl flex flex-col transition-all duration-200 ${isMaximized ? 'w-full h-full' : 'w-full  h-[85vh]'}`}>
             <div className="flex items-center justify-between p-4 border-b">
               <h3 className="text-lg font-semibold">{previewFile.name}</h3>
               <div className="flex items-center gap-2">

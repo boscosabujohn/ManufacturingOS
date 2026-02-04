@@ -640,7 +640,7 @@ export default function ContractRenewalsPage() {
 
       {filteredRenewals.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
+          <FileText className="w-16 h-16 text-gray-400 mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No renewals found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

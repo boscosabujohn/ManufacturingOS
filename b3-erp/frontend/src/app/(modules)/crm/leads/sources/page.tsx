@@ -698,7 +698,7 @@ export default function LeadSourcesPage() {
 
       {treeParents.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200 mt-6">
-          <Globe className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <Globe className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No lead sources found matching your criteria</p>
         </div>
       )}

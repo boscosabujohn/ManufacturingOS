@@ -321,10 +321,10 @@ export default function ChartOfAccountsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full px-3 py-2">
           {/* Action Bar */}
-          <div className="mb-6">
-            <div className="flex items-center justify-end mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-end mb-2">
               <button
                 onClick={() => setIsAddModalOpen(true)}
                 className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -335,8 +335,8 @@ export default function ChartOfAccountsPage() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-blue-600">Total Accounts</p>
@@ -346,7 +346,7 @@ export default function ChartOfAccountsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-purple-600">Assets Accounts</p>
@@ -356,7 +356,7 @@ export default function ChartOfAccountsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-red-600">Liabilities Accounts</p>
@@ -366,7 +366,7 @@ export default function ChartOfAccountsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-green-600">Active Accounts</p>
@@ -379,12 +379,12 @@ export default function ChartOfAccountsPage() {
           </div>
 
           {/* Filters */}
-          <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Filter className="h-5 w-5 text-gray-600" />
               <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               <div className="lg:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
                 <div className="relative">
@@ -482,7 +482,7 @@ export default function ChartOfAccountsPage() {
 
             {filteredAccounts.length === 0 && (
               <div className="p-12 text-center">
-                <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <AlertCircle className="h-12 w-12 text-gray-400 mb-2" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">No Accounts Found</h3>
                 <p className="text-gray-600">Try adjusting your filters or search query</p>
               </div>

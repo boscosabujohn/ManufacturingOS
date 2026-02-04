@@ -131,7 +131,7 @@ export default function CreateAutomationPage() {
 
             {/* Main Content */}
             <div className="flex-1 overflow-y-auto p-6">
-                <form onSubmit={handleSubmit} className="max-w-4xl mx-auto space-y-6">
+                <form onSubmit={handleSubmit} className="w-full space-y-6">
                     {/* Basic Info */}
                     <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
                         <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2">

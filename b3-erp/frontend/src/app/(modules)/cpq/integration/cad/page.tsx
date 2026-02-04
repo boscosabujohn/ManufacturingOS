@@ -463,7 +463,7 @@ export default function CPQIntegrationCADPage() {
         <div className="p-6">
           <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-96 flex items-center justify-center border-2 border-dashed border-gray-300">
             <div className="text-center">
-              <Box className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <Box className="w-16 h-16 text-gray-400 mb-4" />
               <p className="text-gray-600 font-medium">3D Viewer</p>
               <p className="text-sm text-gray-500 mt-1">Select a design file to preview 3D model</p>
             </div>

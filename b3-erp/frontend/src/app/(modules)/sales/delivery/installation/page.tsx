@@ -308,10 +308,10 @@ export default function InstallationPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-3 py-2">
+      <div className="space-y-3">
         {/* Inline Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => window.history.back()}
             className="p-2 hover:bg-white/50 rounded-lg transition-colors"
@@ -329,8 +329,8 @@ export default function InstallationPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-100 text-sm font-medium">Total Installations</p>
@@ -343,7 +343,7 @@ export default function InstallationPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm font-medium">In Progress</p>
@@ -356,7 +356,7 @@ export default function InstallationPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Completed</p>
@@ -369,7 +369,7 @@ export default function InstallationPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Avg Rating</p>
@@ -384,8 +384,8 @@ export default function InstallationPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -412,10 +412,10 @@ export default function InstallationPage() {
         </div>
 
         {/* Installations Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredInstallations.map((installation) => (
-            <div key={installation.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-              <div className="space-y-4">
+            <div key={installation.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+              <div className="space-y-2">
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div>
@@ -432,7 +432,7 @@ export default function InstallationPage() {
                 </div>
 
                 {/* Schedule */}
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Calendar className="w-5 h-5 text-purple-600" />
                     <span className="font-medium text-purple-900">Installation Schedule</span>
@@ -464,7 +464,7 @@ export default function InstallationPage() {
                 </div>
 
                 {/* Technician */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <User className="w-5 h-5 text-blue-600" />
                     <span className="font-medium text-blue-900">Technician</span>
@@ -497,7 +497,7 @@ export default function InstallationPage() {
 
                 {/* Checklist */}
                 {installation.status === 'completed' && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                     <h4 className="text-sm font-semibold text-green-900 mb-3 flex items-center gap-2">
                       <ClipboardCheck className="w-4 h-4" />
                       Completion Checklist
@@ -525,7 +525,7 @@ export default function InstallationPage() {
 
                 {/* Rating & Feedback */}
                 {installation.rating && (
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-yellow-900">Customer Rating</span>
                       {renderStars(installation.rating)}
@@ -576,7 +576,7 @@ export default function InstallationPage() {
 
         {filteredInstallations.length === 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Wrench className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Wrench className="w-16 h-16 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Installations</h3>
             <p className="text-gray-600">No installations match your search.</p>
           </div>

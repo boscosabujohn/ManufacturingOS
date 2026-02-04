@@ -132,8 +132,8 @@ export default function SalesHandoverPage() {
       <div className="px-3 py-2 space-y-3">
         {/* Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
               <Link
                 href="/sales"
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -160,8 +160,8 @@ export default function SalesHandoverPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Handovers</p>
@@ -170,7 +170,7 @@ export default function SalesHandoverPage() {
               <Package className="w-8 h-8 text-blue-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Completed</p>
@@ -179,7 +179,7 @@ export default function SalesHandoverPage() {
               <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">In Progress</p>
@@ -188,7 +188,7 @@ export default function SalesHandoverPage() {
               <Clock className="w-8 h-8 text-blue-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Pending</p>
@@ -200,8 +200,8 @@ export default function SalesHandoverPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center gap-2">
             <label className="text-sm font-medium text-gray-700">Status:</label>
             <select
               value={statusFilter}
@@ -337,7 +337,7 @@ export default function SalesHandoverPage() {
         </div>
 
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
             <div>

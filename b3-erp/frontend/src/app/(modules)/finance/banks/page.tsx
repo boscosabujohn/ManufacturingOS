@@ -54,9 +54,9 @@ export default function BankAccountsPage() {
     const totalBalance = accounts.reduce((sum, acc) => sum + Number(acc.currentBalance), 0);
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Bank Accounts</h1>
                     <p className="text-gray-600">Manage your bank accounts and transactions</p>
@@ -70,7 +70,7 @@ export default function BankAccountsPage() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium text-gray-600">Total Balance</CardTitle>
@@ -113,8 +113,8 @@ export default function BankAccountsPage() {
             ) : accounts.length === 0 ? (
                 <Card>
                     <CardContent className="text-center py-12">
-                        <Building2 className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                        <p className="text-gray-500 mb-4">No bank accounts found</p>
+                        <Building2 className="mx-auto h-12 w-12 text-gray-400 mb-2" />
+                        <p className="text-gray-500 mb-2">No bank accounts found</p>
                         <Link href="/accounts/banks/create">
                             <Button>
                                 <Plus className="mr-2 h-4 w-4" />
@@ -124,7 +124,7 @@ export default function BankAccountsPage() {
                     </CardContent>
                 </Card>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {accounts.map((account) => (
                         <Card key={account.id} className="hover:shadow-lg transition-shadow cursor-pointer">
                             <CardHeader>
@@ -140,7 +140,7 @@ export default function BankAccountsPage() {
                                 <p className="text-xs text-gray-500">A/C: {account.accountNumber}</p>
                             </CardHeader>
                             <CardContent>
-                                <div className="mb-4">
+                                <div className="mb-2">
                                     <div className="text-xs text-gray-500 mb-1">Current Balance</div>
                                     <div className="text-2xl font-bold flex items-center">
                                         {account.currency} {Number(account.currentBalance).toLocaleString()}

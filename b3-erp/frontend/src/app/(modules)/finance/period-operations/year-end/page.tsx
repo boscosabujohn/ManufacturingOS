@@ -12,20 +12,20 @@ export default function YearEndPage() {
   ])
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Year-End Procedures</h1>
           <p className="text-gray-600 mt-1">Annual closing workflows and compliance</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {procedures.map((proc, idx) => {
             const progress = (proc.completed / proc.total) * 100
             return (
-              <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{proc.category}</h3>
-                <div className="mb-4">
+              <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{proc.category}</h3>
+                <div className="mb-2">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="text-gray-600">Progress</span>
                     <span className="font-semibold">{proc.completed}/{proc.total}</span>

@@ -246,7 +246,7 @@ export default function DigitalTwinPage() {
   };
 
   return (
-    <div className="container mx-auto py-6 space-y-6 max-w-full px-4">
+    <div className="w-full py-6 space-y-6 max-w-full px-4">
       {/* Page Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>

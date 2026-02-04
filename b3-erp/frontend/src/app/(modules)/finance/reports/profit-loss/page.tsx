@@ -488,21 +488,21 @@ Confidential - For authorized use only
 
     return (
       <tr className={`${bgClass} hover:bg-gray-50 transition-colors`}>
-        <td className={`px-6 py-3`} style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
+        <td className={`px-3 py-2`} style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
           <span className={textClass}>{label}</span>
         </td>
-        <td className={`px-6 py-3 text-right ${textClass}`}>
+        <td className={`px-3 py-2 text-right ${textClass}`}>
           {formatCurrency(current)}
         </td>
         {showComparison && (
           <>
-            <td className={`px-6 py-3 text-right ${textClass}`}>
+            <td className={`px-3 py-2 text-right ${textClass}`}>
               {formatCurrency(previous)}
             </td>
-            <td className={`px-6 py-3 text-right ${textClass}`}>
+            <td className={`px-3 py-2 text-right ${textClass}`}>
               {formatCurrency(current - previous)}
             </td>
-            <td className="px-6 py-3 text-right">
+            <td className="px-3 py-2 text-right">
               <div className="flex items-center justify-end gap-2">
                 {change > 0 ? (
                   <ArrowUpRight className="w-4 h-4 text-green-600" />
@@ -537,7 +537,7 @@ Confidential - For authorized use only
     return (
       <>
         <tr className="bg-gray-100 border-t-2 border-gray-300">
-          <td className="px-6 py-3" style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
+          <td className="px-3 py-2" style={{ paddingLeft: `${1.5 + indent * 1.5}rem` }}>
             <button
               onClick={() => toggleSection(sectionKey)}
               className="flex items-center gap-2 font-bold text-gray-900 hover:text-blue-600 transition-colors"
@@ -550,18 +550,18 @@ Confidential - For authorized use only
               {title}
             </button>
           </td>
-          <td className="px-6 py-3 text-right font-bold text-gray-900">
+          <td className="px-3 py-2 text-right font-bold text-gray-900">
             {formatCurrency(total.current)}
           </td>
           {showComparison && (
             <>
-              <td className="px-6 py-3 text-right font-bold text-gray-900">
+              <td className="px-3 py-2 text-right font-bold text-gray-900">
                 {formatCurrency(total.previous)}
               </td>
-              <td className="px-6 py-3 text-right font-bold text-gray-900">
+              <td className="px-3 py-2 text-right font-bold text-gray-900">
                 {formatCurrency(total.current - total.previous)}
               </td>
-              <td className="px-6 py-3 text-right">
+              <td className="px-3 py-2 text-right">
                 <span
                   className={`font-bold ${
                     calculateChange(total.current, total.previous) > 0
@@ -601,10 +601,10 @@ Confidential - For authorized use only
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-green-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-green-50 p-3">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <TrendingUp className="w-8 h-8 text-green-600" />
@@ -653,8 +653,8 @@ Confidential - For authorized use only
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-blue-100 text-sm mb-1">Total Revenue</p>
             <p className="text-3xl font-bold">{formatCurrency(totalRevenue.current)}</p>
             <p className="text-sm text-blue-100 mt-2">
@@ -663,7 +663,7 @@ Confidential - For authorized use only
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-purple-100 text-sm mb-1">Gross Profit</p>
             <p className="text-3xl font-bold">{formatCurrency(grossProfit.current)}</p>
             <p className="text-sm text-purple-100 mt-2">
@@ -671,7 +671,7 @@ Confidential - For authorized use only
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-orange-100 text-sm mb-1">Operating Profit</p>
             <p className="text-3xl font-bold">{formatCurrency(operatingProfit.current)}</p>
             <p className="text-sm text-orange-100 mt-2">
@@ -679,7 +679,7 @@ Confidential - For authorized use only
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
             <p className="text-green-100 text-sm mb-1">Net Profit</p>
             <p className="text-3xl font-bold">{formatCurrency(netProfit.current)}</p>
             <p className="text-sm text-green-100 mt-2">
@@ -690,12 +690,12 @@ Confidential - For authorized use only
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="bg-white rounded-xl shadow-lg p-3 mb-3">
+        <div className="flex items-center gap-2 mb-2">
           <Filter className="w-5 h-5 text-gray-600" />
           <h2 className="text-lg font-semibold text-gray-900">Report Options</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Period</label>
             <select
@@ -714,7 +714,7 @@ Confidential - For authorized use only
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Comparison</label>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -731,7 +731,7 @@ Confidential - For authorized use only
 
       {/* P&L Statement Table */}
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold">Profit & Loss Statement</h2>
@@ -745,21 +745,21 @@ Confidential - For authorized use only
           <table className="w-full">
             <thead className="bg-gray-100 border-b-2 border-gray-300">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase">
+                <th className="px-3 py-2 text-left text-sm font-bold text-gray-700 uppercase">
                   Account
                 </th>
-                <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                   Current Period
                 </th>
                 {showComparison && (
                   <>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                    <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                       Previous Period
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                    <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                       Variance
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-gray-700 uppercase">
+                    <th className="px-3 py-2 text-right text-sm font-bold text-gray-700 uppercase">
                       Change %
                     </th>
                   </>
@@ -806,22 +806,22 @@ Confidential - For authorized use only
         </div>
 
         {/* Profit Margins Summary */}
-        <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 border-t-2 border-gray-300">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Profitability Ratios</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-3 border-t-2 border-gray-300">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Profitability Ratios</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">Gross Profit Margin</p>
               <p className="text-2xl font-bold text-purple-600">
                 {((grossProfit.current / totalRevenue.current) * 100).toFixed(2)}%
               </p>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-gray-200">
+            <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">Operating Profit Margin</p>
               <p className="text-2xl font-bold text-orange-600">
                 {((operatingProfit.current / totalRevenue.current) * 100).toFixed(2)}%
               </p>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-gray-200">
+            <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">Net Profit Margin</p>
               <p className="text-2xl font-bold text-green-600">
                 {((netProfit.current / totalRevenue.current) * 100).toFixed(2)}%

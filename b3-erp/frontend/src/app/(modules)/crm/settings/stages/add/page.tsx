@@ -104,7 +104,7 @@ export default function AddStagePage() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="max-w-4xl">
+      <form onSubmit={handleSubmit} className="">
         <div className="bg-white rounded-lg border border-gray-200 p-3 space-y-3">
           {/* Basic Information */}
           <div>

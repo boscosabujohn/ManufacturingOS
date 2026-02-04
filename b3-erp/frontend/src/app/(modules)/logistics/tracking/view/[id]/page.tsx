@@ -494,12 +494,12 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
                 {/* Map Placeholder */}
                 <div className="mb-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-12">
                   <div className="text-center">
-                    <Map className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+                    <Map className="w-16 h-16 text-blue-600 mb-4" />
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Interactive Map View</h4>
                     <p className="text-gray-600 mb-4">
                       Real-time shipment tracking on interactive map
                     </p>
-                    <button className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 font-medium transition-all flex items-center gap-2 mx-auto">
+                    <button className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 font-medium transition-all flex items-center gap-2">
                       <ExternalLink className="w-4 h-4" />
                       Open in Full Screen
                     </button>

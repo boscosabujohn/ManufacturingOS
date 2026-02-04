@@ -1209,7 +1209,7 @@ export default function LeadsPage() {
               </button>
             </div>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+              <Upload className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-sm text-gray-600 mb-2">
                 Drag and drop your CSV or Excel file here, or click to browse
               </p>
@@ -1243,7 +1243,7 @@ export default function LeadsPage() {
       {/* Lead Detail Modal - Enhanced View */}
       {showDetailModal && selectedLead && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+          <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-3 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
               <div className="flex items-center space-x-4">

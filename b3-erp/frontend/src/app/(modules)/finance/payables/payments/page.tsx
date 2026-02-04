@@ -286,8 +286,8 @@ export default function PaymentsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 p-6">
-      <div className="w-full h-full px-4 sm:px-6 lg:px-8 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 p-3">
+      <div className="w-full h-full px-3 space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -295,7 +295,7 @@ export default function PaymentsPage() {
             <p className="text-gray-400">Manage vendor payments and disbursements</p>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors shadow-lg">
+            <button className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors shadow-lg">
               <Plus className="w-5 h-5" />
               Make Payment
             </button>
@@ -307,8 +307,8 @@ export default function PaymentsPage() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <CreditCard className="w-8 h-8 opacity-80" />
               <TrendingDown className="w-5 h-5" />
@@ -318,7 +318,7 @@ export default function PaymentsPage() {
             <div className="mt-2 text-xs text-blue-100">This period</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
               <TrendingDown className="w-5 h-5" />
@@ -328,7 +328,7 @@ export default function PaymentsPage() {
             <div className="mt-2 text-xs text-purple-100">Gross payment value</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 opacity-80" />
               <TrendingDown className="w-5 h-5" />
@@ -340,7 +340,7 @@ export default function PaymentsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <AlertTriangle className="w-8 h-8 opacity-80" />
               <Clock className="w-5 h-5" />
@@ -352,8 +352,8 @@ export default function PaymentsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -422,47 +422,47 @@ export default function PaymentsPage() {
             <table className="w-full">
               <thead className="bg-gray-900/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Payment #</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Vendor</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Method</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Amount</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">TDS</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Net Payment</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Payment #</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Vendor</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Date</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Method</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Amount</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">TDS</th>
+                  <th className="px-3 py-2 text-right text-sm font-semibold text-gray-300">Net Payment</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                  <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredPayments.map((payment) => (
                   <tr key={payment.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="font-medium text-white font-mono">{payment.paymentNumber}</div>
                       {payment.invoiceNumber && (
                         <div className="text-xs text-gray-400 mt-1">Ref: {payment.invoiceNumber}</div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-white">{payment.vendorName}</div>
                       <div className="text-xs text-gray-400 font-mono mt-1">{payment.vendorCode}</div>
                     </td>
-                    <td className="px-6 py-4 text-white text-sm">
+                    <td className="px-3 py-2 text-white text-sm">
                       {new Date(payment.paymentDate).toLocaleDateString()}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       {getMethodBadge(payment.paymentMethod)}
                       <div className="text-xs text-gray-400 mt-1">{payment.bankAccount}</div>
                     </td>
-                    <td className="px-6 py-4 text-right text-white font-medium">
+                    <td className="px-3 py-2 text-right text-white font-medium">
                       {formatCurrency(payment.amount)}
                     </td>
-                    <td className="px-6 py-4 text-right text-orange-400 font-medium">
+                    <td className="px-3 py-2 text-right text-orange-400 font-medium">
                       {payment.tdsDeducted > 0 ? formatCurrency(payment.tdsDeducted) : '-'}
                     </td>
-                    <td className="px-6 py-4 text-right text-green-400 font-medium">
+                    <td className="px-3 py-2 text-right text-green-400 font-medium">
                       {formatCurrency(payment.netPayment)}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       {getStatusBadge(payment.status)}
                       {payment.processedDate && (
                         <div className="text-xs text-gray-400 mt-1">
@@ -470,7 +470,7 @@ export default function PaymentsPage() {
                         </div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center justify-center gap-2">
                         <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                           <Eye className="w-4 h-4 text-blue-400" />
@@ -500,7 +500,7 @@ export default function PaymentsPage() {
 
           {filteredPayments.length === 0 && (
             <div className="text-center py-12">
-              <CreditCard className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+              <CreditCard className="w-16 h-16 text-gray-600 mb-2" />
               <p className="text-gray-400 text-lg">No payments found</p>
               <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filters</p>
             </div>
@@ -509,7 +509,7 @@ export default function PaymentsPage() {
 
         {/* Pagination */}
         {filteredPayments.length > 0 && (
-          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
+          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
             <div className="text-gray-400 text-sm">
               Showing {filteredPayments.length} of {payments.length} payments
             </div>

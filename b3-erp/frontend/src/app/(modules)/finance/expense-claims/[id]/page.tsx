@@ -49,9 +49,9 @@ export default function ExpenseClaimDetailPage() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -91,7 +91,7 @@ export default function ExpenseClaimDetailPage() {
             </div>
 
             {/* Claim Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Main Claim Details */}
                 <div className="lg:col-span-2">
                     <Card>
@@ -100,7 +100,7 @@ export default function ExpenseClaimDetailPage() {
                         </CardHeader>
                         <CardContent>
                             {/* Employee Info */}
-                            <div className="mb-6 pb-6 border-b">
+                            <div className="mb-3 pb-6 border-b">
                                 <h3 className="font-semibold mb-2">Employee Information:</h3>
                                 <p className="font-medium">{claim.employee.name}</p>
                                 <p className="text-sm text-gray-600">ID: {claim.employee.id}</p>
@@ -108,7 +108,7 @@ export default function ExpenseClaimDetailPage() {
                             </div>
 
                             {/* Expense Items */}
-                            <table className="w-full mb-6">
+                            <table className="w-full mb-3">
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Date</th>
@@ -145,7 +145,7 @@ export default function ExpenseClaimDetailPage() {
                 </div>
 
                 {/* Sidebar */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     {/* Approval Status */}
                     <Card>
                         <CardHeader>
@@ -154,7 +154,7 @@ export default function ExpenseClaimDetailPage() {
                         <CardContent>
                             {claim.status === 'Approved' && (
                                 <>
-                                    <div className="flex items-center gap-2 mb-4">
+                                    <div className="flex items-center gap-2 mb-2">
                                         <CheckCircle className="h-5 w-5 text-green-600" />
                                         <span className="font-semibold text-green-600">Approved</span>
                                     </div>

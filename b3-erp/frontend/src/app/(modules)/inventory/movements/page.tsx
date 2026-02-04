@@ -324,7 +324,7 @@ const InventoryMovementsPage = () => {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-[1600px] mx-auto space-y-6">
+      <div className="max-w-[1600px] space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((stat, index) => {

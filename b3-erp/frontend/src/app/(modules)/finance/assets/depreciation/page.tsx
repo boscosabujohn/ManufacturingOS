@@ -339,11 +339,11 @@ export default function DepreciationPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="w-full p-6">
-          <div className="w-full space-y-6">
+        <div className="w-full p-3">
+          <div className="w-full space-y-3">
             {/* Toast Notification */}
             {toast && (
-              <div className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg border-l-4 animate-slide-in ${toast.type === 'success' ? 'bg-green-50 border-green-500 text-green-800' :
+              <div className={`fixed top-4 right-4 z-50 px-3 py-2 rounded-lg shadow-lg border-l-4 animate-slide-in ${toast.type === 'success' ? 'bg-green-50 border-green-500 text-green-800' :
                   toast.type === 'error' ? 'bg-red-50 border-red-500 text-red-800' :
                     'bg-blue-50 border-blue-500 text-blue-800'
                 }`}>
@@ -385,8 +385,8 @@ export default function DepreciationPage() {
             </div>
 
             {/* Statistics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <TrendingDown className="w-8 h-8 opacity-80" />
                   <Calendar className="w-5 h-5" />
@@ -396,7 +396,7 @@ export default function DepreciationPage() {
                 <div className="mt-2 text-xs text-orange-100">Current month charge</div>
               </div>
 
-              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <BarChart3 className="w-8 h-8 opacity-80" />
                   <TrendingDown className="w-5 h-5" />
@@ -406,7 +406,7 @@ export default function DepreciationPage() {
                 <div className="mt-2 text-xs text-red-100">Projected for current year</div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <DollarSign className="w-8 h-8 opacity-80" />
                   <TrendingDown className="w-5 h-5" />
@@ -416,7 +416,7 @@ export default function DepreciationPage() {
                 <div className="mt-2 text-xs text-purple-100">All assets to date</div>
               </div>
 
-              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white shadow-lg">
+              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-3 text-white shadow-lg">
                 <div className="flex items-center justify-between mb-2">
                   <AlertTriangle className="w-8 h-8 opacity-80" />
                   <CheckCircle className="w-5 h-5" />
@@ -428,8 +428,8 @@ export default function DepreciationPage() {
             </div>
 
             {/* Filters */}
-            <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-              <div className="flex flex-wrap items-center gap-4">
+            <div className="bg-white rounded-xl p-3 border border-gray-200 shadow-sm">
+              <div className="flex flex-wrap items-center gap-2">
                 <div className="flex-1 min-w-[300px]">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -479,7 +479,7 @@ export default function DepreciationPage() {
               <div className="flex border-b border-gray-200">
                 <button
                   onClick={() => setActiveTab('schedule')}
-                  className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'schedule'
+                  className={`flex-1 px-3 py-2 font-medium transition-colors ${activeTab === 'schedule'
                       ? 'bg-orange-600 text-white'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
@@ -491,7 +491,7 @@ export default function DepreciationPage() {
                 </button>
                 <button
                   onClick={() => setActiveTab('entries')}
-                  className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'entries'
+                  className={`flex-1 px-3 py-2 font-medium transition-colors ${activeTab === 'entries'
                       ? 'bg-orange-600 text-white'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
@@ -509,22 +509,22 @@ export default function DepreciationPage() {
                   <table className="w-full">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Asset Details</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Method</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Purchase Value</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Monthly Depreciation</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Accumulated</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Net Book Value</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Remaining Life</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Status</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Actions</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Asset Details</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Method</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Purchase Value</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Monthly Depreciation</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Accumulated</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Net Book Value</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Remaining Life</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredSchedules.map((schedule) => (
                         <React.Fragment key={schedule.id}>
                           <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                            <td className="px-6 py-4">
+                            <td className="px-3 py-2">
                               <div className="flex items-center gap-2">
                                 <button
                                   onClick={() => toggleAssetExpansion(schedule.assetId)}
@@ -543,29 +543,29 @@ export default function DepreciationPage() {
                                 </div>
                               </div>
                             </td>
-                            <td className="px-6 py-4">
+                            <td className="px-3 py-2">
                               <div className="text-gray-900 text-sm">{schedule.depreciationMethod}</div>
                               <div className="text-xs text-gray-600">{schedule.usefulLife} years</div>
                             </td>
-                            <td className="px-6 py-4 text-right text-gray-900 font-medium">
+                            <td className="px-3 py-2 text-right text-gray-900 font-medium">
                               {formatCurrency(schedule.purchaseValue)}
                             </td>
-                            <td className="px-6 py-4 text-right text-orange-600 font-medium">
+                            <td className="px-3 py-2 text-right text-orange-600 font-medium">
                               {formatCurrency(schedule.monthlyDepreciation)}
                             </td>
-                            <td className="px-6 py-4 text-right text-red-600 font-medium">
+                            <td className="px-3 py-2 text-right text-red-600 font-medium">
                               {formatCurrency(schedule.accumulatedDepreciation)}
                             </td>
-                            <td className="px-6 py-4 text-right text-green-600 font-medium">
+                            <td className="px-3 py-2 text-right text-green-600 font-medium">
                               {formatCurrency(schedule.netBookValue)}
                             </td>
-                            <td className="px-6 py-4 text-center text-gray-900">
+                            <td className="px-3 py-2 text-center text-gray-900">
                               {schedule.remainingLife.toFixed(1)} years
                             </td>
-                            <td className="px-6 py-4 text-center">
+                            <td className="px-3 py-2 text-center">
                               {getStatusBadge(schedule.status)}
                             </td>
-                            <td className="px-6 py-4">
+                            <td className="px-3 py-2">
                               <div className="flex items-center justify-center gap-2">
                                 <button
                                   onClick={() => handleViewSchedule(schedule.assetName)}
@@ -584,8 +584,8 @@ export default function DepreciationPage() {
                           </tr>
                           {expandedAsset === schedule.assetId && (
                             <tr className="bg-gray-50 border-b border-gray-200">
-                              <td colSpan={9} className="px-6 py-4">
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              <td colSpan={9} className="px-3 py-2">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                                   <div className="space-y-2">
                                     <div className="text-sm font-semibold text-gray-700">Schedule Details</div>
                                     <div className="flex justify-between text-sm">
@@ -658,37 +658,37 @@ export default function DepreciationPage() {
                   <table className="w-full">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Date</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Asset Name</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Period</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Depreciation Amount</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Accumulated</th>
-                        <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Net Book Value</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Journal Entry</th>
-                        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Status</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Date</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Asset Name</th>
+                        <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Period</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Depreciation Amount</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Accumulated</th>
+                        <th className="px-3 py-2 text-right text-sm font-semibold text-gray-700">Net Book Value</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Journal Entry</th>
+                        <th className="px-3 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredEntries.map((entry) => (
                         <tr key={entry.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                          <td className="px-6 py-4 text-gray-900 text-sm">
+                          <td className="px-3 py-2 text-gray-900 text-sm">
                             {new Date(entry.date).toLocaleDateString()}
                           </td>
-                          <td className="px-6 py-4 text-gray-700 text-sm">{entry.assetName}</td>
-                          <td className="px-6 py-4 text-gray-600 text-sm">{entry.period}</td>
-                          <td className="px-6 py-4 text-right text-orange-600 font-medium">
+                          <td className="px-3 py-2 text-gray-700 text-sm">{entry.assetName}</td>
+                          <td className="px-3 py-2 text-gray-600 text-sm">{entry.period}</td>
+                          <td className="px-3 py-2 text-right text-orange-600 font-medium">
                             {formatCurrency(entry.depreciationAmount)}
                           </td>
-                          <td className="px-6 py-4 text-right text-red-600 font-medium">
+                          <td className="px-3 py-2 text-right text-red-600 font-medium">
                             {formatCurrency(entry.accumulatedDepreciation)}
                           </td>
-                          <td className="px-6 py-4 text-right text-green-600 font-medium">
+                          <td className="px-3 py-2 text-right text-green-600 font-medium">
                             {formatCurrency(entry.netBookValue)}
                           </td>
-                          <td className="px-6 py-4 text-center text-gray-600 text-sm font-mono">
+                          <td className="px-3 py-2 text-center text-gray-600 text-sm font-mono">
                             {entry.journalEntryId || '-'}
                           </td>
-                          <td className="px-6 py-4 text-center">
+                          <td className="px-3 py-2 text-center">
                             {entry.posted ? (
                               <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">
                                 <CheckCircle className="w-3 h-3" />

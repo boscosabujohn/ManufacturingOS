@@ -573,13 +573,13 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
 
             {dock.status === 'available' ? (
               <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
-                <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-3" />
+                <CheckCircle className="w-12 h-12 text-green-600 mb-3" />
                 <p className="text-lg font-semibold text-green-900">Dock Available</p>
                 <p className="text-sm text-green-700 mt-1">{dock.notes || 'Ready for next shipment'}</p>
               </div>
             ) : dock.status === 'maintenance' ? (
               <div className="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
-                <AlertTriangle className="w-12 h-12 text-red-600 mx-auto mb-3" />
+                <AlertTriangle className="w-12 h-12 text-red-600 mb-3" />
                 <p className="text-lg font-semibold text-red-900">Under Maintenance</p>
                 <p className="text-sm text-red-700 mt-1">{dock.notes}</p>
                 <p className="text-xs text-red-600 mt-2">Assigned to: {dock.workerAssigned}</p>
@@ -672,7 +672,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
 
       {filteredDocks.length === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <Truck className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <Truck className="w-16 h-16 text-gray-400 mb-4" />
           <p className="text-gray-500 text-lg mb-2">No dock doors found</p>
           <p className="text-sm text-gray-400">Try adjusting your search or filter criteria</p>
         </div>

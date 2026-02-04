@@ -416,10 +416,10 @@ export default function AddJournalEntryPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div className="flex items-start space-x-4">
             <button
               onClick={() => router.back()}
@@ -480,7 +480,7 @@ export default function AddJournalEntryPage() {
 
         {/* Balance Status */}
         {isBalanced ? (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-start space-x-3">
             <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-green-900">Entry Balanced</h3>
@@ -490,7 +490,7 @@ export default function AddJournalEntryPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start space-x-3">
             <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1 flex items-center justify-between">
               <div>
@@ -514,7 +514,7 @@ export default function AddJournalEntryPage() {
       {/* Templates Modal */}
       {showTemplates && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden">
+          <div className="bg-white rounded-lg shadow-xl  w-full mx-4 max-h-[90vh] overflow-hidden">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900 flex items-center">
@@ -531,13 +531,13 @@ export default function AddJournalEntryPage() {
             </div>
 
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {journalTemplates.map((template) => {
                   const IconComponent = template.icon;
                   return (
                     <div
                       key={template.id}
-                      className="border border-gray-200 rounded-lg p-4 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
+                      className="border border-gray-200 rounded-lg p-3 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
                       onClick={() => handleLoadTemplate(template)}
                     >
                       <div className="flex items-start space-x-4">
@@ -572,12 +572,12 @@ export default function AddJournalEntryPage() {
       )}
 
       {/* Entry Details Form */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
           <FileText className="h-5 w-5 mr-2 text-blue-600" />
           Entry Details
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Entry Date *
@@ -666,7 +666,7 @@ export default function AddJournalEntryPage() {
       </div>
 
       {/* Journal Lines */}
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-6">
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-3">
         <div className="p-4 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center">
             <BookOpen className="h-5 w-5 mr-2 text-blue-600" />
@@ -857,7 +857,7 @@ export default function AddJournalEntryPage() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start space-x-3">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start space-x-3">
         <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
         <div className="text-sm text-blue-800">
           <p className="font-semibold mb-1">Important Notes:</p>

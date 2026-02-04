@@ -151,10 +151,10 @@ export default function ForecastPage() {
   const avgConfidence = categoryForecasts.reduce((sum, cat) => sum + cat.confidence, 0) / categoryForecasts.length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -179,7 +179,7 @@ export default function ForecastPage() {
       </div>
 
       {/* Key Forecast Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-5 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-blue-100">Next Month Forecast</p>
@@ -229,10 +229,10 @@ export default function ForecastPage() {
       </div>
 
       {/* Monthly Forecast Trend */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900">Monthly Revenue Forecast (₹ Lakhs)</h2>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-blue-500"></div>
               <span className="text-sm text-gray-600">Actual</span>
@@ -243,7 +243,7 @@ export default function ForecastPage() {
             </div>
           </div>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {monthlyForecast.map((data) => (
             <div key={data.month} className="space-y-2">
               <div className="flex items-center justify-between text-sm">
@@ -251,7 +251,7 @@ export default function ForecastPage() {
                   <span className="font-medium text-gray-700">{data.month}</span>
                   {getTrendIcon(data.trend)}
                 </div>
-                <div className="flex-1 flex items-center gap-4">
+                <div className="flex-1 flex items-center gap-2">
                   {data.actualRevenue && (
                     <div className="text-blue-600 font-medium w-24 text-right">
                       ₹{(data.actualRevenue / 1000).toFixed(0)}L
@@ -296,16 +296,16 @@ export default function ForecastPage() {
       </div>
 
       {/* Category Forecasts */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900">Category-wise Forecast Analysis</h2>
           <Package className="h-5 w-5 text-gray-600" />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {categoryForecasts.map((forecast) => (
             <div key={forecast.category} className="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div>
                   <h3 className="font-semibold text-gray-900">{forecast.category}</h3>
                   <span className={`inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium border ${getRiskColor(forecast.risk)}`}>
@@ -322,7 +322,7 @@ export default function ForecastPage() {
               </div>
 
               {/* Current vs Forecast */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <p className="text-xs text-blue-700 mb-1">Current Sales</p>
                   <p className="font-semibold text-blue-900">₹{(forecast.currentSales / 100000).toFixed(2)}L</p>
@@ -334,7 +334,7 @@ export default function ForecastPage() {
               </div>
 
               {/* Confidence Bar */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between text-sm mb-2">
                   <span className="text-gray-600">Confidence Level</span>
                   <span className="font-semibold text-gray-900">{forecast.confidence}%</span>
@@ -369,14 +369,14 @@ export default function ForecastPage() {
       </div>
 
       {/* Forecast Accuracy */}
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg border border-indigo-200 p-6">
-        <div className="flex items-start gap-4">
+      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg border border-indigo-200 p-3">
+        <div className="flex items-start gap-2">
           <div className="p-3 bg-indigo-100 rounded-lg">
             <BarChart3 className="h-8 w-8 text-indigo-600" />
           </div>
           <div className="flex-1">
             <h3 className="font-semibold text-indigo-900 mb-2">Forecast Model Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
               <div>
                 <p className="text-indigo-700 mb-1">Model Type</p>
                 <p className="font-semibold text-indigo-900">Time Series + ML Hybrid</p>

@@ -306,7 +306,7 @@ export default function DatabaseImportPage() {
             className={`mb-6 border-2 border-dashed rounded-lg p-8 text-center transition-colors ${dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
               }`}
           >
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+            <Upload className="w-12 h-12 text-gray-400 mb-3" />
             <p className="text-sm font-medium text-gray-900 mb-1">
               Drop your file here or click to browse
             </p>
